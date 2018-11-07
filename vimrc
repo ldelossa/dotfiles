@@ -20,6 +20,9 @@ nnoremap <C-F> <C-O>
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" deletes netrw's buffer once it's hidden (using ':q', for example)
+autocmd FileType netrw setl bufhidden=delete
 
 " base-16 shell
 if filereadable(expand("~/.vimrc_background"))
@@ -183,7 +186,7 @@ let g:jedi#usages_command = "<leader>n"
 
 " ALE configurations
 map <leader>at :ALEToggle<CR>
-let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black'], 'c': ['clang-format']}
+let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
 autocmd FileType python map <leader>f :ALEFix <CR>
 autocmd FileType javascript map <leader>f :ALEFix <CR>
 let g:ale_enabled = 0
@@ -216,26 +219,8 @@ let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -2,
             \ "ColumnLimit" : 0 }
 
-" c++ language server configurations
-function LC_C_maps()
-	if has_key(g:LanguageClient_serverCommands, &filetype)
-		nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-	endif
-endfunction
-
-autocmd FileType cpp call LC_C_maps()
-autocmd FileType hpp call LC_C_maps()
-autocmd FileType c call LC_C_maps()
-autocmd FileType h call LC_C_maps()
-
-let g:LanguageClient_diagnosticsEnable=0
-
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 call plug#end()
