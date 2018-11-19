@@ -104,7 +104,7 @@ let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
 autocmd FileType go map <leader>b :GoBuild <CR>
 autocmd FileType go map <leader>r :GoRun <CR>
-au FileType go nmap <leader>RT <Plug>(go-run-tab)
+autocmd FileType go nmap <leader>RT <Plug>(go-run-tab)
 autocmd FileType go map <leader>l :GoMetaLinter <CR>
 autocmd FileType go nmap <leader>R :GoRename <CR>
 autocmd FileType go map <leader>o :GoDecls <CR>
@@ -151,6 +151,7 @@ let g:tagbar_type_go = {
 	\ 'ctagsbin'  : 'gotags',
 	\ 'ctagsargs' : '-sort -silent'
 \ }
+
 " TagBar configurations
 map <leader>2 :TagbarToggle <CR>
 
@@ -159,16 +160,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-" CTRLP configurations
-" let g:ctrlp_reuse_window = 'NERD'
-" let g:ctrlp_use_caching = 1
-" let g:ctrlp_clear_cache_on_exit = 0
-" let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
-" map <C-O> :CtrlP <CR>
-" " nmap <C-B> :CtrlPBuffer<cr>
-" nmap <C-T> :CtrlPTag<cr>
 
 " FZF configuration
 map <C-G> :GFiles <CR>
@@ -197,12 +188,6 @@ highlight ALEError ctermbg=DarkRed
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag --literal --path-to-ignore ~/.config/git/ignore --files-with-matches --nocolor --hidden --ignore .git -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 
   if !exists(":Ag")
     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
