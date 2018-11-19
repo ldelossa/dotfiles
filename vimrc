@@ -4,7 +4,7 @@ execute pathogen#infect()
 filetype plugin indent on
 set number
 set backspace=2 " make backspace work like most other apps
-set updatetime=250
+set updatetime=275
 set autowrite
 set background=light
 set timeoutlen=300
@@ -102,26 +102,47 @@ let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
-autocmd FileType go map <leader>b :GoBuild <CR>
-autocmd FileType go map <leader>r :GoRun <CR>
-autocmd FileType go nmap <leader>RT <Plug>(go-run-tab)
-autocmd FileType go map <leader>l :GoMetaLinter <CR>
-autocmd FileType go nmap <leader>R :GoRename <CR>
-autocmd FileType go map <leader>o :GoDecls <CR>
-autocmd FileType go map <leader>O :GoDeclsDir <CR>
-autocmd FileType go map <leader>d :GoDoc <CR>
-autocmd FileType go map <leader>I :GoInfo <CR>
-autocmd FileType go map <leader>e :GoIfErr <CR>
-autocmd FileType go map <leader>ii :GoImport 
-autocmd FileType go map <leader>ia :GoImportAs 
-autocmd FileType go map <leader>f :GoFillStruct <CR>
-autocmd FileType go map <leader>t :GoTestFunc -v -race <CR>
-autocmd FileType go map <leader>T :GoTest -v -race <CR>
-autocmd FileType go map <leader>c :GoTestCompile <CR>
-autocmd FileType go map <leader>at :GoAddTags <CR>
-autocmd FileType go map <C-n> :cnext<CR>
-autocmd FileType go map <C-m> :cprevious<CR>
-autocmd FileType go nnoremap <leader>a :cclose<CR>
+" vim-go key bindings
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>r <Plug>(go-build)
+au FileType go nmap <leader>i <Plug>(go-info)
+au FileType go nmap <leader>de <Plug>(go-deps)
+au FileType go nmap <leader>d <Plug>(go-doc)
+au FileType go nmap <leader>dv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>db <Plug>(go-doc-browser)
+au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap gds <Plug>(go-def-split)
+au FileType go nmap gdv <Plug>(go-def-vertical)
+au FileType go nmap gd; <Plug>(go-def-stack)
+au FileType go nmap gdd <Plug>(go-def-pop)
+au FileType go nmap gdp <Plug>(go-def-pop)
+au FileType go nmap gdc <Plug>(go-def-stack-clear)
+au FileType go nmap <leader>im <Plug>(go-implements) 
+au FileType go nmap <leader>R <Plug>(go-rename)
+au FileType go nmap <leader>cC <Plug>(go-callees)
+au FileType go nmap <leader>cc <Plug>(go-callers)
+au FileType go nmap <leader>D <Plug>(go-describe)
+au FileType go nmap <leader>cs <Plug>(go-callstack)
+au FileType go nmap <leader>cp <Plug>(go-channelpeers)
+au FileType go nmap <leader>rr <Plug>(go-referrers)
+au FileType go nmap <leader>p <Plug>(go-pointsto)
+au FileType go nmap <leader>l <Plug>(go-metalinter)
+au FileType go nmap <leader>a <Plug>(go-alternate-edit)
+au FileType go nmap <leader>as <Plug>(go-alternate-split)
+au FileType go nmap <leader>av <Plug>(go-alternate-vertical)
+au FileType go nmap <leader>e <Plug>(go-iferr)
+au FileType go nmap <leader>o :GoDecls <CR>
+au FileType go nmap <leader>oo :GoDeclsDir <CR>
+au FileType go nmap <leader>ii :GoImport 
+au FileType go nmap <leader>ia :GoImportAs 
+au FileType go nmap <leader>f :GoFillStruct <CR>
+au FileType go nmap <leader>at :GoAddTags <CR>
+au FileType go nmap <leader>t :GoTestFunc -v -race <CR>
+au FileType go nmap <leader>T :GoTest -v -race <CR>
+au FileType go nmap <leader>c :GoTestCompile <CR>
+au FileType go nmap <C-n> :cnext<CR>
+au FileType go nmap <C-p> :cprevious<CR>
+au FileType go nmap <C-a> :cclose<CR>
 
 " TagBar gotags configuration
 let g:tagbar_type_go = {
@@ -207,5 +228,6 @@ let g:clang_format#style_options = {
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 Plug 'junegunn/fzf.vim'
 call plug#end()
