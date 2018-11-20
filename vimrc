@@ -16,6 +16,7 @@ let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 let mapleader=" "
 set nostartofline
+" remap jump to last location 
 nnoremap <C-F> <C-O>
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
@@ -228,6 +229,5 @@ let g:clang_format#style_options = {
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
 Plug 'junegunn/fzf.vim'
 call plug#end()
