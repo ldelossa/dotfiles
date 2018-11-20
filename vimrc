@@ -104,7 +104,7 @@ let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
 " vim-go key bindings
 au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>r <Plug>(go-build)
+au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>i <Plug>(go-info)
 au FileType go nmap <leader>de <Plug>(go-deps)
 au FileType go nmap <leader>d <Plug>(go-doc)
