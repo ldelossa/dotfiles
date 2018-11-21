@@ -1,6 +1,4 @@
 syntax on
-colorscheme PaperColor
-execute pathogen#infect()
 filetype plugin indent on
 set number
 set backspace=2 " make backspace work like most other apps
@@ -24,6 +22,39 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " Per default, netrw leaves unmodified buffers open. This autocommand
 " deletes netrw's buffer once it's hidden (using ':q', for example)
 autocmd FileType netrw setl bufhidden=delete
+
+" vim plugs
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
+Plug 'jiangmiao/auto-pairs'
+Plug 'chriskempson/base16-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'davidhalter/jedi-vim'
+Plug 'ervandew/supertab'
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'justmao945/vim-clang'
+Plug 'rhysd/vim-clang-format'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-commentary'
+Plug 'maxbrunsfeld/vim-emacs-bindings'
+Plug 'nvie/vim-flake8'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sensible'
+Plug 'kshenoy/vim-signature'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'plytophogy/vim-virtualenv'
+call plug#end()
 
 " base-16 shell
 if filereadable(expand("~/.vimrc_background"))
@@ -225,9 +256,3 @@ let g:clang_format#style_options = {
             \ "UseTab" : "false",
             \ "AccessModifierOffset" : -2,
             \ "ColumnLimit" : 0 }
-
-" vim plugs
-call plug#begin('~/.local/share/nvim/plugged')
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-call plug#end()
