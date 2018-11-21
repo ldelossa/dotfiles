@@ -6,6 +6,7 @@ set updatetime=275
 set autowrite
 set background=light
 set timeoutlen=300
+set noshowmode
 set t_Co=256 " 256 color mode
 set shell=/usr/local/bin/zsh
 set tags+=.tags
@@ -14,19 +15,34 @@ let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 let mapleader=" "
 set nostartofline
-" remap jump to last location 
-nnoremap <C-F> <C-O>
+
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
 " Per default, netrw leaves unmodified buffers open. This autocommand
 " deletes netrw's buffer once it's hidden (using ':q', for example)
 autocmd FileType netrw setl bufhidden=delete
+
+" remap jump to last location 
+nnoremap <C-F> <C-O>
+
+" Remap Buffer Switching
+nnoremap gb :bnext<CR>
+nnoremap bg :bprevious<CR>
+nnoremap bd :bp\|bd #<CR>
+
+" Remap split buffer navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'chriskempson/base16-vim'
@@ -34,8 +50,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
 Plug 'majutsushi/tagbar'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'justmao945/vim-clang'
 Plug 'rhysd/vim-clang-format'
 Plug 'alvan/vim-closetag'
@@ -62,14 +76,26 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-" netrw Configurations
+" lightlight configurations
+let g:lightline = {
+    \ 'colorscheme': 'Tomorrow_Night_Eighties',
+	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+	\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+	\ },
+	\ 'component_function': {
+	\   'gitbranch': 'fugitive#head'
+	\ },
+	\ }
+
+" netrw configurations
 let g:netrw_liststyle=3
 let g:netrw_altv=1
 map <leader>e :Ex <CR>
 map <leader>v :Vex <CR>
 map <leader>h :Hex <CR>
 
-" SuperTab Configurations
+" SuperTab configurations
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
@@ -77,7 +103,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 map <leader>p :pc <CR>
 " let g:SuperTabCrMapping = 1
 
-" CloseTag Configurations
+" CloseTag configurations
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
 let g:closetag_filetypes = 'html,xhtml,phtml,js'
@@ -86,21 +112,14 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
-" Remap Buffer Switching
-nnoremap gb :bnext<CR>
-nnoremap bg :bprevious<CR>
-nnoremap bd :bp\|bd #<CR>
-
-" Airliner Configurations
+" Airliner configurations
 let g:airline_theme='papercolor'
 " let g:airline_theme = "hybrid"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-" Omnicomplete Configurations
-" inoremap <S-TAB> <C-X><C-O>
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Omnicomplete configurations
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Spacing
@@ -207,12 +226,6 @@ let g:tagbar_type_go = {
 
 " TagBar configurations
 map <leader>2 :TagbarToggle <CR>
-
-" Remap split buffer navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " FZF configuration
 map <C-G> :GFiles <CR>
