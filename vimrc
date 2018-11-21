@@ -81,10 +81,14 @@ let g:lightline = {
     \ 'colorscheme': 'Tomorrow_Night_Eighties',
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+	\             [ 'gitbranch', 'readonly', 'filename', 'modified', 'gostatus' ] ]
 	\ },
 	\ 'component_function': {
-	\   'gitbranch': 'fugitive#head'
+	\   'gitbranch': 'fugitive#head',
+    \   'gostatus': 'go#statusline#Show'
+	\ },
+	\ 'component': {
+	\   'filename': '%f'
 	\ },
 	\ }
 
