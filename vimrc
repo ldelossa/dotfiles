@@ -137,6 +137,8 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 set viewoptions-=options
 
 " vim-go Configuration
+let g:go_gocode_propose_source = 0 " parse binary for code completion
+autocmd BufWritePost *.go silent! :GoInstall " emulate old go-code autobuild
 let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_structs = 1
