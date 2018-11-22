@@ -10,7 +10,7 @@ syntax on
 filetype plugin indent on
 set number
 set numberwidth=1
-set backspace=2 " make backspace work like most other apps
+set backspace=2 
 set updatetime=275
 set timeoutlen=300
 set autowrite
@@ -182,50 +182,52 @@ let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
-" vim-go key bindings and autocmmands
+
+" vim-go key bindings and autocommands
 augroup go
     autocmd!
-    au BufWritePost *.go silent! :GoInstall 
-    au FileType go nnoremap <leader>b <Plug>(go-build)
-    au FileType go nnoremap <leader>r <Plug>(go-run)
-    au FileType go nnoremap <leader>i <Plug>(go-info)
-    au FileType go nnoremap <leader>de <Plug>(go-deps)
-    au FileType go nnoremap <leader>d <Plug>(go-doc)
-    au FileType go nnoremap <leader>dv <Plug>(go-doc-vertical)
-    au FileType go nnoremap <leader>db <Plug>(go-doc-browser)
-    au FileType go nnoremap gd <Plug>(go-def)
-    au FileType go nnoremap gds <Plug>(go-def-split)
-    au FileType go nnoremap gdv <Plug>(go-def-vertical)
-    au FileType go nnoremap gd; <Plug>(go-def-stack)
-    au FileType go nnoremap gdd <Plug>(go-def-pop)
-    au FileType go nnoremap gdp <Plug>(go-def-pop)
-    au FileType go nnoremap gdc <Plug>(go-def-stack-clear)
-    au FileType go nnoremap <leader>im <Plug>(go-implements) 
-    au FileType go nnoremap <leader>R <Plug>(go-rename)
-    au FileType go nnoremap <leader>cC <Plug>(go-callees)
-    au FileType go nnoremap <leader>cc <Plug>(go-callers)
-    au FileType go nnoremap <leader>D <Plug>(go-describe)
-    au FileType go nnoremap <leader>cs <Plug>(go-callstack)
-    au FileType go nnoremap <leader>cp <Plug>(go-channelpeers)
-    au FileType go nnoremap <leader>rr <Plug>(go-referrers)
-    au FileType go nnoremap <leader>p <Plug>(go-pointsto)
-    au FileType go nnoremap <leader>l <Plug>(go-metalinter)
-    au FileType go nnoremap <leader>a <Plug>(go-alternate-edit)
-    au FileType go nnoremap <leader>as <Plug>(go-alternate-split)
-    au FileType go nnoremap <leader>av <Plug>(go-alternate-vertical)
-    au FileType go nnoremap <leader>e <Plug>(go-iferr)
-    au FileType go nnoremap <leader>o :GoDecls <CR>
-    au FileType go nnoremap <leader>oo :GoDeclsDir <CR>
-    au FileType go nnoremap <leader>ii :GoImport 
-    au FileType go nnoremap <leader>ia :GoImportAs 
-    au FileType go nnoremap <leader>f :GoFillStruct <CR>
-    au FileType go nnoremap <leader>at :GoAddTags <CR>
-    au FileType go nnoremap <leader>t :GoTestFunc -v -race <CR>
-    au FileType go nnoremap <leader>T :GoTest -v -race <CR>
-    au FileType go nnoremap <leader>c :GoTestCompile <CR>
-    au FileType go nnoremap <C-n> :cnext<CR>
-    au FileType go nnoremap <C-p> :cprevious<CR>
-    au FileType go nnoremap <C-a> :cclose<CR>
+    " emulate autobuild
+    au BufWritePost *.go silent! :GoInstall
+    au FileType go nmap <leader>b <Plug>(go-build)
+    au FileType go nmap <leader>r <Plug>(go-run)
+    au FileType go nmap <leader>i <Plug>(go-info)
+    au FileType go nmap <leader>de <Plug>(go-deps)
+    au FileType go nmap <leader>d <Plug>(go-doc)
+    au FileType go nmap <leader>dv <Plug>(go-doc-vertical)
+    au FileType go nmap <leader>db <Plug>(go-doc-browser)
+    au FileType go nmap gd <Plug>(go-def)
+    au FileType go nmap gds <Plug>(go-def-split)
+    au FileType go nmap gdv <Plug>(go-def-vertical)
+    au FileType go nmap gd; <Plug>(go-def-stack)
+    au FileType go nmap gdd <Plug>(go-def-pop)
+    au FileType go nmap gdp <Plug>(go-def-pop)
+    au FileType go nmap gdc <Plug>(go-def-stack-clear)
+    au FileType go nmap <leader>im <Plug>(go-implements) 
+    au FileType go nmap <leader>R <Plug>(go-rename)
+    au FileType go nmap <leader>cC <Plug>(go-callees)
+    au FileType go nmap <leader>cc <Plug>(go-callers)
+    au FileType go nmap <leader>D <Plug>(go-describe)
+    au FileType go nmap <leader>cs <Plug>(go-callstack)
+    au FileType go nmap <leader>cp <Plug>(go-channelpeers)
+    au FileType go nmap <leader>rr <Plug>(go-referrers)
+    au FileType go nmap <leader>p <Plug>(go-pointsto)
+    au FileType go nmap <leader>l <Plug>(go-metalinter)
+    au FileType go nmap <leader>a <Plug>(go-alternate-edit)
+    au FileType go nmap <leader>as <Plug>(go-alternate-split)
+    au FileType go nmap <leader>av <Plug>(go-alternate-vertical)
+    au FileType go nmap <leader>e <Plug>(go-iferr)
+    au FileType go nmap <leader>o :GoDecls <CR>
+    au FileType go nmap <leader>oo :GoDeclsDir <CR>
+    au FileType go nmap <leader>ii :GoImport 
+    au FileType go nmap <leader>ia :GoImportAs 
+    au FileType go nmap <leader>f :GoFillStruct <CR>
+    au FileType go nmap <leader>at :GoAddTags <CR>
+    au FileType go nmap <leader>t :GoTestFunc -v -race <CR>
+    au FileType go nmap <leader>T :GoTest -v -race <CR>
+    au FileType go nmap <leader>c :GoTestCompile <CR>
+    au FileType go nmap <C-n> :cnext<CR>
+    au FileType go nmap <C-p> :cprevious<CR>
+    au FileType go nmap <C-a> :cclose<CR>
 augroup END
 
 " TagBar gotags configuration
@@ -289,7 +291,7 @@ augroup END
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-  nnoremap \ :Ag<SPACE> " this actually refers to fzf's :Ag command now
+  nnoremap \ :Ag<SPACE> 
 endif
 
 " vim-clang-format configuration
