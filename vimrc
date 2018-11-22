@@ -101,7 +101,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'kshenoy/vim-signature'
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-vinegar'
-	Plug 'plytophogy/vim-virtualenv'
+	Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
 call plug#end()
 
 " base-16 shell
