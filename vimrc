@@ -25,6 +25,10 @@ set tags+=.tags
 let mapleader=" "
 set nostartofline
 
+" turn on code folding, defaults to all folds open
+set foldmethod=syntax
+set foldlevel=9999
+
 " edit and source vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -58,8 +62,22 @@ augroup misc
 	autocmd FileType netrw setl bufhidden=delete
 augroup END
 
-" remap jump to last location 
-nnoremap <C-F> <C-O>
+" remap quickfix navigations
+function! QuickFixToggle()
+    for i in range(1, winnr('$'))
+        let bnum = winbufnr(i)
+        if getbufvar(bnum, '&buftype') == 'quickfix'
+             cclose
+             return
+		endif
+	endfor
+
+	copen
+endfunction
+
+nnoremap <C-n> :cnext<CR>
+nnoremap <C-p> :cprevious<CR>
+nnoremap <C-a> :call QuickFixToggle()<CR>
 
 " Remap Buffer Switching
 nnoremap gb :bnext<CR>
@@ -160,7 +178,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " Omnicomplete configurations
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" vim-go Configuration
+" vim-go configuration
 let g:go_gocode_propose_source = 0 " parse binary for code completion
 let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
@@ -182,6 +200,7 @@ let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
+let g:go_test_show_name = 1
 
 " vim-go key bindings and autocommands
 augroup go
@@ -225,9 +244,6 @@ augroup go
     au FileType go nmap <leader>t :GoTestFunc -v -race <CR>
     au FileType go nmap <leader>T :GoTest -v -race <CR>
     au FileType go nmap <leader>c :GoTestCompile <CR>
-    au FileType go nmap <C-n> :cnext<CR>
-    au FileType go nmap <C-p> :cprevious<CR>
-    au FileType go nmap <C-a> :cclose<CR>
 augroup END
 
 " TagBar gotags configuration
@@ -277,7 +293,10 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 
 " ALE configurations
-noremap <leader>at :ALEToggle<CR>
+noremap <leader>al :ALEToggle<CR>
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
 let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
 let g:ale_enabled = 0
 highlight ALEError ctermbg=DarkRed
