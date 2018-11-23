@@ -1,26 +1,37 @@
-export PATH=/usr/local/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
+# zmodload zsh/zprof
 export GOPATH=~/git/go
 export GOBIN=~/git/go/bin
 export GOSRC=~/git/go/src/
+export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/bin/protobuf-3.5.1
 export PATH=$PATH:/Users/louis/.scripts
 export PATH=$PATH:/Library/PostgreSQL/10/bin
 export KEYTIMEOUT=1
 
+# read from compinit cache unless date expired
+autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
+
+# source slimzsh
 source "$HOME/.slimzsh/slim.zsh"
-source ~/.zsh/completion/_kubectl
-# source ~/.zsh/completion/_minikube
-source ~/.zsh/completion/_google-cloud-sdk
-source ~/.zsh/completion/_docker
-source ~/.zsh/completion/_docker-compose
-fpath=(~/.zsh/completion/ $fpath)
-autoload -Uz compdef
-compinit
+
+# source and completes for google cloud
+source ~/google-cloud-sdk/completion.zsh.inc
 source ~/google-cloud-sdk/path.zsh.inc
 
-#ssh
+# source fzf 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# bash compleition support
+autoload -U +X bashcompinit && bashcompinit
+
+#ssh agent spawner
 ssh-add -l &>/dev/null
 if [ "$?" == 2 ]; then
   test -r ~/.ssh-agent && \
@@ -63,8 +74,6 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^F' forward-char
 bindkey '^B' backward-char
 
-VIM_PROMPT="❯"
-
 dockerkill () {
 	docker kill $1
 	docker rm $1
@@ -79,7 +88,4 @@ httpGet() {
 }
 
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/consul consul
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# zprof
