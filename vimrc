@@ -201,6 +201,7 @@ let g:go_list_type = "quickfix"
 let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
 let g:go_test_show_name = 1
+let g:go_fmt_experimental = 1
 
 " vim-go key bindings and autocommands
 augroup go
