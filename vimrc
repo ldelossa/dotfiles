@@ -288,10 +288,11 @@ nmap <C-T> :Tags<cr>
 
 " jedi-vim Confurations
 let g:jedi#popup_on_dot=0
-let g:jedi#completions_enabled=1
+let g:jedi#completions_enabled = 1
 let g:jedi#goto_command = "gd"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
+let g:jedi#force_py_version = 3
 
 " ALE configurations
 noremap <leader>al :ALEToggle<CR>
