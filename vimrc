@@ -72,7 +72,7 @@ function! QuickFixToggle()
 		endif
 	endfor
 
-	copen
+	copen | resize 5
 endfunction
 
 nnoremap <C-n> :cnext<CR>
@@ -298,8 +298,8 @@ let g:jedi#force_py_version = 3
 noremap <leader>al :ALEToggle<CR>
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let g:ale_open_list = 0
 let g:ale_list_window_size = 5
-let g:ale_open_list = 1
 let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
 let g:ale_enabled = 0
 highlight ALEError ctermbg=DarkRed
