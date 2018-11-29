@@ -103,7 +103,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'ervandew/supertab'
 	Plug 'majutsushi/tagbar'
 	Plug 'justmao945/vim-clang'
-	Plug 'rhysd/vim-clang-format'
 	Plug 'alvan/vim-closetag'
 	Plug 'tpope/vim-commentary'
 	Plug 'maxbrunsfeld/vim-emacs-bindings'
@@ -316,11 +315,7 @@ if executable('ag')
   nnoremap \ :Ag<SPACE> 
 endif
 
-" vim-clang-format configuration
-let g:clang_format#auto_format=1
-let g:clang_format#style_options = { 
-            \ "Standard" : "C++11",
-            \ "IndentWidth" : 4,
-            \ "UseTab" : "false",
-            \ "AccessModifierOffset" : -2,
-            \ "ColumnLimit" : 0 }
+" vim-clang configuration
+let g:clang_auto = 0
+let g:clang_diagsopt = '' 
+let g:clang_format_auto = 1
