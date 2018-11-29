@@ -103,6 +103,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'ervandew/supertab'
 	Plug 'majutsushi/tagbar'
 	Plug 'justmao945/vim-clang'
+	Plug 'rhysd/vim-clang-format'
 	Plug 'alvan/vim-closetag'
 	Plug 'tpope/vim-commentary'
 	Plug 'maxbrunsfeld/vim-emacs-bindings'
@@ -302,6 +303,7 @@ let g:ale_list_window_size = 5
 let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
 let g:ale_enabled = 0
 highlight ALEError ctermbg=DarkRed
+highlight ALEWarning ctermbg=DarkBlue
 augroup ale
     autocmd!
     autocmd FileType python map <leader>f :ALEFix <CR>
@@ -318,5 +320,10 @@ endif
 " vim-clang configuration
 let g:clang_auto = 0
 let g:clang_diagsopt = '' 
-let g:clang_format_auto = 1
-let g:clang_format_style = 'LLVM'
+
+" vim-clang-format configuration
+let g:clang_format#auto_format = 1
+let g:clang_format#style_options = {
+            \ "BasedOnStyle" : "LLVM",
+            \ "IndentWidth" : 4,
+            \ "SpaceAfterCStyleCast": "true"}
