@@ -206,45 +206,45 @@ let g:go_fmt_experimental = 1
 augroup go
     autocmd!
     " emulate autobuild
-    au BufWritePost *.go silent! :GoInstall
-    au FileType go nmap <leader>b <Plug>(go-build)
-    au FileType go nmap <leader>r <Plug>(go-run)
-    au FileType go nmap <leader>i <Plug>(go-info)
-    au FileType go nmap <leader>de <Plug>(go-deps)
-    au FileType go nmap <leader>d <Plug>(go-doc)
-    au FileType go nmap <leader>dv <Plug>(go-doc-vertical)
-    au FileType go nmap <leader>db <Plug>(go-doc-browser)
-    au FileType go nmap gd <Plug>(go-def)
-    au FileType go nmap gds <Plug>(go-def-split)
-    au FileType go nmap gdv <Plug>(go-def-vertical)
-    au FileType go nmap gd; <Plug>(go-def-stack)
-    au FileType go nmap gdd <Plug>(go-def-pop)
-    au FileType go nmap gdp <Plug>(go-def-pop)
-    au FileType go nmap gdc <Plug>(go-def-stack-clear)
-    au FileType go nmap <leader>im <Plug>(go-implements) 
-    au FileType go nmap <leader>R <Plug>(go-rename)
-    au FileType go nmap <leader>cC <Plug>(go-callees)
-    au FileType go nmap <leader>cc <Plug>(go-callers)
-    au FileType go nmap <leader>D <Plug>(go-describe)
-    au FileType go nmap <leader>cs <Plug>(go-callstack)
-    au FileType go nmap <leader>cp <Plug>(go-channelpeers)
-    au FileType go nmap <leader>rr <Plug>(go-referrers)
-    au FileType go nmap <leader>p <Plug>(go-pointsto)
-    au FileType go nmap <leader>l <Plug>(go-metalinter)
-    au FileType go nmap <leader>a <Plug>(go-alternate-edit)
-    au FileType go nmap <leader>as <Plug>(go-alternate-split)
-    au FileType go nmap <leader>av <Plug>(go-alternate-vertical)
-    au FileType go nmap <leader>e <Plug>(go-iferr)
-    au FileType go nmap <leader>o :GoDecls <CR>
-    au FileType go nmap <leader>oo :GoDeclsDir <CR>
-    au FileType go nmap <leader>ii :GoImport 
-    au FileType go nmap <leader>ia :GoImportAs 
-    au FileType go nmap <leader>f :GoFillStruct <CR>
-    au FileType go nmap <leader>at :GoAddTags <CR>
-    au FileType go nmap <leader>t :GoTestFunc -v -race <CR>
-    au FileType go nmap <leader>T :GoTest -v -race <CR>
-    au FileType go nmap <leader>c :GoTestCompile <CR>
-augroup END
+    au bufwritepost *.go silent! :GoInstall
+    au filetype go nmap <leader>b <plug>(go-build)
+    au filetype go nmap <leader>r <plug>(go-run)
+    au filetype go nmap <leader>i <plug>(go-info)
+    au filetype go nmap <leader>de <plug>(go-deps)
+    au filetype go nmap <leader>d <plug>(go-doc)
+    au filetype go nmap <leader>dv <plug>(go-doc-vertical)
+    au filetype go nmap <leader>db <plug>(go-doc-browser)
+    au filetype go nmap gd <plug>(go-def)
+    au filetype go nmap gds <plug>(go-def-split)
+    au filetype go nmap gdv <plug>(go-def-vertical)
+    au filetype go nmap gd; <plug>(go-def-stack)
+    au filetype go nmap gdd <plug>(go-def-pop)
+    au filetype go nmap gdp <plug>(go-def-pop)
+    au filetype go nmap gdc <plug>(go-def-stack-clear)
+    au filetype go nmap <leader>im <plug>(go-implements) 
+    au filetype go nmap <leader>r <plug>(go-rename)
+    au filetype go nmap <leader>cc <plug>(go-callees)
+    au filetype go nmap <leader>cc <plug>(go-callers)
+    au filetype go nmap <leader>d <plug>(go-describe)
+    au filetype go nmap <leader>cs <plug>(go-callstack)
+    au filetype go nmap <leader>cp <plug>(go-channelpeers)
+    au filetype go nmap <leader>rr <plug>(go-referrers)
+    au filetype go nmap <leader>p <plug>(go-pointsto)
+    au filetype go nmap <leader>l <plug>(go-metalinter)
+    au filetype go nmap <leader>a <plug>(go-alternate-edit)
+    au filetype go nmap <leader>as <plug>(go-alternate-split)
+    au filetype go nmap <leader>av <plug>(go-alternate-vertical)
+    au filetype go nmap <leader>e <plug>(go-iferr)
+    au filetype go nmap <leader>o :godecls <cr>
+    au filetype go nmap <leader>oo :godeclsdir <cr>
+    au filetype go nmap <leader>ii :goimport 
+    au filetype go nmap <leader>ia :goimportas 
+    au filetype go nmap <leader>f :gofillstruct <cr>
+    au filetype go nmap <leader>at :goaddtags <cr>
+    au filetype go nmap <leader>t :gotestfunc -v -race <cr>
+    au filetype go nmap <leader>t :gotest -v -race <cr>
+    au filetype go nmap <leader>c :gotestcompile <cr>
+augroup end
 
 " TagBar gotags configuration
 let g:tagbar_type_go = {
