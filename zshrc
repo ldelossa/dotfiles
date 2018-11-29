@@ -25,9 +25,6 @@ source "$HOME/.slimzsh/slim.zsh"
 source ~/google-cloud-sdk/completion.zsh.inc
 source ~/google-cloud-sdk/path.zsh.inc
 
-# source fzf 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # bash compleition support
 autoload -U +X bashcompinit && bashcompinit
 
@@ -70,9 +67,12 @@ bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
-bindkey '^R' history-incremental-search-backward
 bindkey '^F' forward-char
 bindkey '^B' backward-char
+
+# source fzf. must be after bindkeys 
+source ~/.fzf.zsh
+
 
 dockerkill () {
 	docker kill $1
