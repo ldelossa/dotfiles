@@ -223,7 +223,7 @@ augroup go
     au filetype go nmap gdp <plug>(go-def-pop)
     au filetype go nmap gdc <plug>(go-def-stack-clear)
     au filetype go nmap <leader>im <plug>(go-implements) 
-    au filetype go nmap <leader>r <plug>(go-rename)
+    au filetype go nmap <leader>R <plug>(go-rename)
     au filetype go nmap <leader>cc <plug>(go-callees)
     au filetype go nmap <leader>cc <plug>(go-callers)
     au filetype go nmap <leader>d <plug>(go-describe)
