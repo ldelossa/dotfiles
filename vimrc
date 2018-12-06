@@ -236,15 +236,15 @@ augroup go
     au filetype go nmap <leader>as <plug>(go-alternate-split)
     au filetype go nmap <leader>av <plug>(go-alternate-vertical)
     au filetype go nmap <leader>e <plug>(go-iferr)
-    au filetype go nmap <leader>o :godecls <cr>
-    au filetype go nmap <leader>oo :godeclsdir <cr>
-    au filetype go nmap <leader>ii :goimport 
-    au filetype go nmap <leader>ia :goimportas 
-    au filetype go nmap <leader>f :gofillstruct <cr>
-    au filetype go nmap <leader>at :goaddtags <cr>
-    au filetype go nmap <leader>t :gotestfunc -v -race <cr>
-    au filetype go nmap <leader>t :gotest -v -race <cr>
-    au filetype go nmap <leader>c :gotestcompile <cr>
+    au filetype go nmap <leader>o :GoDecls <cr>
+    au filetype go nmap <leader>oo :GoDeclsDir <cr>
+    au filetype go nmap <leader>ii :GoImport 
+    au filetype go nmap <leader>ia :GoImportAs 
+    au filetype go nmap <leader>f :GoFillStruct <cr>
+    au filetype go nmap <leader>at :GoAddTags <cr>
+    au filetype go nmap <leader>t :GoTestFunc -v -race <cr>
+    au filetype go nmap <leader>t :GoTest -v -race <cr>
+    au filetype go nmap <leader>c :GoTestCompile <cr>
 augroup end
 
 " TagBar gotags configuration
