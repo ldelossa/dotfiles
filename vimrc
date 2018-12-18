@@ -120,6 +120,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-vinegar'
 	Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
+    Plug 'tpope/vim-eunuch'
 call plug#end()
 
 " base-16 shell
