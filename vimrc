@@ -282,7 +282,7 @@ map <leader>2 :TagbarToggle <CR>
 
 " FZF configuration
 map <C-G> :GFiles <CR>
-map <C-O> :Files <CR>
+map <C-F> :Files <CR>
 nmap <C-B> :Buffers<cr>
 nmap ; :Buffers<cr>
 nmap <C-T> :Tags<cr>
