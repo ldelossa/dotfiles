@@ -244,7 +244,7 @@ augroup go
     au filetype go nmap <leader>f :GoFillStruct <cr>
     au filetype go nmap <leader>at :GoAddTags <cr>
     au filetype go nmap <leader>t :GoTestFunc -v -race <cr>
-    au filetype go nmap <leader>t :GoTest -v -race <cr>
+    au filetype go nmap <leader>T :GoTest -v -race <cr>
     au filetype go nmap <leader>c :GoTestCompile <cr>
 augroup end
 
