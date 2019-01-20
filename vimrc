@@ -121,7 +121,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'tpope/vim-vinegar'
 	Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
     Plug 'tpope/vim-eunuch'
+    Plug 'mcchrish/nnn.vim'
+    Plug 'nightsense/snow'
 call plug#end()
+
+" color scheme to use if base16 is disabled
+colorscheme snow
 
 " base-16 shell
 if filereadable(expand("~/.vimrc_background"))
@@ -180,7 +185,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " vim-go configuration
-let g:go_gocode_propose_source = 0 " parse binary for code completion
+" let g:go_gocode_propose_source = 0 " parse binary for code completion
 let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_structs = 1
@@ -328,3 +333,8 @@ let g:clang_format#style_options = {
             \ "BasedOnStyle" : "LLVM",
             \ "IndentWidth" : 4,
             \ "SpaceAfterCStyleCast": "true"}
+
+" nnn configurations
+let g:nnn#action = {
+    \ '<c-x>': 'split',
+    \ '<c-v>': 'vsplit' }

@@ -61,6 +61,7 @@ alias kubectl-dev='kubectl --namespace=dev'
 alias kubectl-stag='kubectl --namespace=staging'
 alias iso8601='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias ll='ls -la'
+alias cat='bat'
 
 bindkey -v
 bindkey "^?" backward-delete-char
