@@ -1,6 +1,8 @@
 " shell options
 set shell=/usr/local/bin/zsh
 set t_Co=256 " 256 color mode
+set t_AB=^[[48;5;%dm
+set t_AF=^[[38;5;%dm
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -24,6 +26,7 @@ set viewoptions-=options
 set tags+=.tags
 let mapleader=" "
 set nostartofline
+set hidden
 
 " turn on code folding, defaults to all folds open
 set foldmethod=syntax
@@ -126,7 +129,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 call plug#end()
 
 " color scheme to use if base16 is disabled
-colorscheme snow
+" set background=dark
+" colorscheme snow
 
 " base-16 shell
 if filereadable(expand("~/.vimrc_background"))
@@ -336,5 +340,5 @@ let g:clang_format#style_options = {
 
 " nnn configurations
 let g:nnn#action = {
-    \ '<c-x>': 'split',
-    \ '<c-v>': 'vsplit' }
+      \ '<C-h>': 'split',
+      \ '<C-v>': 'vsplit' }
