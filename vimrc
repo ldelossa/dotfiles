@@ -1,8 +1,6 @@
 " shell options
 set shell=/usr/local/bin/zsh
 set t_Co=256 " 256 color mode
-set t_AB=^[[48;5;%dm
-set t_AF=^[[38;5;%dm
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -342,3 +340,4 @@ let g:clang_format#style_options = {
 let g:nnn#action = {
       \ '<C-h>': 'split',
       \ '<C-v>': 'vsplit' }
+let $DISABLE_FILE_OPEN_ON_NAV=1
