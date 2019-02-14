@@ -104,3 +104,7 @@ fabric.properties
 
 # Go Vendor
 vendor/*
+
+# Python env
+pyenv/*
+env/*

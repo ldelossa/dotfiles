@@ -52,6 +52,11 @@ unsetopt correct_all
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
+# nvm configuration
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
 # Set CDPATH
 cdpath=(~/vmmnt/ ~/git ~/git/go/src ~/git/go/src/github.com ~/git/go/src/github.com/ldelossa ~/git/mirror ~/git/go/src/github.com/mirrorfitness)
 
@@ -62,9 +67,9 @@ alias gssh='gcloud compute ssh'
 alias glist='gcloud compute instances list'
 alias kubectl-dev='kubectl --namespace=dev'
 alias kubectl-stag='kubectl --namespace=staging'
+alias kubectl-prod='kubectl --namespace=prod'
 alias iso8601='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias ll='ls -la'
-alias cat='bat'
 
 bindkey -v
 bindkey "^?" backward-delete-char
