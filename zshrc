@@ -7,7 +7,8 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/bin/protobuf-3.5.1
 export PATH=$PATH:/Users/louis/.scripts
-export PATH=$PATH:/Library/PostgreSQL/10/bin
+# export PATH=$PATH:/Library/PostgreSQL/10/bin
+export PATH=$PATH:/Library/PostgreSQL/11/bin
 export KEYTIMEOUT=1
 
 # read from compinit cache unless date expired
