@@ -244,8 +244,8 @@ augroup go
     au filetype go nmap <leader>as <plug>(go-alternate-split)
     au filetype go nmap <leader>av <plug>(go-alternate-vertical)
     au filetype go nmap <leader>e <plug>(go-iferr)
-    au filetype go nmap <leader>o :GoDecls <cr>
-    au filetype go nmap <leader>oo :GoDeclsDir <cr>
+    au filetype go nmap <leader>oo :GoDecls <cr>
+    au filetype go nmap <leader>o  :GoDeclsDir <cr>
     au filetype go nmap <leader>ii :GoImport 
     au filetype go nmap <leader>ia :GoImportAs 
     au filetype go nmap <leader>f :GoFillStruct <cr>

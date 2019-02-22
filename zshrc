@@ -56,7 +56,11 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # nvm configuration
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+  # [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+# yvm import
+export YVM_DIR=/Users/louis/.yvm
+[ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh
 
 # Set CDPATH
 cdpath=(~/vmmnt/ ~/git ~/git/go/src ~/git/go/src/github.com ~/git/go/src/github.com/ldelossa ~/git/mirror ~/git/go/src/github.com/mirrorfitness)
@@ -71,6 +75,7 @@ alias kubectl-stag='kubectl --namespace=staging'
 alias kubectl-prod='kubectl --namespace=prod'
 alias iso8601='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias ll='ls -la'
+alias git-sub='git submodule update --init --recursive'
 
 bindkey -v
 bindkey "^?" backward-delete-char
@@ -100,3 +105,4 @@ httpGet() {
 
 
 # zprof
+
