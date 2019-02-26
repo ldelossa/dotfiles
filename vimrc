@@ -210,6 +210,7 @@ let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
 let g:go_test_show_name = 1
 let g:go_fmt_experimental = 1
+let g:go_def_mode = 'godef'
 
 " vim-go key bindings and autocommands
 augroup go

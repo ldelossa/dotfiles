@@ -1,7 +1,7 @@
 # zmodload zsh/zprof
-export GOPATH=~/git/go
-export GOBIN=~/git/go/bin
-export GOSRC=~/git/go/src/
+export GOPATH=~/git/gopath
+export GOBIN=~/git/gopath/bin
+export GOSRC=~/git/gopath/src/
 export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
@@ -63,7 +63,7 @@ export YVM_DIR=/Users/louis/.yvm
 [ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh
 
 # Set CDPATH
-cdpath=(~/vmmnt/ ~/git ~/git/go/src ~/git/go/src/github.com ~/git/go/src/github.com/ldelossa ~/git/mirror ~/git/go/src/github.com/mirrorfitness)
+cdpath=(~/vmmnt/ ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa)
 
 alias digs="dig +short"
 alias clearHosts='echo "" > ~/.ssh/known_hosts'
