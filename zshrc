@@ -9,6 +9,7 @@ export PATH=$PATH:/usr/local/bin/protobuf-3.5.1
 export PATH=$PATH:/Users/louis/.scripts
 # export PATH=$PATH:/Library/PostgreSQL/10/bin
 export PATH=$PATH:/Library/PostgreSQL/11/bin
+export GOOGLE_APPLICATION_CREDENTIALS=/Users/louis/.config/gcloud/ps-gcloud-service-account.json
 export KEYTIMEOUT=1
 
 # read from compinit cache unless date expired

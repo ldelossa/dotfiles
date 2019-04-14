@@ -124,6 +124,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-eunuch'
     Plug 'mcchrish/nnn.vim'
     Plug 'nightsense/snow'
+    Plug 'rizzatti/dash.vim'
+    Plug 'adrienverge/yamllint'
+    Plug 'chaoren/vim-wordmotion'
 call plug#end()
 
 " color scheme to use if base16 is disabled
@@ -160,11 +163,10 @@ nnoremap <leader>v :Vex <CR>
 nnoremap <leader>h :Hex <CR>
 
 " SuperTab configurations
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
-let g:SuperTabClosePreviewOnPopupClose = 1
-map <leader>p :pc <CR>
+" let g:SuperTabClosePreviewOnPopupClose = 1
+" map <leader>p :pc <CR>
 " let g:SuperTabCrMapping = 1
 
 " CloseTag configurations
@@ -215,8 +217,6 @@ let g:go_def_mode = 'godef'
 " vim-go key bindings and autocommands
 augroup go
     autocmd!
-    " emulate autobuild
-    au bufwritepost *.go silent! :GoInstall
     au filetype go nmap <leader>b <plug>(go-build)
     au filetype go nmap <leader>r <plug>(go-run)
     au filetype go nmap <leader>i <plug>(go-info)
@@ -254,6 +254,8 @@ augroup go
     au filetype go nmap <leader>t :GoTestFunc -v -race <cr>
     au filetype go nmap <leader>T :GoTest -v -race <cr>
     au filetype go nmap <leader>c :GoTestCompile <cr>
+    inoremap <C-Space> <C-x><C-o>
+    inoremap <C-@> <C-Space><Paste>
 augroup end
 
 " TagBar gotags configuration
