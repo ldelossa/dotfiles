@@ -25,6 +25,7 @@ set tags+=.tags
 let mapleader=" "
 set nostartofline
 set hidden
+set conceallevel=0
 
 " turn on code folding, defaults to all folds open
 set foldmethod=syntax
@@ -93,51 +94,67 @@ nnoremap <C-H> <C-W><C-H>
 
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
-	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-	Plug 'junegunn/fzf.vim'
-	Plug 'itchyny/lightline.vim'
-	Plug 'w0rp/ale'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'chriskempson/base16-vim'
-	Plug 'Yggdroot/indentLine'
-	Plug 'davidhalter/jedi-vim'
-	Plug 'ervandew/supertab'
-	Plug 'majutsushi/tagbar'
-	Plug 'justmao945/vim-clang'
-	Plug 'rhysd/vim-clang-format'
-	Plug 'alvan/vim-closetag'
-	Plug 'tpope/vim-commentary'
-	Plug 'maxbrunsfeld/vim-emacs-bindings'
-	Plug 'nvie/vim-flake8'
-	Plug 'tpope/vim-fugitive'
-	Plug 'airblade/vim-gitgutter'
-	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-	Plug 'ludovicchabant/vim-gutentags'
-	Plug 'sheerun/vim-polyglot'
-	Plug 'tpope/vim-repeat'
-	Plug 'tpope/vim-rhubarb'
-	Plug 'tpope/vim-sensible'
-	Plug 'kshenoy/vim-signature'
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-vinegar'
-	Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+    Plug 'itchyny/lightline.vim'
+    Plug 'w0rp/ale'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'chriskempson/base16-vim'
+    Plug 'davidhalter/jedi-vim'
+    Plug 'majutsushi/tagbar'
+    Plug 'justmao945/vim-clang'
+    Plug 'rhysd/vim-clang-format'
+    Plug 'alvan/vim-closetag'
+    Plug 'tpope/vim-commentary'
+    Plug 'maxbrunsfeld/vim-emacs-bindings'
+    Plug 'nvie/vim-flake8'
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-rhubarb'
+    Plug 'tpope/vim-sensible'
+    Plug 'kshenoy/vim-signature'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-vinegar'
+    Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
     Plug 'tpope/vim-eunuch'
     Plug 'mcchrish/nnn.vim'
     Plug 'nightsense/snow'
     Plug 'rizzatti/dash.vim'
     Plug 'adrienverge/yamllint'
     Plug 'chaoren/vim-wordmotion'
+    Plug 'ayu-theme/ayu-vim'
+    Plug 'logico-software/typewriter'
+    Plug 'ldelossa/vimdark'
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
-" color scheme to use if base16 is disabled
+" color schemes to use if base16 is disabled
+
 " set background=dark
 " colorscheme snow
 
+" set termguicolors
+" let ayucolor="light" 
+" colorscheme ayu
+
+" colorscheme minimalist
+
+colorscheme vimdark
+
+" colorscheme typewriter-night
+
 " base-16 shell
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+" if filereadable(expand("~/.vimrc_background"))
+"   let base16colorspace=256
+"   source ~/.vimrc_background
+" endif
+
+
 
 " lightlight configurations
 let g:lightline = {
@@ -203,6 +220,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_term_enabled = 1
 let g:go_term_mode = "split"
 let g:go_term_height = 13
+let g:go_metalinter_command = "golangci-lint"
 " let g:go_metalinter_autosave = 1
 let g:go_metalinter_deadline = "5s"
 let g:neocomplete#enable_at_startup = 1
@@ -255,7 +273,7 @@ augroup go
     au filetype go nmap <leader>T :GoTest -v -race <cr>
     au filetype go nmap <leader>c :GoTestCompile <cr>
     inoremap <C-Space> <C-x><C-o>
-    inoremap <C-@> <C-Space><Paste>
+    inoremap <C-@> <C-Space>
 augroup end
 
 " TagBar gotags configuration
@@ -313,8 +331,8 @@ let g:ale_open_list = 0
 let g:ale_list_window_size = 5
 let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
 let g:ale_enabled = 0
-highlight ALEError ctermbg=DarkRed
-highlight ALEWarning ctermbg=DarkBlue
+highlight ALEError ctermfg=196 
+highlight ALEWarning ctermfg=110
 augroup ale
     autocmd!
     autocmd FileType python map <leader>f :ALEFix <CR>
@@ -344,3 +362,17 @@ let g:nnn#action = {
       \ '<C-h>': 'split',
       \ '<C-v>': 'vsplit' }
 let $DISABLE_FILE_OPEN_ON_NAV=1
+let $NNN_RESTRICT_NAV_OPEN=1
+
+" identify syntax highliting group under cursor
+" see: https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" clag_complete configurations
+let g:clang_library_path='/usr/local/lib/libclang.dylib'

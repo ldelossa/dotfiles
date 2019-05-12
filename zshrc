@@ -50,18 +50,18 @@ unsetopt correct_all
 # theme used if base16 is commented out
 # [ -n "$PS1" ] && sh /Users/louis/.local/share/nvim/plugged/snow/shell/snow_dark.sh
 
-# shell-16 config
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# # shell-16 config
+# BASE16_SHELL=$HOME/.config/base16-shell/
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# nvm configuration
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  # [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+# # nvm configuration
+# export NVM_DIR="$HOME/.nvm"
+#   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+#   # [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 # yvm import
-export YVM_DIR=/Users/louis/.yvm
-[ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh
+# export YVM_DIR=/Users/louis/.yvm
+# [ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh
 
 # Set CDPATH
 cdpath=(~/vmmnt/ ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa)
