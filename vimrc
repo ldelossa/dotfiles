@@ -138,33 +138,24 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
-" color schemes to use if base16 is disabled
-
-" set background=dark
-" colorscheme snow
-
 colorscheme vimlight
 
-function DarkMode()
+function! DarkMode()
     colorscheme vimdark
 endfunction
 
-func LightMode()
+function! LightMode()
     colorscheme vimlight
 endfunction
 
 nnoremap <leader>lm :call LightMode() <CR>
 nnoremap <leader>dm :call DarkMode() <CR>
 
-" colorscheme typewriter-night
-
 " base-16 shell
 " if filereadable(expand("~/.vimrc_background"))
 "   let base16colorspace=256
 "   source ~/.vimrc_background
 " endif
-
-
 
 " lightlight configurations
 let g:lightline = {
