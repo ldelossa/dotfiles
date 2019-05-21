@@ -26,6 +26,11 @@ let mapleader=" "
 set nostartofline
 set hidden
 set conceallevel=0
+set mouse=a
+set completeopt-=preview
+nnoremap <leader>hh :noh <CR>
+" disable auto comments on next line
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " turn on code folding, defaults to all folds open
 set foldmethod=syntax
@@ -138,13 +143,18 @@ call plug#end()
 " set background=dark
 " colorscheme snow
 
-" set termguicolors
-" let ayucolor="light" 
-" colorscheme ayu
+colorscheme vimlight
 
-" colorscheme minimalist
+function DarkMode()
+    colorscheme vimdark
+endfunction
 
-colorscheme vimdark
+func LightMode()
+    colorscheme vimlight
+endfunction
+
+nnoremap <leader>lm :call LightMode() <CR>
+nnoremap <leader>dm :call DarkMode() <CR>
 
 " colorscheme typewriter-night
 
@@ -314,6 +324,20 @@ map <C-F> :Files <CR>
 nmap <C-B> :Buffers<cr>
 nmap ; :Buffers<cr>
 nmap <C-T> :Tags<cr>
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Visual'],
+  \ 'fg+':     ['fg', 'Visual'],
+  \ 'bg+':     ['bg', 'Visual'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " jedi-vim Confurations
 let g:jedi#popup_on_dot=0
