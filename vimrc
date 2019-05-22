@@ -159,7 +159,7 @@ nnoremap <leader>dm :call DarkMode() <CR>
 
 " lightlight configurations
 let g:lightline = {
-    \ 'colorscheme': 'Tomorrow_Night_Eighties',
+    \ 'colorscheme': 'nord',
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [ 'gitbranch', 'readonly', 'filename', 'modified', 'gostatus' ] ]
