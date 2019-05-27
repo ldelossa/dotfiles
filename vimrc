@@ -138,7 +138,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
-colorscheme vimlight
+colorscheme vimdark
 
 function! DarkMode()
     colorscheme vimdark
@@ -329,6 +329,10 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+if has('nvim') || has('gui_running')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatus=2
+endif
 
 " jedi-vim Confurations
 let g:jedi#popup_on_dot=0

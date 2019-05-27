@@ -78,6 +78,7 @@ alias iso8601='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias ll='ls -la'
 alias git-sub='git submodule update --init --recursive'
 alias git-yarn-foreach='git submodule foreach "yarn"'
+alias ytdl='youtube-dl --extract-audio --audio-format mp3'
 
 bindkey -v
 bindkey "^?" backward-delete-char
