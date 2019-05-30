@@ -138,7 +138,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
-colorscheme vimdark
+colorscheme vimlight
 
 function! DarkMode()
     colorscheme vimdark
