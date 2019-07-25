@@ -79,8 +79,11 @@ alias ll='ls -la'
 alias git-sub='git submodule update --init --recursive'
 alias git-yarn-foreach='git submodule foreach "yarn"'
 alias ytdl='youtube-dl --extract-audio --audio-format mp3'
+alias gssh-cd='gcloud compute ssh --ssh-key-file=~/.ssh/louis_redhat_gcloud'
+alias gscp-cd='gcloud compute scp --ssh-key-file=~/.ssh/louis_redhat_gcloud'
+alias vim='nvim'
 
-bindkey -v
+# bindkey -v
 bindkey "^?" backward-delete-char
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line

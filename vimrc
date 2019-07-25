@@ -136,6 +136,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ldelossa/vimdark'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'Quramy/tsuquyomi'
+    Plug 'google/vim-jsonnet'
 call plug#end()
 
 colorscheme vimlight
@@ -244,7 +247,7 @@ augroup go
     au filetype go nmap <leader>dv <plug>(go-doc-vertical)
     au filetype go nmap <leader>db <plug>(go-doc-browser)
     au filetype go nmap gd <plug>(go-def)
-    au filetype go nmap gds <plug>(go-def-split)
+    au filetype go nmap gdh <plug>(go-def-split)
     au filetype go nmap gdv <plug>(go-def-vertical)
     au filetype go nmap gd; <plug>(go-def-stack)
     au filetype go nmap gdd <plug>(go-def-pop)
@@ -348,7 +351,7 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_list_window_size = 5
-let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
+let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
 let g:ale_enabled = 0
 highlight ALEError ctermfg=196 
 highlight ALEWarning ctermfg=110
@@ -365,16 +368,16 @@ if executable('ag')
   nnoremap \ :Ag<SPACE> 
 endif
 
-" vim-clang configuration
-let g:clang_auto = 0
-let g:clang_diagsopt = '' 
-
 " vim-clang-format configuration
-let g:clang_format#auto_format = 1
+let g:clang_format#auto_format = 0
 let g:clang_format#style_options = {
-            \ "BasedOnStyle" : "LLVM",
+            \ "BasedOnStyle" : "Google",
             \ "IndentWidth" : 4,
             \ "SpaceAfterCStyleCast": "true"}
+augroup clang-format
+    map <leader>cl :ClangFormat <CR>
+    map <leader>ca :ClangFormatAutoToggle <CR>
+augroup END
 
 " nnn configurations
 let g:nnn#action = {
