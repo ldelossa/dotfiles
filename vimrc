@@ -141,7 +141,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'google/vim-jsonnet'
 call plug#end()
 
-if strftime("%H") < 9
+if strftime("%H") < 21
     colorscheme vimlight
 else
     colorscheme vimdark
