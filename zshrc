@@ -82,6 +82,7 @@ alias ytdl='youtube-dl --extract-audio --audio-format mp3'
 alias gssh-cd='gcloud compute ssh --ssh-key-file=~/.ssh/louis_redhat_gcloud'
 alias gscp-cd='gcloud compute scp --ssh-key-file=~/.ssh/louis_redhat_gcloud'
 alias vim='nvim'
+alias kubectl-eq='kubectl --namespace=quay-enterprise'
 
 # bindkey -v
 bindkey "^?" backward-delete-char

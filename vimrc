@@ -79,7 +79,7 @@ function! QuickFixToggle()
 		endif
 	endfor
 
-	copen | resize 5
+	copen | resize 10
 endfunction
 
 nnoremap <C-n> :cnext<CR>
@@ -141,7 +141,11 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'google/vim-jsonnet'
 call plug#end()
 
-colorscheme vimlight
+if strftime("%H") < 9
+    colorscheme vimlight
+else
+    colorscheme vimdark
+endif
 
 function! DarkMode()
     colorscheme vimdark
@@ -210,7 +214,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " vim-go configuration
-" let g:go_gocode_propose_source = 0 " parse binary for code completion
 let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_structs = 1
@@ -223,13 +226,14 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_build_constraints = 1
 let g:go_term_enabled = 1
 let g:go_term_mode = "split"
-let g:go_term_height = 13
+let g:go_term_height = 10
+let g:go_term_exit = 1
 let g:go_metalinter_command = "golangci-lint"
-" let g:go_metalinter_autosave = 1
 let g:go_metalinter_deadline = "5s"
 let g:neocomplete#enable_at_startup = 1
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
+let g:go_list_height = 10
 let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
 let g:go_test_show_name = 1
@@ -344,6 +348,7 @@ let g:jedi#goto_command = "gd"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>c"
 let g:jedi#force_py_version = 3
+let g:jedi#show_call_signatures = "0"
 
 " ALE configurations
 noremap <leader>al :ALEToggle<CR>
@@ -351,7 +356,7 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_list_window_size = 5
-let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
+let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black', 'autopep8'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
 let g:ale_enabled = 0
 highlight ALEError ctermfg=196 
 highlight ALEWarning ctermfg=110
