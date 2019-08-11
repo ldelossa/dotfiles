@@ -28,7 +28,9 @@ set hidden
 set conceallevel=0
 set mouse=a
 set completeopt-=preview
-nnoremap <leader>hh :noh <CR>
+set clipboard+=unnamedplus
+" remove highlights
+nnoremap <leader>h :noh <CR>
 " disable auto comments on next line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -180,12 +182,12 @@ let g:lightline = {
 	\ },
 	\ }
 
-" netrw configurations
-let g:netrw_liststyle=3
-let g:netrw_altv=1
-nnoremap <leader>e :Ex <CR>
-nnoremap <leader>v :Vex <CR>
-nnoremap <leader>h :Hex <CR>
+" " netrw configurations
+" let g:netrw_liststyle=3
+" let g:netrw_altv=1
+" nnoremap <leader>e :Ex <CR>
+" nnoremap <leader>v :Vex <CR>
+" nnoremap <leader>h :Hex <CR>
 
 " SuperTab configurations
 let g:SuperTabLongestEnhanced = 1
