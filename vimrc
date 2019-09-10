@@ -34,6 +34,11 @@ nnoremap <leader>h :noh <CR>
 " disable auto comments on next line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" remap nnn to open in current directory
+nnoremap <leader>nc :NnnPicker '%:p:h'<CR>
+nnoremap <leader>nn :NnnPicker '%:p:h'<CR>
+nnoremap <leader>n :NnnPicker<CR>
+
 " turn on code folding, defaults to all folds open
 set foldmethod=syntax
 set foldlevel=9999
@@ -141,6 +146,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
     Plug 'google/vim-jsonnet'
+    Plug 'troydm/zoomwintab.vim'
 call plug#end()
 
 if strftime("%H") < 21
@@ -197,7 +203,7 @@ let g:SuperTabLongestHighlight = 1
 " let g:SuperTabCrMapping = 1
 
 " CloseTag configurations
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.vue'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
 let g:closetag_filetypes = 'html,xhtml,phtml,js'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx,js'
@@ -317,6 +323,7 @@ let g:tagbar_type_go = {
 
 " TagBar configurations
 map <leader>2 :TagbarToggle <CR>
+let g:tagbar_left = 1
 
 " FZF configuration
 map <C-G> :GFiles <CR>
@@ -405,3 +412,15 @@ endfunc
 
 " clag_complete configurations
 let g:clang_library_path='/usr/local/lib/libclang.dylib'
+
+" stop matching parents
+function! g:FckThatMatchParen ()
+    if exists(":NoMatchParen")
+        :NoMatchParen
+    endif
+endfunction
+
+augroup plugin_initialize
+    autocmd!
+    autocmd VimEnter * call FckThatMatchParen()
+augroup END
