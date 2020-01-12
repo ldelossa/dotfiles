@@ -6,19 +6,21 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/bin/protobuf-3.5.1
-export PATH=$PATH:/Users/louis/.scripts
-# export PATH=$PATH:/Library/PostgreSQL/10/bin
+export PATH=$PATH:/usr/lib/cargo/bin/
 export PATH=$PATH:/Library/PostgreSQL/11/bin
 export GOOGLE_APPLICATION_CREDENTIALS=/Users/louis/.config/gcloud/ps-gcloud-service-account.json
 export KEYTIMEOUT=1
+export CC=/usr/bin/clang
+export CCX=/usr/bin/clang++
+
 
 # read from compinit cache unless date expired
-autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
+# autoload -Uz compinit
+# if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+#   compinit
+# else
+#   compinit -C
+# fi
 
 # source slimzsh
 source "$HOME/.slimzsh/slim.zsh"
@@ -27,7 +29,7 @@ source "$HOME/.slimzsh/slim.zsh"
 source ~/google-cloud-sdk/completion.zsh.inc
 source ~/google-cloud-sdk/path.zsh.inc
 
-# bash compleition support
+# bash completion support
 autoload -U +X bashcompinit && bashcompinit
 
 #ssh agent spawner
@@ -47,22 +49,6 @@ fi
 #disable auto correct
 unsetopt correct_all
 
-# theme used if base16 is commented out
-# [ -n "$PS1" ] && sh /Users/louis/.local/share/nvim/plugged/snow/shell/snow_dark.sh
-
-# # shell-16 config
-# BASE16_SHELL=$HOME/.config/base16-shell/
-# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-# # nvm configuration
-# export NVM_DIR="$HOME/.nvm"
-#   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-#   # [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
-# yvm import
-# export YVM_DIR=/Users/louis/.yvm
-# [ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh
-
 # Set CDPATH
 cdpath=(~/vmmnt/ ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa)
 
@@ -81,8 +67,13 @@ alias git-yarn-foreach='git submodule foreach "yarn"'
 alias ytdl='youtube-dl --extract-audio --audio-format mp3'
 alias gssh-cd='gcloud compute ssh --ssh-key-file=~/.ssh/louis_redhat_gcloud'
 alias gscp-cd='gcloud compute scp --ssh-key-file=~/.ssh/louis_redhat_gcloud'
-alias vim='nvim'
+# alias vim='nvim'
 alias kubectl-eq='kubectl --namespace=quay-enterprise'
+alias m='make'
+alias ls='ls --color=auto'
+# alias vim='nvim'
+alias c='xclip -selection clipboard'
+alias v='xclip -o'
 
 # bindkey -v
 bindkey "^?" backward-delete-char
@@ -110,6 +101,9 @@ httpGet() {
 	curl "http://$1$2" -vvv
 }
 
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
 
 # zprof
 

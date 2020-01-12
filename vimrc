@@ -1,9 +1,20 @@
 " shell options
-set shell=/usr/local/bin/zsh
 set t_Co=256 " 256 color mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+if has('macunix')
+    set shell=/usr/local/bin/zsh
+else
+    set shell=/usr/bin/zsh
+endif
+
+if has('macunix')
+    set clipboard=unnamed
+else
+    set clipboard=unnamedplus
+endif
 
 " general configurations
 syntax on
@@ -28,7 +39,7 @@ set hidden
 set conceallevel=0
 set mouse=a
 set completeopt-=preview
-set clipboard+=unnamedplus
+set clipboard+=unnamed
 " remove highlights
 nnoremap <leader>h :noh <CR>
 " disable auto comments on next line
@@ -111,7 +122,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'itchyny/lightline.vim'
     Plug 'w0rp/ale'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'chriskempson/base16-vim'
     Plug 'davidhalter/jedi-vim'
     Plug 'majutsushi/tagbar'
     Plug 'justmao945/vim-clang'
@@ -119,7 +129,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'alvan/vim-closetag'
     Plug 'tpope/vim-commentary'
     Plug 'maxbrunsfeld/vim-emacs-bindings'
-    Plug 'nvie/vim-flake8'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -130,16 +139,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-sensible'
     Plug 'kshenoy/vim-signature'
     Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-vinegar'
     Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
-    Plug 'tpope/vim-eunuch'
     Plug 'mcchrish/nnn.vim'
-    Plug 'nightsense/snow'
-    Plug 'rizzatti/dash.vim'
-    Plug 'adrienverge/yamllint'
     Plug 'chaoren/vim-wordmotion'
-    Plug 'ayu-theme/ayu-vim'
-    Plug 'logico-software/typewriter'
     Plug 'ldelossa/vimdark'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'nathanaelkane/vim-indent-guides'
@@ -147,6 +149,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'Quramy/tsuquyomi'
     Plug 'google/vim-jsonnet'
     Plug 'troydm/zoomwintab.vim'
+    Plug 'xavierchow/vim-swagger-preview'
 call plug#end()
 
 if strftime("%H") < 21
@@ -221,6 +224,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " Omnicomplete configurations
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+let g:neocomplete#enable_at_startup = 1
+
 " vim-go configuration
 let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
@@ -236,9 +241,7 @@ let g:go_term_enabled = 1
 let g:go_term_mode = "split"
 let g:go_term_height = 10
 let g:go_term_exit = 1
-let g:go_metalinter_command = "golangci-lint"
 let g:go_metalinter_deadline = "5s"
-let g:neocomplete#enable_at_startup = 1
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 let g:go_list_height = 10
@@ -246,7 +249,7 @@ let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
 let g:go_test_show_name = 1
 let g:go_fmt_experimental = 1
-let g:go_def_mode = 'godef'
+let g:go_doc_popup_window = 1
 
 " vim-go key bindings and autocommands
 augroup go
@@ -269,7 +272,7 @@ augroup go
     au filetype go nmap <leader>R <plug>(go-rename)
     au filetype go nmap <leader>cc <plug>(go-callees)
     au filetype go nmap <leader>cc <plug>(go-callers)
-    au filetype go nmap <leader>d <plug>(go-describe)
+    au filetype go nmap <leader>D <plug>(go-describe)
     au filetype go nmap <leader>cs <plug>(go-callstack)
     au filetype go nmap <leader>cp <plug>(go-channelpeers)
     au filetype go nmap <leader>rr <plug>(go-referrers)
@@ -288,8 +291,8 @@ augroup go
     au filetype go nmap <leader>t :GoTestFunc -v -race <cr>
     au filetype go nmap <leader>T :GoTest -v -race <cr>
     au filetype go nmap <leader>c :GoTestCompile <cr>
-    inoremap <C-Space> <C-x><C-o>
-    inoremap <C-@> <C-Space>
+    imap <C-Space> <C-x><C-o>
+    imap <C-@> <C-Space>
 augroup end
 
 " TagBar gotags configuration
@@ -365,7 +368,7 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_list_window_size = 5
-let g:ale_fixers = {'javascript': ['eslint'], 'python': ['black', 'autopep8'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
+let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black', 'autopep8'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
 let g:ale_enabled = 0
 highlight ALEError ctermfg=196 
 highlight ALEWarning ctermfg=110
@@ -410,8 +413,9 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" clag_complete configurations
-let g:clang_library_path='/usr/local/lib/libclang.dylib'
+" vim-clang configurations
+let g:clang_auto = 0
+
 
 " stop matching parents
 function! g:FckThatMatchParen ()
