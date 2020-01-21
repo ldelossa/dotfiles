@@ -152,8 +152,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'xavierchow/vim-swagger-preview'
 call plug#end()
 
-" use vimdark from 9pm to 11am
-if strftime("%H") >= 21 || strftime("%H") <= 10
+" use vimdark from 9pm to 10am
+if strftime("%H") >= 21 || strftime("%H") <= 9
     colorscheme vimdark
 else
     colorscheme vimlight
