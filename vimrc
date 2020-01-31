@@ -149,10 +149,11 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'machakann/vim-sandwich'
 call plug#end()
 
-if strftime("%H") < 21
-    colorscheme vimlight
-else
+" use vimdark from 9pm to 10am
+if strftime("%H") >= 21 || strftime("%H") <= 9
     colorscheme vimdark
+else
+    colorscheme vimlight
 endif
 
 function! DarkMode()
