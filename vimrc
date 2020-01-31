@@ -138,18 +138,15 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-sensible'
     Plug 'kshenoy/vim-signature'
-    Plug 'tpope/vim-surround'
     Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
     Plug 'mcchrish/nnn.vim'
     Plug 'chaoren/vim-wordmotion'
     Plug 'ldelossa/vimdark'
     Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'nathanaelkane/vim-indent-guides'
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
-    Plug 'google/vim-jsonnet'
     Plug 'troydm/zoomwintab.vim'
-    Plug 'xavierchow/vim-swagger-preview'
+    Plug 'machakann/vim-sandwich'
 call plug#end()
 
 if strftime("%H") < 21
