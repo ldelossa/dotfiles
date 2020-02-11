@@ -167,12 +167,6 @@ endfunction
 nnoremap <leader>lm :call LightMode() <CR>
 nnoremap <leader>dm :call DarkMode() <CR>
 
-" base-16 shell
-" if filereadable(expand("~/.vimrc_background"))
-"   let base16colorspace=256
-"   source ~/.vimrc_background
-" endif
-
 " lightlight configurations
 let g:lightline = {
     \ 'colorscheme': 'nord',
@@ -189,19 +183,9 @@ let g:lightline = {
 	\ },
 	\ }
 
-" " netrw configurations
-" let g:netrw_liststyle=3
-" let g:netrw_altv=1
-" nnoremap <leader>e :Ex <CR>
-" nnoremap <leader>v :Vex <CR>
-" nnoremap <leader>h :Hex <CR>
-
 " SuperTab configurations
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
-" let g:SuperTabClosePreviewOnPopupClose = 1
-" map <leader>p :pc <CR>
-" let g:SuperTabCrMapping = 1
 
 " CloseTag configurations
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.vue'
@@ -248,6 +232,7 @@ let g:go_decls_mode = 'fzf'
 let g:go_test_show_name = 1
 let g:go_fmt_experimental = 1
 let g:go_doc_popup_window = 1
+let g:go_rename_command = 'gopls'
 
 " vim-go key bindings and autocommands
 augroup go
