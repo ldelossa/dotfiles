@@ -66,7 +66,6 @@ set expandtab
 set smarttab
 set ai
 set si
-set wrap
 augroup spacing
 	autocmd!
 	autocmd FileType html setlocal shiftwidth=2 tabstop=2
