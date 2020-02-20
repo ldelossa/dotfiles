@@ -13,6 +13,14 @@ export KEYTIMEOUT=1
 export CC=/usr/bin/clang
 export CCX=/usr/bin/clang++
 
+# set pure prompt custom colors
+zmodload zsh/nearcolor
+zstyle :prompt:pure:path color 39
+zstyle :prompt:pure:prompt:success color 208
+zstyle :prompt:pure:git:branch color 208
+zstyle :prompt:pure:git:arrow color 39
+zstyle :prompt:pure:git:stash color 39
+zstyle :prompt:pure:git:dirty color 39
 
 # read from compinit cache unless date expired
 # autoload -Uz compinit
@@ -67,15 +75,13 @@ alias git-yarn-foreach='git submodule foreach "yarn"'
 alias ytdl='youtube-dl --extract-audio --audio-format mp3'
 alias gssh-cd='gcloud compute ssh --ssh-key-file=~/.ssh/louis_redhat_gcloud'
 alias gscp-cd='gcloud compute scp --ssh-key-file=~/.ssh/louis_redhat_gcloud'
-# alias vim='nvim'
 alias kubectl-eq='kubectl --namespace=quay-enterprise'
 alias m='make'
 alias ls='ls --color=auto'
-# alias vim='nvim'
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 
-# bindkey -v
+bindkey -v
 bindkey "^?" backward-delete-char
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line

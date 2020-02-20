@@ -40,6 +40,7 @@ set conceallevel=0
 set mouse=a
 set completeopt-=preview
 set clipboard+=unnamed
+set linebreak
 " remove highlights
 nnoremap <leader>h :noh <CR>
 " disable auto comments on next line
@@ -125,7 +126,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'majutsushi/tagbar'
     Plug 'justmao945/vim-clang'
     Plug 'rhysd/vim-clang-format'
-    Plug 'alvan/vim-closetag'
     Plug 'tpope/vim-commentary'
     Plug 'maxbrunsfeld/vim-emacs-bindings'
     Plug 'tpope/vim-fugitive'
