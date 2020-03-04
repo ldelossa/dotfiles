@@ -41,6 +41,8 @@ set mouse=a
 set completeopt-=preview
 set clipboard+=unnamed
 set linebreak
+set showcmd
+set directory=$HOME/.cache/vim
 " remove highlights
 nnoremap <leader>h :noh <CR>
 " disable auto comments on next line

@@ -8,6 +8,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/bin/protobuf-3.5.1
 export PATH=$PATH:/usr/lib/cargo/bin/
 export PATH=$PATH:/Library/PostgreSQL/11/bin
+export PATH=$PATH:$HOME/.cargo/bin
 export GOOGLE_APPLICATION_CREDENTIALS=/Users/louis/.config/gcloud/ps-gcloud-service-account.json
 export KEYTIMEOUT=1
 export CC=/usr/bin/clang
