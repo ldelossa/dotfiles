@@ -159,6 +159,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'Quramy/tsuquyomi'
     Plug 'troydm/zoomwintab.vim'
     Plug 'machakann/vim-sandwich'
+    Plug 'slashmili/alchemist.vim'
 call plug#end()
 
 " use vimdark from 9pm to 10am

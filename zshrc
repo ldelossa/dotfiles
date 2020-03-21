@@ -81,6 +81,7 @@ alias m='make'
 alias ls='ls --color=auto'
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
+alias wc='wl-copy'
 
 bindkey -v
 bindkey "^?" backward-delete-char
