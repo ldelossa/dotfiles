@@ -13,6 +13,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=/Users/louis/.config/gcloud/ps-gcloud-serv
 export KEYTIMEOUT=1
 export CC=/usr/bin/clang
 export CCX=/usr/bin/clang++
+export EDITOR=vim
 
 # set pure prompt custom colors
 zmodload zsh/nearcolor
