@@ -18,8 +18,8 @@ endif
 
 " set copy and paste for wayland envs
 if $XDG_SESSION_TYPE == 'wayland'
-    xnoremap *y y:call system("wl-copy", @")<cr>
-    nnoremap *p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+    xnoremap yy y:call system("wl-copy", @")<cr>
+    nnoremap pp :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
 endif
 
 " general configurations
@@ -130,36 +130,36 @@ nnoremap <C-H> <C-W><C-H>
 
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
+    Plug 'mcchrish/nnn.vim'
     Plug 'itchyny/lightline.vim'
     Plug 'w0rp/ale'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'ldelossa/vimdark'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-fugitive'
     Plug 'jiangmiao/auto-pairs'
     Plug 'davidhalter/jedi-vim'
     Plug 'majutsushi/tagbar'
     Plug 'justmao945/vim-clang'
     Plug 'rhysd/vim-clang-format'
-    Plug 'tpope/vim-commentary'
     Plug 'maxbrunsfeld/vim-emacs-bindings'
-    Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'ludovicchabant/vim-gutentags'
-    Plug 'sheerun/vim-polyglot'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-sensible'
     Plug 'kshenoy/vim-signature'
     Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
-    Plug 'mcchrish/nnn.vim'
     Plug 'chaoren/vim-wordmotion'
-    Plug 'ldelossa/vimdark'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
     Plug 'troydm/zoomwintab.vim'
     Plug 'machakann/vim-sandwich'
     Plug 'slashmili/alchemist.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " use vimdark from 9pm to 10am
@@ -344,10 +344,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-if has('nvim') || has('gui_running')
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatus=2
-endif
 
 " jedi-vim Confurations
 let g:jedi#popup_on_dot=0
@@ -398,6 +394,7 @@ let g:nnn#action = {
       \ '<C-v>': 'vsplit' }
 let $DISABLE_FILE_OPEN_ON_NAV=1
 let $NNN_RESTRICT_NAV_OPEN=1
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 
 " identify syntax highliting group under cursor
 " see: https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
