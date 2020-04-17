@@ -59,6 +59,9 @@ nnoremap <leader>h :noh <CR>
 " disable auto comments on next line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" don't mistype W as Window
+:cabbrev W <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'w' : 'W')<CR>
+
 " remap nnn to open in current directory
 nnoremap <leader>nc :NnnPicker '%:p:h'<CR>
 nnoremap <leader>nn :NnnPicker '%:p:h'<CR>
@@ -162,20 +165,23 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'junegunn/fzf.vim'
 call plug#end()
 
-" use vimdark from 9pm to 10am
-if strftime("%H") >= 21 || strftime("%H") <= 9
-    colorscheme vimdark
-else
-    colorscheme vimlight
-endif
-
 function! DarkMode()
+    let $BAT_THEME="1337"
     colorscheme vimdark
 endfunction
 
 function! LightMode()
+    let $BAT_THEME="GitHub"
     colorscheme vimlight
 endfunction
+
+" use vimdark from 9pm to 10am
+if strftime("%H") >= 21 || strftime("%H") <= 9
+    call DarkMode()
+else
+    call LightMode()
+endif
+
 
 nnoremap <leader>lm :call LightMode() <CR>
 nnoremap <leader>dm :call DarkMode() <CR>
@@ -420,4 +426,12 @@ endfunction
 augroup plugin_initialize
     autocmd!
     autocmd VimEnter * call FckThatMatchParen()
+augroup END
+
+" svelte autogroup allowing syntax plugins to work correctly 
+" but also allow html and css omnicomplete
+augroup svelte
+    autocmd!
+    au! BufNewFile,BufRead *.svelte set omnifunc=csscomplete#CompleteCSS
+    au! BufNewFile,BufRead *.svelte set omnifunc=htmlcomplete#CompleteTags
 augroup END

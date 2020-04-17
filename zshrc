@@ -14,6 +14,7 @@ export KEYTIMEOUT=1
 export CC=/usr/bin/clang
 export CCX=/usr/bin/clang++
 export EDITOR=vim
+export NNN_PLUG='o:fzopen;c:chksum;d:diffs;h:hexview;s:suedit;l:-_git log'
 
 # set pure prompt custom colors
 zmodload zsh/nearcolor
