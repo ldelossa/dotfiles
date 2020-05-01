@@ -15,6 +15,7 @@ export CC=/usr/bin/clang
 export CCX=/usr/bin/clang++
 export EDITOR=vim
 export NNN_PLUG='o:fzopen;c:chksum;d:diffs;h:hexview;s:suedit;l:-_git log'
+export BAT_THEME='1337'
 
 # set pure prompt custom colors
 zmodload zsh/nearcolor
@@ -84,6 +85,9 @@ alias ls='ls --color=auto'
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias wc='wl-copy'
+if [[ $XDG_SESSION_TYPE = 'wayland' ]] then;
+    alias vim=vimx
+fi
 
 bindkey -v
 bindkey "^?" backward-delete-char

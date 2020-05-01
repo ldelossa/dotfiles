@@ -13,6 +13,7 @@ NetrwTreeListing*
 *~
 # Auto-generated tag files
 tags
+tags.lock
 
 # General
 .DS_Store
