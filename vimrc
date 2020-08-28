@@ -48,7 +48,6 @@ let mapleader=" "
 set nostartofline
 set hidden
 set conceallevel=0
-set mouse=a
 set completeopt-=preview
 set clipboard+=unnamed
 set linebreak
@@ -58,6 +57,9 @@ set directory=$HOME/.cache/vim
 nnoremap <leader>h :noh <CR>
 " disable auto comments on next line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" set vim as man pager
+runtime ftplugin/man.vim 
+set keywordprg=:Man
 
 " don't mistype W as Window
 :cabbrev W <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'w' : 'W')<CR>
@@ -252,6 +254,8 @@ let g:go_test_show_name = 1
 let g:go_fmt_experimental = 1
 let g:go_doc_popup_window = 1
 let g:go_rename_command = 'gopls'
+let g:go_rename_command = 'gopls'
+let g:go_term_close_on_exit = 0
 
 " vim-go key bindings and autocommands
 augroup go
@@ -290,9 +294,9 @@ augroup go
     au filetype go nmap <leader>ia :GoImportAs 
     au filetype go nmap <leader>f :GoFillStruct <cr>
     au filetype go nmap <leader>at :GoAddTags <cr>
-    au filetype go nmap <leader>t :GoTestFunc -v -race <cr>
-    au filetype go nmap <leader>T :GoTest -v -race <cr>
-    au filetype go nmap <leader>c :GoTestCompile <cr>
+    au filetype go nmap <leader>t :GoTestFunc! -v -race <cr>
+    au filetype go nmap <leader>T :GoTest! -v -race <cr>
+    au filetype go nmap <leader>c :GoTestCompile! <cr>
     imap <C-Space> <C-x><C-o>
     imap <C-@> <C-Space>
 augroup end
@@ -334,8 +338,8 @@ let g:tagbar_left = 1
 map <C-G> :GFiles <CR>
 map <C-F> :Files <CR>
 nmap <C-B> :Buffers<cr>
+nmap <C-S> :Tags<cr>
 nmap ; :Buffers<cr>
-nmap <C-T> :Tags<cr>
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -400,7 +404,6 @@ let g:nnn#action = {
       \ '<C-v>': 'vsplit' }
 let $DISABLE_FILE_OPEN_ON_NAV=1
 let $NNN_RESTRICT_NAV_OPEN=1
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 
 " identify syntax highliting group under cursor
 " see: https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
