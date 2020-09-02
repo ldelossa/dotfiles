@@ -16,6 +16,7 @@ export CCX=/usr/bin/clang++
 export EDITOR=vim
 export NNN_PLUG='o:fzopen;c:chksum;d:diffs;h:hexview;s:suedit;l:-_git log'
 export BAT_THEME='1337'
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # set pure prompt custom colors
 zmodload zsh/nearcolor
@@ -81,7 +82,6 @@ alias gssh-cd='gcloud compute ssh --ssh-key-file=~/.ssh/louis_redhat_gcloud'
 alias gscp-cd='gcloud compute scp --ssh-key-file=~/.ssh/louis_redhat_gcloud'
 alias kubectl-eq='kubectl --namespace=quay-enterprise'
 alias m='make'
-alias ls='ls --color=auto'
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias wc='wl-copy'

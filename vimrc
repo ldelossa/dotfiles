@@ -165,6 +165,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'slashmili/alchemist.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'racer-rust/vim-racer'
 call plug#end()
 
 function! DarkMode()
@@ -300,6 +301,18 @@ augroup go
     imap <C-Space> <C-x><C-o>
     imap <C-@> <C-Space>
 augroup end
+
+augroup Racer
+    autocmd!
+    autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
+    autocmd FileType rust nmap <buffer> gdh         <Plug>(rust-def-split)
+    autocmd FileType rust nmap <buffer> gdv         <Plug>(rust-def-vertical)
+    autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
+    autocmd FileType rust nmap <buffer> <leader>d <Plug>(rust-doc)
+    autocmd FileType rust nmap <buffer> <leader>gD <Plug>(rust-doc-tab)
+augroup END
+let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 1
 
 " TagBar gotags configuration
 let g:tagbar_type_go = {
