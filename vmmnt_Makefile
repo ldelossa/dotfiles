@@ -1,0 +1,3 @@
+.PHONY: mount
+mount:
+	sshfs root@f32-kernelhack:/root ~/vmmnt -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,workaround=buflimit 	
