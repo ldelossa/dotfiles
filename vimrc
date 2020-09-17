@@ -373,7 +373,7 @@ let g:jedi#popup_on_dot=0
 let g:jedi#completions_enabled = 1
 let g:jedi#goto_command = "gd"
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>c"
+let g:jedi#usages_command = "<leader>u"
 let g:jedi#force_py_version = 3
 let g:jedi#show_call_signatures = "0"
 

@@ -28,12 +28,7 @@ zstyle :prompt:pure:git:stash color 39
 zstyle :prompt:pure:git:dirty color 39
 
 # read from compinit cache unless date expired
-# autoload -Uz compinit
-# if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-#   compinit
-# else
-#   compinit -C
-# fi
+autoload -Uz compinit
 
 # source slimzsh
 source "$HOME/.slimzsh/slim.zsh"
