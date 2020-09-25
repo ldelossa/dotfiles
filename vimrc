@@ -160,12 +160,12 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
-    Plug 'troydm/zoomwintab.vim'
     Plug 'machakann/vim-sandwich'
     Plug 'slashmili/alchemist.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'racer-rust/vim-racer'
+    Plug 'xavierd/clang_complete'
 call plug#end()
 
 function! DarkMode()
@@ -367,6 +367,7 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+let g:fzf_layout = { 'down': '100%' }
 
 " jedi-vim Confurations
 let g:jedi#popup_on_dot=0
@@ -383,7 +384,7 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_list_window_size = 5
-let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black', 'autopep8'], 'c': ['clang-format', 'cquery'], 'cpp': ['clang-format', 'cquery']}
+let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black', 'autopep8'], 'c': ['clang-format'], 'cpp': ['clang-format']}
 let g:ale_enabled = 0
 highlight ALEError ctermfg=196 
 highlight ALEWarning ctermfg=110
@@ -402,6 +403,8 @@ endif
 
 " vim-clang-format configuration
 let g:clang_format#auto_format = 0
+let g:clang_format#auto_select = 1
+let g:clang_hl_errors = 0
 let g:clang_format#style_options = {
             \ "BasedOnStyle" : "Google",
             \ "IndentWidth" : 4,

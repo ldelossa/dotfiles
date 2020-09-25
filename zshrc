@@ -60,26 +60,36 @@ unsetopt correct_all
 # Set CDPATH
 cdpath=(~/vmmnt/ ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa)
 
+
+# misc aliases 
 alias digs="dig +short"
 alias clearHosts='echo "" > ~/.ssh/known_hosts'
-alias lsf='ls -laFGh'
-alias gssh='gcloud compute ssh'
-alias glist='gcloud compute instances list'
-alias kubectl-dev='kubectl --namespace=dev'
-alias kubectl-stag='kubectl --namespace=staging'
-alias kubectl-prod='kubectl --namespace=prod'
 alias iso8601='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias ll='ls -la'
-alias git-sub='git submodule update --init --recursive'
-alias git-yarn-foreach='git submodule foreach "yarn"'
-alias ytdl='youtube-dl --extract-audio --audio-format mp3'
-alias gssh-cd='gcloud compute ssh --ssh-key-file=~/.ssh/louis_redhat_gcloud'
-alias gscp-cd='gcloud compute scp --ssh-key-file=~/.ssh/louis_redhat_gcloud'
-alias kubectl-eq='kubectl --namespace=quay-enterprise'
+alias lsf='ls -laFGh'
 alias m='make'
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias wc='wl-copy'
+
+# git aliases
+alias git-sub='git submodule update --init --recursive'
+
+# gcloud aliases
+alias gssh='gcloud compute ssh'
+alias glist='gcloud compute instances list'
+alias gscp-cd='gcloud compute scp --ssh-key-file=~/.ssh/louis_redhat_gcloud'
+
+# docker alias and functions
+alias dps='docker ps --format "{{ .Names }}\t{{ .Status}}"'
+alias dlogs='docker logs -f'
+alias dexec='docker exec -it'
+dkill () {
+	docker kill $1
+	docker rm $1
+}
+
+
 if [[ $XDG_SESSION_TYPE = 'wayland' ]] then;
     alias vim=vimx
 fi
@@ -96,11 +106,6 @@ bindkey '^B' backward-char
 # source fzf. must be after bindkeys 
 source ~/.fzf.zsh
 
-
-dockerkill () {
-	docker kill $1
-	docker rm $1
-}
 
 httpsGet() {
 	curl "https://$1$2" -vvv
