@@ -212,6 +212,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " Omnicomplete configurations
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+imap <C-Space> <C-x><C-o>
+imap <C-@> <C-Space>
 
 let g:neocomplete#enable_at_startup = 1
 
@@ -260,12 +262,16 @@ augroup CoC
 	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
     nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gdd <Plug>(coc-declaration)
     nmap <silent> gt <Plug>(coc-type-definition)
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> <leader>u <Plug>(coc-references-used)
     nmap <silent> <leader>f <Plug>(coc-format-selected)
     nmap <silent> <leader>r <Plug>(coc-rename)
     nmap <silent> <leader>re <Plug>(coc-refactor)
+    nmap <leader>a :CocList diagnostics <CR>
+    nmap <C-n> <Plug>(coc-diagnostic-next)
+    nmap <C-p> <Plug>(coc-diagnostic-prev)
     xmap if <Plug>(coc-funcobj-i)
     omap if <Plug>(coc-funcobj-i)
 	xmap af <Plug>(coc-funcobj-a)
@@ -281,12 +287,13 @@ augroup CoC
     nmap <C-B> :CocCommand fzf-preview.AllBuffers <CR>
     nmap <C-S> :CocCommand fzf-preview.Ctags <CR>
     nmap ; :CocCommand fzf-preview.AllBuffers<cr>
-    nmap <silent> <leader>a  :CocCommand fzf-preview.CocDiagnostics <cr>
+    nmap <silent> <C-a>  :CocCommand fzf-preview.CocCurrentDiagnostics <cr>
 
-augroup END
+augroup end
 
 " fzf-preview configuration
 let g:fzf_preview_floating_window_rate = 1
+let g:fzf_preview_fzf_color_option = 'fg:-1,bg:-1,hl:-1,fg+:024,bg+:-1,hl+:-1,info:-1,marker:-1,header:-1'
 
 " TagBar gotags configuration
 let g:tagbar_type_go = {
