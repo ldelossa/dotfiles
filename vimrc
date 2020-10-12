@@ -65,8 +65,8 @@ set keywordprg=:Man
 :cabbrev W <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'w' : 'W')<CR>
 
 " remap nnn to open in current directory
-nnoremap <leader>nc :NnnPicker '%:p:h'<CR>
-nnoremap <leader>nn :NnnPicker '%:p:h'<CR>
+nnoremap <leader>nc :NnnPicker %:p:h<CR>
+nnoremap <leader>nn :NnnPicker %:p:h<CR>
 nnoremap <leader>n :NnnPicker<CR>
 
 " turn on code folding, defaults to all folds open
@@ -144,10 +144,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'davidhalter/jedi-vim'
     Plug 'majutsushi/tagbar'
-    Plug 'justmao945/vim-clang'
-    Plug 'rhysd/vim-clang-format'
     Plug 'maxbrunsfeld/vim-emacs-bindings'
     Plug 'airblade/vim-gitgutter'
     Plug 'ludovicchabant/vim-gutentags'
@@ -155,17 +152,11 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-sensible'
     Plug 'kshenoy/vim-signature'
-    Plug 'plytophogy/vim-virtualenv', { 'for': 'python' }
     Plug 'chaoren/vim-wordmotion'
-    Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'leafgarland/typescript-vim'
-    Plug 'Quramy/tsuquyomi'
     Plug 'machakann/vim-sandwich'
-    Plug 'slashmili/alchemist.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-    Plug 'racer-rust/vim-racer'
-    Plug 'xavierd/clang_complete'
+    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 function! DarkMode()
@@ -184,7 +175,6 @@ if strftime("%H") >= 21 || strftime("%H") <= 9
 else
     call LightMode()
 endif
-
 
 nnoremap <leader>lm :call LightMode() <CR>
 nnoremap <leader>dm :call DarkMode() <CR>
@@ -205,10 +195,6 @@ let g:lightline = {
 	\ },
 	\ }
 
-" SuperTab configurations
-let g:SuperTabLongestEnhanced = 1
-let g:SuperTabLongestHighlight = 1
-
 " CloseTag configurations
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.vue'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
@@ -220,7 +206,6 @@ let g:closetag_close_shortcut = '<leader>>'
 
 " Airliner configurations
 let g:airline_theme='papercolor'
-" let g:airline_theme = "hybrid"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -231,16 +216,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 let g:neocomplete#enable_at_startup = 1
 
 " vim-go configuration
-let g:go_disable_autoinstall = 0
-let g:go_highlight_functions = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_build_constraints = 1
+let g:go_code_completion_enabled = 0
 let g:go_term_enabled = 1
 let g:go_term_mode = "split"
 let g:go_term_height = 10
@@ -252,9 +228,7 @@ let g:go_list_height = 10
 let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
 let g:go_test_show_name = 1
-let g:go_fmt_experimental = 1
 let g:go_doc_popup_window = 1
-let g:go_rename_command = 'gopls'
 let g:go_rename_command = 'gopls'
 let g:go_term_close_on_exit = 0
 
@@ -263,56 +237,56 @@ augroup go
     autocmd!
     au filetype go nmap <leader>b <plug>(go-build)
     au filetype go nmap <leader>r <plug>(go-run)
-    au filetype go nmap <leader>i <plug>(go-info)
-    au filetype go nmap <leader>de <plug>(go-deps)
-    au filetype go nmap <leader>d <plug>(go-doc)
-    au filetype go nmap <leader>dv <plug>(go-doc-vertical)
-    au filetype go nmap <leader>db <plug>(go-doc-browser)
-    au filetype go nmap gd <plug>(go-def)
-    au filetype go nmap gdh <plug>(go-def-split)
-    au filetype go nmap gdv <plug>(go-def-vertical)
-    au filetype go nmap gd; <plug>(go-def-stack)
-    au filetype go nmap gdd <plug>(go-def-pop)
-    au filetype go nmap gdp <plug>(go-def-pop)
-    au filetype go nmap gdc <plug>(go-def-stack-clear)
-    au filetype go nmap <leader>im <plug>(go-implements) 
-    au filetype go nmap <leader>R <plug>(go-rename)
-    au filetype go nmap <leader>cc <plug>(go-callees)
-    au filetype go nmap <leader>cc <plug>(go-callers)
-    au filetype go nmap <leader>D <plug>(go-describe)
-    au filetype go nmap <leader>cs <plug>(go-callstack)
-    au filetype go nmap <leader>cp <plug>(go-channelpeers)
-    au filetype go nmap <leader>rr <plug>(go-referrers)
-    au filetype go nmap <leader>p <plug>(go-pointsto)
-    au filetype go nmap <leader>l <plug>(go-metalinter)
-    au filetype go nmap <leader>a <plug>(go-alternate-edit)
-    au filetype go nmap <leader>as <plug>(go-alternate-split)
-    au filetype go nmap <leader>av <plug>(go-alternate-vertical)
-    au filetype go nmap <leader>e <plug>(go-iferr)
-    au filetype go nmap <leader>oo :GoDecls <cr>
-    au filetype go nmap <leader>o  :GoDeclsDir <cr>
-    au filetype go nmap <leader>ii :GoImport 
-    au filetype go nmap <leader>ia :GoImportAs 
-    au filetype go nmap <leader>f :GoFillStruct <cr>
-    au filetype go nmap <leader>at :GoAddTags <cr>
     au filetype go nmap <leader>t :GoTestFunc! -v -race <cr>
     au filetype go nmap <leader>T :GoTest! -v -race <cr>
     au filetype go nmap <leader>c :GoTestCompile! <cr>
-    imap <C-Space> <C-x><C-o>
-    imap <C-@> <C-Space>
+    au filetype go nmap <leader>i <plug>(go-info)
+    au filetype go nmap <leader>d <plug>(go-doc)
+    au filetype go nmap <leader>dv <plug>(go-doc-vertical)
+    au filetype go nmap <leader>db <plug>(go-doc-browser)
+    au filetype go nmap <leader>im <plug>(go-implements) 
+    au filetype go nmap <leader>cc <plug>(go-callees)
+    au filetype go nmap <leader>cc <plug>(go-callers)
+    au filetype go nmap <leader>D <plug>(go-describe)
+    au filetype go nmap <leader>l <plug>(go-metalinter)
+    au filetype go nmap <leader>ii :GoImport 
+    au filetype go nmap <leader>ia :GoImportAs 
+    au filetype go nmap <leader>at :GoAddTags <cr>
 augroup end
 
-augroup Racer
+augroup CoC
     autocmd!
-    autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
-    autocmd FileType rust nmap <buffer> gdh         <Plug>(rust-def-split)
-    autocmd FileType rust nmap <buffer> gdv         <Plug>(rust-def-vertical)
-    autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
-    autocmd FileType rust nmap <buffer> <leader>d <Plug>(rust-doc)
-    autocmd FileType rust nmap <buffer> <leader>gD <Plug>(rust-doc-tab)
+    inoremap <silent><expr> <c-space> coc#refresh()
+	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gt <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> <leader>u <Plug>(coc-references-used)
+    nmap <silent> <leader>f <Plug>(coc-format-selected)
+    nmap <silent> <leader>r <Plug>(coc-rename)
+    nmap <silent> <leader>re <Plug>(coc-refactor)
+    xmap if <Plug>(coc-funcobj-i)
+    omap if <Plug>(coc-funcobj-i)
+	xmap af <Plug>(coc-funcobj-a)
+	omap af <Plug>(coc-funcobj-a)
+	xmap ic <Plug>(coc-classobj-i)
+	omap ic <Plug>(coc-classobj-i)
+    xmap ac <Plug>(coc-classobj-a)
+	omap ac <Plug>(coc-classobj-a)
+
+    " requires coc-fzf-preview
+    map <C-G> :CocCommand fzf-preview.GitFiles <CR>
+    map <C-F> :CocCommand fzf-preview.ProjectFiles <CR>
+    nmap <C-B> :CocCommand fzf-preview.AllBuffers <CR>
+    nmap <C-S> :CocCommand fzf-preview.Ctags <CR>
+    nmap ; :CocCommand fzf-preview.AllBuffers<cr>
+    nmap <silent> <leader>a  :CocCommand fzf-preview.CocDiagnostics <cr>
+
 augroup END
-let g:racer_experimental_completer = 1
-let g:racer_insert_paren = 1
+
+" fzf-preview configuration
+let g:fzf_preview_floating_window_rate = 1
 
 " TagBar gotags configuration
 let g:tagbar_type_go = {
@@ -347,37 +321,6 @@ let g:tagbar_type_go = {
 map <leader>2 :TagbarToggle <CR>
 let g:tagbar_left = 1
 
-" FZF configuration
-map <C-G> :GFiles <CR>
-map <C-F> :Files <CR>
-nmap <C-B> :Buffers<cr>
-nmap <C-S> :Tags<cr>
-nmap ; :Buffers<cr>
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Visual'],
-  \ 'fg+':     ['fg', 'Visual'],
-  \ 'bg+':     ['bg', 'Visual'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-let g:fzf_layout = { 'down': '100%' }
-
-" jedi-vim Confurations
-let g:jedi#popup_on_dot=0
-let g:jedi#completions_enabled = 1
-let g:jedi#goto_command = "gd"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>u"
-let g:jedi#force_py_version = 3
-let g:jedi#show_call_signatures = "0"
-
 " ALE configurations
 noremap <leader>al :ALEToggle<CR>
 let g:ale_set_loclist = 0
@@ -401,19 +344,6 @@ if executable('ag')
   nnoremap \ :Ag<SPACE> 
 endif
 
-" vim-clang-format configuration
-let g:clang_format#auto_format = 0
-let g:clang_format#auto_select = 1
-let g:clang_hl_errors = 0
-let g:clang_format#style_options = {
-            \ "BasedOnStyle" : "Google",
-            \ "IndentWidth" : 4,
-            \ "SpaceAfterCStyleCast": "true"}
-augroup clang-format
-    map <leader>cl :ClangFormat <CR>
-    map <leader>ca :ClangFormatAutoToggle <CR>
-augroup END
-
 " nnn configurations
 let g:nnn#action = {
       \ '<C-h>': 'split',
@@ -431,10 +361,6 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-" vim-clang configurations
-let g:clang_auto = 0
-
-
 " stop matching parents
 function! g:FckThatMatchParen ()
     if exists(":NoMatchParen")
@@ -445,12 +371,4 @@ endfunction
 augroup plugin_initialize
     autocmd!
     autocmd VimEnter * call FckThatMatchParen()
-augroup END
-
-" svelte autogroup allowing syntax plugins to work correctly 
-" but also allow html and css omnicomplete
-augroup svelte
-    autocmd!
-    au! BufNewFile,BufRead *.svelte set omnifunc=csscomplete#CompleteCSS
-    au! BufNewFile,BufRead *.svelte set omnifunc=htmlcomplete#CompleteTags
 augroup END
