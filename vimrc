@@ -53,6 +53,7 @@ set clipboard+=unnamed
 set linebreak
 set showcmd
 set directory=$HOME/.cache/vim
+
 " remove highlights
 nnoremap <leader>h :noh <CR>
 " disable auto comments on next line
@@ -149,6 +150,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release'}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'josa42/vim-lightline-coc'
 call plug#end()
 
 function! DarkMode()
@@ -176,7 +178,8 @@ let g:lightline = {
     \ 'colorscheme': 'nord',
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'gitbranch', 'readonly', 'filename', 'modified', 'gostatus' ] ]
+	\             [ 'gitbranch', 'readonly', 'filename', 'modified'], 
+    \             ['gostatus', 'coc_errors', 'coc_warnings', 'coc_ok', 'coc_status' ]]
 	\ },
 	\ 'component_function': {
 	\   'gitbranch': 'fugitive#head',
@@ -186,6 +189,7 @@ let g:lightline = {
 	\   'filename': '%f'
 	\ },
 	\ }
+call lightline#coc#register()
 
 " CloseTag configurations
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.vue'
@@ -195,11 +199,6 @@ let g:closetag_xhtml_filetypes = 'xhtml,jsx,js'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
-
-" Omnicomplete configurations
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-imap <C-Space> <C-x><C-o>
-imap <C-@> <C-Space>
 
 let g:neocomplete#enable_at_startup = 1
 
@@ -238,8 +237,12 @@ augroup end
 
 augroup CoC
     autocmd!
-    inoremap <silent><expr> <c-space> coc#refresh()
-	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+    inoremap <silent><expr> <c-@> coc#refresh()
+    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                                  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm()
+                                  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 
     nmap <silent> gd    <Plug>(coc-definition)
     nmap <silent> gdd   <Plug>(coc-declaration)
@@ -251,6 +254,9 @@ augroup CoC
     nmap <silent> <leader>ff    <Plug>(coc-format)
     nmap <silent> <leader>r     <Plug>(coc-rename)
     nmap <silent> <leader>re    <Plug>(coc-refactor)
+    nmap <leader>ac  <Plug>(coc-codeaction)
+    nmap <leader>qf  <Plug>(coc-fix-current)
+    nmap <silent> <C-h>   :call CocActionAsync('showSignatureHelp') <cr>
     nmap <C-a>  :CocList diagnostics <CR>
     nmap <C-n>  <Plug>(coc-diagnostic-next)
     nmap <C-p>  <Plug>(coc-diagnostic-prev)
