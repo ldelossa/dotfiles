@@ -65,7 +65,6 @@ set keywordprg=:Man
 :cabbrev W <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'w' : 'W')<CR>
 
 " remap nnn to open in current directory
-nnoremap <leader>nc :NnnPicker %:p:h<CR>
 nnoremap <leader>nn :NnnPicker %:p:h<CR>
 nnoremap <leader>n :NnnPicker<CR>
 
@@ -85,13 +84,6 @@ set expandtab
 set smarttab
 set ai
 set si
-augroup spacing
-	autocmd!
-	autocmd FileType html setlocal shiftwidth=2 tabstop=2
-	autocmd FileType javascript setlocal expandtab! shiftwidth=2 tabstop=2
-	autocmd FileType Python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
-	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-augroup END
 
 " misc autoccmds
 augroup misc
@@ -120,7 +112,7 @@ endfunction
 
 nnoremap <C-n> :cnext<CR>
 nnoremap <C-p> :cprevious<CR>
-nnoremap <C-a> :call QuickFixToggle()<CR>
+nnoremap <leader>qf :call QuickFixToggle()<CR>
 
 " Remap Buffer Switching
 nnoremap gb :bnext<CR>
@@ -204,12 +196,6 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
-" Airliner configurations
-let g:airline_theme='papercolor'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
 " Omnicomplete configurations
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 imap <C-Space> <C-x><C-o>
@@ -218,7 +204,7 @@ imap <C-@> <C-Space>
 let g:neocomplete#enable_at_startup = 1
 
 " vim-go configuration
-let g:go_code_completion_enabled = 0
+let g:go_code_completion_enabled = 0 " coc-go will provide completion
 let g:go_term_enabled = 1
 let g:go_term_mode = "split"
 let g:go_term_height = 10
@@ -237,23 +223,17 @@ let g:go_term_close_on_exit = 0
 " vim-go key bindings and autocommands
 augroup go
     autocmd!
-    au filetype go nmap <leader>b <plug>(go-build)
-    au filetype go nmap <leader>r <plug>(go-run)
-    au filetype go nmap <leader>t :GoTestFunc! -v -race <cr>
-    au filetype go nmap <leader>T :GoTest! -v -race <cr>
-    au filetype go nmap <leader>c :GoTestCompile! <cr>
-    au filetype go nmap <leader>i <plug>(go-info)
-    au filetype go nmap <leader>d <plug>(go-doc)
-    au filetype go nmap <leader>dv <plug>(go-doc-vertical)
-    au filetype go nmap <leader>db <plug>(go-doc-browser)
-    au filetype go nmap <leader>im <plug>(go-implements) 
-    au filetype go nmap <leader>cc <plug>(go-callees)
-    au filetype go nmap <leader>cc <plug>(go-callers)
-    au filetype go nmap <leader>D <plug>(go-describe)
-    au filetype go nmap <leader>l <plug>(go-metalinter)
-    au filetype go nmap <leader>ii :GoImport 
-    au filetype go nmap <leader>ia :GoImportAs 
-    au filetype go nmap <leader>at :GoAddTags <cr>
+    au filetype go nmap <leader>b   <plug>(go-build)
+    au filetype go nmap <leader>rr  <plug>(go-run)
+    au filetype go nmap <leader>t   :GoTestFunc! -v -race <cr>
+    au filetype go nmap <leader>T   :GoTest! -v -race <cr>
+    au filetype go nmap <leader>c   :GoTestCompile! <cr>
+    au filetype go nmap <leader>db  <plug>(go-doc-browser)
+    au filetype go nmap <leader>l   <plug>(go-metalinter)
+    au filetype go nmap <leader>i   :GoInfo <cr>
+    au filetype go nmap <leader>ii  :GoImport 
+    au filetype go nmap <leader>ia  :GoImportAs 
+    au filetype go nmap <leader>at  :GoAddTags <cr>
 augroup end
 
 augroup CoC
@@ -261,39 +241,38 @@ augroup CoC
     inoremap <silent><expr> <c-space> coc#refresh()
 	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gdd <Plug>(coc-declaration)
-    nmap <silent> gt <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> <leader>u <Plug>(coc-references-used)
-    nmap <silent> <leader>f <Plug>(coc-format-selected)
-    nmap <silent> <leader>r <Plug>(coc-rename)
-    nmap <silent> <leader>re <Plug>(coc-refactor)
-    nmap <leader>a :CocList diagnostics <CR>
-    nmap <C-n> <Plug>(coc-diagnostic-next)
-    nmap <C-p> <Plug>(coc-diagnostic-prev)
-    xmap if <Plug>(coc-funcobj-i)
-    omap if <Plug>(coc-funcobj-i)
-	xmap af <Plug>(coc-funcobj-a)
-	omap af <Plug>(coc-funcobj-a)
-	xmap ic <Plug>(coc-classobj-i)
-	omap ic <Plug>(coc-classobj-i)
-    xmap ac <Plug>(coc-classobj-a)
-	omap ac <Plug>(coc-classobj-a)
+    nmap <silent> gd    <Plug>(coc-definition)
+    nmap <silent> gdd   <Plug>(coc-declaration)
+    nmap <silent> gt    <Plug>(coc-type-definition)
+    nmap <silent> gi    <Plug>(coc-implementation)
+    nmap <silent> <leader>u     <Plug>(coc-references-used)
+    vmap <silent> <leader>f     <Plug>(coc-format-selected)
+    nmap <silent> <leader>f     <Plug>(coc-format-selected)
+    nmap <silent> <leader>ff    <Plug>(coc-format)
+    nmap <silent> <leader>r     <Plug>(coc-rename)
+    nmap <silent> <leader>re    <Plug>(coc-refactor)
+    nmap <C-a>  :CocList diagnostics <CR>
+    nmap <C-n>  <Plug>(coc-diagnostic-next)
+    nmap <C-p>  <Plug>(coc-diagnostic-prev)
+    xmap if     <Plug>(coc-funcobj-i)
+    omap if     <Plug>(coc-funcobj-i)
+	xmap af     <Plug>(coc-funcobj-a)
+	omap af     <Plug>(coc-funcobj-a)
+	xmap ic     <Plug>(coc-classobj-i)
+	omap ic     <Plug>(coc-classobj-i)
+    xmap ac     <Plug>(coc-classobj-a)
+	omap ac     <Plug>(coc-classobj-a)
 
     " requires coc-fzf-preview
-    map <C-G> :CocCommand fzf-preview.GitFiles <CR>
-    map <C-F> :CocCommand fzf-preview.ProjectFiles <CR>
-    nmap <C-B> :CocCommand fzf-preview.AllBuffers <CR>
-    nmap <C-S> :CocCommand fzf-preview.Ctags <CR>
-    nmap ; :CocCommand fzf-preview.AllBuffers<cr>
-    nmap <silent> <C-a>  :CocCommand fzf-preview.CocCurrentDiagnostics <cr>
-
+    map <C-G>   :CocCommand fzf-preview.GitFiles <CR>
+    map <C-F>   :CocCommand fzf-preview.ProjectFiles <CR>
+    nmap <C-S>  :CocCommand fzf-preview.Ctags <CR>
+    nmap ;      :CocCommand fzf-preview.AllBuffers<cr>
 augroup end
 
 " fzf-preview configuration
 let g:fzf_preview_floating_window_rate = 1
-let g:fzf_preview_fzf_color_option = 'fg:-1,bg:-1,hl:-1,fg+:024,bg+:-1,hl+:-1,info:-1,marker:-1,header:-1'
+let g:fzf_preview_fzf_color_option = 'fg:-1,bg:-1,hl:-1,fg+:-1,bg+:-1,hl+:-1,info:-1,marker:-1,header:-1'
 
 " TagBar gotags configuration
 let g:tagbar_type_go = {
