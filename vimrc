@@ -136,7 +136,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'sheerun/vim-polyglot'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
-    Plug 'jiangmiao/auto-pairs'
     Plug 'majutsushi/tagbar'
     Plug 'maxbrunsfeld/vim-emacs-bindings'
     Plug 'airblade/vim-gitgutter'
@@ -191,15 +190,6 @@ let g:lightline = {
 	\ }
 call lightline#coc#register()
 
-" CloseTag configurations
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.vue'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
-let g:closetag_filetypes = 'html,xhtml,phtml,js'
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,js'
-let g:closetag_emptyTags_caseSensitive = 1
-let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<leader>>'
-
 let g:neocomplete#enable_at_startup = 1
 
 " vim-go configuration
@@ -249,14 +239,14 @@ augroup CoC
     nmap <silent> gt    <Plug>(coc-type-definition)
     nmap <silent> gi    <Plug>(coc-implementation)
     nmap <silent> <leader>u     <Plug>(coc-references-used)
-    vmap <silent> <leader>f     <Plug>(coc-format-selected)
-    nmap <silent> <leader>f     <Plug>(coc-format-selected)
-    nmap <silent> <leader>ff    <Plug>(coc-format)
+    vmap <silent> <leader>ff     <Plug>(coc-format-selected)
+    nmap <silent> <leader>f    <Plug>(coc-format)
     nmap <silent> <leader>r     <Plug>(coc-rename)
     nmap <silent> <leader>re    <Plug>(coc-refactor)
-    nmap <leader>ac  <Plug>(coc-codeaction)
+    nmap <leader>a  <Plug>(coc-codeaction)
+    vmap <leader>a  <Plug>(coc-codeaction-selected)
     nmap <leader>qf  <Plug>(coc-fix-current)
-    nmap <silent> <C-h>   :call CocActionAsync('showSignatureHelp') <cr>
+    nmap <silent> <C-h> f( :call CocActionAsync('showSignatureHelp') <cr>
     nmap <C-a>  :CocList diagnostics <CR>
     nmap <C-n>  <Plug>(coc-diagnostic-next)
     nmap <C-p>  <Plug>(coc-diagnostic-prev)
@@ -273,7 +263,8 @@ augroup CoC
     map <C-G>   :CocCommand fzf-preview.GitFiles <CR>
     map <C-F>   :CocCommand fzf-preview.ProjectFiles <CR>
     nmap <C-S>  :CocCommand fzf-preview.Ctags <CR>
-    nmap ;      :CocCommand fzf-preview.AllBuffers<cr>
+    nmap ;      :CocCommand fzf-preview.Buffers<cr>
+    command! -nargs=* Grep :call CocActionAsync('runCommand', 'fzf-preview.ProjectGrep', <q-args>)
 augroup end
 
 " fzf-preview configuration
