@@ -47,7 +47,7 @@ set tags+=.tags
 let mapleader=" "
 set nostartofline
 set hidden
-set conceallevel=0
+set conceallevel=2
 set completeopt-=preview
 set clipboard+=unnamed
 set linebreak
@@ -85,6 +85,13 @@ set expandtab
 set smarttab
 set ai
 set si
+augroup spacing
+	autocmd!
+	autocmd FileType html setlocal shiftwidth=2 tabstop=2
+	autocmd FileType javascript setlocal expandtab! shiftwidth=2 tabstop=2
+	autocmd FileType Python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
 
 " misc autoccmds
 augroup misc
@@ -111,9 +118,7 @@ function! QuickFixToggle()
 	copen | resize 10
 endfunction
 
-nnoremap <C-n> :cnext<CR>
-nnoremap <C-p> :cprevious<CR>
-nnoremap <leader>qf :call QuickFixToggle()<CR>
+nnoremap <C-q> :call QuickFixToggle()<CR>
 
 " Remap Buffer Switching
 nnoremap gb :bnext<CR>
@@ -194,6 +199,11 @@ let g:neocomplete#enable_at_startup = 1
 
 " vim-go configuration
 let g:go_code_completion_enabled = 0 " coc-go will provide completion
+let g:go_doc_keywordprg_enabled = 0
+let g:go_def_mapping_enabled = 0
+let g:go_gopls_enabled = 0
+let g:go_mod_fmt_autosave = 0
+let g:go_fmt_autosave = 0
 let g:go_term_enabled = 1
 let g:go_term_mode = "split"
 let g:go_term_height = 10
@@ -206,10 +216,9 @@ let g:go_test_timeout = "600s"
 let g:go_decls_mode = 'fzf'
 let g:go_test_show_name = 1
 let g:go_doc_popup_window = 1
-let g:go_rename_command = 'gopls'
+let g:go_rename_command = ''
 let g:go_term_close_on_exit = 0
 
-" vim-go key bindings and autocommands
 augroup go
     autocmd!
     au filetype go nmap <leader>b   <plug>(go-build)
@@ -219,7 +228,6 @@ augroup go
     au filetype go nmap <leader>c   :GoTestCompile! <cr>
     au filetype go nmap <leader>db  <plug>(go-doc-browser)
     au filetype go nmap <leader>l   <plug>(go-metalinter)
-    au filetype go nmap <leader>i   :GoInfo <cr>
     au filetype go nmap <leader>ii  :GoImport 
     au filetype go nmap <leader>ia  :GoImportAs 
     au filetype go nmap <leader>at  :GoAddTags <cr>
@@ -228,12 +236,8 @@ augroup end
 augroup CoC
     autocmd!
     inoremap <silent><expr> <c-@> coc#refresh()
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                                  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-    inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm()
-                                  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
     nmap <silent> gd    <Plug>(coc-definition)
     nmap <silent> gdd   <Plug>(coc-declaration)
     nmap <silent> gt    <Plug>(coc-type-definition)
@@ -246,7 +250,11 @@ augroup CoC
     nmap <leader>a  <Plug>(coc-codeaction)
     vmap <leader>a  <Plug>(coc-codeaction-selected)
     nmap <leader>qf  <Plug>(coc-fix-current)
-    nmap <silent> <C-h> f( :call CocActionAsync('showSignatureHelp') <cr>
+    nmap <silent> <C-h> :call CocActionAsync('showSignatureHelp') <cr>
+    nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <cr>
+    nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <cr>
+    nmap <silent> <leader>sp :call CocActionAsync('toggleExtension', "coc-spell-checker") <cr>
+    nmap <silent> <leader>i  :call CocAction('doHover') <cr>
     nmap <C-a>  :CocList diagnostics <CR>
     nmap <C-n>  <Plug>(coc-diagnostic-next)
     nmap <C-p>  <Plug>(coc-diagnostic-prev)
@@ -261,10 +269,19 @@ augroup CoC
 
     " requires coc-fzf-preview
     map <C-G>   :CocCommand fzf-preview.GitFiles <CR>
-    map <C-F>   :CocCommand fzf-preview.ProjectFiles <CR>
+    map <C-F>   :CocCommand fzf-preview.DirectoryFiles <CR>
     nmap <C-S>  :CocCommand fzf-preview.Ctags <CR>
     nmap ;      :CocCommand fzf-preview.Buffers<cr>
-    command! -nargs=* Grep :call CocActionAsync('runCommand', 'fzf-preview.ProjectGrep', <q-args>)
+    command! -nargs=* Ag :call CocActionAsync('runCommand', 'fzf-preview.ProjectGrep', <q-args>)
+    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+    " scroll float
+	if has('nvim-0.4.3') || has('patch-8.2.0750')
+	  nnoremap <nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-d>"
+	  nnoremap <nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
+	  inoremap <nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+	  inoremap <nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+	endif
 augroup end
 
 " fzf-preview configuration
@@ -305,7 +322,7 @@ map <leader>2 :TagbarToggle <CR>
 let g:tagbar_left = 1
 
 " ALE configurations
-noremap <leader>al :ALEToggle<CR>
+" noremap <leader>al :ALEToggle<CR>
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
@@ -336,7 +353,7 @@ let $NNN_RESTRICT_NAV_OPEN=1
 
 " identify syntax highliting group under cursor
 " see: https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
-nmap <leader>sp :call <SID>SynStack()<CR>
+nmap <leader>hi :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return

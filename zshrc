@@ -70,7 +70,11 @@ alias lsf='ls -laFGh'
 alias m='make'
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
-alias wc='wl-copy'
+alias wayc='wl-copy'
+
+# golang aliases
+alias gt='go test -v -run '
+alias gti='go test -v -tags integration -run '
 
 # git aliases
 alias git-sub='git submodule update --init --recursive'
@@ -117,6 +121,11 @@ httpGet() {
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
+fi
+
+# oc command doesnt get loaded in fpath for some reason...
+if command oc > /dev/null; then
+    source <(oc completion zsh)
 fi
 
 # zprof
