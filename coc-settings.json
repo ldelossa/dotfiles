@@ -24,5 +24,6 @@
     "cSpell.userWords": [
       "bbolt",
       "dbname"
-    ]
+    ],
+    "coc.preferences.extensionUpdateCheck": "daily"
 }
