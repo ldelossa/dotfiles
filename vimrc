@@ -247,6 +247,7 @@ augroup CoC
     nmap <silent> <leader>f    <Plug>(coc-format)
     nmap <silent> <leader>r     <Plug>(coc-rename)
     nmap <silent> <leader>re    <Plug>(coc-refactor)
+    nmap <leader>c  :CocCommand <cr>
     nmap <leader>a  <Plug>(coc-codeaction)
     vmap <leader>a  <Plug>(coc-codeaction-selected)
     nmap <leader>qf  <Plug>(coc-fix-current)
