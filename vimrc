@@ -55,7 +55,6 @@ set showcmd
 set directory=$HOME/.cache/vim
 
 " vim8 term settings
-set termwinsize=10x0
 nnoremap <leader>tm :below term <cr>
 
 " remove highlights
