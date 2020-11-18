@@ -220,7 +220,7 @@ let g:go_decls_mode = 'fzf'
 let g:go_test_show_name = 1
 let g:go_doc_popup_window = 1
 let g:go_rename_command = ''
-let g:go_term_close_on_exit = 0
+let g:go_term_close_on_exit = 1
 
 augroup go
     autocmd!
@@ -228,7 +228,7 @@ augroup go
     au filetype go nmap <leader>rr  <plug>(go-run)
     au filetype go nmap <leader>t   :GoTestFunc! -v -race <cr>
     au filetype go nmap <leader>T   :GoTest! -v -race <cr>
-    au filetype go nmap <leader>c   :GoTestCompile! <cr>
+    au filetype go nmap <leader>c   :GoTestCompile <cr>
     au filetype go nmap <leader>db  <plug>(go-doc-browser)
     au filetype go nmap <leader>l   <plug>(go-metalinter)
     au filetype go nmap <leader>ii  :GoImport 

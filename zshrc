@@ -85,7 +85,7 @@ alias glist='gcloud compute instances list'
 alias gscp-cd='gcloud compute scp --ssh-key-file=~/.ssh/louis_redhat_gcloud'
 
 # docker alias and functions
-alias dps='docker ps --format "{{ .Names }}\t{{ .Status}}"'
+alias dps='docker ps --format "{{ .Names }}\t{{ .Ports }}\t{{ .Status }}"'
 alias dlogs='docker logs -f'
 alias dexec='docker exec -it'
 dkill () {
