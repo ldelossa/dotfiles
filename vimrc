@@ -349,6 +349,7 @@ if executable('ag')
 endif
 
 " nnn configurations
+let g:nnn#command = 'nnn -C'
 let g:nnn#action = {
       \ '<C-h>': 'split',
       \ '<C-v>': 'vsplit' }
