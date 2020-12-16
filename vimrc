@@ -238,7 +238,13 @@ augroup end
 
 augroup CoC
     autocmd!
-    inoremap <silent><expr> <c-@> coc#refresh()
+
+	if has('nvim')
+	  inoremap <silent><expr> <c-space> coc#refresh()
+	else
+	  inoremap <silent><expr> <c-@> coc#refresh()
+	endif
+
     inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
     autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
     nmap <silent> gd    <Plug>(coc-definition)

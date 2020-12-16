@@ -8,8 +8,6 @@
     "coc.preferences.formatOnSaveFiletypes": ["go", "dart"],
     "coc.preferences.enableMarkdown": false,
     "go.checkForUpdates": "ask",
-    "python.formatting.provider": "black",
-    "python.jediEnabled": false,
     "languageserver": {
         "terraform": {
             "command": "terraform-lsp",
@@ -25,5 +23,6 @@
       "bbolt",
       "dbname"
     ],
-    "coc.preferences.extensionUpdateCheck": "daily"
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "flutter.lsp.initialization.closingLabels": true
 }
