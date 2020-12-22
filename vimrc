@@ -265,7 +265,7 @@ augroup CoC
     nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <cr>
     nmap <silent> <leader>sp :call CocActionAsync('toggleExtension', "coc-spell-checker") <cr>
     nmap <silent> <leader>i  :call CocAction('doHover') <cr>
-    nmap <C-a>  :CocList diagnostics <CR>
+    nmap <C-q>  :CocList diagnostics <CR>
     nmap <C-n>  <Plug>(coc-diagnostic-next)
     nmap <C-p>  <Plug>(coc-diagnostic-prev)
     xmap if     <Plug>(coc-funcobj-i)
