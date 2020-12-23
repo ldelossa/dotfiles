@@ -6,7 +6,7 @@
     "diagnostic.enableSign": true,
     "coc.preferences.previewAutoClose": true,
     "coc.preferences.formatOnSaveFiletypes": ["go", "dart"],
-    "coc.preferences.enableMarkdown": false,
+    "coc.preferences.enableMarkdown": true,
     "flutter.provider.enableSnippet": true,
     "go.checkForUpdates": "ask",
     "languageserver": {
