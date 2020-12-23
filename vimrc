@@ -16,12 +16,6 @@ else
     set clipboard=unnamedplus
 endif
 
-" set copy and paste for wayland envs
-if $XDG_SESSION_TYPE == 'wayland'
-    xnoremap yy y:call system("wl-copy", @")<cr>
-    nnoremap pp :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
-endif
-
 " general configurations
 syntax on
 filetype plugin indent on
