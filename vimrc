@@ -21,6 +21,8 @@ syntax on
 filetype plugin indent on
 set number
 syntax on
+let g:loaded_matchparen=1
+
 " general configurations
 syntax on
 filetype plugin indent on
@@ -251,15 +253,15 @@ augroup CoC
     nmap <silent> <leader>r     <Plug>(coc-rename)
     nmap <silent> <leader>re    <Plug>(coc-refactor)
     nmap <leader>c  :CocCommand <cr>
+	nmap <leader>e  :CocCommand explorer --preset default <cr>
     nmap <leader>a  <Plug>(coc-codeaction)
     vmap <leader>a  <Plug>(coc-codeaction-selected)
     nmap <leader>qf  <Plug>(coc-fix-current)
     nmap <silent> <C-h> :call CocActionAsync('showSignatureHelp') <cr>
     nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <cr>
-    nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <cr>
     nmap <silent> <leader>sp :call CocActionAsync('toggleExtension', "coc-spell-checker") <cr>
     nmap <silent> <leader>i  :call CocAction('doHover') <cr>
-    nmap <C-q>  :CocList diagnostics <CR>
+    nmap <leader>d  :CocList diagnostics <CR>
     nmap <C-n>  <Plug>(coc-diagnostic-next)
     nmap <C-p>  <Plug>(coc-diagnostic-prev)
     xmap if     <Plug>(coc-funcobj-i)
@@ -356,6 +358,19 @@ let g:nnn#action = {
 let $DISABLE_FILE_OPEN_ON_NAV=1
 let $NNN_RESTRICT_NAV_OPEN=1
 
+" coc-explorer configurations
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'cocConfig': {
+\      'root-uri': '~/.config/coc',
+\   },
+\   'default': {
+\     'quit-on-open': v:true,
+\   },
+\ }
+
 " identify syntax highliting group under cursor
 " see: https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
 nmap <leader>hi :call <SID>SynStack()<CR>
@@ -365,15 +380,3 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-
-" stop matching parents
-function! g:FckThatMatchParen ()
-    if exists(":NoMatchParen")
-        :NoMatchParen
-    endif
-endfunction
-
-augroup plugin_initialize
-    autocmd!
-    autocmd VimEnter * call FckThatMatchParen()
-augroup END
