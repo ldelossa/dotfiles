@@ -21,7 +21,6 @@ syntax on
 filetype plugin indent on
 set number
 syntax on
-let g:loaded_matchparen=1
 
 " general configurations
 syntax on
@@ -151,7 +150,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'chaoren/vim-wordmotion'
     Plug 'machakann/vim-sandwich'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release'}
+    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'josa42/vim-lightline-coc'
 call plug#end()
