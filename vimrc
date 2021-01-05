@@ -153,6 +153,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'josa42/vim-lightline-coc'
+	Plug 'vim-scripts/auto-pairs-gentle'
 call plug#end()
 
 function! DarkMode()
