@@ -245,7 +245,6 @@ augroup CoC
     autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
     nmap <silent> gd    <Plug>(coc-definition)
     nmap <silent> gdd   <Plug>(coc-declaration)
-    nmap <silent> gt    <Plug>(coc-type-definition)
     nmap <silent> gi    <Plug>(coc-implementation)
     nmap <silent> <leader>u     <Plug>(coc-references-used)
     vmap <silent> <leader>ff     <Plug>(coc-format-selected)

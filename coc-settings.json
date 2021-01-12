@@ -5,7 +5,7 @@
     "suggest.noselect": true,
     "diagnostic.enableSign": true,
     "coc.preferences.previewAutoClose": true,
-    "coc.preferences.formatOnSaveFiletypes": ["go", "dart"],
+    "coc.preferences.formatOnSaveFiletypes": ["go", "dart", "c"],
     "coc.preferences.enableMarkdown": true,
     "flutter.provider.enableSnippet": true,
     "go.checkForUpdates": "ask",
