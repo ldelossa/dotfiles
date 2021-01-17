@@ -50,7 +50,7 @@ set showcmd
 set directory=$HOME/.cache/vim
 
 " vim8 term settings
-nnoremap <leader>tm :below term <cr>
+nnoremap <leader>tm :topleft term ++rows=30<cr>
 
 " remove highlights
 nnoremap <leader>h :noh <CR>
@@ -156,13 +156,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'vim-scripts/auto-pairs-gentle'
 call plug#end()
 
+let $BAT_THEME="1337"
 function! DarkMode()
-    let $BAT_THEME="1337"
     colorscheme vimdark
 endfunction
 
 function! LightMode()
-    let $BAT_THEME="GitHub"
     colorscheme vimlight
 endfunction
 
