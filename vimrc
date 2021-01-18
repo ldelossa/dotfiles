@@ -50,7 +50,7 @@ set showcmd
 set directory=$HOME/.cache/vim
 
 " vim8 term settings
-nnoremap <leader>tm :topleft term ++rows=30<cr>
+nnoremap <leader>tm :topleft term<cr>
 tmap <C-W>v <C-W>:vert term<CR>
 
 " remove highlights
