@@ -155,6 +155,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'josa42/vim-lightline-coc'
 	Plug 'vim-scripts/auto-pairs-gentle'
+	Plug 'vim-ctrlspace/vim-ctrlspace'
 call plug#end()
 
 let $BAT_THEME="1337"
@@ -252,9 +253,7 @@ augroup CoC
     nmap <silent> <leader>r     <Plug>(coc-rename)
     nmap <silent> <leader>re    <Plug>(coc-refactor)
     nmap <leader>c  :CocCommand <cr>
-	nmap <leader>e  :CocCommand explorer --preset default <cr>
-    nmap <leader>a  <Plug>(coc-codeaction)
-    vmap <leader>a  <Plug>(coc-codeaction-selected)
+    vmap <leader>a  <Plug>(coc-codeaction-line) <cr>
     nmap <leader>qf  <Plug>(coc-fix-current)
     nmap <silent> <C-h> :call CocActionAsync('showSignatureHelp') <cr>
     nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <cr>
@@ -273,11 +272,15 @@ augroup CoC
 	omap ac     <Plug>(coc-classobj-a)
 
     " requires coc-fzf-preview
-    map <C-G>   :CocCommand fzf-preview.GitFiles <CR>
-    map <C-F>   :CocCommand fzf-preview.DirectoryFiles <CR>
+    nmap <C-G>   :CocCommand fzf-preview.GitFiles <CR>
+    nmap <C-F>   :CocCommand fzf-preview.DirectoryFiles <CR>
     nmap <C-S>  :CocCommand fzf-preview.Ctags <CR>
-    nmap ;      :CocCommand fzf-preview.Buffers<cr>
     command! -nargs=* Ag :call CocActionAsync('runCommand', 'fzf-preview.ProjectGrep', <q-args>)
+
+    " requires ctrl space
+    let g:CtrlSpaceDefaultMappingKey = ""
+    nmap ;      :CtrlSpace<cr>
+
     inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
     " scroll float

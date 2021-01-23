@@ -22,7 +22,8 @@
     },
     "cSpell.userWords": [
       "bbolt",
-      "dbname"
+      "dbname",
+      "structs"
     ],
     "coc.preferences.extensionUpdateCheck": "daily",
     "flutter.lsp.initialization.closingLabels": true
