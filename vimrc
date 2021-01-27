@@ -253,7 +253,7 @@ augroup CoC
     nmap <silent> <leader>r     <Plug>(coc-rename)
     nmap <silent> <leader>re    <Plug>(coc-refactor)
     nmap <leader>c  :CocCommand <cr>
-    vmap <leader>a  <Plug>(coc-codeaction-line) <cr>
+    vmap <leader>a  <Plug>(coc-codeaction-line)
     nmap <leader>qf  <Plug>(coc-fix-current)
     nmap <silent> <C-h> :call CocActionAsync('showSignatureHelp') <cr>
     nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <cr>
