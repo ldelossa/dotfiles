@@ -50,7 +50,7 @@ set showcmd
 set directory=$HOME/.cache/vim
 
 " vim8 term settings
-nnoremap <leader>tm :topleft term<cr>
+nnoremap <leader>tm :topleft term<CR>
 tmap <C-W>v <C-W>:vert term<CR>
 
 " remove highlights
@@ -73,8 +73,8 @@ set foldmethod=syntax
 set foldlevel=9999
 
 " edit and source vimrc
-nnoremap <leader>ev :split $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Spacing
 set tabstop=4
@@ -153,7 +153,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'josa42/vim-lightline-coc'
+    Plug 'josa41/vim-lightline-coc'
 	Plug 'vim-scripts/auto-pairs-gentle'
 	Plug 'vim-ctrlspace/vim-ctrlspace'
 call plug#end()
@@ -223,14 +223,12 @@ augroup go
     autocmd!
     au filetype go nmap <leader>b   <plug>(go-build)
     au filetype go nmap <leader>rr  <plug>(go-run)
-    au filetype go nmap <leader>t   :GoTestFunc! -v -race <cr>
-    au filetype go nmap <leader>T   :GoTest! -v -race <cr>
-    au filetype go nmap <leader>c   :GoTestCompile <cr>
+    au filetype go nmap <leader>c   :GoTestCompile <CR>
     au filetype go nmap <leader>db  <plug>(go-doc-browser)
     au filetype go nmap <leader>l   <plug>(go-metalinter)
     au filetype go nmap <leader>ii  :GoImport 
     au filetype go nmap <leader>ia  :GoImportAs 
-    au filetype go nmap <leader>at  :GoAddTags <cr>
+    au filetype go nmap <leader>at  :GoAddTags <CR>
 augroup end
 
 augroup CoC
@@ -242,7 +240,7 @@ augroup CoC
 	  inoremap <silent><expr> <c-@> coc#refresh()
 	endif
 
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
     autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
     nmap <silent> gd    <Plug>(coc-definition)
     nmap <silent> gdd   <Plug>(coc-declaration)
@@ -252,13 +250,13 @@ augroup CoC
     nmap <silent> <leader>f    <Plug>(coc-format)
     nmap <silent> <leader>r     <Plug>(coc-rename)
     nmap <silent> <leader>re    <Plug>(coc-refactor)
-    nmap <leader>c  :CocCommand <cr>
+    nmap <leader>c  :CocCommand <CR>
     vmap <leader>a  <Plug>(coc-codeaction-line)
     nmap <leader>qf  <Plug>(coc-fix-current)
-    nmap <silent> <C-h> :call CocActionAsync('showSignatureHelp') <cr>
-    nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <cr>
-    nmap <silent> <leader>sp :call CocActionAsync('toggleExtension', "coc-spell-checker") <cr>
-    nmap <silent> <leader>i  :call CocAction('doHover') <cr>
+    nmap <silent> <C-h> :call CocActionAsync('showSignatureHelp') <CR>
+    nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <CR>
+    nmap <silent> <leader>sp :call CocActionAsync('toggleExtension', "coc-spell-checker") <CR>
+    nmap <silent> <leader>i  :call CocAction('doHover') <CR>
     nmap <leader>d  :CocList diagnostics <CR>
     nmap <C-n>  <Plug>(coc-diagnostic-next)
     nmap <C-p>  <Plug>(coc-diagnostic-prev)
@@ -275,20 +273,21 @@ augroup CoC
     nmap <C-G>   :CocCommand fzf-preview.GitFiles <CR>
     nmap <C-F>   :CocCommand fzf-preview.DirectoryFiles <CR>
     nmap <C-S>  :CocCommand fzf-preview.Ctags <CR>
+    nmap ;      :CocCommand fzf-preview.Buffers <CR>
     command! -nargs=* Ag :call CocActionAsync('runCommand', 'fzf-preview.ProjectGrep', <q-args>)
 
     " requires ctrl space
     let g:CtrlSpaceDefaultMappingKey = ""
-    nmap ;      :CtrlSpace<cr>
+    nmap <leader>t      :CtrlSpace<CR>
 
-    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
     " scroll float
 	if has('nvim-0.4.3') || has('patch-8.2.0750')
 	  nnoremap <nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-d>"
 	  nnoremap <nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
-	  inoremap <nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-	  inoremap <nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+	  inoremap <nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
+	  inoremap <nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
 	endif
 augroup end
 
