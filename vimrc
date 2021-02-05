@@ -153,9 +153,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'josa41/vim-lightline-coc'
 	Plug 'vim-scripts/auto-pairs-gentle'
 	Plug 'vim-ctrlspace/vim-ctrlspace'
+    Plug 'josa42/vim-lightline-coc'
 call plug#end()
 
 let $BAT_THEME="1337"
@@ -273,12 +273,13 @@ augroup CoC
     nmap <C-G>   :CocCommand fzf-preview.GitFiles <CR>
     nmap <C-F>   :CocCommand fzf-preview.DirectoryFiles <CR>
     nmap <C-S>  :CocCommand fzf-preview.Ctags <CR>
-    nmap ;      :CocCommand fzf-preview.Buffers <CR>
+    " nmap ;      :CocCommand fzf-preview.Buffers <CR>
     command! -nargs=* Ag :call CocActionAsync('runCommand', 'fzf-preview.ProjectGrep', <q-args>)
 
     " requires ctrl space
     let g:CtrlSpaceDefaultMappingKey = ""
     nmap <leader>t      :CtrlSpace<CR>
+    nnoremap <silent> ;   :<c-u>CtrlSpace p<CR>
 
     inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 

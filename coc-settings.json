@@ -21,7 +21,9 @@
         }
     },
     "cSpell.userWords": [
+      "Quantile",
       "bbolt",
+      "claircore",
       "dbname",
       "structs"
     ],
