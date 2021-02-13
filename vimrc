@@ -76,6 +76,11 @@ set foldlevel=9999
 nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
+" copy buffer path commands
+command! CB let @+ = expand('%:p:h')
+command! CP let @+ = expand('%:p')
+command! CF let @+ = expand('%')
+
 " Spacing
 set tabstop=4
 set softtabstop=4

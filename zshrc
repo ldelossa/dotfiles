@@ -85,6 +85,10 @@ git-fpull() {
   git push fork origin/$1:$1
   git pull
 }
+git-a() {
+  git commit --amend --no-edit
+  git push --force-with-lease
+}
 
 # gcloud aliases
 alias gssh='gcloud compute ssh'
