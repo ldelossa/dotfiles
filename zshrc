@@ -77,8 +77,14 @@ alias wayc='wl-copy'
 alias gt='go test -v -run '
 alias gti='go test -v -tags integration -run '
 
-# git aliases
+# git aliases & functions
 alias git-sub='git submodule update --init --recursive'
+git-fpull() {
+  git fetch --all
+  git checkout $1
+  git push fork origin/$1:$1
+  git pull
+}
 
 # gcloud aliases
 alias gssh='gcloud compute ssh'
