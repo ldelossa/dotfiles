@@ -52,6 +52,7 @@ set directory=$HOME/.cache/vim
 " vim8 term settings
 nnoremap <leader>tm :topleft term<CR>
 tmap <C-W>v <C-W>:vert term<CR>
+tmap <C-W>s <C-W>:term<CR>
 
 " remove highlights
 nnoremap <leader>h :noh <CR>
@@ -79,6 +80,8 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " copy buffer path commands
 command! CB let @+ = expand('%:p:h')
 command! CP let @+ = expand('%:p')
+command! CPL let @+ = expand('%:p') . ":" . line(".")
+nnoremap <leader>cp :let @+ = expand('%:p') . ":" . line(".")<CR>
 command! CF let @+ = expand('%')
 
 " Spacing
