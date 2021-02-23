@@ -80,9 +80,10 @@ alias gti='go test -v -tags integration -run '
 # git aliases & functions
 alias git-sub='git submodule update --init --recursive'
 git-fpull() {
+  branch=`git rev-parse --abbrev-ref HEAD`
   git fetch --all
-  git checkout $1
-  git push fork origin/$1:$1
+  git checkout $branch
+  git push fork origin/$branch:$branch
   git pull
 }
 git-a() {
