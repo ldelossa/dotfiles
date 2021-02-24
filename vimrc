@@ -1,5 +1,4 @@
-" shell options
-set t_Co=256 " 256 color mode
+" shely option"What every developer should know about crytography to make their lifes easier."hould know about crytography to make their lifes easier."k:Q_Co=256 " 256 color mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -78,11 +77,11 @@ nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " copy buffer path commands
-command! CB let @+ = expand('%:p:h')
+command! CH let @+ = expand('%:p:h')
 command! CP let @+ = expand('%:p')
 command! CPL let @+ = expand('%:p') . ":" . line(".")
 nnoremap <leader>cp :let @+ = expand('%:p') . ":" . line(".")<CR>
-command! CF let @+ = expand('%')
+command! CB let @+ = expand('%')
 
 " Spacing
 set tabstop=4
@@ -284,11 +283,6 @@ augroup CoC
     " nmap ;      :CocCommand fzf-preview.Buffers <CR>
     command! -nargs=* Ag :call CocActionAsync('runCommand', 'fzf-preview.ProjectGrep', <q-args>)
 
-    " requires ctrl space
-    let g:CtrlSpaceDefaultMappingKey = ""
-    nmap <leader>t      :CtrlSpace<CR>
-    nnoremap <silent> ;   :<c-u>CtrlSpace p<CR>
-
     inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
     " scroll float
@@ -299,6 +293,12 @@ augroup CoC
 	  inoremap <nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
 	endif
 augroup end
+
+" ctrl space configuration
+let g:CtrlSpaceDefaultMappingKey = ""
+nmap <leader>t      :CtrlSpace<CR>
+nnoremap <silent> ;   :<c-u>CtrlSpace p<CR>
+
 
 " fzf-preview configuration
 let g:fzf_preview_floating_window_rate = 1
