@@ -1,8 +1,4 @@
-" shely option"What every developer should know about crytography to make their lifes easier."hould know about crytography to make their lifes easier."k:Q_Co=256 " 256 color mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
+inoremap <C-@> <c-x><c-o>
 if has('macunix')
     set shell=/usr/local/bin/zsh
 else
@@ -64,10 +60,6 @@ set keywordprg=:Man
 " don't mistype W as Window
 :cabbrev W <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'w' : 'W')<CR>
 
-" remap nnn to open in current directory
-nnoremap <leader>nn :NnnPicker %:p:h<CR>
-nnoremap <leader>n :NnnPicker<CR>
-
 " turn on code folding, defaults to all folds open
 set foldmethod=syntax
 set foldlevel=9999
@@ -77,11 +69,14 @@ nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " copy buffer path commands
-command! CH let @+ = expand('%:p:h')
-command! CP let @+ = expand('%:p')
-command! CPL let @+ = expand('%:p') . ":" . line(".")
+command! CopyDir let @+ = expand('%:p:h')
+command! CopyPath let @+ = expand('%:p')
+command! CopyPathLine let @+ = expand('%:p') . ":" . line(".")
 nnoremap <leader>cp :let @+ = expand('%:p') . ":" . line(".")<CR>
-command! CB let @+ = expand('%')
+command! CopyRel let @+ = expand('%')
+
+" paste yank buffer
+nnoremap <leader>py "0p
 
 " Spacing
 set tabstop=4
@@ -140,29 +135,10 @@ nnoremap <C-H> <C-W><C-H>
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
     Plug 'mcchrish/nnn.vim'
-    Plug 'itchyny/lightline.vim'
-    Plug 'w0rp/ale'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'ldelossa/vimdark'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-fugitive'
-    Plug 'majutsushi/tagbar'
-    Plug 'maxbrunsfeld/vim-emacs-bindings'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'ludovicchabant/vim-gutentags'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-rhubarb'
-    Plug 'tpope/vim-sensible'
-    Plug 'kshenoy/vim-signature'
-    Plug 'chaoren/vim-wordmotion'
-    Plug 'machakann/vim-sandwich'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'vim-scripts/auto-pairs-gentle'
-	Plug 'vim-ctrlspace/vim-ctrlspace'
-    Plug 'josa42/vim-lightline-coc'
+    Plug 'w0rp/ale'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 let $BAT_THEME="1337"
@@ -184,173 +160,31 @@ endif
 nnoremap <leader>lm :call LightMode() <CR>
 nnoremap <leader>dm :call DarkMode() <CR>
 
-" lightlight configurations
-let g:lightline = {
-    \ 'colorscheme': 'nord',
-	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'gitbranch', 'readonly', 'filename', 'modified'], 
-    \             ['gostatus', 'coc_errors', 'coc_warnings', 'coc_ok', 'coc_status' ]]
-	\ },
-	\ 'component_function': {
-	\   'gitbranch': 'fugitive#head',
-    \   'gostatus': 'go#statusline#Show'
-	\ },
-	\ 'component': {
-	\   'filename': '%f'
-	\ },
-	\ }
-call lightline#coc#register()
-
-let g:neocomplete#enable_at_startup = 1
-
-" vim-go configuration
-let g:go_code_completion_enabled = 0 " coc-go will provide completion
-let g:go_doc_keywordprg_enabled = 0
-let g:go_def_mapping_enabled = 0
-let g:go_gopls_enabled = 0
-let g:go_mod_fmt_autosave = 0
-let g:go_fmt_autosave = 0
-let g:go_term_enabled = 1
-let g:go_term_mode = "split"
-let g:go_term_height = 10
-let g:go_term_exit = 1
-let g:go_metalinter_deadline = "5s"
-let g:go_fmt_command = "goimports"
-let g:go_list_type = "quickfix"
-let g:go_list_height = 10
-let g:go_test_timeout = "600s"
-let g:go_decls_mode = 'fzf'
-let g:go_test_show_name = 1
-let g:go_doc_popup_window = 1
-let g:go_rename_command = ''
-let g:go_term_close_on_exit = 1
-
-augroup go
-    autocmd!
-    au filetype go nmap <leader>b   <plug>(go-build)
-    au filetype go nmap <leader>rr  <plug>(go-run)
-    au filetype go nmap <leader>c   :GoTestCompile <CR>
-    au filetype go nmap <leader>db  <plug>(go-doc-browser)
-    au filetype go nmap <leader>l   <plug>(go-metalinter)
-    au filetype go nmap <leader>ii  :GoImport 
-    au filetype go nmap <leader>ia  :GoImportAs 
-    au filetype go nmap <leader>at  :GoAddTags <CR>
-augroup end
-
-augroup CoC
-    autocmd!
-
-	if has('nvim')
-	  inoremap <silent><expr> <c-space> coc#refresh()
-	else
-	  inoremap <silent><expr> <c-@> coc#refresh()
-	endif
-
-    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-    nmap <silent> gd    <Plug>(coc-definition)
-    nmap <silent> gdd   <Plug>(coc-declaration)
-    nmap <silent> gi    <Plug>(coc-implementation)
-    nmap <silent> <leader>u     <Plug>(coc-references-used)
-    vmap <silent> <leader>ff     <Plug>(coc-format-selected)
-    nmap <silent> <leader>f    <Plug>(coc-format)
-    nmap <silent> <leader>r     <Plug>(coc-rename)
-    nmap <silent> <leader>re    <Plug>(coc-refactor)
-    nmap <leader>c  :CocCommand <CR>
-    nmap <leader>a  <Plug>(coc-codeaction-line)
-    nmap <leader>qf  <Plug>(coc-fix-current)
-    nmap <silent> <C-h> :call CocActionAsync('showSignatureHelp') <CR>
-    nmap <silent> <leader>al :call CocActionAsync('diagnosticToggle') <CR>
-    nmap <silent> <leader>sp :call CocActionAsync('toggleExtension', "coc-spell-checker") <CR>
-    nmap <silent> <leader>i  :call CocAction('doHover') <CR>
-    nmap <leader>d  :CocList diagnostics <CR>
-    nmap <C-n>  <Plug>(coc-diagnostic-next)
-    nmap <C-p>  <Plug>(coc-diagnostic-prev)
-    xmap if     <Plug>(coc-funcobj-i)
-    omap if     <Plug>(coc-funcobj-i)
-	xmap af     <Plug>(coc-funcobj-a)
-	omap af     <Plug>(coc-funcobj-a)
-	xmap ic     <Plug>(coc-classobj-i)
-	omap ic     <Plug>(coc-classobj-i)
-    xmap ac     <Plug>(coc-classobj-a)
-	omap ac     <Plug>(coc-classobj-a)
-
-    " requires coc-fzf-preview
-    nmap <C-G>   :CocCommand fzf-preview.GitFiles <CR>
-    nmap <C-F>   :CocCommand fzf-preview.DirectoryFiles <CR>
-    nmap <C-S>  :CocCommand fzf-preview.Ctags <CR>
-    " nmap ;      :CocCommand fzf-preview.Buffers <CR>
-    command! -nargs=* Ag :call CocActionAsync('runCommand', 'fzf-preview.ProjectGrep', <q-args>)
-
-    inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-    " scroll float
-	if has('nvim-0.4.3') || has('patch-8.2.0750')
-	  nnoremap <nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-d>"
-	  nnoremap <nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-u>"
-	  inoremap <nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
-	  inoremap <nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
-	endif
-augroup end
-
-" ctrl space configuration
-let g:CtrlSpaceDefaultMappingKey = ""
-nmap <leader>t      :CtrlSpace<CR>
-nnoremap <silent> ;   :<c-u>CtrlSpace p<CR>
-
-
-" fzf-preview configuration
-let g:fzf_preview_floating_window_rate = 1
-let g:fzf_preview_fzf_color_option = 'fg:-1,bg:-1,hl:-1,fg+:-1,bg+:-1,hl+:-1,info:-1,marker:-1,header:-1'
-
-" TagBar gotags configuration
-let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
-\ }
-
-" TagBar configurations
-map <leader>2 :TagbarToggle <CR>
-let g:tagbar_left = 1
-
 " ALE configurations
-" noremap <leader>al :ALEToggle<CR>
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 0
-let g:ale_list_window_size = 5
-let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black', 'autopep8'], 'c': ['clang-format'], 'cpp': ['clang-format']}
-let g:ale_enabled = 0
+noremap <leader>al :ALEToggle<CR>
+let g:ale_completion_enabled = 0
+let g:ale_use_global_executables = 1
+let g:ale_hover_to_preview  = 1
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+  \ 'go': ['gopls', 'goimports'],
+  \ 'python': ['pyright'],
+  \}
+let g:ale_fixers = {
+  \ 'go': ['goimports'],
+  \}
 highlight ALEError ctermfg=196 
 highlight ALEWarning ctermfg=110
-augroup ale
-    autocmd!
-    autocmd FileType python map <leader>f :ALEFix <CR>
-    autocmd FileType javascript map <leader>f :ALEFix <CR>
+augroup ALE
+    set omnifunc=ale#completion#OmniFunc
+    nnoremap gd  :ALEGoToDefinition<CR>
+    nnoremap gdv :ALEGoToDefinition -vsplit<CR>
+    nnoremap gds :ALEGoToDefinition -split<CR>
+    nnoremap <leader>r :ALERename<CR>
+    nnoremap <leader>i :ALEHover<CR>
+    nnoremap <leader>u :ALEFindReferences<CR>
+    nnoremap <C-n> :ALENextWrap<CR>
+    nnoremap <C-p> :ALEPreviousWrap<CR>
 augroup END
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
@@ -367,19 +201,8 @@ let g:nnn#action = {
       \ '<C-v>': 'vsplit' }
 let $DISABLE_FILE_OPEN_ON_NAV=1
 let $NNN_RESTRICT_NAV_OPEN=1
-
-" coc-explorer configurations
-let g:coc_explorer_global_presets = {
-\   '.vim': {
-\     'root-uri': '~/.vim',
-\   },
-\   'cocConfig': {
-\      'root-uri': '~/.config/coc',
-\   },
-\   'default': {
-\     'quit-on-open': v:true,
-\   },
-\ }
+nnoremap <leader>nn :NnnPicker %:p:h<CR>
+nnoremap <leader>n :NnnPicker<CR>
 
 " identify syntax highliting group under cursor
 " see: https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
