@@ -134,9 +134,10 @@ nnoremap <C-H> <C-W><C-H>
 
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
     Plug 'mcchrish/nnn.vim'
     Plug 'ldelossa/vimdark'
-    Plug 'w0rp/ale'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 call plug#end()
@@ -177,16 +178,17 @@ let g:ale_fixers = {
   \}
 highlight ALEError ctermfg=196 
 highlight ALEWarning ctermfg=110
-augroup ALE
-    set omnifunc=ale#completion#OmniFunc
-    nnoremap gd  :ALEGoToDefinition<CR>
-    nnoremap gdv :ALEGoToDefinition -vsplit<CR>
-    nnoremap gds :ALEGoToDefinition -split<CR>
-    nnoremap <leader>r :ALERename<CR>
-    nnoremap <leader>i :ALEHover<CR>
-    nnoremap <leader>u :ALEFindReferences<CR>
-    nnoremap <C-n> :ALENextWrap<CR>
-    nnoremap <C-p> :ALEPreviousWrap<CR>
+augroup VIMLSP
+    setlocal omnifunc=lsp#complete
+    nnoremap gd  :LspDefinition<CR>
+    nnoremap gdv :LspDefinition -vsplit<CR>
+    nnoremap gds :LspDefinition -split<CR>
+    nnoremap gi  :LspImplementation<CR>
+    nnoremap <leader>r :LspRename<CR>
+    nnoremap <leader>i :LspHover<CR>
+    nnoremap <leader>u :LspReferences<CR>
+    nnoremap <C-n> :LspNextDiagnostic<CR>
+    nnoremap <C-p> :LspPreviousDiagnostic<CR>
 augroup END
 
 " FZF configuration
