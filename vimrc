@@ -169,9 +169,11 @@ let g:ale_fix_on_save = 1
 let g:ale_linters = {
   \ 'go': ['gopls', 'goimports'],
   \ 'python': ['pyright'],
+  \ 'markdown': ['remark-lint'],
   \}
 let g:ale_fixers = {
   \ 'go': ['goimports'],
+  \ 'markdown': ['remark-lint'],
   \}
 highlight ALEError ctermfg=196 
 highlight ALEWarning ctermfg=110
@@ -186,6 +188,13 @@ augroup ALE
     nnoremap <C-n> :ALENextWrap<CR>
     nnoremap <C-p> :ALEPreviousWrap<CR>
 augroup END
+
+" FZF configuration
+augroup FZF
+    nnoremap <C-f> :Files<CR>
+    nnoremap ; :Buffers<CR>
+augroup END
+
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
