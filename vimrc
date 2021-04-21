@@ -137,8 +137,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'mcchrish/nnn.vim'
     Plug 'ldelossa/vimdark'
     Plug 'w0rp/ale'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+    Plug 'vim-ctrlspace/vim-ctrlspace'
 call plug#end()
 
 let $BAT_THEME="1337"
@@ -162,7 +161,7 @@ nnoremap <leader>dm :call DarkMode() <CR>
 
 " ALE configurations
 noremap <leader>al :ALEToggle<CR>
-let g:ale_completion_enabled = 0
+let g:ale_completion_enabled = 1
 let g:ale_use_global_executables = 1
 let g:ale_hover_to_preview  = 1
 let g:ale_fix_on_save = 1
@@ -189,12 +188,11 @@ augroup ALE
     nnoremap <C-p> :ALEPreviousWrap<CR>
 augroup END
 
-" FZF configuration
-augroup FZF
-    nnoremap <C-f> :Files<CR>
-    nnoremap ; :Buffers<CR>
+" CtrlSpace configuration
+augroup CtrlSpace
+    nnoremap <silent><C-p> :CtrlSpace O<CR>
+    nnoremap <silent> ;   :<c-u>CtrlSpace p<CR>
 augroup END
-
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
