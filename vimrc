@@ -15,14 +15,8 @@ endif
 syntax on
 filetype plugin indent on
 set number
-syntax on
-
-" general configurations
-syntax on
-filetype plugin indent on
-set number
 set numberwidth=1
-set backspace=2 
+set backspace=2
 set updatetime=275
 set timeoutlen=300
 set autowrite
@@ -43,6 +37,8 @@ set clipboard+=unnamed
 set linebreak
 set showcmd
 set directory=$HOME/.cache/vim
+au BufRead,BufNewFile *.asm set filetype=nasm
+au BufRead,BufNewFile *.cc set filetype=cpp
 
 " vim8 term settings
 nnoremap <leader>tm :topleft term<CR>
@@ -54,7 +50,7 @@ nnoremap <leader>h :noh <CR>
 " disable auto comments on next line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " set vim as man pager
-runtime ftplugin/man.vim 
+runtime ftplugin/man.vim
 set keywordprg=:Man
 
 " don't mistype W as Window
@@ -168,13 +164,15 @@ let g:ale_fix_on_save = 1
 let g:ale_linters = {
   \ 'go': ['gopls', 'goimports'],
   \ 'python': ['pyright'],
-  \ 'markdown': ['remark-lint'],
+  \ 'markdown': ['markdownlint'],
+  \ 'cpp': ['clangd', 'ccls'],
   \}
 let g:ale_fixers = {
+  \ '*':  ['remove_trailing_lines', 'trim_whitespace'],
   \ 'go': ['goimports'],
-  \ 'markdown': ['remark-lint'],
+  \ 'cpp': ['clangd', 'ccls'],
   \}
-highlight ALEError ctermfg=196 
+highlight ALEError ctermfg=196
 highlight ALEWarning ctermfg=110
 augroup ALE
     set omnifunc=ale#completion#OmniFunc
@@ -190,6 +188,8 @@ augroup END
 
 " CtrlSpace configuration
 augroup CtrlSpace
+    let g:CtrlSpaceSetDefaultMapping = 0
+    let g:CtrlSpaceDefaultMappingKey = ""
     nnoremap <silent><C-p> :CtrlSpace O<CR>
     nnoremap <silent> ;   :<c-u>CtrlSpace p<CR>
 augroup END
@@ -198,7 +198,7 @@ augroup END
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-  nnoremap \ :Ag<SPACE> 
+  nnoremap \ :Ag<SPACE>
 endif
 
 " nnn configurations
