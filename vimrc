@@ -134,6 +134,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ldelossa/vimdark'
     Plug 'w0rp/ale'
     Plug 'vim-ctrlspace/vim-ctrlspace'
+    Plug 'rust-lang/rust.vim'
 call plug#end()
 
 let $BAT_THEME="1337"
@@ -166,14 +167,16 @@ let g:ale_linters = {
   \ 'python': ['pyright'],
   \ 'markdown': ['markdownlint'],
   \ 'cpp': ['clangd', 'ccls'],
+  \ 'rust': ['analyzer'],
   \}
 let g:ale_fixers = {
   \ '*':  ['remove_trailing_lines', 'trim_whitespace'],
   \ 'go': ['goimports'],
   \ 'cpp': ['clangd', 'ccls'],
+  \ 'rust': ['rustfmt'],
   \}
-highlight ALEError ctermfg=196
-highlight ALEWarning ctermfg=110
+highlight ALEError ctermfg=196 cterm=Italic
+highlight ALEWarning ctermbg=None cterm=Italic
 augroup ALE
     set omnifunc=ale#completion#OmniFunc
     nnoremap gd  :ALEGoToDefinition<CR>
