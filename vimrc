@@ -158,6 +158,7 @@ nnoremap <leader>dm :call DarkMode() <CR>
 
 " ALE configurations
 noremap <leader>al :ALEToggle<CR>
+let g:ale_nasm_nasm_options = '-felf64'
 let g:ale_completion_enabled = 1
 let g:ale_use_global_executables = 1
 let g:ale_hover_to_preview  = 1
@@ -193,7 +194,7 @@ augroup END
 augroup CtrlSpace
     let g:CtrlSpaceSetDefaultMapping = 0
     let g:CtrlSpaceDefaultMappingKey = ""
-    nnoremap <silent><C-p> :CtrlSpace O<CR>
+    nnoremap <silent><C-f> :CtrlSpace O<CR>
     nnoremap <silent> ;   :<c-u>CtrlSpace p<CR>
 augroup END
 
