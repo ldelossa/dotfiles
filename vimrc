@@ -180,8 +180,8 @@ let g:lsp_diagnostics_highlights_delay = 200
 let g:lsp_diagnostics_signs_delay = 200
 let g:lsp_document_code_action_signs_delay = 200
 let g:lsp_document_highlight_delay = 200
+let g:lsp_signature_help_enabled = 0
 augroup VIMLSP
-    set signcolumn=number
     nnoremap gd  :LspDefinition<CR>
     nnoremap gdv :LspDefinition -vsplit<CR>
     nnoremap gds :LspDefinition -split<CR>
@@ -189,12 +189,19 @@ augroup VIMLSP
     nnoremap <leader>r :LspRename<CR>
     nnoremap <leader>i :LspHover<CR>
     nnoremap <leader>u :LspReferences<CR>
+    nnoremap <leader>a :LspCodeAction<CR>
     nnoremap <C-n> :LspNextDiagnostic<CR>
     nnoremap <C-p> :LspPreviousDiagnostic<CR>
+    imap <C-@> <Plug>(asyncomplete_force_refresh)
     autocmd BufWritePre *.go silent LspDocumentFormatSync
     autocmd BufWritePre *.go silent :LspCodeActionSync source.organizeImports
-    imap <C-@> <Plug>(asyncomplete_force_refresh)
 augroup END
+let g:lsp_settings = {
+ \  'efm-langserver': {
+ \    'allowlist': ['markdown', 'yaml', 'dockerfile', 'json'],
+ \    'disabled': 0,
+ \   },
+ \}
 
 " CtrlSpace configuration
 augroup CtrlSpace
