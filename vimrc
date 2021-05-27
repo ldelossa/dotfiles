@@ -175,6 +175,11 @@ let g:lsp_diagnostics_signs_info = {'text': '🇮'}
 let g:lsp_document_code_action_signs_hint = {'text': '🇦'}
 let g:lsp_log_file = expand('~/.cache/vim/vim-lsp.log')
 let g:asyncomplete_auto_popup = 0
+let g:lsp_diagnostics_echo_delay = 200
+let g:lsp_diagnostics_highlights_delay = 200
+let g:lsp_diagnostics_signs_delay = 200
+let g:lsp_document_code_action_signs_delay = 200
+let g:lsp_document_highlight_delay = 200
 augroup VIMLSP
     set signcolumn=number
     nnoremap gd  :LspDefinition<CR>
