@@ -135,11 +135,13 @@ nnoremap <C-H> <C-W><C-H>
 " vim plugs
 call plug#begin('~/.local/share/nvim/plugged')
     Plug 'prabirshrestha/vim-lsp'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'mattn/vim-lsp-settings'
     Plug 'mcchrish/nnn.vim'
     Plug 'ldelossa/vimdark'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+    Plug 'vim-ctrlspace/vim-ctrlspace'
+    Plug 'rust-lang/rust.vim'
 call plug#end()
 
 let $BAT_THEME="1337"
@@ -161,25 +163,18 @@ endif
 nnoremap <leader>lm :call LightMode() <CR>
 nnoremap <leader>dm :call DarkMode() <CR>
 
-" ALE configurations
-noremap <leader>al :ALEToggle<CR>
-let g:ale_completion_enabled = 0
-let g:ale_use_global_executables = 1
-let g:ale_hover_to_preview  = 1
-let g:ale_fix_on_save = 1
-let g:ale_linters = {
-  \ 'go': ['gopls', 'goimports'],
-  \ 'python': ['pyright'],
-  \ 'markdown': ['remark-lint'],
-  \}
-let g:ale_fixers = {
-  \ 'go': ['goimports'],
-  \ 'markdown': ['remark-lint'],
-  \}
-highlight ALEError ctermfg=196 
-highlight ALEWarning ctermfg=110
+" VIMLSP configurations
+let g:lsp_semantic_enabled = 1
+let g:lsp_document_highlight_enabled = 0
+let g:lsp_preview_float = 0
+let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_signs_error = {'text': '⇒'}
+let g:lsp_diagnostics_signs_warning = {'text': '⇒'}
+let g:lsp_diagnostics_signs_hint = {'text': '⇒'}
+let g:lsp_diagnostics_signs_info = {'text': '⇒'}
+let g:lsp_log_file = expand('~/.cache/vim/vim-lsp.log')
 augroup VIMLSP
-    setlocal omnifunc=lsp#complete
     nnoremap gd  :LspDefinition<CR>
     nnoremap gdv :LspDefinition -vsplit<CR>
     nnoremap gds :LspDefinition -split<CR>
@@ -190,13 +185,6 @@ augroup VIMLSP
     nnoremap <C-n> :LspNextDiagnostic<CR>
     nnoremap <C-p> :LspPreviousDiagnostic<CR>
 augroup END
-
-" FZF configuration
-augroup FZF
-    nnoremap <C-f> :Files<CR>
-    nnoremap ; :Buffers<CR>
-augroup END
-
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
