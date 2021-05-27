@@ -1,4 +1,3 @@
-inoremap <C-@> <c-x><c-o>
 if has('macunix')
     set shell=/usr/local/bin/zsh
 else
@@ -169,12 +168,15 @@ let g:lsp_document_highlight_enabled = 0
 let g:lsp_preview_float = 0
 let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
 let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_signs_error = {'text': '⇒'}
-let g:lsp_diagnostics_signs_warning = {'text': '⇒'}
-let g:lsp_diagnostics_signs_hint = {'text': '⇒'}
-let g:lsp_diagnostics_signs_info = {'text': '⇒'}
+let g:lsp_diagnostics_signs_error = {'text': '🇪'}
+let g:lsp_diagnostics_signs_warning = {'text': '🇼'}
+let g:lsp_diagnostics_signs_hint = {'text': '🇭'}
+let g:lsp_diagnostics_signs_info = {'text': '🇮'}
+let g:lsp_document_code_action_signs_hint = {'text': '🇦'}
 let g:lsp_log_file = expand('~/.cache/vim/vim-lsp.log')
+let g:asyncomplete_auto_popup = 0
 augroup VIMLSP
+    set signcolumn=number
     nnoremap gd  :LspDefinition<CR>
     nnoremap gdv :LspDefinition -vsplit<CR>
     nnoremap gds :LspDefinition -split<CR>
@@ -184,6 +186,9 @@ augroup VIMLSP
     nnoremap <leader>u :LspReferences<CR>
     nnoremap <C-n> :LspNextDiagnostic<CR>
     nnoremap <C-p> :LspPreviousDiagnostic<CR>
+    autocmd BufWritePre *.go silent LspDocumentFormatSync
+    autocmd BufWritePre *.go silent :LspCodeActionSync source.organizeImports
+    imap <C-@> <Plug>(asyncomplete_force_refresh)
 augroup END
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
