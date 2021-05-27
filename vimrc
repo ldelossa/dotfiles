@@ -194,8 +194,7 @@ augroup END
 augroup CtrlSpace
     let g:CtrlSpaceSetDefaultMapping = 0
     let g:CtrlSpaceDefaultMappingKey = ""
-    nnoremap <silent><C-f> :CtrlSpace O<CR>
-    nnoremap <silent> ;   :<c-u>CtrlSpace p<CR>
+    nnoremap <silent> ' :CtrlSpace p<CR>
 augroup END
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
