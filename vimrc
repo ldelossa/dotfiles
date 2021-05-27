@@ -196,6 +196,13 @@ augroup VIMLSP
     imap <C-@> <Plug>(asyncomplete_force_refresh)
 augroup END
 
+" CtrlSpace configuration
+augroup CtrlSpace
+    let g:CtrlSpaceSetDefaultMapping = 0
+    let g:CtrlSpaceDefaultMappingKey = ""
+    nnoremap <silent> ' :CtrlSpace p<CR>
+augroup END
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
