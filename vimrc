@@ -141,6 +141,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ldelossa/vimdark'
     Plug 'vim-ctrlspace/vim-ctrlspace'
     Plug 'rust-lang/rust.vim'
+    Plug 'mattn/vim-gomod'
 call plug#end()
 
 let $BAT_THEME="1337"
@@ -168,11 +169,11 @@ let g:lsp_document_highlight_enabled = 0
 let g:lsp_preview_float = 0
 let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
 let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_signs_error = {'text': '🇪'}
-let g:lsp_diagnostics_signs_warning = {'text': '🇼'}
-let g:lsp_diagnostics_signs_hint = {'text': '🇭'}
-let g:lsp_diagnostics_signs_info = {'text': '🇮'}
-let g:lsp_document_code_action_signs_hint = {'text': '🇦'}
+let g:lsp_diagnostics_signs_error = {'text': '🄴'}
+let g:lsp_diagnostics_signs_warning = {'text': '🅆'}
+let g:lsp_diagnostics_signs_hint = {'text': '🄷'}
+let g:lsp_diagnostics_signs_info = {'text': '🄸'}
+let g:lsp_document_code_action_signs_hint = {'text': '🄰'}
 let g:lsp_log_file = expand('~/.cache/vim/vim-lsp.log')
 let g:asyncomplete_auto_popup = 0
 let g:lsp_diagnostics_echo_delay = 200
@@ -182,6 +183,7 @@ let g:lsp_document_code_action_signs_delay = 200
 let g:lsp_document_highlight_delay = 200
 let g:lsp_signature_help_enabled = 0
 augroup VIMLSP
+    set signcolumn=number
     nnoremap gd  :LspDefinition<CR>
     nnoremap gdv :LspDefinition -vsplit<CR>
     nnoremap gds :LspDefinition -split<CR>
@@ -190,6 +192,7 @@ augroup VIMLSP
     nnoremap <leader>i :LspHover<CR>
     nnoremap <leader>u :LspReferences<CR>
     nnoremap <leader>a :LspCodeAction<CR>
+    nnoremap <leader>l :LspCodeLens<CR>
     nnoremap <C-n> :LspNextDiagnostic<CR>
     nnoremap <C-p> :LspPreviousDiagnostic<CR>
     imap <C-@> <Plug>(asyncomplete_force_refresh)
