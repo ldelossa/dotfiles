@@ -229,6 +229,7 @@ let $DISABLE_FILE_OPEN_ON_NAV=1
 let $NNN_RESTRICT_NAV_OPEN=1
 nnoremap <leader>nn :NnnPicker %:p:h<CR>
 nnoremap <leader>n :NnnPicker<CR>
+nnoremap <C-f> :NnnPicker -Po<CR>
 
 " identify syntax highliting group under cursor
 " see: https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
