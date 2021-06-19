@@ -18,6 +18,7 @@ export NNN_PLUG='o:fzopen;c:chksum;d:diffs;h:hexview;s:suedit;l:-_git log'
 export BAT_THEME='1337'
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH="$PATH":"/usr/local/flutter/.pub-cache/bin"
+export FZF_DEFAULT_OPTS='--color=bw'
 
 # set pure prompt custom colors
 zmodload zsh/nearcolor

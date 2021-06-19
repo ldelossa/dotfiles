@@ -43,10 +43,14 @@ set linebreak
 set showcmd
 set directory=$HOME/.cache/vim
 
-" vim8 term settings
-nnoremap <leader>tm :topleft term<CR>
-tmap <C-W>v <C-W>:vert term<CR>
-tmap <C-W>s <C-W>:term<CR>
+" term shortcuts
+if has("nvim")
+    nnoremap <leader>tm :split term://zsh<CR>
+else
+    nnoremap <leader>tm :topleft term<CR>
+    tmap <C-W>v <C-W>:vert term<CR>
+    tmap <C-W>s <C-W>:term<CR>
+endif
 
 " remove highlights
 nnoremap <leader>h :noh <CR>
@@ -166,7 +170,13 @@ nnoremap <leader>dm :call DarkMode() <CR>
 " VIMLSP configurations
 let g:lsp_semantic_enabled = 1
 let g:lsp_document_highlight_enabled = 0
-let g:lsp_preview_float = 0
+if has('nvim')
+    let g:lsp_preview_float = 1
+    let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
+    let g:lsp_diagnostics_virtual_text_enabled = 0
+else 
+    let g:lsp_preview_float = 0
+endif
 let g:lsp_preview_doubletap = [function('lsp#ui#vim#output#closepreview')]
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_signs_error = {'text': '🄴'}
@@ -183,7 +193,10 @@ let g:lsp_document_code_action_signs_delay = 200
 let g:lsp_document_highlight_delay = 200
 let g:lsp_signature_help_enabled = 0
 augroup VIMLSP
-    set signcolumn=number
+    if has("nvim-0.5.0") || has("patch-8.1.1564")
+      " Recently vim can merge signcolumn and number column into one
+      set signcolumn=number
+    endif
     nnoremap gd  :LspDefinition<CR>
     nnoremap gdv :LspDefinition -vsplit<CR>
     nnoremap gds :LspDefinition -split<CR>
@@ -196,6 +209,7 @@ augroup VIMLSP
     nnoremap <C-n> :LspNextDiagnostic<CR>
     nnoremap <C-p> :LspPreviousDiagnostic<CR>
     imap <C-@> <Plug>(asyncomplete_force_refresh)
+    imap <c-space> <Plug>(asyncomplete_force_refresh)
     autocmd BufWritePre *.go silent LspDocumentFormatSync
     autocmd BufWritePre *.go silent :LspCodeActionSync source.organizeImports
 augroup END
