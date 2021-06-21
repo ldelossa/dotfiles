@@ -42,7 +42,12 @@ set signcolumn=number
 
 " term shortcuts
 if has("nvim")
-    nnoremap <leader>tm :split term://zsh<CR>
+    nnoremap <leader>tm :split <bar> terminal<cr>
+    tnoremap <C-w>v <C-\><C-n>: vsplit <bar> terminal<cr>
+    tnoremap <C-w>h <C-\><C-n><C-w>h
+    tnoremap <C-w>j <C-\><C-n><C-w>j
+    tnoremap <C-w>k <C-\><C-n><C-w>k
+    tnoremap <C-w>l <C-\><C-n><C-w>l
 else
     nnoremap <leader>tm :topleft term<CR>
     tmap <C-W>v <C-W>:vert term<CR>
@@ -128,11 +133,7 @@ endfunc
 
 " source modular configs
 source $HOME/.config/nvim/plugs.vim
-source $HOME/.config/nvim/quickfix.vim
 source $HOME/.config/nvim/nvim-lsp.vim
-source $HOME/.config/nvim/vimdark.vim
-source $HOME/.config/nvim/compe.vim
+source $HOME/.config/nvim/quickfix.vim
 source $HOME/.config/nvim/golang.vim
-source $HOME/.config/nvim/ctrlspace.vim
-source $HOME/.config/nvim/nnn.vim
 source $HOME/.config/nvim/copycmds.vim

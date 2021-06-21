@@ -136,7 +136,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " vim plugs
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.local/share/vim/plugged')
     Plug 'prabirshrestha/vim-lsp'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'

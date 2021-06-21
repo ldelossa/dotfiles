@@ -1,7 +1,10 @@
 " NVIMLSP
 lua << EOF
+-- use omnifunc
+vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 local nvim_lsp = require('lspconfig')
 local nvim_command = vim.api.nvim_command
+
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -50,13 +53,9 @@ end
 
 EOF
 
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+inoremap <C-space> <C-x><C-o> 
+
 sign define LspDiagnosticsSignError text=🄴  texthl=Error linehl= numhl=
 sign define LspDiagnosticsSignWarning text=🅆  texthl=Warning linehl= numhl=
 sign define LspDiagnosticsSignInformation text=🄸  texthl=LspDiagnosticsSignInformation linehl= numhl=
 sign define LspDiagnosticsSignHint text=🄷  texthl=LspDiagnosticsSignHint linehl= numhl=
-autocmd BufWritePre *.go silent! lua vim.lsp.buf.formatting()
