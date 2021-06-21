@@ -42,7 +42,7 @@ set signcolumn=number
 
 " term shortcuts
 if has("nvim")
-    nnoremap <leader>tm :split <bar> terminal<cr>
+    nnoremap <leader>tm :topleft split <bar> terminal<cr>
     tnoremap <C-w>v <C-\><C-n>: vsplit <bar> terminal<cr>
     tnoremap <C-w>h <C-\><C-n><C-w>h
     tnoremap <C-w>j <C-\><C-n><C-w>j

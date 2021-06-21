@@ -1,9 +1,12 @@
-let $BAT_THEME="1337"
 function! DarkMode()
+    let $BAT_THEME="1337"
+    let $FZF_DEFAULT_OPTS='--color=dark'
     colorscheme vimdark
 endfunction
 
 function! LightMode()
+    let $BAT_THEME="gruvbox-light"
+    let $FZF_DEFAULT_OPTS='--color=light'
     colorscheme vimlight
 endfunction
 
