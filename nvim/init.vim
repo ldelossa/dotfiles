@@ -40,6 +40,8 @@ set showcmd
 set directory=$HOME/.cache/vim
 set signcolumn=number
 
+nnoremap bd :bdelete<cr>
+
 " term shortcuts
 if has("nvim")
     nnoremap <leader>tm :topleft split <bar> terminal<cr>
