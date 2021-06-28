@@ -1,7 +1,8 @@
 " NVIMLSP
 lua << EOF
 -- use omnifunc
-vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+-- vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
 local nvim_lsp = require('lspconfig')
 local nvim_command = vim.api.nvim_command
 
@@ -46,14 +47,14 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "gopls", "rust_analyzer", "ccls", "yamlls", "bashls"}
+local servers = { "gopls", "rust_analyzer", "ccls", "yamlls", "bashls", "vimls"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach, }
 end
 
 EOF
 
-inoremap <C-space> <C-x><C-o> 
+" inoremap <C-space> <C-x><C-o> 
 
 sign define LspDiagnosticsSignError text=🄴  texthl=Error linehl= numhl=
 sign define LspDiagnosticsSignWarning text=🅆  texthl=Warning linehl= numhl=

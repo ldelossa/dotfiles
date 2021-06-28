@@ -5,14 +5,13 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 let g:completion_enable_auto_popup = 0
+let g:completion_enable_auto_signature = 0
 
 imap <silent> <c-space> <Plug>(completion_trigger)
 
 let g:completion_chain_complete_list = {
 	    \'default' : [
-	    \    {'complete_items': ['lsp', 'snippet']},
-	    \    {'mode': '<c-p>'},
-	    \    {'mode': '<c-n>'}
+	    \    {'complete_items': ['lsp', "path"]},
 	    \]
 	    \}
 let g:completion_items_priority = {

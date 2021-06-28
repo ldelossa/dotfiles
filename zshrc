@@ -91,6 +91,7 @@ git-a() {
   git commit --amend --no-edit
   git push --force-with-lease
 }
+alias ghw='gh repo view --web'
 
 # gcloud aliases
 alias gssh='gcloud compute ssh'

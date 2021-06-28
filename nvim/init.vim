@@ -67,10 +67,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set foldmethod=syntax
 set foldlevel=9999
 
-" edit and source vimrc
-nnoremap <leader>ev :split $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-
 " paste yank buffer
 nnoremap <leader>py "0p
 
@@ -102,17 +98,6 @@ augroup misc
 	autocmd FileType netrw setl bufhidden=delete
 augroup END
 
-" Remap Buffer Switching
-nnoremap gb :bnext<CR>
-nnoremap bg :bprevious<CR>
-nnoremap bd :bp\|bd #<CR>
-
-" Remap split buffer navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
@@ -133,7 +118,6 @@ endfunc
 
 " source modular configs
 source $HOME/.config/nvim/plugs.vim
-source $HOME/.config/nvim/nvim-lsp.vim
 source $HOME/.config/nvim/quickfix.vim
 source $HOME/.config/nvim/golang.vim
 source $HOME/.config/nvim/copycmds.vim
