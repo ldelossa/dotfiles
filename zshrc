@@ -92,6 +92,8 @@ git-a() {
   git push --force-with-lease
 }
 alias ghw='gh repo view --web'
+alias g='git'
+alias gl='git log --format=short'
 
 # gcloud aliases
 alias gssh='gcloud compute ssh'

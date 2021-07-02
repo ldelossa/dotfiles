@@ -1,7 +1,8 @@
 " NVIMLSP
 lua << EOF
 -- use omnifunc
--- vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+vim.o.completeopt = "menuone,noselect"
 
 local nvim_lsp = require('lspconfig')
 local nvim_command = vim.api.nvim_command
@@ -18,7 +19,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-  vim.lsp.codelens.refresh()
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
@@ -49,13 +49,20 @@ end
 -- map buffer local keybindings when the language server attaches
 local servers = { "gopls", "rust_analyzer", "ccls", "yamlls", "bashls", "vimls"}
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach, }
+  nvim_lsp[lsp].setup { 
+      on_attach = on_attach, 
+      flags = {
+          debounce_text_changes = 150,
+      },
+  }
 end
 
 EOF
 
-" inoremap <C-space> <C-x><C-o> 
+set shortmess+=c
+inoremap <C-space> <C-x><C-o>
 
+autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
 sign define LspDiagnosticsSignError text=🄴  texthl=Error linehl= numhl=
 sign define LspDiagnosticsSignWarning text=🅆  texthl=Warning linehl= numhl=
 sign define LspDiagnosticsSignInformation text=🄸  texthl=LspDiagnosticsSignInformation linehl= numhl=
@@ -64,20 +71,20 @@ sign define LspDiagnosticsSignHint text=🄷  texthl=LspDiagnosticsSignHint line
 " golang specific nvim-lsp
 lua <<EOF
   -- …
-    function goimports(wait_ms)
-      local params = vim.lsp.util.make_range_params()
-      params.context = {only = {"source.organizeImports", "textDocument/Formatting"}}
-      local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-      for _, res in pairs(result or {}) do
-        for _, r in pairs(res.result or {}) do
-          if r.edit then
-            vim.lsp.util.apply_workspace_edit(r.edit)
-          else
-            vim.lsp.buf.execute_command(r.command)
-          end
-        end
+function goimports(wait_ms)
+  local params = vim.lsp.util.make_range_params()
+  params.context = {only = {"source.organizeImports", "textDocument/Formatting"}}
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+  for _, res in pairs(result or {}) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit then
+        vim.lsp.util.apply_workspace_edit(r.edit)
+      else
+        vim.lsp.buf.execute_command(r.command)
       end
     end
+  end
+end
 EOF
 
 autocmd BufWritePre *.go lua goimports(1000)
