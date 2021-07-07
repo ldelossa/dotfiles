@@ -79,15 +79,15 @@ alias gt='go test -v -run '
 alias gti='go test -v -tags integration -run '
 
 # git aliases & functions
-alias git-sub='git submodule update --init --recursive'
-git-fpull() {
+alias gsub='git submodule update --init --recursive'
+gfpull() {
   branch=`git rev-parse --abbrev-ref HEAD`
   git fetch --all
   git checkout $branch
   git push fork origin/$branch:$branch
   git pull
 }
-git-a() {
+ga() {
   git commit --amend --no-edit
   git push --force-with-lease
 }
