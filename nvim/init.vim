@@ -40,7 +40,7 @@ set showcmd
 set directory=$HOME/.cache/vim
 set signcolumn=number
 
-nnoremap bd :bdelete<cr>
+nnoremap bd :bp\|bd #<cr>
 
 " term shortcuts
 if has("nvim")
@@ -71,6 +71,9 @@ set foldlevel=9999
 
 " paste yank buffer
 nnoremap <leader>py "0p
+
+" remap write
+nnoremap <leader>w :w<cr>
 
 " Spacing
 set tabstop=4

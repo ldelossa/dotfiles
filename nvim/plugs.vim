@@ -5,15 +5,20 @@ if has('nvim')
         Plug 'neovim/nvim-lspconfig'
         Plug 'mcchrish/nnn.vim'
         Plug 'ldelossa/vimdark'
-        Plug 'vim-ctrlspace/vim-ctrlspace'
+        " Plug 'vim-ctrlspace/vim-ctrlspace'
         Plug 'rust-lang/rust.vim'
         Plug 'mattn/vim-gomod'
+        Plug 'windwp/nvim-autopairs'
+        Plug 'junegunn/fzf.vim'
     call plug#end()
     source $HOME/.config/nvim/nvim-lsp.vim
+    source $HOME/.config/nvim/nvim-lsp-diag-echo.vim
     source $HOME/.config/nvim/nvim-treesitter.vim
     source $HOME/.config/nvim/vimdark.vim
-    source $HOME/.config/nvim/ctrlspace.vim
+    " source $HOME/.config/nvim/ctrlspace.vim
+    source $HOME/.config/nvim/fzf.vim
     source $HOME/.config/nvim/nnn.vim
+    source $HOME/.config/nvim/nvim-autopairs.vim
 else 
     call plug#begin('~/.local/share/vim/plugged')
         Plug 'prabirshrestha/vim-lsp'

@@ -57,6 +57,14 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+nvim_lsp['efm'].setup {
+    filetypes = { "markdown", "json" },
+    on_attach = on_attach, 
+    flags = {
+        debounce_text_changes = 150,
+    },
+}
+
 EOF
 
 set shortmess+=c
