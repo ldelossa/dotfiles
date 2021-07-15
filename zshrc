@@ -10,6 +10,7 @@ export PATH=$PATH:/usr/lib/cargo/bin/
 export PATH=$PATH:/Library/PostgreSQL/11/bin
 export PATH=$PATH:/usr/local/flutter/bin
 export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/goblog/bin
 export KEYTIMEOUT=1
 export CC=/usr/bin/clang
 export CCX=/usr/bin/clang++
@@ -19,6 +20,7 @@ export BAT_THEME='1337'
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH="$PATH":"/usr/local/flutter/.pub-cache/bin"
 export FZF_DEFAULT_OPTS='--color=bw'
+export CHROME_EXECUTABLE=chromium-browser
 
 # set pure prompt custom colors
 zmodload zsh/nearcolor
@@ -91,9 +93,10 @@ ga() {
   git commit --amend --no-edit
   git push --force-with-lease
 }
-alias ghw='gh repo view --web'
 alias g='git'
 alias gl='git log --format=short'
+alias gpull='git pull'
+alias ghw='gh repo view --web'
 
 # gcloud aliases
 alias gssh='gcloud compute ssh'
