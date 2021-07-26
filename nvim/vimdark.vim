@@ -1,12 +1,12 @@
 function! DarkMode()
     let $BAT_THEME="1337"
-    let $FZF_DEFAULT_OPTS='--color=dark'
+    let $FZF_DEFAULT_OPTS='--color=dark --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
     colorscheme vimdark
 endfunction
 
 function! LightMode()
     let $BAT_THEME="gruvbox-light"
-    let $FZF_DEFAULT_OPTS='--color=light'
+    let $FZF_DEFAULT_OPTS='--color=light --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
     colorscheme vimlight
 endfunction
 
