@@ -50,6 +50,7 @@ if has("nvim")
     tnoremap <C-w>j <C-\><C-n><C-w>j
     tnoremap <C-w>k <C-\><C-n><C-w>k
     tnoremap <C-w>l <C-\><C-n><C-w>l
+    tnoremap <C-w>n <C-\><C-n>
 else
     nnoremap <leader>tm :topleft term<CR>
     tmap <C-W>v <C-W>:vert term<CR>

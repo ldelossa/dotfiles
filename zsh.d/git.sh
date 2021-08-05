@@ -12,7 +12,11 @@ ga() {
   git push --force-with-lease
 }
 alias g='git'
+alias gc="git commit"
 alias gl='git log --format=short'
 alias gpull='git pull'
 alias ghw='gh repo view --web'
-
+alias grc='git rebase --continue'
+alias gf='git fetch'
+alias gpf='git push --force-with-lease'
+alias gchk='git checkout'

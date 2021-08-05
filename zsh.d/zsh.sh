@@ -21,3 +21,12 @@ unsetopt correct_all
 
 # use vim mode
 bindkey -v
+
+# emacs bindings
+bindkey "^?" backward-delete-char
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^P' up-line-or-history
+bindkey '^N' down-line-or-history
+bindkey '^F' forward-char
+bindkey '^B' backward-char

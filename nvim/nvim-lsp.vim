@@ -43,14 +43,13 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  buf_set_keymap("n", "<space>i", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
   buf_set_keymap("n", "<space>o", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
 
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "gopls", "rust_analyzer", "ccls", "yamlls", "bashls", "vimls"}
+local servers = { "rust_analyzer", "yamlls", "bashls", "vimls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { 
       on_attach = on_attach, 
@@ -60,12 +59,42 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+nvim_lsp["ccls"].setup {
+  on_attach = on_attach, 
+  flags = {
+      debounce_text_changes = 150,
+  },
+  init_options = {
+      { cache = { directory = "~/.cache/ccls" },
+    },
+  },
+}
+
+nvim_lsp["gopls"].setup {
+  on_attach = on_attach, 
+  flags = {
+      debounce_text_changes = 150,
+  },
+  settings = {
+      gopls = {
+        experimentalPostfixCompletions = true,
+        codelenses = {
+          test = true,
+          tidy = true,
+          upgrade_dependency = true,
+          vendor = true,
+          generate = true,
+          gc_details = true,
+       },
+     },
+   },
+}
 EOF
 
 set shortmess+=c
 inoremap <C-space> <C-x><C-o>
 
-autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+autocmd BufEnter,CursorHold,InsertLeave * lua vim.lsp.codelens.refresh()
 sign define LspDiagnosticsSignError text=🄴  texthl=Error linehl= numhl=
 sign define LspDiagnosticsSignWarning text=🅆  texthl=Warning linehl= numhl=
 sign define LspDiagnosticsSignInformation text=🄸  texthl=LspDiagnosticsSignInformation linehl= numhl=

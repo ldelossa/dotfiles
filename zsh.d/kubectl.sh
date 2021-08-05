@@ -1,6 +1,6 @@
 # kubectl aliases
 kns="default"
-function k-ns() {
+function kns() {
     if [[ -z  $1 ]]; then
         echo $kns
         return
