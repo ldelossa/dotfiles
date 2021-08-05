@@ -1,4 +1,3 @@
-lua << EOF
 -- Location information about the last message printed. The format is
 -- `(did print, buffer number, line number)`.
 local last_echo = { false, -1, -1 }
@@ -93,5 +92,5 @@ function echo_diagnostic()
     echo_timeout
   )
 end
-EOF
-autocmd CursorMoved * :lua echo_diagnostic()
+
+vim.api.nvim_command('autocmd CursorMoved * :lua echo_diagnostic()')

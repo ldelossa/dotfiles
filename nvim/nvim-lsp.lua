@@ -1,5 +1,3 @@
-" NVIMLSP
-lua << EOF
 -- use omnifunc
 vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 vim.o.completeopt = "menuone,noselect"
@@ -89,20 +87,16 @@ nvim_lsp["gopls"].setup {
      },
    },
 }
-EOF
 
-set shortmess+=c
-inoremap <C-space> <C-x><C-o>
+vim.api.nvim_command('set shortmess+=c')
+vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
+vim.api.nvim_command('autocmd BufEnter,CursorHold,InsertLeave * lua vim.lsp.codelens.refresh()')
+vim.api.nvim_command('sign define LspDiagnosticsSignError text=🄴  texthl=Error linehl= numhl=')
+vim.api.nvim_command('sign define LspDiagnosticsSignWarning text=🅆  texthl=Warning linehl= numhl=')
+vim.api.nvim_command('sign define LspDiagnosticsSignInformation text=🄸  texthl=LspDiagnosticsSignInformation linehl= numhl=')
+vim.api.nvim_command('sign define LspDiagnosticsSignHint text=🄷  texthl=LspDiagnosticsSignHint linehl= numhl=')
 
-autocmd BufEnter,CursorHold,InsertLeave * lua vim.lsp.codelens.refresh()
-sign define LspDiagnosticsSignError text=🄴  texthl=Error linehl= numhl=
-sign define LspDiagnosticsSignWarning text=🅆  texthl=Warning linehl= numhl=
-sign define LspDiagnosticsSignInformation text=🄸  texthl=LspDiagnosticsSignInformation linehl= numhl=
-sign define LspDiagnosticsSignHint text=🄷  texthl=LspDiagnosticsSignHint linehl= numhl=
-
-" golang specific nvim-lsp
-lua <<EOF
-  -- …
+-- golang specific nvim-lsp
 function goimports(wait_ms)
   local params = vim.lsp.util.make_range_params()
   params.context = {only = {"source.organizeImports", "textDocument/Formatting"}}
@@ -117,7 +111,6 @@ function goimports(wait_ms)
     end
   end
 end
-EOF
 
-autocmd BufWritePre *.go lua goimports(1000)
-autocmd BufWritePre *.go silent lua vim.lsp.buf.formatting()
+vim.api.nvim_command('autocmd BufWritePre *.go lua goimports(1000)')
+vim.api.nvim_command('autocmd BufWritePre *.go silent lua vim.lsp.buf.formatting()')

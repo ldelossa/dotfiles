@@ -13,15 +13,15 @@ if has('nvim')
         Plug 'akinsho/flutter-tools.nvim'
         Plug 'mfussenegger/nvim-lint'
     call plug#end()
-    source $HOME/.config/nvim/nvim-lsp.vim
-    source $HOME/.config/nvim/nvim-lsp-diag-echo.vim
-    source $HOME/.config/nvim/nvim-treesitter.vim
+    source $HOME/.config/nvim/nvim-lsp.lua
+    source $HOME/.config/nvim/nvim-lsp-diag-echo.lua
+    source $HOME/.config/nvim/nvim-treesitter.lua
     source $HOME/.config/nvim/vimdark.vim
     source $HOME/.config/nvim/fzf.vim
     source $HOME/.config/nvim/nnn.vim
-    source $HOME/.config/nvim/nvim-autopairs.vim
-    source $HOME/.config/nvim/flutter-tools.vim
-    source $HOME/.config/nvim/nvim-lint.vim
+    source $HOME/.config/nvim/nvim-autopairs.lua
+    source $HOME/.config/nvim/flutter-tools.lua
+    source $HOME/.config/nvim/nvim-lint.lua
 else 
     call plug#begin('~/.local/share/vim/plugged')
         Plug 'prabirshrestha/vim-lsp'
