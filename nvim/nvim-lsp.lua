@@ -63,8 +63,9 @@ nvim_lsp["ccls"].setup {
       debounce_text_changes = 150,
   },
   init_options = {
-      { cache = { directory = "~/.cache/ccls" },
-    },
+      cache = {
+        directory = "/home/louis/.cache/ccls"
+      };
   },
 }
 
