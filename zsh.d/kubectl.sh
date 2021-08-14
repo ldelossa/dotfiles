@@ -7,6 +7,9 @@ function kns() {
     fi
     kns=$1
 }
+alias kns-kube-system='kns kube-system' 
+alias kns-kube-default='kns kube-default' 
+
 alias k='kubectl --namespace $kns'
 alias kp='kubectl --namespace $kns get pods'
 alias kp-net='kubectl --namespace $kns get pods -o custom-columns=NAME:.metadata.name,IP:.status.podIP,HOST_IP:.status.hostIP,NODE:.spec.nodeName'

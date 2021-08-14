@@ -63,6 +63,9 @@ nvim_lsp["ccls"].setup {
       debounce_text_changes = 150,
   },
   init_options = {
+      clang = {
+          extraArgs = { "--include-directory=/usr/lib64/clang/12/include" };
+      };
       cache = {
         directory = "/home/louis/.cache/ccls"
       };

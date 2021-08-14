@@ -12,6 +12,8 @@ if has('nvim')
         Plug 'nvim-lua/plenary.nvim'
         Plug 'akinsho/flutter-tools.nvim'
         Plug 'mfussenegger/nvim-lint'
+        Plug 'ruanyl/vim-gh-line'
+        Plug 'simrat38/symbols-outline.nvim'
     call plug#end()
     source $HOME/.config/nvim/nvim-lsp.lua
     source $HOME/.config/nvim/nvim-lsp-diag-echo.lua

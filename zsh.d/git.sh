@@ -7,10 +7,13 @@ gfpull() {
   git push fork origin/$branch:$branch
   git pull
 }
-ga() {
+gap() {
   git commit --amend --no-edit
   git push --force-with-lease
 }
+alias ga='git commit --amend'
+alias gaq='git commit --amend --no-edit'
+alias gadd='git add'
 alias g='git'
 alias gc="git commit"
 alias gl='git log --format=short'
@@ -20,3 +23,4 @@ alias grc='git rebase --continue'
 alias gf='git fetch'
 alias gpf='git push --force-with-lease'
 alias gchk='git checkout'
+alias gri='git rebase -i'
