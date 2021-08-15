@@ -1,11 +1,11 @@
 -- use omnifunc
 vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 vim.o.completeopt = "menuone,noselect"
+vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
 
 local nvim_lsp = require('lspconfig')
-local nvim_command = vim.api.nvim_command
 
-
+-- disable virtual text for all diagnostic handlers.
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false,
@@ -57,6 +57,11 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- this is necessary since vim ships with its own c omnifunc and applies it 
+-- it on FileType c
+vim.api.nvim_command('autocmd FileType c set omnifunc=v:lua.vim.lsp.omnifunc')
+vim.api.nvim_command('autocmd FileType cpp set omnifunc=v:lua.vim.lsp.omnifunc')
+
 nvim_lsp["ccls"].setup {
   on_attach = on_attach, 
   flags = {
@@ -64,7 +69,7 @@ nvim_lsp["ccls"].setup {
   },
   init_options = {
       clang = {
-          extraArgs = { "--include-directory=/usr/lib64/clang/12/include" };
+          extraArgs = { "--include-directory=/usr/lib64/clang/12/include",  };
       };
       cache = {
         directory = "/home/louis/.cache/ccls"
@@ -93,7 +98,6 @@ nvim_lsp["gopls"].setup {
 }
 
 vim.api.nvim_command('set shortmess+=c')
-vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
 vim.api.nvim_command('autocmd BufEnter,CursorHold,InsertLeave * lua vim.lsp.codelens.refresh()')
 vim.api.nvim_command('sign define LspDiagnosticsSignError text=🄴  texthl=Error linehl= numhl=')
 vim.api.nvim_command('sign define LspDiagnosticsSignWarning text=🅆  texthl=Warning linehl= numhl=')
