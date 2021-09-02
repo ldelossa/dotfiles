@@ -8,22 +8,30 @@ if has('nvim')
         Plug 'rust-lang/rust.vim'
         Plug 'mattn/vim-gomod'
         Plug 'windwp/nvim-autopairs'
-        Plug 'junegunn/fzf.vim'
         Plug 'nvim-lua/plenary.nvim'
+        Plug 'nvim-lua/popup.nvim'
         Plug 'akinsho/flutter-tools.nvim'
         Plug 'mfussenegger/nvim-lint'
         Plug 'ruanyl/vim-gh-line'
-        Plug 'simrat38/symbols-outline.nvim'
+        Plug 'ibhagwan/fzf-lua'
+        Plug 'vijaymarupudi/nvim-fzf'
+        Plug 'seblj/nvim-echo-diagnostics'
+        Plug 'onsails/lspkind-nvim'
+        Plug 'lukas-reineke/indent-blankline.nvim'
+        Plug 'ray-x/go.nvim'
     call plug#end()
+    source $HOME/.config/nvim/go-nvim.lua
     source $HOME/.config/nvim/nvim-lsp.lua
-    source $HOME/.config/nvim/nvim-lsp-diag-echo.lua
     source $HOME/.config/nvim/nvim-treesitter.lua
     source $HOME/.config/nvim/vimdark.vim
-    source $HOME/.config/nvim/fzf.vim
+    source $HOME/.config/nvim/fzf.lua
     source $HOME/.config/nvim/nnn.vim
     source $HOME/.config/nvim/nvim-autopairs.lua
     source $HOME/.config/nvim/flutter-tools.lua
     source $HOME/.config/nvim/nvim-lint.lua
+    source $HOME/.config/nvim/nvim-echo-diagnostics.lua
+    source $HOME/.config/nvim/lspkind.lua
+    source $HOME/.config/nvim/indent-blankline.lua
 else 
     call plug#begin('~/.local/share/vim/plugged')
         Plug 'prabirshrestha/vim-lsp'

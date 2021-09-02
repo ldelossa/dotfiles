@@ -13,7 +13,7 @@ webview.add_signal("init", function (view)
         end
         if string.match(string.lower(uri), "^zoommtg:") then
             local cmd = string.format('%s %q', "zoom", uri)
-            os.execute(cmd)
+            io.popen(cmd)
             return false
         end
     end)

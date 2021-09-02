@@ -24,3 +24,7 @@ alias gf='git fetch'
 alias gpf='git push --force-with-lease'
 alias gchk='git checkout'
 alias gri='git rebase -i'
+
+glogs() {
+    nvim <(curl -XGET "$1")
+}

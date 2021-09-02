@@ -39,6 +39,7 @@ set linebreak
 set showcmd
 set directory=$HOME/.cache/vim
 set signcolumn=number
+set termguicolors
 
 nnoremap bd :bp\|bd #<cr>
 
