@@ -1,4 +1,5 @@
 require("vertical_tabs")
+require("tabgroups")
 
 local session = require('session')
 local webview = require('webview')
@@ -13,7 +14,7 @@ webview.add_signal("init", function (view)
         end
         if string.match(string.lower(uri), "^zoommtg:") then
             local cmd = string.format('%s %q', "zoom", uri)
-            io.popen(cmd)
+            luakit.spawn(cmd)
             return false
         end
     end)

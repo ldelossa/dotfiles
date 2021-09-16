@@ -1,5 +1,5 @@
 # kubectl aliases
-kns="default"
+kns="kube-system"
 function kns() {
     if [[ -z  $1 ]]; then
         echo $kns

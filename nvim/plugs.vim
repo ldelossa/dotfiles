@@ -28,7 +28,7 @@ if has('nvim')
     source $HOME/.config/nvim/nnn.vim
     source $HOME/.config/nvim/nvim-autopairs.lua
     source $HOME/.config/nvim/flutter-tools.lua
-    source $HOME/.config/nvim/nvim-lint.lua
+    " source $HOME/.config/nvim/nvim-lint.lua
     source $HOME/.config/nvim/nvim-echo-diagnostics.lua
     source $HOME/.config/nvim/lspkind.lua
     source $HOME/.config/nvim/indent-blankline.lua

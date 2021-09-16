@@ -13,6 +13,8 @@ remap('n', '<space>q', '<cmd>lua require("fzf-lua").lsp_document_diagnostics()<C
 remap('n', '<space>qq', '<cmd>lua require("fzf-lua").lsp_workspace_diagnostics()<CR>', opts)
 remap('n', '<space>s', '<cmd>lua require("fzf-lua").lsp_live_workspace_symbols()<CR>', opts)
 remap('n', '<space>ss', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
+remap('n', '<space>g', '<cmd>lua require("fzf-lua").grep_visual()<CR>', opts)
+remap('n', '<space>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
 
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {

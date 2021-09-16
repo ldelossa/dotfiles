@@ -13,7 +13,11 @@
      source ~/.config/nvim/fzf.lua
  endfunction
  
-call DarkMode()
+if $TILIX_PROFILE == "light"
+    call LightMode()
+else
+    call DarkMode()
+endif
+
 nnoremap <leader>lm :call LightMode() <CR>
 nnoremap <leader>dm :call DarkMode() <CR>
-
