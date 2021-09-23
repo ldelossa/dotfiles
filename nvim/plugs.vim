@@ -19,10 +19,12 @@ if has('nvim')
         Plug 'onsails/lspkind-nvim'
         Plug 'lukas-reineke/indent-blankline.nvim'
         Plug 'ray-x/go.nvim'
+        Plug 'SmiteshP/nvim-gps'
+        Plug 'kyazdani42/nvim-web-devicons'
     call plug#end()
     source $HOME/.config/nvim/go-nvim.lua
-    source $HOME/.config/nvim/nvim-lsp.lua
     source $HOME/.config/nvim/nvim-treesitter.lua
+    source $HOME/.config/nvim/nvim-lsp.lua
     source $HOME/.config/nvim/vimdark.vim
     source $HOME/.config/nvim/fzf.lua
     source $HOME/.config/nvim/nnn.vim
@@ -32,6 +34,8 @@ if has('nvim')
     source $HOME/.config/nvim/nvim-echo-diagnostics.lua
     source $HOME/.config/nvim/lspkind.lua
     source $HOME/.config/nvim/indent-blankline.lua
+    source $HOME/.config/nvim/nvim-gps.lua
+    source $HOME/.config/nvim/statusline.lua
 else 
     call plug#begin('~/.local/share/vim/plugged')
         Plug 'prabirshrestha/vim-lsp'

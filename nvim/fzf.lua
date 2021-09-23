@@ -5,6 +5,7 @@ remap('n', '<C-f>', '<cmd>lua require("fzf-lua").files()<CR>', opts)
 remap('n', "'", '<cmd>lua require("fzf-lua").buffers()<CR>', opts)
 remap('n', 'gD', '<Cmd>lua require("fzf-lua").lsp_declarations()<CR>', opts)
 remap('n', 'gd', '<Cmd>lua require("fzf-lua").lsp_definitions()<CR>', opts)
+remap('n', 'gdd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 remap('n', 'gi', '<cmd>lua require("fzf-lua").lsp_implementations()<CR>', opts)
 remap('n', '<space>D', '<cmd>lua require("fzf-lua").lsp_typedefs()<CR>', opts)
 remap('n', '<leader>a', '<cmd>lua require("fzf-lua").lsp_code_actions()<CR>', opts)
@@ -15,6 +16,7 @@ remap('n', '<space>s', '<cmd>lua require("fzf-lua").lsp_live_workspace_symbols()
 remap('n', '<space>ss', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
 remap('n', '<space>g', '<cmd>lua require("fzf-lua").grep_visual()<CR>', opts)
 remap('n', '<space>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
+remap('n', '<space>t', '<cmd>lua require("fzf-lua").tabs()<CR>', opts)
 
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {
@@ -29,13 +31,37 @@ require'fzf-lua'.setup {
     hl_normal        = 'Normal',        -- window normal color
     hl_border        = 'FloatBorder',   -- window border color
   },
+  -- fzf_bin             = 'sk',        -- use skim instead of fzf?
+  fzf_opts = {
+    -- options are sent as `<left>=<right>`
+    -- set to `false` to remove a flag
+    -- set to '' for a non-value flag
+    -- for raw args use `fzf_args` instead
+    ['--ansi']        = '',
+    ['--prompt']      = ' >',
+    ['--info']        = 'inline',
+    ['--height']      = '100%',
+    ['--layout']      = 'reverse',
+  },
+  fzf_binds           = {               -- fzf '--bind=' options
+    ["alt-p"]         = "toggle-preview",
+    ["f3"]            = "toggle-preview-wrap",
+    ["ctrl-n"]        = "preview-page-down",
+    ["ctrl-p"]        = "preview-page-up",
+    ["ctrl-u"]        = "unix-line-discard",
+    ["ctrl-f"]        = "half-page-down",
+    ["ctrl-b"]        = "half-page-up",
+    ["ctrl-a"]        = "beginning-of-line",
+    ["ctrl-e"]        = "end-of-line",
+    ["alt-a"]         = "toggle-all",
+  },
   fzf_args            = vim.env.FZF_DEFAULT_OPTS, -- adv: fzf extra args, empty unless adv
   preview_border      = 'border',       -- border|noborder
   preview_wrap        = 'nowrap',       -- wrap|nowrap
   preview_opts        = 'nohidden',     -- hidden|nohidden
-  preview_vertical    = 'down:45%',     -- up|down:size
+  preview_vertical    = 'down:50%',     -- up|down:size
   preview_horizontal  = 'right:60%',    -- right|left:size
-  preview_layout      = 'flex',         -- horizontal|vertical|flex
+  preview_layout      = 'vertical',         -- horizontal|vertical|flex
   flip_columns        = 120,            -- #cols to switch to horizontal on flex
   default_previewer   = "bat",          -- override the default previewer?
                                         -- by default auto-detect bat|cat
@@ -52,15 +78,15 @@ require'fzf-lua'.setup {
     previewer         = "bat",       -- uncomment to override previewer
     prompt            = 'Files❯ ',
     cmd               = '',             -- "find . -type f -printf '%P\n'",
-    git_icons         = false,           -- show git icons?
+    git_icons         = true,           -- show git icons?
     file_icons        = false,           -- show file icons?
-    color_icons       = false,           -- colorize file|git icons
+    color_icons       = true,           -- colorize file|git icons
     actions = {
       ["default"]     = actions.file_edit,
-      ["ctrl-s"]      = actions.file_split,
-      ["ctrl-v"]      = actions.file_vsplit,
-      ["ctrl-t"]      = actions.file_tabedit,
-      ["ctrl-q"]      = actions.file_sel_to_qf,
+      ["alt-s"]      = actions.file_split,
+      ["alt-v"]      = actions.file_vsplit,
+      ["alt-t"]      = actions.file_tabedit,
+      ["alt-q"]      = actions.file_sel_to_qf,
       ["ctrl-y"]      = function(selected) print(selected[2]) end,
     }
   },
@@ -120,16 +146,16 @@ require'fzf-lua'.setup {
     -- cmd               = "rg --vimgrep",
     rg_opts           = "--hidden --column --line-number --no-heading " ..
                         "--color=always --smart-case -g '!{.git,node_modules}/*'",
-    git_icons         = false,           -- show git icons?
+    git_icons         = true,           -- show git icons?
     file_icons        = false,           -- show file icons?
-    color_icons       = false,           -- colorize file|git icons
+    color_icons       = true,           -- colorize file|git icons
     actions = {
-      ["default"]     = actions.file_edit,
-      ["ctrl-s"]      = actions.file_split,
-      ["ctrl-v"]      = actions.file_vsplit,
-      ["ctrl-t"]      = actions.file_tabedit,
-      ["ctrl-q"]      = actions.file_sel_to_qf,
-      ["ctrl-y"]      = function(selected) print(selected[2]) end,
+      ["default"]    = actions.file_edit,
+      ["alt-s"]      = actions.file_split,
+      ["alt-v"]      = actions.file_vsplit,
+      ["alt-t"]      = actions.file_tabedit,
+      ["alt-q"]      = actions.file_sel_to_qf,
+      ["ctrl-y"]     = function(selected) print(selected[2]) end,
     }
   },
   oldfiles = {
@@ -142,11 +168,11 @@ require'fzf-lua'.setup {
     color_icons       = false,         -- colorize file|git icons
     sort_lastused     = true,         -- sort buffers() by last used
     actions = {
-      ["default"]     = actions.buf_edit,
-      ["ctrl-s"]      = actions.buf_split,
-      ["ctrl-v"]      = actions.buf_vsplit,
-      ["ctrl-t"]      = actions.buf_tabedit,
-      ["ctrl-x"]      = actions.buf_del,
+      ["default"]    = actions.buf_edit,
+      ["alt-s"]      = actions.buf_split,
+      ["alt-v"]      = actions.buf_vsplit,
+      ["alt-t"]      = actions.buf_tabedit,
+      ["alt-x"]      = actions.buf_del,
     }
   },
   colorschemes = {
@@ -188,6 +214,14 @@ require'fzf-lua'.setup {
       ["Warning"]     = { icon = "🅆 ", color = "yellow" },    -- warning
       ["Information"] = { icon = "🄸", color = "blue" },      -- info
       ["Hint"]        = { icon = "🄷", color = "magenta" },   -- hint
+    },
+    actions = {
+      ["default"]     = actions.file_edit,
+      ["alt-s"]      = actions.file_split,
+      ["alt-v"]      = actions.file_vsplit,
+      ["alt-t"]      = actions.file_tabedit,
+      ["alt-q"]      = actions.file_sel_to_qf,
+      ["ctrl-y"]      = function(selected) print(selected[2]) end,
     },
   },
   -- placeholders for additional user customizations
