@@ -1,6 +1,7 @@
 -- status line currently depends on 
 -- nvim-gps
 -- nvim-web-devicons
+-- gitsigns.nvim
 
 -- statusline
 vim.api.nvim_exec(
@@ -10,7 +11,11 @@ func! NvimGps() abort
 endf
 
 function! Icon() abort
-    return luaeval("require'nvim-web-devicons'.get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e'), {default=true})")
+    let icon = luaeval("require'nvim-web-devicons'.get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e'))")
+    if icon == v:null
+        return ''
+    endif
+    return icon 
 endfunction
 
 function! GitBranch()
@@ -19,10 +24,35 @@ endfunction
 
 function! StatuslineGit()
   let l:branchname = GitBranch()
+  if len(l:branchname) != 0
+    let l:branchname = ' ' . l:branchname
+  endif
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-set statusline=
+" Status Line Custom
+let g:currentmode={
+    \ 'n'  : 'Normal',
+    \ 'no' : 'Normal·Operator Pending',
+    \ 'v'  : 'Visual',
+    \ 'V'  : 'V·Line',
+    \ '^V' : 'V·Block',
+    \ 's'  : 'Select',
+    \ 'S'  : 'S·Line',
+    \ '^S' : 'S·Block',
+    \ 'i'  : 'Insert',
+    \ 'R'  : 'Replace',
+    \ 'Rv' : 'V·Replace',
+    \ 'c'  : 'Command',
+    \ 'cv' : 'Vim Ex',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'Prompt',
+    \ 'rm' : 'More',
+    \ 'r?' : 'Confirm',
+    \ '!'  : 'Shell',
+    \ 't'  : 'Terminal'
+    \}
+
 set statusline+=%#PmenuSel#
 set statusline+=%{StatuslineGit()}
 set statusline+=%#StatusLine#
@@ -34,5 +64,6 @@ set statusline+=\ %{Icon()}
 set statusline+=\ %Y
 set statusline+=\ %p%%
 set statusline+=\ %l:%L:%c
-set statusline+=\ 
+set statusline+=\ %{get(b:,'gitsigns_status','')}
+set statusline+=\ %{tolower(g:currentmode[mode()])}\ 
 ]], false)

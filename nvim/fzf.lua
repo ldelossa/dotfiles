@@ -14,7 +14,7 @@ remap('n', '<space>q', '<cmd>lua require("fzf-lua").lsp_document_diagnostics()<C
 remap('n', '<space>qq', '<cmd>lua require("fzf-lua").lsp_workspace_diagnostics()<CR>', opts)
 remap('n', '<space>s', '<cmd>lua require("fzf-lua").lsp_live_workspace_symbols()<CR>', opts)
 remap('n', '<space>ss', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
-remap('n', '<space>g', '<cmd>lua require("fzf-lua").grep_visual()<CR>', opts)
+remap('n', '<space>g', '<cmd>lua require("fzf-lua").live_grep()<CR>', opts)
 remap('n', '<space>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
 remap('n', '<space>t', '<cmd>lua require("fzf-lua").tabs()<CR>', opts)
 
@@ -63,7 +63,7 @@ require'fzf-lua'.setup {
   preview_horizontal  = 'right:60%',    -- right|left:size
   preview_layout      = 'vertical',         -- horizontal|vertical|flex
   flip_columns        = 120,            -- #cols to switch to horizontal on flex
-  default_previewer   = "bat",          -- override the default previewer?
+  default_previewer   = "builtin",          -- override the default previewer?
                                         -- by default auto-detect bat|cat
   previewers = {
     bat = {
@@ -72,10 +72,30 @@ require'fzf-lua'.setup {
       theme           = vim.env.BAT_THEME, -- bat preview theme (bat --list-themes)
       config          = nil,               -- nil uses $BAT_CONFIG_PATH
     },
+    builtin = {
+      title           = true,         -- preview title?
+      scrollbar       = true,         -- scrollbar?
+      scrollchar      = '█',          -- scrollbar character
+      wrap            = false,        -- wrap lines?
+      syntax          = true,         -- preview syntax highlight?
+      syntax_limit_l  = 0,            -- syntax limit (lines), 0=nolimit
+      syntax_limit_b  = 1024*1024,    -- syntax limit (bytes), 0=nolimit
+      expand          = false,        -- preview max size?
+      hl_cursor       = 'Cursor',     -- cursor highlight
+      hl_cursorline   = 'Visual', -- cursor line highlight
+      hl_range        = 'IncSearch',  -- ranger highlight (not yet in use)
+      keymap = {
+        toggle_full   = '<F2>',       -- toggle full screen
+        toggle_wrap   = '<F3>',       -- toggle line wrap
+        toggle_hide   = '<F4>',       -- toggle on/off (not yet in use)
+        page_up       = '<C-p>',      -- preview scroll up
+        page_down     = '<C-n>',      -- preview scroll down
+        page_reset    = '<C-h>',   -- reset scroll to orig pos
+      },
+    },
   },
   -- provider setup
   files = {
-    previewer         = "bat",       -- uncomment to override previewer
     prompt            = 'Files❯ ',
     cmd               = '',             -- "find . -type f -printf '%P\n'",
     git_icons         = true,           -- show git icons?

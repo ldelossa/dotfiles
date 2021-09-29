@@ -21,6 +21,7 @@ if has('nvim')
         Plug 'ray-x/go.nvim'
         Plug 'SmiteshP/nvim-gps'
         Plug 'kyazdani42/nvim-web-devicons'
+        Plug 'lewis6991/gitsigns.nvim'
     call plug#end()
     source $HOME/.config/nvim/go-nvim.lua
     source $HOME/.config/nvim/nvim-treesitter.lua
@@ -35,7 +36,9 @@ if has('nvim')
     source $HOME/.config/nvim/lspkind.lua
     source $HOME/.config/nvim/indent-blankline.lua
     source $HOME/.config/nvim/nvim-gps.lua
+    source $HOME/.config/nvim/nvim-web-devicons.lua
     source $HOME/.config/nvim/statusline.lua
+    source $HOME/.config/nvim/gitsigns.lua
 else 
     call plug#begin('~/.local/share/vim/plugged')
         Plug 'prabirshrestha/vim-lsp'

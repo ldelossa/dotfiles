@@ -59,7 +59,7 @@ else
 endif
 
 " remove highlights
-nnoremap <leader>h :noh <CR>
+nnoremap <C-h> :noh <CR>
 
 " disable auto comments on next line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
