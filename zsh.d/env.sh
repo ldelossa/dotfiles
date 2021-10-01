@@ -23,5 +23,9 @@ export PATH="$PATH":"/usr/local/flutter/.pub-cache/bin"
 export FZF_DEFAULT_OPTS='--color=bw --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export CHROME_EXECUTABLE=chromium-browser
 
+# hack to make java apps work in sway
+# see: https://github.com/swaywm/sway/issues/595
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Set CDPATH
 cdpath=(~/vmmnt/ ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa)

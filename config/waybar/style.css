@@ -1,0 +1,94 @@
+.modules-right {
+    border:         none;
+    border-radius:  0;
+    color:          #e4e4e4;
+    font-family:    "FreeMono";
+    font-size:      16px;
+    box-shadow:     none;
+    text-shadow:    none;
+    transition-duration: 0s;
+}
+
+.modules-left {
+    border:         none;
+    border-radius:  0;
+    color:          #e4e4e4;
+    font-family:    "FreeMono";
+    font-size:      19px;
+    box-shadow:     none;
+    text-shadow:    none;
+    transition-duration: 0s;
+}
+
+window#waybar {
+    color:      rgba(217, 216, 216, 1);
+    background: rgba(35, 31, 32, .3);
+}
+
+#workspaces {
+    margin: 5px;
+    padding: 2px 10px 2px 10px;
+    background: rgba(28, 28, 28, .5);
+    border-radius: 3px;
+}
+
+#workspaces button {
+    color: rgba(217, 216, 216, 0.4);
+    font-weight: bold;
+}
+
+#workspaces button.visible {
+    color:      rgba(217, 216, 216, 1);
+}
+
+#workspaces button.focused {
+    border-radius:  3px;
+}
+
+#workspaces button.urgent {
+    color:      rgba(238, 46, 36, 1);
+}
+
+#clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
+    margin: 4px;
+    border-radius: 3px;
+    padding: 2px 10px 2px 10px;
+    background: rgba(28, 28, 28, .5);
+    min-width: 75px;
+}
+
+#battery {
+    background: rgba(255, 255, 95, .3);
+}
+#network {
+    background: rgba(0, 95, 0, .2);
+}
+#cpu, #memory, #disk {
+    background: rgba(135, 175, 215, .2);
+}
+#pulseaudio {
+    background: rgba(175, 95, 95, .5);
+}
+#backlight {
+    background: rgba(175, 95, 95, .5);
+}
+
+#battery.warning {
+   color:       rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+    color:      rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+    color:      rgba(217, 216, 216, 1);
+}
+
+#custom-storage.warning {
+    color:      rgba(255, 210, 4, 1);
+}
+
+#custom-storage.critical {
+    color:      rgba(238, 46, 36, 1);
+}
