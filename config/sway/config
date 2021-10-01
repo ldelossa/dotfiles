@@ -28,7 +28,6 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # Various Bindings
 #
 bindsym $mod+p exec grim $(xdg-user-dir PICTURES)/$(date +'%s_grim.png')
-bindsym $mod+Tab workspace back_and_forth
 
 ### Monitor Layout
 workspace chat output eDP-1
@@ -201,6 +200,7 @@ input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
  
+    bindsym $mod+Tab workspace back_and_forth
 #
 # Layout stuff:
 #

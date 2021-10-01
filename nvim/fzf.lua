@@ -15,8 +15,9 @@ remap('n', '<space>qq', '<cmd>lua require("fzf-lua").lsp_workspace_diagnostics()
 remap('n', '<space>s', '<cmd>lua require("fzf-lua").lsp_live_workspace_symbols()<CR>', opts)
 remap('n', '<space>ss', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
 remap('n', '<space>g', '<cmd>lua require("fzf-lua").live_grep()<CR>', opts)
+remap('n', '<space>gg', '<cmd>lua require("fzf-lua").grep_cword()<CR>', opts)
 remap('n', '<space>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
-remap('n', '<space>t', '<cmd>lua require("fzf-lua").tabs()<CR>', opts)
+remap('n', '<space>t', '<cmd>lua require("fzf-lua").tabs()<CR', opts)
 
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {
@@ -237,7 +238,7 @@ require'fzf-lua'.setup {
     },
     actions = {
       ["default"]     = actions.file_edit,
-      ["ctrl-ctrl-alt-s"]      = actions.file_split,
+      ["ctrl-alt-s"]      = actions.file_split,
       ["ctrl-alt-v"]      = actions.file_vsplit,
       ["ctrl-alt-t"]      = actions.file_tabedit,
       ["ctrl-alt-q"]      = actions.file_sel_to_qf,
