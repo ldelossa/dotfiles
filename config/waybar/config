@@ -63,7 +63,7 @@
             "disconnected": [""]
         },   
         "format-alt-click": "click-right",
-        "format-wifi": "{signalStrength}% ﬉",
+        "format-wifi": "{essid} {signalStrength}% ﬉",
         "format-ethernet": "",
         "format-disconnected": "", 
         "tooltip-format": "{ifname} via {gwaddr}",
@@ -128,6 +128,11 @@
         "interval": 30,
         "format": "{percentage_used}% ",
         "format-alt-click": "click-right",
-        "path": "/"
+        "path": "/",
+        "states": {
+            "low": 0,
+            "mid": 25,
+            "high": 50,
+        },
     },
 }

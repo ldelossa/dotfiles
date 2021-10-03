@@ -1,84 +1,78 @@
+/* 
+    black   - #1c1c1c   rgba(28, 28, 28, 1)  
+    blue    - #87afd7   rgba(135, 175, 215, 1) 
+    red     - #af5f5f   rgba(175, 95, 95, 1)
+    yellow  - #ffff5f   rgba(255, 255, 95, 1)
+    green   - #87af87   rgba(135, 175, 135, 1)
+    grey    - #d9d8d8   rgba(217, 216, 216, 1)
+*/
+
 .modules-right {
-    border:         none;
-    border-radius:  0;
-    color:          #e4e4e4;
     font-family:    "FreeMono";
-    font-size:      16px;
-    box-shadow:     none;
-    text-shadow:    none;
-    transition-duration: 0s;
+    font-size:      15px;
+    font-family:    bold;
 }
 
 .modules-left {
-    border:         none;
-    border-radius:  0;
-    color:          #e4e4e4;
     font-family:    "FreeMono";
     font-size:      19px;
-    box-shadow:     none;
-    text-shadow:    none;
-    transition-duration: 0s;
 }
 
 window#waybar {
-    color:      rgba(217, 216, 216, 1);
-    background: rgba(35, 31, 32, .3);
+    background: rgba(28, 28, 28, 0);
 }
 
 #workspaces {
-    margin: 5px;
-    padding: 1px 10px 1px 10px;
-    background: rgba(28, 28, 28, .7);
-    border-radius: 3px;
+    margin: 0px 5px 0px 7px;
+    border-radius: 0px 0px 5px 5px;
+    padding: 1px 1px 1px 1px;
+    background: rgba(28, 28, 28, 1);
 }
 
 #workspaces button {
-    color: rgba(217, 216, 216, .25);
-    font-weight: bold;
-}
-
-#workspaces button.visible {
-    color:      rgba(217, 216, 216, 1);
+    padding: 1px 10px 1px 10px;
+    color:  rgba(217, 216, 216, .3);
 }
 
 #workspaces button.focused {
-    border-radius:  3px;
+    font-weight: bold;
+    color:  rgba(217, 216, 216, 1);
 }
 
 #workspaces button.urgent {
-    color:      rgba(238, 46, 36, 1);
+    color:  rgba(175, 95, 95, .5);
+;
 }
 
 #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
-    margin: 4px;
-    border-radius: 3px;
-    padding: 1px 10px 1px 10px;
-    background: rgba(28, 28, 28, .7);
-    min-width: 75px;
+    margin: 0px 5px 0px 5px;
+    border-radius: 0px 0px 5px 5px;
+    padding: 1px 8px 1px 8px;
 }
 
-#battery {
-    background: rgba(135, 175, 215, .2);
-}
-#battery.critical {
-    background: rgba(175, 95, 95, .5);
-}
-#battery.warning {
-    background: rgba(255, 255, 95, .3);
+#clock {
+    background: rgba(28, 28, 28, .7);
 }
 
 #network {
-    background: rgba(0, 95, 0, .4);
+    background: rgba(135, 175, 135, .4);
 }
 #network.disconnected {
     background: rgba(175, 95, 95, .5);
 }
 
-#cpu, #memory, #disk {
-    background: rgba(135, 175, 215, .2);
+#battery {
+    background: rgba(135, 175, 215, .4);
 }
+#battery.warning {
+    background: rgba(255, 255, 95, .3);
+}
+#battery.critical {
+    background: rgba(175, 95, 95, .5);
+}
+
 #cpu.low {
-    background: rgba(135, 175, 215, .2);
+    background: rgba(135, 175, 215, .4);
 }
 #cpu.mid {
     background: rgba(255, 255, 95, .3);
@@ -88,7 +82,7 @@ window#waybar {
 }
 
 #memory.low {
-    background: rgba(135, 175, 215, .2);
+    background: rgba(135, 175, 215, .4);
 }
 #memory.mid {
     background: rgba(255, 255, 95, .3);
@@ -98,7 +92,7 @@ window#waybar {
 }
 
 #disk.low {
-    background: rgba(135, 175, 215, .2);
+    background: rgba(135, 175, 215, .4);
 }
 #disk.mid {
     background: rgba(255, 255, 95, .3);
@@ -107,11 +101,8 @@ window#waybar {
     background: rgba(175, 95, 95, .5);
 }
 
-#pulseaudio {
-    background: rgba(175, 95, 95, .5);
-}
 #pulseaudio.low {
-    background: rgba(135, 175, 215, .2);
+    background: rgba(135, 175, 215, .4);
 }
 #pulseaudio.mid {
     background: rgba(255, 255, 95, .3);
@@ -120,11 +111,8 @@ window#waybar {
     background: rgba(175, 95, 95, .5);
 }
 
-#backlight {
-    background: rgba(175, 95, 95, .5);
-}
 #backlight.low {
-    background: rgba(135, 175, 215, .2);
+    background: rgba(135, 175, 215, .4);
 }
 #backlight.mid {
     background: rgba(255, 255, 95, .3);
