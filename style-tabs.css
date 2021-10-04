@@ -30,6 +30,9 @@ window#waybar {
     margin:             0px 5px 0px 7px;
     border-radius:      0px 0px 5px 5px;
     background:         @black-trans;
+    /* avoids resizing the waybar when border
+       is drawn on focus. */
+    border-bottom:      2px solid @trans;
 }
 
 #workspaces button {
@@ -37,6 +40,7 @@ window#waybar {
     padding:            4px 10px 4px 10px;
     color:              @grey;
     border-radius:      0px;
+    border-bottom:      2px solid @trans;
 }
 
 #workspaces button.focused {
