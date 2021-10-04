@@ -1,0 +1,185 @@
+@define-color trans             rgba(28, 28, 28, 0);
+@define-color black             #1c1c1c;
+@define-color black-trans       rgba(28, 28, 28, .85);
+@define-color blue              #437883;
+@define-color blue-light        #87afd7;
+@define-color yellow            #7c794e;
+@define-color yellow-light      #9b9761;
+@define-color red               #b05753;
+@define-color green             #437762;
+@define-color grey              #545555;
+@define-color grey-light        #545555;
+@define-color white             #b9bab5;
+
+
+.modules-right {
+    font-family:    "FreeMono";
+    font-size:      16px;
+    font-weight:    bold;
+}
+
+.modules-left {
+    font-family:    "Cousine";
+    font-size:      15px;
+}
+
+window#waybar {
+    background: none;
+}
+
+#workspaces {
+    padding:            0px 20px 0px 20px;
+    margin:             0px 5px 0px 7px;
+    border-radius:      0px 0px 5px 5px;
+    background:         @black-trans;
+}
+
+#workspaces button {
+    margin:             0px 2px 0px 2px;
+    padding:            4px 10px 4px 10px;
+    color:              @grey;
+    border-radius:      0px;
+    border-bottom:      2px solid @trans;
+}
+
+#workspaces button.focused {
+    color:              @yellow-light;
+    border-bottom:      2px solid @yellow-light;
+    font-weight:        bold;
+}
+
+#workspaces button.urgent {
+    color:              @red; 
+}
+
+#custom-grimshot {
+    margin:             0px 2px 0px 2px;
+    border-radius:      0px 0px 5px 5px;
+    padding:            1px 8px 1px 8px;
+    color:              @yellow-light;
+    background:         @black-trans;
+}
+
+#custom-wfrecord {
+    margin:             0px 2px 0px 2px;
+    border-radius:      0px 0px 5px 5px;
+    padding:            1px 8px 1px 8px;
+    color:              @yellow-light;
+    background:         @black-trans;
+}
+
+#clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
+    margin:             0px 0px 0px 0px;
+    padding:            2px 8px 2px 8px;
+    color:              @black-trans;
+    border-right:       .5px solid @grey;
+    border-left:        .5px solid @grey;
+}
+
+#memory.low {
+    border-left:        2px solid @black-trans;
+    border-radius:      0px 0px 0px 5px;
+    background: @black-trans;
+    color: @blue;
+}
+#memory.mid {
+    border-left:        2px solid @black-trans;
+    border-radius:      0px 0px 0px 5px;
+    background: @black-trans;
+    color: @yellow;
+}
+#memory.high {
+    border-left:        2px solid @black-trans;
+    border-radius:      0px 0px 0px 5px;
+    background: @black-trans;
+    color: @red;
+}
+
+#cpu.low {
+    background: @black-trans;
+    color: @blue;
+}
+#cpu.mid {
+    background: @black-trans;
+    color: @yellow;
+}
+#cpu.high {
+    background: @black-trans;
+    color: @red;
+}
+
+#disk.low {
+    background: @black-trans;
+    color: @blue;
+}
+#disk.mid {
+    background: @black-trans;
+    color: @yellow;
+}
+#disk.high {
+    background: @black-trans;
+    color: @red;
+}
+
+#network {
+    background: @black-trans;
+    color: @green;
+}
+#network.disconnected {
+    color: @red;
+    background: @black-trans;
+}
+
+#battery {
+    background: @black-trans;
+    color: @blue;
+}
+#battery.warning {
+    background: @black-trans;
+    color: @yellow;
+}
+#battery.critical {
+    background: @black-trans;
+    color: @red;
+}
+
+#backlight.low {
+    background: @black-trans;
+    color: @blue;
+}
+#backlight.mid {
+    background: @black-trans;
+    color: @yellow;
+}
+#backlight.high {
+    background: @black-trans;
+    color: @red;
+}
+
+#pulseaudio.low {
+    background: @black-trans;
+    color: @blue;
+}
+#pulseaudio.mid {
+    background: @black-trans;
+    color: @yellow;
+}
+#pulseaudio.high {
+    background: @black-trans;
+    color: @red;
+}
+#pulseaudio.muted {
+    background: @black-trans;
+    color: @red;
+}
+
+#clock {
+    border-right: 0px;
+    color:      @white;
+    background: @black-trans;
+}
+#clock.utc {
+    border-radius:       0px 0px 5px 0px;
+    margin:              0px 7px 0px 0px;
+}
+

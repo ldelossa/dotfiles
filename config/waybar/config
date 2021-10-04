@@ -1,7 +1,7 @@
 {
     "layer": "bottom",
     "position": "top",
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "custom/grimshot", "custom/wfrecord", "sway/mode"],
     "modules-right": ["memory", "cpu", "disk", "network", "battery", "backlight", "pulseaudio", "clock", "clock#utc"],
     "sway/mode": {
         "format": " {}"
@@ -14,7 +14,6 @@
             "terminal": " terminal",
             "ebooks": " ebooks",
             "music": " music",
-            "video": "犯video",
             "apps":  " apps",
             "1": "1",
             "2": "2",
@@ -32,7 +31,7 @@
         "tooltip": false
     },
     "clock": {
-        "format": "{:%a %d %b %H:%M }",
+        "format": "{:%a %d %b %H:%M}",
         "tooltip": true,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
@@ -63,8 +62,8 @@
             "disconnected": [""]
         },   
         "format-alt-click": "click-right",
-        "format-wifi": "{essid} {signalStrength}% ﬉",
-        "format-ethernet": "",
+        "format-wifi": "{ipaddr} {signalStrength}% ﬉",
+        "format-ethernet": "{ipaddr} ",
         "format-disconnected": "", 
         "tooltip-format": "{ifname} via {gwaddr}",
         "tooltip-format-wifi": "{essid} ﬉",
@@ -89,7 +88,7 @@
         "format": "{volume}% {icon}",
         "format-alt-click": "click-right",
         "format-bluetooth": "{volume}%{icon}",
-        "format-muted": "",
+        "format-muted": "婢",
         "format-icons": {
             "headphone": "",
             "default": ["", ""]
@@ -115,7 +114,7 @@
     },
     "memory": {
         "interval": 30,
-        "format": "{percentage}% ",
+        "format": "{percentage}% ",
         "format-alt-click": "click-right",
         "on-click": "gnome-system-monitor resources",
         "states": {
@@ -135,4 +134,15 @@
             "high": 50,
         },
     },
+    "custom/grimshot": {
+        "format": "",
+        "on-click": "grimshot --notify save output - | swappy -f -",
+        "on-click-middle": "grimshot --notify save area - | swappy -f -",
+        "on-click-right": "grimshot --notify save window - | swappy -f -",
+    }, 
+    "custom/wfrecord": {
+        "format": "",
+        "on-click": "~/.config/waybar/custom/wfrecord.sh",
+        "on-click-right": "pkill -SIGINT wf-recorder && notify-send ' screen cap ended'"
+    }
 }
