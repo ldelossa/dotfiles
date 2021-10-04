@@ -1,13 +1,14 @@
+@define-color trans             rgba(28, 28, 28, 0);
 @define-color black             #1c1c1c;
 @define-color black-trans       rgba(28, 28, 28, .85);
 @define-color blue              #437883;
 @define-color blue-light        #87afd7;
 @define-color yellow            #7c794e;
 @define-color yellow-light      #9b9761;
-@define-color red               #605753;
+@define-color red               #755754;
 @define-color green             #437762;
 @define-color grey              #545555;
-@define-color grey-light        #545555;
+@define-color grey-light        #8e8e8e;
 @define-color white             #b9bab5;
 
 
@@ -49,7 +50,43 @@ window#waybar {
     color:              @red; 
 }
 
-#custom-grimshot, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
+#workspaces button#sway-workspace-apps.focused {
+    font-weight:        bold;
+    color:              @green;
+    border-bottom:      2px solid @green;
+}
+
+#workspaces button#sway-workspace-chat.focused {
+    font-weight:        bold;
+    color:              @blue;
+    border-bottom:      2px solid @blue;
+}
+
+#workspaces button#sway-workspace-ebooks.focused {
+    font-weight:        bold;
+    color:              @yellow;
+    border-bottom:      2px solid @yellow;
+}
+
+#workspaces button#sway-workspace-music.focused {
+    font-weight:        bold;
+    color:              @green;
+    border-bottom:      2px solid @green;
+}
+
+#workspaces button#sway-workspace-terminal.focused {
+    font-weight:        bold;
+    color:              @blue;
+    border-bottom:      2px solid @blue;
+}
+
+#workspaces button#sway-workspace-web.focused {
+    font-weight:        bold;
+    color:              @yellow;
+    border-bottom:      2px solid @yellow;
+}
+
+#custom-grimshot, #custom-wfrecord, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
     margin:             0px 2px 0px 2px;
     border-radius:      0px 0px 5px 5px;
     padding:            1px 8px 1px 8px;
@@ -63,75 +100,106 @@ window#waybar {
     color: @yellow-light;
     background: @black-trans;
 }
+#custom-wfrecord {
+    color:              @yellow-light;
+    background:         @black-trans;
+}
 
 #memory.low {
-    background: @blue;
+    background: @black-trans;
+    color: @blue;
 }
 #memory.mid {
-    background: @yellow;
+    background: @black-trans;
+    color: @yellow;
 }
 #memory.high {
-    background: @red;
+    background: @black-trans;
+    color: @red;
 }
 
 #cpu.low {
-    background: @blue;
+    background: @black-trans;
+    color: @blue;
 }
 #cpu.mid {
-    background: @yellow;
+    background: @black-trans;
+    color: @yellow;
 }
 #cpu.high {
-    background: @red;
+    background: @black-trans;
+    color: @red;
 }
 
 #disk.low {
-    background: @blue;
+    background: @black-trans;
+    color: @blue;
 }
 #disk.mid {
-    background: @yellow;
+    background: @black-trans;
+    color: @yellow;
 }
 #disk.high {
-    background: @red;
+    background: @black-trans;
+    color: @red;
 }
 
 #network {
-    background: @green;
+    background: @black-trans;
+    color: @green;
 }
 #network.disconnected {
-    background: @red;
+    color: @red;
+    background: @black-trans;
 }
 
 #battery {
-    background: @blue;
+    background: @black-trans;
+    color: @blue;
 }
 #battery.warning {
-    background: @yellow;
+    background: @black-trans;
+    color: @yellow;
 }
 #battery.critical {
-    background: @red;
+    background: @black-trans;
+    color: @red;
 }
+
 
 #backlight.low {
-    background: @blue;
+    background: @black-trans;
+    color: @blue;
 }
 #backlight.mid {
-    background: @yellow;
+    background: @black-trans;
+    color: @yellow;
 }
 #backlight.high {
-    background: @red;
+    background: @black-trans;
+    color: @red;
 }
 
+
 #pulseaudio.low {
-    background: @blue;
+    background: @black-trans;
+    color: @blue;
 }
 #pulseaudio.mid {
-    background: @yellow;
+    background: @black-trans;
+    color: @yellow;
 }
 #pulseaudio.high {
-    background: @red;
+    background: @black-trans;
+    color: @red;
+}
+#pulseaudio.muted {
+    background: @black-trans;
+    color: @red;
 }
 
 #clock {
-    background: @yellow;
+    color:      @grey-light;
+    background: @black-trans;
 }
 

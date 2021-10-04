@@ -62,7 +62,7 @@
             "disconnected": [""]
         },   
         "format-alt-click": "click-right",
-        "format-wifi": "{ipaddr} {signalStrength}% ﬉",
+        "format-wifi": "{signalStrength}% ﬉",
         "format-ethernet": "{ipaddr} ",
         "format-disconnected": "", 
         "tooltip-format": "{ifname} via {gwaddr}",

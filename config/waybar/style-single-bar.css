@@ -5,7 +5,7 @@
 @define-color blue-light        #87afd7;
 @define-color yellow            #7c794e;
 @define-color yellow-light      #9b9761;
-@define-color red               #b05753;
+@define-color red               #755754;
 @define-color green             #437762;
 @define-color grey              #545555;
 @define-color grey-light        #545555;
@@ -32,6 +32,7 @@ window#waybar {
     margin:             0px 5px 0px 7px;
     border-radius:      0px 0px 5px 5px;
     background:         @black-trans;
+    border-bottom:      2px solid @black-trans;
 }
 
 #workspaces button {
@@ -45,7 +46,6 @@ window#waybar {
 #workspaces button.focused {
     color:              @yellow-light;
     border-bottom:      2px solid @yellow-light;
-    font-weight:        bold;
 }
 
 #workspaces button.urgent {
@@ -74,6 +74,7 @@ window#waybar {
     color:              @black-trans;
     border-right:       .5px solid @grey;
     border-left:        .5px solid @grey;
+    border-bottom:      2px solid @black-trans;
 }
 
 #memory.low {

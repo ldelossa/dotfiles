@@ -49,6 +49,13 @@ window#waybar {
     color:              @red; 
 }
 
+#workspaces button#sway-workspace-apps.focused {
+    font-weight:        bold;
+    color:              @red;
+    border-bottom:      2px solid @red;
+}
+
+
 #custom-grimshot, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
     margin:             0px 2px 0px 2px;
     border-radius:      0px 0px 5px 5px;
