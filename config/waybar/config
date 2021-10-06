@@ -5,7 +5,7 @@
     "sway/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "chat":     " ",
+            "chat":     " chat",
             "web":      "爵 web",
             "terminal": " terminal",
             "ebooks":   " ebooks",
@@ -22,13 +22,13 @@
             "6":        "6",
             "7":        "7",
             "8":        "8",
-            "9":        "9",
+            "9":        "9"
         },
         "disable-scroll": true
     },
     "sway/window": {
         "tooltip": false
-    },
+    }
 },
 {
     "layer": "bottom",
@@ -55,7 +55,7 @@
         "states": {
             "warning": 45,
             "critical": 20
-        },
+        }
     },
     "network": {
         "format": "{icon}",
@@ -86,7 +86,7 @@
             "low": 0,
             "mid": 50,
             "high": 75
-        },
+        }
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
@@ -103,7 +103,7 @@
             "low": 0,
             "mid": 50,
             "high": 75
-        },
+        }
     },
     "cpu": {
         "interval": 10,
@@ -113,8 +113,8 @@
         "states": {
             "low": 0,
             "mid": 25,
-            "high": 50,
-        },
+            "high": 50
+        }
     },
     "memory": {
         "interval": 30,
@@ -124,8 +124,8 @@
         "states": {
             "low": 0,
             "mid": 25,
-            "high": 50,
-        },
+            "high": 50
+        }
     },
     "disk": {
         "interval": 30,
@@ -136,8 +136,8 @@
         "states": {
             "low": 0,
             "mid": 25,
-            "high": 50,
-        },
+            "high": 50
+        }
     },
     "custom/grimshot": {
         "format": "",

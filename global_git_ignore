@@ -109,3 +109,6 @@ vendor/*
 pyenv/*
 env/*
 *.pyc
+
+# Clangd caches
+.cache

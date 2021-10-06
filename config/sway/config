@@ -207,6 +207,7 @@ input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
     assign [app_id="Alacritty"]         workspace stats
     assign [app_id="pavucontrol"]       workspace sound
     assign [app_id="virt-manager"]      workspace vm
+    assign [class="Signal"]             workspace chat
 #
 # Layout stuff:
 #

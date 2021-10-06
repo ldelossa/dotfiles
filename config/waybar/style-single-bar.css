@@ -106,7 +106,7 @@ window#waybar {
     border-bottom:      2px solid @red;
 }
 
-#custom-vm, #custom-wfrecord, #custom-grimshot, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
+ #custom-vm, #custom-wfrecord, #custom-grimshot, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
     margin:             0px 0px 0px 0px;
     padding:            1px 25px 1px 25px;
     color:              @grey-light;
