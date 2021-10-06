@@ -35,6 +35,7 @@ workspace web output DP-3
 workspace ebooks output DP-3
 workspace music output DP-3
 workspace apps output DP-3
+workspace vm output DP-3
 workspace terminal output DP-4
 
 output DP-3 bg /home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600.jpg stretch
@@ -176,7 +177,7 @@ input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
     bindsym Mod4+e workspace  ebooks
     bindsym Mod4+c workspace  chat
     bindsym Mod4+m workspace  music
-    bindsym Mod4+v workspace  video
+    bindsym Mod4+v workspace  vm
 
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -189,7 +190,7 @@ input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
     bindsym Mod4+Shift+t move container to workspace terminal
     bindsym Mod4+Shift+e move container to workspace ebooks
     bindsym Mod4+Shift+m move container to workspace music 
-    bindsym Mod4+Shift+v move container to workspace video
+    bindsym Mod4+Shift+v move container to workspace vm
     bindsym Mod4+Shift+a move container to workspace apps
 
     bindsym $mod+Shift+1 move container to workspace number 1

@@ -15,6 +15,7 @@
             "ebooks": " ebooks",
             "music": " music",
             "apps":  " apps",
+            "vm":    " vm",
             "1": "1",
             "2": "2",
             "3": "3",
@@ -36,11 +37,11 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "clock#utc": {
-        "format": "{:%H:%M:UTC }",
+        "format": "{:%H:%M UTC}",
         "timezone": "Etc/UTC"
     },
     "battery": {
-        "format": "{capacity}% {icon}",
+        "format": "{icon} {capacity}%",
         "format-alt": "{time} {icon}",
         "format-alt-click": "click-right",
         "format-icons": ["", "", "", "", ""],
@@ -62,8 +63,8 @@
             "disconnected": [""]
         },   
         "format-alt-click": "click-right",
-        "format-wifi": "{signalStrength}% ﬉",
-        "format-ethernet": "{ipaddr} ",
+        "format-wifi": "﬉ {signalStrength}% ",
+        "format-ethernet": " {ipaddr} ",
         "format-disconnected": "", 
         "tooltip-format": "{ifname} via {gwaddr}",
         "tooltip-format-wifi": "{essid} ﬉",
@@ -74,7 +75,7 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "{percent}% {icon}",
+        "format": "{icon} {percent}%",
         "format-icons": ["", "", ""],
         "on-scroll-up": "exec brightnessctl set 5%+",
         "on-scroll-down": "brightnessctl set 5%-",
@@ -85,7 +86,7 @@
         },
     },
     "pulseaudio": {
-        "format": "{volume}% {icon}",
+        "format": "{icon} {volume}%",
         "format-alt-click": "click-right",
         "format-bluetooth": "{volume}%{icon}",
         "format-muted": "婢",
@@ -103,7 +104,7 @@
     },
     "cpu": {
         "interval": 10,
-        "format": "{avg_frequency}Gz ",
+        "format": " {avg_frequency}Gz",
         "format-alt-click": "click-right",
         "on-click": "gnome-system-monitor resources",
         "states": {
@@ -114,7 +115,7 @@
     },
     "memory": {
         "interval": 30,
-        "format": "{percentage}% ",
+        "format": " {percentage}%",
         "format-alt-click": "click-right",
         "on-click": "gnome-system-monitor resources",
         "states": {
@@ -125,7 +126,7 @@
     },
     "disk": {
         "interval": 30,
-        "format": "{percentage_used}% ",
+        "format": " {percentage_used}%",
         "format-alt-click": "click-right",
         "path": "/",
         "states": {
@@ -142,7 +143,11 @@
     }, 
     "custom/wfrecord": {
         "format": "",
-        "on-click": "~/.config/waybar/custom/wfrecord.sh",
-        "on-click-right": "pkill -SIGINT wf-recorder && notify-send ' screen cap ended'"
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/wfrecord-monitor.sh",
+        "on-click": "~/.config/waybar/custom/wfrecord-record.sh",
+        "on-click-right": "~/.config/waybar/custom/wfrecord-stop.sh",
+        "signal": 8,
     }
 }

@@ -45,7 +45,7 @@ require'fzf-lua'.setup {
     ['--layout']      = 'reverse',
   },
   fzf_binds           = {               -- fzf '--bind=' options
-    ["ctrl-alt-p"]         = "toggle-preview",
+    ["ctrl-P"]    = "toggle-preview",
     ["f3"]            = "toggle-preview-wrap",
     ["ctrl-n"]        = "preview-page-down",
     ["ctrl-p"]        = "preview-page-up",
@@ -54,7 +54,7 @@ require'fzf-lua'.setup {
     ["ctrl-b"]        = "half-page-up",
     ["ctrl-a"]        = "beginning-of-line",
     ["ctrl-e"]        = "end-of-line",
-    ["ctrl-alt-a"]         = "toggle-all",
+    ["ctrl-A"]         = "toggle-all",
   },
   fzf_args            = vim.env.FZF_DEFAULT_OPTS, -- adv: fzf extra args, empty unless adv
   preview_border      = 'border',       -- border|noborder
@@ -104,10 +104,10 @@ require'fzf-lua'.setup {
     color_icons       = true,           -- colorize file|git icons
     actions = {
       ["default"]     = actions.file_edit,
-      ["ctrl-alt-s"]      = actions.file_split,
-      ["ctrl-alt-v"]      = actions.file_vsplit,
-      ["ctrl-alt-t"]      = actions.file_tabedit,
-      ["ctrl-alt-q"]      = actions.file_sel_to_qf,
+      ["ctrl-S"]      = actions.file_split,
+      ["ctrl-V"]      = actions.file_vsplit,
+      ["ctrl-T"]      = actions.file_tabedit,
+      ["ctrl-Q"]      = actions.file_sel_to_qf,
       ["ctrl-y"]      = function(selected) print(selected[2]) end,
     }
   },
@@ -172,10 +172,10 @@ require'fzf-lua'.setup {
     color_icons       = true,           -- colorize file|git icons
     actions = {
       ["default"]    = actions.file_edit,
-      ["ctrl-alt-s"]      = actions.file_split,
-      ["ctrl-alt-v"]      = actions.file_vsplit,
-      ["ctrl-alt-t"]      = actions.file_tabedit,
-      ["ctrl-alt-q"]      = actions.file_sel_to_qf,
+      ["ctrl-S"]      = actions.file_split,
+      ["ctrl-V"]      = actions.file_vsplit,
+      ["ctrl-T"]      = actions.file_tabedit,
+      ["ctrl-Q"]      = actions.file_sel_to_qf,
       ["ctrl-y"]     = function(selected) print(selected[2]) end,
     }
   },
@@ -190,10 +190,10 @@ require'fzf-lua'.setup {
     sort_lastused     = true,         -- sort buffers() by last used
     actions = {
       ["default"]    = actions.buf_edit,
-      ["ctrl-alt-s"]      = actions.buf_split,
-      ["ctrl-alt-v"]      = actions.buf_vsplit,
-      ["ctrl-alt-t"]      = actions.buf_tabedit,
-      ["ctrl-alt-x"]      = actions.buf_del,
+      ["ctrl-S"]      = actions.buf_split,
+      ["ctrl-V"]      = actions.buf_vsplit,
+      ["ctrl-T"]      = actions.buf_tabedit,
+      ["ctrl-X"]      = actions.buf_del,
     }
   },
   colorschemes = {
@@ -237,11 +237,11 @@ require'fzf-lua'.setup {
       ["Hint"]        = { icon = "🄷", color = "magenta" },   -- hint
     },
     actions = {
-      ["default"]     = actions.file_edit,
-      ["ctrl-alt-s"]      = actions.file_split,
-      ["ctrl-alt-v"]      = actions.file_vsplit,
-      ["ctrl-alt-t"]      = actions.file_tabedit,
-      ["ctrl-alt-q"]      = actions.file_sel_to_qf,
+      ["default"]           = actions.file_edit,
+      ["ctrl-S"]      = actions.file_split,
+      ["ctrl-V"]      = actions.file_vsplit,
+      ["ctrl-T"]      = actions.file_tabedit,
+      ["ctrl-Q"]      = actions.file_sel_to_qf,
       ["ctrl-y"]      = function(selected) print(selected[2]) end,
     },
   },
