@@ -1,39 +1,35 @@
-[{
+{
     "layer": "bottom",
     "position": "top",
     "modules-center": ["sway/workspaces"],
+    "sway/mode": {
+        "format": " {}"
+    },
     "sway/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "chat":     " ",
-            "web":      "爵 web",
+            "chat": " chat",
+            "web": "爵 web",
             "terminal": " terminal",
-            "ebooks":   " ebooks",
-            "music":    " music",
-            "apps":     " apps",
-            "vm":       " vm",
-            "stats":    " stats",
-            "sound":    "蓼 sound",
-            "1":        "1",
-            "2":        "2",
-            "3":        "3",
-            "4":        "4",
-            "5":        "5",
-            "6":        "6",
-            "7":        "7",
-            "8":        "8",
-            "9":        "9",
+            "ebooks": " ebooks",
+            "music": " music",
+            "apps":  " apps",
+            "vm":    " vm",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
         },
-        "disable-scroll": true
+        "disable-scroll": true,
     },
     "sway/window": {
         "tooltip": false
     },
-},
-{
-    "layer": "bottom",
-    "position": "bottom",
-    "modules-center": ["memory", "cpu", "disk", "network", "battery", "backlight", "pulseaudio", "custom/grimshot", "custom/wfrecord", "custom/vm", "clock", "clock#utc"],
     "clock": {
         "format": "{:%a %d %b %H:%M}",
         "tooltip": true,
@@ -47,8 +43,8 @@
         "format": "{icon} {capacity}%",
         "format-alt": "{time} {icon}",
         "format-alt-click": "click-right",
-        "format-icons": ["", "", "", ""],
-        "format-charging": " {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "format-charging": "{capacity}% ",
         "interval": 30,
         "on-click": "gnome-control-center power",
         "tooltip": false,
@@ -98,7 +94,7 @@
             "default": ["", ""]
         },
         "scroll-step": 10,
-        "on-click": "~/.config/waybar/custom/pulseaudio.sh",
+        "on-click": "gnome-control-center sound",
         "states": {
             "low": 0,
             "mid": 50,
@@ -109,7 +105,7 @@
         "interval": 10,
         "format": " {avg_frequency}Gz",
         "format-alt-click": "click-right",
-        "on-click": "~/.config/waybar/custom/stats.sh",
+        "on-click": "gnome-system-monitor resources",
         "states": {
             "low": 0,
             "mid": 25,
@@ -120,7 +116,7 @@
         "interval": 30,
         "format": " {percentage}%",
         "format-alt-click": "click-right",
-        "on-click": "~/.config/waybar/custom/stats.sh",
+        "on-click": "gnome-system-monitor resources",
         "states": {
             "low": 0,
             "mid": 25,
@@ -131,7 +127,6 @@
         "interval": 30,
         "format": " {percentage_used}%",
         "format-alt-click": "click-right",
-        "on-click": "~/.config/waybar/custom/stats.sh",
         "path": "/",
         "states": {
             "low": 0,
@@ -143,7 +138,7 @@
         "format": "",
         "on-click": "grimshot --notify save output - | swappy -f -",
         "on-click-middle": "grimshot --notify save area - | swappy -f -",
-        "on-click-right": "grimshot --notify save window - | swappy -f -"
+        "on-click-right": "grimshot --notify save window - | swappy -f -",
     }, 
     "custom/wfrecord": {
         "format": "",
@@ -152,13 +147,6 @@
         "exec": "~/.config/waybar/custom/wfrecord-monitor.sh",
         "on-click": "~/.config/waybar/custom/wfrecord-record.sh",
         "on-click-right": "~/.config/waybar/custom/wfrecord-stop.sh",
-        "signal": 8
-    },
-    "custom/vm": {
-        "format": "穀",
-        "interval": 10,
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/kvm-monitor.sh",
-        "on-click": "~/.config/waybar/custom/kvm.sh"
+        "signal": 8,
     }
-}]
+}

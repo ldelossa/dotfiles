@@ -1,6 +1,6 @@
 @define-color trans             rgba(28, 28, 28, 0);
 @define-color black             #1c1c1c;
-@define-color black-trans       rgba(28, 28, 28, .99);
+@define-color black-trans       rgba(35, 35, 35, .95);
 @define-color blue              #437890;
 @define-color blue-light        #87afd7;
 @define-color yellow            #7c794e;
@@ -14,12 +14,17 @@
 
 .modules-right {
     font-family:    "Cousine";
-    font-size:      17px;
+    font-size:      16px;
 }
 
 .modules-left {
     font-family:    "Cousine";
     font-size:      17px;
+}
+
+.modules-center {
+    font-family:    "Cousine";
+    font-size:      18px;
 }
 
 window#waybar {
@@ -28,7 +33,6 @@ window#waybar {
 
 #workspaces {
     padding:            0px 20px 0px 20px;
-    margin:             0px 5px 0px 7px;
     border-radius:      0px 0px 5px 5px;
     background:         @black-trans;
     border-bottom:      2px solid @black-trans;
@@ -91,32 +95,34 @@ window#waybar {
     color:              @yellow;
     border-bottom:      2px solid @green;
 }
-
-#custom-grimshot {
-    margin:             0px 2px 0px 2px;
-    border-radius:      0px 0px 5px 5px;
-    padding:            1px 8px 1px 8px;
-    color:              @yellow-light;
-    background:         @black-trans;
+#workspaces button#sway-workspace-stats.focused {
+    font-weight:        bold;
+    color:              @yellow;
+    border-bottom:      2px solid @blue;
+}
+#workspaces button#sway-workspace-sound.focused {
+    font-weight:        bold;
+    color:              @yellow;
+    border-bottom:      2px solid @red;
 }
 
-#custom-wfrecord {
-    margin:             0px 2px 0px 2px;
-    border-radius:      0px 0px 5px 5px;
-    padding:            1px 8px 1px 8px;
-    color:              @yellow-light;
-    background:         @black-trans;
-}
-#custom-wfrecord.recording {
-    color:              @green;
-    background:         @black-trans;
-}
-
-#clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
+#custom-vm, #custom-wfrecord, #custom-grimshot, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
     margin:             0px 0px 0px 0px;
-    padding:            0px 20px 0px 20px;
-    color:              @black-trans;
-    border-bottom:      2px solid @black-trans;
+    padding:            1px 25px 1px 25px;
+    color:              @grey-light;
+    background:         @black-trans;
+    border-bottom:      3px solid @grey-light;
+}
+
+#custom-wfrecord.recording {
+    color:              @yellow-light;
+    background:         @green;
+    border-bottom:      3px solid @yellow-light;
+}
+
+#custom-vm.running {
+    color:              @blue-light;
+    border-bottom:      3px solid @blue-light;
 }
 
 #memory.low {
@@ -128,14 +134,14 @@ window#waybar {
 }
 #memory.mid {
     border-left:        2px solid @black-trans;
-    border-radius:      0px 0px 0px 5px;
+    border-radius:      0px 0px 0px 10px;
     background:         @black-trans;
     color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #memory.high {
     border-left:        2px solid @black-trans;
-    border-radius:      0px 0px 0px 5px;
+    border-radius:      0px 0px 0px 10px;
     background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
@@ -175,8 +181,8 @@ window#waybar {
 
 #network {
     background:         @black-trans;
-    color:              @green;
-    border-bottom:      3px solid @green;
+    color:              @blue;
+    border-bottom:      3px solid @blue;
 }
 #network.disconnected {
     color:              @red;
@@ -198,6 +204,11 @@ window#waybar {
     background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
+}
+#battery.charging {
+    background:         @black-trans;
+    color:              @green;
+    border-bottom:      3px solid @green;
 }
 
 #backlight.low {
@@ -235,9 +246,6 @@ window#waybar {
     background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
-    border-left:        0px;
-    border-radius:      0px 0px 5px 0px;
-    margin:             0px 7px 0px 0px;
 }
 
 #clock {
@@ -250,7 +258,7 @@ window#waybar {
     border-left:        0px;
     border-radius:      0px 0px 5px 0px;
     margin:             0px 7px 0px 0px;
-    border-bottom:      3px solid @blue;
+    border-bottom:      3px solid @grey-light;
     border-radius:      0px 0px 10px 0px;
 }
 
