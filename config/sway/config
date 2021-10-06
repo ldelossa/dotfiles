@@ -104,7 +104,8 @@ input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
 # Basics:
 #
     # launcher
-    bindsym Mod4+d exec "rofi -modi drun,run -show drun | xargs swaymsg exec --"
+    bindsym Mod4+d exec "wofi --show drun"
+    bindsym Mod4+r exec "wofi --show run"
     bindsym Mod4+Tab exec ~/git/sway/window_selector/window_select.sh
 
     # Start a terminal
@@ -208,6 +209,9 @@ input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
     assign [app_id="pavucontrol"]       workspace sound
     assign [app_id="virt-manager"]      workspace vm
     assign [class="Signal"]             workspace chat
+    # hack because spotify sucks.
+    for_window [class="Spotify"] move window to workspace music
+    for_window [class="Spotify"] exec "sleep .1; pkill -RTMIN+4 waybar"
 #
 # Layout stuff:
 #

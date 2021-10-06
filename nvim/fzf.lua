@@ -32,6 +32,28 @@ require'fzf-lua'.setup {
     hl_normal        = 'Normal',        -- window normal color
     hl_border        = 'FloatBorder',   -- window border color
   },
+  keymap = {
+      builtin = {
+        toggle_full   = '<F2>',       -- toggle full screen
+        toggle_wrap   = '<F3>',       -- toggle line wrap
+        toggle_hide   = '<F4>',       -- toggle on/off (not yet in use)
+        page_up       = '<C-p>',      -- preview scroll up
+        page_down     = '<C-n>',      -- preview scroll down
+        page_reset    = '<C-h>',   -- reset scroll to orig pos
+      },
+      fzf = {               -- fzf '--bind=' options
+        ["ctrl-P"]          = "toggle-preview",
+        ["f3"]              = "toggle-preview-wrap",
+        ["ctrl-n"]          = "preview-page-down",
+        ["ctrl-p"]          = "preview-page-up",
+        ["ctrl-u"]          = "unix-line-discard",
+        ["ctrl-f"]          = "half-page-down",
+        ["ctrl-b"]          = "half-page-up",
+        ["ctrl-a"]          = "beginning-of-line",
+        ["ctrl-e"]          = "end-of-line",
+        ["ctrl-A"]          = "toggle-all",
+      },
+  },
   -- fzf_bin             = 'sk',        -- use skim instead of fzf?
   fzf_opts = {
     -- options are sent as `<left>=<right>`
@@ -43,18 +65,6 @@ require'fzf-lua'.setup {
     ['--info']        = 'inline',
     ['--height']      = '100%',
     ['--layout']      = 'reverse',
-  },
-  fzf_binds           = {               -- fzf '--bind=' options
-    ["ctrl-P"]    = "toggle-preview",
-    ["f3"]            = "toggle-preview-wrap",
-    ["ctrl-n"]        = "preview-page-down",
-    ["ctrl-p"]        = "preview-page-up",
-    ["ctrl-u"]        = "unix-line-discard",
-    ["ctrl-f"]        = "half-page-down",
-    ["ctrl-b"]        = "half-page-up",
-    ["ctrl-a"]        = "beginning-of-line",
-    ["ctrl-e"]        = "end-of-line",
-    ["ctrl-A"]         = "toggle-all",
   },
   fzf_args            = vim.env.FZF_DEFAULT_OPTS, -- adv: fzf extra args, empty unless adv
   preview_border      = 'border',       -- border|noborder
@@ -77,7 +87,6 @@ require'fzf-lua'.setup {
       title           = true,         -- preview title?
       scrollbar       = true,         -- scrollbar?
       scrollchar      = '█',          -- scrollbar character
-      wrap            = false,        -- wrap lines?
       syntax          = true,         -- preview syntax highlight?
       syntax_limit_l  = 0,            -- syntax limit (lines), 0=nolimit
       syntax_limit_b  = 1024*1024,    -- syntax limit (bytes), 0=nolimit
@@ -85,14 +94,6 @@ require'fzf-lua'.setup {
       hl_cursor       = 'Cursor',     -- cursor highlight
       hl_cursorline   = 'Visual', -- cursor line highlight
       hl_range        = 'IncSearch',  -- ranger highlight (not yet in use)
-      keymap = {
-        toggle_full   = '<F2>',       -- toggle full screen
-        toggle_wrap   = '<F3>',       -- toggle line wrap
-        toggle_hide   = '<F4>',       -- toggle on/off (not yet in use)
-        page_up       = '<C-p>',      -- preview scroll up
-        page_down     = '<C-n>',      -- preview scroll down
-        page_reset    = '<C-h>',   -- reset scroll to orig pos
-      },
     },
   },
   -- provider setup

@@ -1,6 +1,7 @@
 [{
     "layer": "bottom",
     "position": "top",
+    "modules-left": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-prev", "custom/spotify-play-pause", "custom/spotify-next", "custom/spotify-quit"],
     "modules-center": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon}",
@@ -28,6 +29,52 @@
     },
     "sway/window": {
         "tooltip": false
+    },
+    "custom/spotify-monitor": {
+        "interval": 10,
+        "exec": "~/.config/waybar/custom/spotify/monitor.sh",
+        "signal": 4
+    },
+    "custom/spotify-metadata": {
+        "format": " {}",
+        "max-length": 30,
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "sway workspace music",
+        "signal": 5
+    },
+    "custom/spotify-play-pause": {
+        "format": "{}",
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/play-pause.sh",
+        "on-click": "~/.config/waybar/custom/spotify/controls.sh",
+        "signal": 5
+    },
+    "custom/spotify-next": {
+        "format": "怜",
+        "return-type": "json",
+        "interval": "once",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "~/.config/waybar/custom/spotify/controls.sh next",
+        "signal": 5
+    },
+    "custom/spotify-prev": {
+        "format": "玲",
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "~/.config/waybar/custom/spotify/controls.sh prev",
+        "signal": 5
+    },
+    "custom/spotify-quit": {
+        "format": "",
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "~/.config/waybar/custom/spotify/quit.sh ",
+        "signal": 6
     }
 },
 {
@@ -107,7 +154,7 @@
     },
     "cpu": {
         "interval": 10,
-        "format": " {avg_frequency}Gz",
+        "format": " {avg_frequency:4}Gz",
         "format-alt-click": "click-right",
         "on-click": "~/.config/waybar/custom/stats.sh",
         "states": {
