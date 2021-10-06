@@ -2,7 +2,7 @@
 
 if ! pgrep alacritty
 then
-    alacritty -e gtop&
+    alacritty -e gotop&
 fi
 
 swaymsg workspace stats
