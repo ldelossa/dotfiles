@@ -295,9 +295,12 @@ bar {
         swaybar_command waybar
 }
 
+# colors
+client.focused #7c794e #7c794e #1c1c1c #7c794e
+
 # Gaps
 gaps inner 5
-default_border pixel 3
+default_border pixel 2
   
 include /etc/sway/config.d/*
   

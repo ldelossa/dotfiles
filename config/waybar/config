@@ -98,7 +98,6 @@
         "format-charging": " {capacity}%",
         "interval": 30,
         "on-click": "gnome-control-center power",
-        "tooltip": false,
         "states": {
             "warning": 45,
             "critical": 20
@@ -166,6 +165,7 @@
     "memory": {
         "interval": 30,
         "format": " {percentage}%",
+        "tooltip-format": "{used:0.1f}G used\n{avail:0.1f}G available\n{total:0.1f}G total",
         "format-alt-click": "click-right",
         "on-click": "~/.config/waybar/custom/stats.sh",
         "states": {
@@ -178,6 +178,7 @@
         "interval": 30,
         "format": " {percentage_used}%",
         "format-alt-click": "click-right",
+        "tooltip-format": "{used} used\n{free} free\n{total} total",
         "on-click": "~/.config/waybar/custom/stats.sh",
         "path": "/",
         "states": {
@@ -188,12 +189,14 @@
     },
     "custom/grimshot": {
         "format": "",
+        "tooltip": false,
         "on-click": "grimshot --notify save output - | swappy -f -",
         "on-click-middle": "grimshot --notify save area - | swappy -f -",
-        "on-click-right": "grimshot --notify save window - | swappy -f -"
+        "on-click-right": "grimshot --notify save window - | swappy -f -",
     }, 
     "custom/wfrecord": {
         "format": "",
+        "tooltip": false,
         "interval": "once",
         "return-type": "json",
         "exec": "~/.config/waybar/custom/wfrecord-monitor.sh",
