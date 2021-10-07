@@ -1,6 +1,6 @@
 @define-color trans             rgba(28, 28, 28, 0);
 @define-color black             #1c1c1c;
-@define-color black-trans       rgba(28, 28, 28, .85);
+@define-color black-trans       @white;
 @define-color blue              #437890;
 @define-color blue-light        #87afd7;
 @define-color yellow            #7c794e;
@@ -8,18 +8,33 @@
 @define-color red               #755754;
 @define-color green             #497964;
 @define-color grey              #545555;
-@define-color grey-light        #8e8e8e;
+@define-color grey-light        @grey;
 @define-color white             #b9bab5;
 
 
 .modules-right {
-    font-family:    "Couine";
-    font-size:      15px;
+    font-family:    "Cousine";
+    font-size:      16px;
 }
 
 .modules-left {
     font-family:    "Cousine";
     font-size:      17px;
+}
+
+.modules-center {
+    font-family:    "Cousine";
+    font-size:      18px;
+}
+
+tooltip {
+  font-family:      "FreeMono";
+  font-size:        20px;
+  background:       @black-trans;
+  border:           1px solid @yellow;
+}
+tooltip label {
+  color: @grey-light;
 }
 
 window#waybar {
@@ -28,10 +43,46 @@ window#waybar {
 
 #workspaces {
     padding:            0px 20px 0px 20px;
-    margin:             0px 5px 0px 7px;
     border-radius:      0px 0px 5px 5px;
     background:         @black-trans;
-    border-bottom:      2px solid @trans;
+    border-bottom:      2px solid @black-trans;
+}
+
+#custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
+    color:              @grey-light;
+    font-size:          15px;
+    padding:            1px 10px;
+    background:         @black-trans;
+}
+#custom-spotify-metadata {
+    min-width:          300px;
+    margin:             0px 0px 0px 7px;
+    border-radius:      0px 0px 0px 5px;
+}
+#custom-spotify-metadata.playing {
+    color:              @green;
+    border-bottom:      2px solid @green;
+}
+#custom-spotify-metadata.paused {
+    color:              @yellow;
+    border-bottom:      2px solid @yellow;
+}
+#custom-spotify-prev {
+    margin:             0px 0px 0px 0px;
+    border-bottom:      2px solid @grey-light;
+}
+#custom-spotify-play-pause {
+    margin:             0px 0px 0px 0px;
+    border-bottom:      2px solid @grey-light;
+}
+#custom-spotify-next {
+    margin:             0px 0px 0px 0px;
+    border-bottom:      2px solid @grey-light;
+}
+#custom-spotify-quit {
+    margin:             0px 0px 0px 0px;
+    border-radius:      0px 0px 5px 0px;
+    border-bottom:      2px solid @grey-light;
 }
 
 #workspaces button {
@@ -43,7 +94,6 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    font-weight:        bold;
     color:              @yellow-light;
     border-bottom:      2px solid @yellow-light;
 }
@@ -92,39 +142,52 @@ window#waybar {
     color:              @yellow;
     border-bottom:      2px solid @green;
 }
-
-#custom-grimshot, #custom-wfrecord, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
-    margin:             0px 2px 0px 2px;
-    border-radius:      0px 0px 5px 5px;
-    padding:            1px 8px 1px 8px;
-    color:              @white;
+#workspaces button#sway-workspace-stats.focused {
+    font-weight:        bold;
+    color:              @yellow;
+    border-bottom:      2px solid @blue;
+}
+#workspaces button#sway-workspace-sound.focused {
+    font-weight:        bold;
+    color:              @yellow;
+    border-bottom:      2px solid @red;
 }
 
-#custom-grimshot {
-    color:              @yellow-light;
+ #custom-vm, #custom-wfrecord, #custom-grimshot, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
+    margin:             0px 0px 0px 0px;
+    padding:            1px 25px 1px 25px;
+    color:              @grey-light;
     background:         @black-trans;
+    border-bottom:      3px solid @grey-light;
 }
 
-#custom-wfrecord {
-    color:              @yellow-light;
-    background:         @black-trans;
-}
 #custom-wfrecord.recording {
-    color:              @green;
-    background:         @black-trans;
+    color:              @blue-light;
+    border-bottom:      3px solid @blue-light;
+}
+
+#custom-vm.running {
+    color:              @blue-light;
+    border-bottom:      3px solid @blue-light;
 }
 
 #memory.low {
+    border-left:        2px solid @black-trans;
+    border-radius:      0px 0px 0px 10px;
     background:         @black-trans;
     color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #memory.mid {
+    border-left:        2px solid @black-trans;
+    border-radius:      0px 0px 0px 10px;
     background:         @black-trans;
     color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #memory.high {
+    border-left:        2px solid @black-trans;
+    border-radius:      0px 0px 0px 10px;
     background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
@@ -164,8 +227,8 @@ window#waybar {
 
 #network {
     background:         @black-trans;
-    color:              @green;
-    border-bottom:      3px solid @green;
+    color:              @blue;
+    border-bottom:      3px solid @blue;
 }
 #network.disconnected {
     color:              @red;
@@ -188,7 +251,11 @@ window#waybar {
     color:              @red;
     border-bottom:      3px solid @red;
 }
-
+#battery.charging {
+    background:         @black-trans;
+    color:              @green;
+    border-bottom:      3px solid @green;
+}
 
 #backlight.low {
     background:         @black-trans;
@@ -205,7 +272,6 @@ window#waybar {
     color:              @red;
     border-bottom:      3px solid @red;
 }
-
 
 #pulseaudio.low {
     background:         @black-trans;
@@ -229,18 +295,14 @@ window#waybar {
 }
 
 #clock {
+    border-right:       0px;
     color:              @grey-light;
     background:         @black-trans;
-    margin:             0px 0px 0px 2px;
-    border-radius:      0px 0px 0px 5px;
-    padding:            1px 8px 1px 8px;
     border-bottom:      3px solid @grey-light;
 }
 #clock.utc {
-    color:              @grey-light;
-    background:         @black-trans;
-    margin:             0px 2px 0px 0px;
-    border-radius:      0px 0px 5px 0px;
-    border-bottom:      3px solid @blue;
+    border-left:        0px;
+    border-bottom:      3px solid @grey-light;
+    border-radius:      0px 0px 10px 0px;
 }
 
