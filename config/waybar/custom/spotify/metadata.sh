@@ -1,9 +1,9 @@
 #!/bin/bash
 
 status=$(playerctl -p spotify status)
-artist=$(playerctl metadata xesam:artist)
-title=$(playerctl metadata xesam:title)
-album=$(playerctl metadata xesam:album)
+artist=$(playerctl -p spotify metadata xesam:artist)
+title=$(playerctl -p spotify metadata xesam:title)
+album=$(playerctl -p spotify metadata xesam:album)
 
 if [[ -z $status ]] 
 then
@@ -19,7 +19,7 @@ fi
 
 if [[ $status == "Paused" ]]
 then
-   echo "{\"class\": \"paused\", \"text\": \"$artist - $title\", \"tooltip\": \"$album\"}"
+   echo "{\"class\": \"paused\", \"text\": \"$artist - $title\", \"tooltip\": \"$artist - $title - $album\"}"
    exit
 fi
 

@@ -31,7 +31,7 @@
         "tooltip": false
     },
     "custom/spotify-monitor": {
-        "interval": 10,
+        "interval": 30,
         "exec": "~/.config/waybar/custom/spotify/monitor.sh",
         "signal": 4
     },
