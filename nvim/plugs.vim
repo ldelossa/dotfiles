@@ -6,12 +6,11 @@ if has('nvim')
         Plug 'mcchrish/nnn.vim'
         Plug 'ldelossa/vimdark'
         Plug 'rust-lang/rust.vim'
-        Plug 'mattn/vim-gomod'
         Plug 'windwp/nvim-autopairs'
         Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-lua/popup.nvim'
         Plug 'akinsho/flutter-tools.nvim'
-        Plug 'mfussenegger/nvim-lint'
+    "    Plug 'mfussenegger/nvim-lint'
         Plug 'ruanyl/vim-gh-line'
         Plug 'ibhagwan/fzf-lua'
         Plug 'vijaymarupudi/nvim-fzf'
@@ -31,7 +30,7 @@ if has('nvim')
     source $HOME/.config/nvim/nnn.vim
     source $HOME/.config/nvim/nvim-autopairs.lua
     source $HOME/.config/nvim/flutter-tools.lua
-    " source $HOME/.config/nvim/nvim-lint.lua
+    "" source $HOME/.config/nvim/nvim-lint.lua
     source $HOME/.config/nvim/nvim-echo-diagnostics.lua
     source $HOME/.config/nvim/lspkind.lua
     source $HOME/.config/nvim/indent-blankline.lua

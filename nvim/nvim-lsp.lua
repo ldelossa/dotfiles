@@ -12,6 +12,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         virtual_text = false,
     }
 )
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+            vim.lsp.handlers.signature_help, {
+                border = 'single',
+                close_events = {"CursorMoved", "BufHidden", "InsertCharPre"},
+    }
+)
 
 -- Use an on_attach function to only map the following keys 
 -- after the language server attaches to the current buffer
@@ -124,10 +130,3 @@ nvim_lsp["gopls"].setup {
      },
    },
 }
-
--- keep signature help open, should include a insert mode
--- mapping to trigger signature help
-vim.lsp.util.close_preview_autocmd = function(events, winnr)
-    events = vim.tbl_filter(function(v) return v ~= 'CursorMovedI' and v ~= 'BufLeave' end, events)
-    vim.api.nvim_command("autocmd "..table.concat(events, ',').." <buffer> ++once lua pcall(vim.api.nvim_win_close, "..winnr..", true)")
-end
