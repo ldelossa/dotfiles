@@ -98,6 +98,24 @@ input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
    pointer_accel    .5 
    tap              enabled
 }
+input "1452:613:Apple_Inc._Magic_Trackpad_2" {
+   pointer_accel    .5 
+   tap              enabled
+   middle_emulation enabled
+   tap_button_map   lrm
+}
+input "76:613:Apple_Inc._Magic_Trackpad_2" {
+   pointer_accel    .5 
+   tap              enabled
+   middle_emulation enabled
+   tap_button_map   lrm
+}
+input "1133:16495:Logitech_MX_Ergo" {
+   pointer_accel    .5 
+   tap              enabled
+   middle_emulation enabled
+   tap_button_map   lrm
+}
 
 
 ### Key bindings
@@ -211,6 +229,7 @@ input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
     assign [app_id="virt-manager"]      workspace vm
     assign [class="Signal"]             workspace chat
     assign [class="Vivaldi-stable"]     workspace web
+    assign [class="Lens"]               workspace apps
     # hack because spotify sucks.
     for_window [class="Spotify"]    move window to workspace music
     # send signal to waybar element so spotify widget opens

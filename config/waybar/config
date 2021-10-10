@@ -91,7 +91,7 @@
         "timezone": "Etc/UTC"
     },
     "battery": {
-        "format": "{icon} {capacity}%",
+        "format": "{icon} {capacity:3}%",
         "format-alt": "{time} {icon}",
         "format-alt-click": "click-right",
         "format-icons": ["", "", "", ""],
@@ -124,7 +124,7 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "{icon} {percent}%",
+        "format": "{icon} {percent:3}%",
         "format-icons": ["", "", ""],
         "on-scroll-up": "exec brightnessctl set 5%+",
         "on-scroll-down": "brightnessctl set 5%-",
@@ -135,7 +135,7 @@
         }
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon} {volume:3}%",
         "format-alt-click": "click-right",
         "format-bluetooth": "{volume}%{icon}",
         "format-muted": "婢",
