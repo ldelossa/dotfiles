@@ -10,6 +10,9 @@
 @define-color grey              #545555;
 @define-color grey-light        #8e8e8e;
 @define-color white             #b9bab5;
+@define-color orange            #9b885c;
+@define-color purple            #6b6098;
+@define-color turquoise         #6b6098;
 
 
 .modules-right {
@@ -94,7 +97,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    color:              @yellow-light;
+    color:              @white;
     border-bottom:      2px solid @yellow-light;
 }
 
@@ -104,52 +107,43 @@ window#waybar {
 
 #workspaces button#sway-workspace-apps.focused {
     font-weight:        bold;
-    color:              @yellow;
     border-bottom:      2px solid @green;
 }
 
 #workspaces button#sway-workspace-chat.focused {
     font-weight:        bold;
-    color:              @yellow;
-    border-bottom:      2px solid @blue;
+    border-bottom:      2px solid @turquoise;
 }
 
 #workspaces button#sway-workspace-ebooks.focused {
     font-weight:        bold;
-    color:              @yellow;
     border-bottom:      2px solid @red;
 }
 
 #workspaces button#sway-workspace-music.focused {
     font-weight:        bold;
-    color:              @yellow;
-    border-bottom:      2px solid @green;
+    border-bottom:      2px solid @orange;
 }
 
 #workspaces button#sway-workspace-terminal.focused {
     font-weight:        bold;
-    color:              @yellow;
     border-bottom:      2px solid @blue;
 }
 
 #workspaces button#sway-workspace-web.focused {
     font-weight:        bold;
-    color:              @yellow;
-    border-bottom:      2px solid @red;
+    border-bottom:      2px solid @purple;
 }
 #workspaces button#sway-workspace-vm.focused {
     font-weight:        bold;
-    color:              @yellow;
     border-bottom:      2px solid @green;
 }
 #workspaces button#sway-workspace-stats.focused {
     font-weight:        bold;
-    color:              @yellow;
-    border-bottom:      2px solid @blue;
+    border-bottom:      2px solid @turquoise;
 }
 #workspaces button#sway-workspace-sound.focused {
     font-weight:        bold;
-    color:              @yellow;
     border-bottom:      2px solid @red;
 }
 

@@ -5,19 +5,19 @@ screenshot
 
 indicator-idle-visible
 
-inside-color=35353595
+inside-color=353535ef
 ring-color=497964
 text-color=8e8e8e
 
-inside-clear-color=35353595
+inside-clear-color=353535ef
 ring-clear-color=7c794e
 text-clear-color=8e8e8e
 
-inside-ver-color=35353595
+inside-ver-color=353535ef
 ring-ver-color=87afd7
 text-ver-color=8e8e8e
 
-inside-wrong-color=35353595
+inside-wrong-color=353535ef
 ring-wrong-color=755754
 text-wrong-color=8e8e8e
 

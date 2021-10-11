@@ -17,6 +17,8 @@ then
     unlink ~/.config/wofi/style.css
     ln -s ~/.config/wofi/style-dark.css ~/.config/wofi/style.css
 
+    gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
+
     sway reload
     exit
 fi
@@ -37,6 +39,8 @@ then
 
     unlink ~/.config/wofi/style.css
     ln -s ~/.config/wofi/style-light.css ~/.config/wofi/style.css
+
+    gsettings set org.gnome.desktop.interface gtk-theme 'Materia-compact'
 
     sway reload
     exit

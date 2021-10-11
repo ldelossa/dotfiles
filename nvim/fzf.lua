@@ -100,7 +100,7 @@ require'fzf-lua'.setup {
   files = {
     prompt            = 'Files❯ ',
     cmd               = '',             -- "find . -type f -printf '%P\n'",
-    git_icons         = true,           -- show git icons?
+    git_icons         = false,           -- show git icons?
     file_icons        = false,           -- show file icons?
     color_icons       = true,           -- colorize file|git icons
     actions = {
@@ -168,7 +168,7 @@ require'fzf-lua'.setup {
     -- cmd               = "rg --vimgrep",
     rg_opts           = "--hidden --column --line-number --no-heading " ..
                         "--color=always --smart-case -g '!{.git,node_modules}/*'",
-    git_icons         = true,           -- show git icons?
+    git_icons         = false,           -- show git icons?
     file_icons        = false,           -- show file icons?
     color_icons       = true,           -- colorize file|git icons
     actions = {

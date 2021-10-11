@@ -1,7 +1,7 @@
 # set tilix to start in light theme
 set $term "TILIX_PROFILE=light tilix -p Light"
-set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600.jpg"
-client.focused      #1c1c1c #9b9761 #1c1c1c #7c794e
+set $wallpaper "~/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
+client.focused      #1c1c1c #9b885c #1c1c1c #7c794e
 client.unfocused    #1c1c1c #b9bab5 #1c1c1c #7c794e
 
 # toggle themes
