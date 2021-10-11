@@ -129,6 +129,7 @@ input "1133:16495:Logitech_MX_Ergo" {
     # launcher
     bindsym Mod4+d exec "wofi --show drun"
     bindsym Mod4+r exec "wofi --show run"
+    bindsym Mod4+Space exec ~/git/sway/window_selector/window_select.sh
     bindsym Mod4+Tab exec ~/git/sway/window_selector/window_select.sh
 
     # Start a terminal

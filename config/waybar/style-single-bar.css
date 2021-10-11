@@ -11,8 +11,11 @@
 @define-color grey-light        #8e8e8e;
 @define-color white             #b9bab5;
 @define-color orange            #9b885c;
+@define-color orange-darker     #756643;
 @define-color purple            #6b6098;
-@define-color turquoise         #6b6098;
+@define-color purple-light      #988acf;
+@define-color turquoise         #268889;
+@define-color turquoise-light   #4dc5c6;
 
 
 .modules-right {

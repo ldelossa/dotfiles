@@ -10,16 +10,20 @@
 @define-color grey              #545555;
 @define-color grey-light        #8e8e8e;
 @define-color white             #b9bab5;
+@define-color orange            #9b885c;
+@define-color purple            #6b6098;
+@define-color turquoise         #6b6098;
+
 
 window {
     margin: 5px;
-    border: 2px solid @yellow-light;
+    border: 2px solid @orange;
     background-color: @white;
 }
 
 #input {
     font-family: "Cousine"
-    border-bottom: @yellow-light;
+    border-bottom: @orange;
 }
 
 #inner-box {
@@ -38,7 +42,7 @@ window {
 }
 
 #entry:selected {
-    background-color: @yellow;
+    background-color: @orange;
 }
 
 #text:selected {
