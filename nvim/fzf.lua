@@ -44,8 +44,8 @@ require'fzf-lua'.setup {
       fzf = {               -- fzf '--bind=' options
         ["ctrl-P"]          = "toggle-preview",
         ["f3"]              = "toggle-preview-wrap",
-        ["ctrl-n"]          = "preview-page-down",
-        ["ctrl-p"]          = "preview-page-up",
+        ["ctrl-d"]          = "preview-page-down",
+        ["ctrl-u"]          = "preview-page-up",
         ["ctrl-u"]          = "unix-line-discard",
         ["ctrl-f"]          = "half-page-down",
         ["ctrl-b"]          = "half-page-up",
@@ -194,7 +194,7 @@ require'fzf-lua'.setup {
       ["ctrl-S"]      = actions.buf_split,
       ["ctrl-V"]      = actions.buf_vsplit,
       ["ctrl-T"]      = actions.buf_tabedit,
-      ["ctrl-X"]      = actions.buf_del,
+      ["ctrl-D"]      = actions.buf_del,
     }
   },
   colorschemes = {

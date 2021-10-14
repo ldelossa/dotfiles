@@ -1,8 +1,8 @@
 [{
     "layer": "bottom",
-    "position": "top",
+    "position": "bottom",
     "modules-left": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-prev", "custom/spotify-play-pause", "custom/spotify-next", "custom/spotify-quit"],
-    "modules-center": ["sway/workspaces"],
+    "modules-right": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon}",
         "format-icons": {
@@ -79,8 +79,8 @@
 },
 {
     "layer": "bottom",
-    "position": "bottom",
-    "modules-center": ["memory", "cpu", "disk", "network", "battery", "backlight", "pulseaudio", "custom/grimshot", "custom/wfrecord", "custom/vm", "clock", "clock#utc"],
+    "position": "top",
+    "modules-right": ["memory", "cpu", "disk", "network", "battery", "backlight", "pulseaudio", "custom/grimshot", "custom/wfrecord", "custom/vm", "clock", "clock#utc"],
     "clock": {
         "format": "{:%a %d %b %H:%M}",
         "tooltip": true,
@@ -137,7 +137,7 @@
     "pulseaudio": {
         "format": "{icon} {volume:3}%",
         "format-alt-click": "click-right",
-        "format-bluetooth": "{volume}%{icon}",
+        "format-bluetooth": " {volume}%",
         "format-muted": "婢",
         "format-icons": {
             "headphone": "",

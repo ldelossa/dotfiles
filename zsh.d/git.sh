@@ -23,8 +23,14 @@ alias grc='git rebase --continue'
 alias gf='git fetch'
 alias gpf='git push --force-with-lease'
 alias gchk='git checkout'
+alias gr='git rebase'
 alias gri='git rebase -i'
+alias gsp='git stash pop'
+alias gsa='git stash apply'
 
+gsc() {
+    git checkout stash@{$1} -- $2
+}
 glogs() {
     nvim <(curl -XGET "$1")
 }

@@ -61,7 +61,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>o", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
 
   vim.api.nvim_command('set shortmess+=c')
-  vim.api.nvim_command('autocmd BufEnter,CursorHold,InsertLeave lua vim.lsp.codelens.refresh()')
   vim.api.nvim_command('sign define DiagnosticSignError text=🄴  texthl=Error linehl= numhl=')
   vim.api.nvim_command('sign define DiagnosticSignWarn text=🅆  texthl=Warning linehl= numhl=')
   vim.api.nvim_command('sign define DiagnosticSignInfo text=🄸  texthl=DiagnosticSignInfo linehl= numhl=')

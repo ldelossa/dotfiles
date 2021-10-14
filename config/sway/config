@@ -20,31 +20,49 @@ set $right  l
 # sets $term, $wallpaper, and $mod+t (theme switch)
 include ~/.config/sway/theme
 
-# Gaps
+# Appearance
 gaps top 10
 gaps bottom 10
 gaps left 40
 gaps right 40
 gaps inner 10
 default_border pixel 2
+for_window [class=".*"]     opacity .95
+for_window [app_id=".*"]    opacity .95
 
 ### Monitor Layout
 workspace chat output eDP-1
 workspace stats output eDP-1
+
+workspace web output DP-2
+workspace ebooks output DP-2
+workspace music output DP-2
+workspace apps output DP-2
+workspace vm output DP-2
+
 workspace web output DP-3
 workspace ebooks output DP-3
 workspace music output DP-3
 workspace apps output DP-3
 workspace vm output DP-3
+
+workspace terminal output DP-1
 workspace terminal output DP-4
 
-output DP-3  bg  $wallpaper stretch
 output DP-4  bg  $wallpaper stretch
+output DP-3  bg  $wallpaper stretch
+output DP-2  bg  $wallpaper stretch
+output DP-1  bg  $wallpaper stretch
 output eDP-1 bg  $wallpaper stretch
 
 
 output eDP-1 pos 0 0 res 1920x1200
+
+output DP-2 pos 1920 0 res 2560x1440
 output DP-3 pos 1920 0 res 2560x1440
+
+output DP-1 pos 4480 0 res 2560x1440
+output DP-1 transform 180
 output DP-4 pos 4480 0 res 2560x1440
 output DP-4 transform 180
 

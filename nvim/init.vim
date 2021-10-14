@@ -40,12 +40,13 @@ set showcmd
 set directory=$HOME/.cache/vim
 set signcolumn=number
 set termguicolors
+set noequalalways
 
 nnoremap bd :bp\|bd #<cr>
 
 " term shortcuts
 if has("nvim")
-    nnoremap <leader>tm :topleft split <bar> terminal<cr>
+    nnoremap <leader>tm :botright split <bar> resize 16 <bar> terminal<cr>
     tnoremap <C-w>v <C-\><C-n>: vsplit <bar> terminal<cr>
     tnoremap <C-w>h <C-\><C-n><C-w>h
     tnoremap <C-w>j <C-\><C-n><C-w>j

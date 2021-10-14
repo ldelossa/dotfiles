@@ -17,12 +17,14 @@ require('go').setup({
   gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile", "/var/log/gopls.log" }
   lsp_diag_hdlr = true, -- hook lsp diag handler
   dap_debug = true, -- set to false to disable dap
+  fillstruct = 'gopls',
   dap_debug_keymap = true, -- set keymaps for debugger
   dap_debug_gui = true, -- set to true to enable dap gui, highly recommand
   dap_debug_vt = true, -- set to true to enable dap virtual text
-
 })
 
 -- Import on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
 
+-- refresh codelens 
+vim.cmd('autocmd BufEnter,CursorHold,InsertLeave *.go lua require("go.codelens").refresh()')

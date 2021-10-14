@@ -1,5 +1,5 @@
 @define-color trans             rgba(28, 28, 28, 0);
-@define-color black             #1c1c1c;
+@define-color black             #2f2f2f;
 @define-color black-trans       @white;
 @define-color blue              #437890;
 @define-color blue-light        @blue;
@@ -9,7 +9,9 @@
 @define-color green             #497964;
 @define-color grey              #545555;
 @define-color grey-light        @grey;
+@define-color grey-trans        rgba(84, 85, 85, .60);
 @define-color white             #b9bab5;
+@define-color white-light       @grey; 
 @define-color orange            #9b885c;
 @define-color purple            #6b6098;
 @define-color turquoise         #6b6098;
@@ -17,17 +19,12 @@
 
 .modules-right {
     font-family:    "Cousine";
-    font-size:      16px;
+    font-size:      15px;
 }
 
 .modules-left {
     font-family:    "Cousine";
-    font-size:      17px;
-}
-
-.modules-center {
-    font-family:    "Cousine";
-    font-size:      18px;
+    font-size:      15px;
 }
 
 tooltip {
@@ -46,7 +43,7 @@ window#waybar {
 
 #workspaces {
     padding:            0px 20px 0px 20px;
-    border-radius:      0px 0px 5px 5px;
+    border-radius:      10px 0px 0px 0px;
     background:         @black-trans;
     border-bottom:      2px solid @black-trans;
 }
@@ -59,8 +56,8 @@ window#waybar {
 }
 #custom-spotify-metadata {
     min-width:          300px;
-    margin:             0px 0px 0px 7px;
-    border-radius:      0px 0px 0px 5px;
+    margin:             0px 0px 0px 0px;
+    border-radius:      0px 0px 0px 0px;
 }
 #custom-spotify-metadata.playing {
     color:              @green;
@@ -84,7 +81,7 @@ window#waybar {
 }
 #custom-spotify-quit {
     margin:             0px 0px 0px 0px;
-    border-radius:      0px 0px 5px 0px;
+    border-radius:      0px 10px 0px 0px;
     border-bottom:      2px solid @grey-light;
 }
 
@@ -92,13 +89,13 @@ window#waybar {
     margin:             0px 2px 0px 2px;
     padding:            4px 10px 4px 10px;
     color:              @grey;
-    border-radius:      0px;
     border-bottom:      2px solid @trans;
 }
 
 #workspaces button.focused {
-    color:              @grey-light;
+    color:              @grey;
     border-bottom:      2px solid @yellow-light;
+    font-weight:        bold;
 }
 
 #workspaces button.urgent {
@@ -106,44 +103,35 @@ window#waybar {
 }
 
 #workspaces button#sway-workspace-apps.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @green;
 }
 
 #workspaces button#sway-workspace-chat.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @turquoise;
 }
 
 #workspaces button#sway-workspace-ebooks.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @red;
 }
 
 #workspaces button#sway-workspace-music.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @orange;
 }
 
 #workspaces button#sway-workspace-terminal.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @blue;
 }
 
 #workspaces button#sway-workspace-web.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @purple;
 }
 #workspaces button#sway-workspace-vm.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @green;
 }
 #workspaces button#sway-workspace-stats.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @turquoise;
 }
 #workspaces button#sway-workspace-sound.focused {
-    font-weight:        bold;
     border-bottom:      2px solid @red;
 }
 
@@ -297,6 +285,5 @@ window#waybar {
 #clock.utc {
     border-left:        0px;
     border-bottom:      3px solid @grey-light;
-    border-radius:      0px 0px 10px 0px;
 }
 
