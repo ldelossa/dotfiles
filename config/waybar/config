@@ -1,14 +1,17 @@
 [{
-    "layer": "bottom",
-    "position": "bottom",
-    "modules-left": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-prev", "custom/spotify-play-pause", "custom/spotify-next", "custom/spotify-quit"],
-    "modules-right": ["sway/workspaces"],
+    "height": 45,
+    "margin": "10px 50px 0p 50px",
+    "name": "top",
+    "layer": "top",
+    "position": "top",
+    "modules-right": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-prev", "custom/spotify-play-pause", "custom/spotify-next", "custom/spotify-quit"],
+    "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon}",
         "format-icons": {
             "chat":     " chat",
             "web":      "爵 web",
-            "terminal": " terminal",
+            "terminal": " shell",
             "ebooks":   " ebooks",
             "music":    " music",
             "apps":     " apps",
@@ -29,6 +32,11 @@
     },
     "sway/window": {
         "tooltip": false
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10,
+        "show-passive-items": true
     },
     "custom/spotify-monitor": {
         "interval": 30,
@@ -78,9 +86,13 @@
     }
 },
 {
+    "height": 15,
+    "name": "bottom",
     "layer": "bottom",
-    "position": "top",
-    "modules-right": ["memory", "cpu", "disk", "network", "battery", "backlight", "pulseaudio", "custom/grimshot", "custom/wfrecord", "custom/vm", "clock", "clock#utc"],
+    "position": "bottom",
+    "modules-left": ["memory", "cpu", "disk"],
+    "modules-center": ["custom/vm", "custom/grimshot", "custom/wfrecord"],
+    "modules-right": ["network", "pulseaudio", "backlight", "battery", "clock", "clock#utc"],
     "clock": {
         "format": "{:%a %d %b %H:%M}",
         "tooltip": true,
@@ -91,7 +103,7 @@
         "timezone": "Etc/UTC"
     },
     "battery": {
-        "format": "{icon} {capacity:3}%",
+        "format": "{icon}",
         "format-alt": "{time} {icon}",
         "format-alt-click": "click-right",
         "format-icons": ["", "", "", ""],
@@ -105,18 +117,18 @@
     },
     "network": {
         "format": "{icon}",
-        "format-alt": "{ipaddr} {icon}",
+        "format-alt": "{icon}",
         "format-icons": {
             "wifi": ["﬉"],
             "ethernet": [""],
             "disconnected": [""]
         },   
         "format-alt-click": "click-right",
-        "format-wifi": "﬉ {signalStrength}% ",
-        "format-ethernet": " {ipaddr} ",
+        "format-wifi": "﬉",
+        "format-ethernet": "",
         "format-disconnected": "", 
         "tooltip-format": "{ifname} via {gwaddr}",
-        "tooltip-format-wifi": "{essid} ﬉",
+        "tooltip-format-wifi": "{essid} {signalStrength}% ﬉",
         "tooltip-format-ethernet": "{ifname} {ipaddr} ",
         "tooltip-format-disconnected": "Disconnected",
         "on-click": "gnome-control-center network",
@@ -124,10 +136,11 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "{icon} {percent:3}%",
+        "format": "{icon}",
         "format-icons": ["", "", ""],
         "on-scroll-up": "exec brightnessctl set 5%+",
         "on-scroll-down": "brightnessctl set 5%-",
+        "tooltip-format": "{percent}",
         "states": {
             "low": 0,
             "mid": 50,
@@ -135,14 +148,15 @@
         }
     },
     "pulseaudio": {
-        "format": "{icon} {volume:3}%",
+        "format": "{icon}",
         "format-alt-click": "click-right",
-        "format-bluetooth": " {volume}%",
+        "format-bluetooth": "",
         "format-muted": "婢",
         "format-icons": {
             "headphone": "",
             "default": ["", ""]
         },
+        "tooltip-format": "{volume}",
         "scroll-step": 10,
         "on-click": "~/.config/waybar/custom/pulseaudio.sh",
         "states": {
@@ -150,6 +164,30 @@
             "mid": 50,
             "high": 75
         }
+    },
+    "custom/grimshot": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "grimshot --notify save output - | swappy -f -",
+        "on-click-middle": "grimshot --notify save area - | swappy -f -",
+        "on-click-right": "grimshot --notify save window - | swappy -f -"
+    }, 
+    "custom/wfrecord": {
+        "format": "",
+        "tooltip": false,
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/wfrecord-monitor.sh",
+        "on-click": "~/.config/waybar/custom/wfrecord-record.sh",
+        "on-click-right": "~/.config/waybar/custom/wfrecord-stop.sh",
+        "signal": 8
+    },
+    "custom/vm": {
+        "format": "穀 {}",
+        "interval": 10,
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/kvm-monitor.sh",
+        "on-click": "~/.config/waybar/custom/kvm.sh"
     },
     "cpu": {
         "interval": 10,
@@ -186,29 +224,5 @@
             "mid": 25,
             "high": 50
         }
-    },
-    "custom/grimshot": {
-        "format": "",
-        "tooltip": false,
-        "on-click": "grimshot --notify save output - | swappy -f -",
-        "on-click-middle": "grimshot --notify save area - | swappy -f -",
-        "on-click-right": "grimshot --notify save window - | swappy -f -",
-    }, 
-    "custom/wfrecord": {
-        "format": "",
-        "tooltip": false,
-        "interval": "once",
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/wfrecord-monitor.sh",
-        "on-click": "~/.config/waybar/custom/wfrecord-record.sh",
-        "on-click-right": "~/.config/waybar/custom/wfrecord-stop.sh",
-        "signal": 8
-    },
-    "custom/vm": {
-        "format": "穀 {}",
-        "interval": 10,
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/kvm-monitor.sh",
-        "on-click": "~/.config/waybar/custom/kvm.sh"
     }
 }]

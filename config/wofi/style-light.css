@@ -2,6 +2,7 @@
 @define-color black             #1c1c1c;
 @define-color black-trans       rgba(35, 35, 35, .9);
 @define-color blue              #437890;
+@define-color blue-trans        rgba(31, 43, 55, .5);
 @define-color blue-light        #87afd7;
 @define-color yellow            #7c794e;
 @define-color yellow-light      #9b9761;
@@ -10,6 +11,7 @@
 @define-color grey              #545555;
 @define-color grey-light        #8e8e8e;
 @define-color white             #b9bab5;
+@define-color white-trans       rgba(185, 186, 181, .85);
 @define-color orange            #9b885c;
 @define-color purple            #6b6098;
 @define-color turquoise         #6b6098;
@@ -18,7 +20,7 @@
 window {
     margin: 5px;
     border: 2px solid @orange;
-    background-color: @white;
+    background-color: @white-trans;
 }
 
 #input {

@@ -2,6 +2,7 @@
 @define-color black             #1c1c1c;
 @define-color black-trans       rgba(35, 35, 35, .95);
 @define-color blue              #437890;
+@define-color blue-trans        rgba(31, 43, 55, .85);
 @define-color blue-light        #87afd7;
 @define-color yellow            #7c794e;
 @define-color yellow-light      #9b9761;
@@ -20,7 +21,7 @@
 window {
     margin: 5px;
     border: 2px solid @orange;
-    background-color: @black-trans;
+    background-color: @blue-trans;
 }
 
 #input {

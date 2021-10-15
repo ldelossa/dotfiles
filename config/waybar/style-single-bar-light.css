@@ -8,7 +8,7 @@
 @define-color red               #755754;
 @define-color green             #497964;
 @define-color grey              #545555;
-@define-color grey-light        @grey;
+@define-color grey-light        #8e8e8e;
 @define-color grey-trans        rgba(84, 85, 85, .60);
 @define-color white             #b9bab5;
 @define-color white-light       @grey; 
@@ -18,6 +18,11 @@
 
 
 .modules-right {
+    font-family:    "Cousine";
+    font-size:      15px;
+}
+
+.modules-center {
     font-family:    "Cousine";
     font-size:      15px;
 }
@@ -38,64 +43,33 @@ tooltip label {
 }
 
 window#waybar {
-    background: none;
+    background: @white;
 }
+
+window#waybar.bottom {
+    background: @trans;
+}
+
+/* === work spaces === */
 
 #workspaces {
     padding:            0px 20px 0px 20px;
-    border-radius:      10px 0px 0px 0px;
-    background:         @black-trans;
-    border-bottom:      2px solid @black-trans;
-}
-
-#custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
-    color:              @grey-light;
-    font-size:          15px;
-    padding:            1px 10px;
-    background:         @black-trans;
-}
-#custom-spotify-metadata {
-    min-width:          300px;
-    margin:             0px 0px 0px 0px;
-    border-radius:      0px 0px 0px 0px;
-}
-#custom-spotify-metadata.playing {
-    color:              @green;
-    border-bottom:      2px solid @green;
-}
-#custom-spotify-metadata.paused {
-    color:              @yellow;
-    border-bottom:      2px solid @yellow;
-}
-#custom-spotify-prev {
-    margin:             0px 0px 0px 0px;
-    border-bottom:      2px solid @grey-light;
-}
-#custom-spotify-play-pause {
-    margin:             0px 0px 0px 0px;
-    border-bottom:      2px solid @grey-light;
-}
-#custom-spotify-next {
-    margin:             0px 0px 0px 0px;
-    border-bottom:      2px solid @grey-light;
-}
-#custom-spotify-quit {
-    margin:             0px 0px 0px 0px;
-    border-radius:      0px 10px 0px 0px;
-    border-bottom:      2px solid @grey-light;
+    border-radius:      0px 0px 10px 0px;
 }
 
 #workspaces button {
     margin:             0px 2px 0px 2px;
     padding:            4px 10px 4px 10px;
     color:              @grey;
+    border-radius:      0px;
     border-bottom:      2px solid @trans;
 }
 
 #workspaces button.focused {
     color:              @grey;
-    border-bottom:      2px solid @yellow-light;
     font-weight:        bold;
+    font-size:          20px;
+    border-bottom:      2px solid @orange;
 }
 
 #workspaces button.urgent {
@@ -135,155 +109,149 @@ window#waybar {
     border-bottom:      2px solid @red;
 }
 
- #custom-vm, #custom-wfrecord, #custom-grimshot, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
+#custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
+    color:              @grey;
+    font-size:          15px;
+    padding:            1px 10px;
+}
+#custom-spotify-metadata {
+    min-width:          250px;
     margin:             0px 0px 0px 0px;
-    padding:            1px 25px 1px 25px;
+}
+#custom-spotify-metadata.playing {
+    color:              @green;
+}
+#custom-spotify-metadata.paused {
+    color:              @yellow;
+}
+#custom-spotify-prev {
+    margin:             0px 0px 0px 0px;
+}
+#custom-spotify-play-pause {
+    margin:             0px 0px 0px 0px;
+}
+#custom-spotify-next {
+    margin:             0px 0px 0px 0px;
+}
+#custom-spotify-quit {
+    margin-right:       10px;
+}
+
+
+ #custom-vm, #custom-wfrecord, #custom-grimshot, #clock, #mode, #battery, #disk, #cpu, #memory, #network, #pulseaudio, #backlight {
+    margin:             0px 2px 0px 2px;
+    padding:            1px 18px 1px 18px;
     color:              @grey-light;
-    background:         @black-trans;
-    border-bottom:      3px solid @grey-light;
+    border-bottom:      3px solid @orange;
 }
 
 #custom-wfrecord.recording {
     color:              @blue-light;
-    border-bottom:      3px solid @blue-light;
+    border-bottom:         3px solid @blue-light;
 }
 
 #custom-vm.running {
     color:              @blue-light;
-    border-bottom:      3px solid @blue-light;
+    border-bottom:         3px solid @blue-light;
 }
 
 #memory.low {
-    border-left:        2px solid @black-trans;
-    border-radius:      0px 0px 0px 10px;
-    background:         @black-trans;
     color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #memory.mid {
-    border-left:        2px solid @black-trans;
-    border-radius:      0px 0px 0px 10px;
-    background:         @black-trans;
     color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #memory.high {
-    border-left:        2px solid @black-trans;
-    border-radius:      0px 0px 0px 10px;
-    background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #cpu.low {
-    background:         @black-trans;
     color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #cpu.mid {
-    background:         @black-trans;
     color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #cpu.high {
-    background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #disk.low {
-    background:         @black-trans;
     color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #disk.mid {
-    background:         @black-trans;
     color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #disk.high {
-    background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #network {
-    background:         @black-trans;
     color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #network.disconnected {
     color:              @red;
-    background:         @black-trans;
     border-bottom:      3px solid @red;
 }
 
 #battery {
-    background:         @black-trans;
     color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #battery.warning {
-    background:         @black-trans;
     color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #battery.critical {
-    background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
 }
 #battery.charging {
-    background:         @black-trans;
     color:              @green;
     border-bottom:      3px solid @green;
 }
 
 #backlight.low {
-    background:         @black-trans;
     color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #backlight.mid {
-    background:         @black-trans;
     color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #backlight.high {
-    background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #pulseaudio.low {
-    background:         @black-trans;
     color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #pulseaudio.mid {
-    background:         @black-trans;
     color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #pulseaudio.high {
-    background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
 }
 #pulseaudio.muted {
-    background:         @black-trans;
     color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #clock {
-    border-right:       0px;
-    color:              @grey-light;
-    background:         @black-trans;
-    border-bottom:      3px solid @grey-light;
 }
 #clock.utc {
-    border-left:        0px;
-    border-bottom:      3px solid @grey-light;
 }
 

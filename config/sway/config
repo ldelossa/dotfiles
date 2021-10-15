@@ -21,8 +21,8 @@ set $right  l
 include ~/.config/sway/theme
 
 # Appearance
-gaps top 10
-gaps bottom 10
+gaps top 5
+gaps bottom 0
 gaps left 40
 gaps right 40
 gaps inner 10
