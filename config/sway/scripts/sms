@@ -1,0 +1,39 @@
+#!/bin/bash
+IFS=$'\n'
+
+header="=== Marks ==="
+if [[ -n $SMS_FIFO ]]; then
+    # we are in the forked shell, read from
+    # the provided FIFO and obtain window str
+    # and pipe to fzf for selection.
+    str=$(cat $SMS_FIFO)
+    rm -rf $STS_FIFO
+    selection=$(printf $str | fzf --layout reverse --header $header --color)
+    if [[ -z $selection ]]; then
+        exit
+    fi
+    swaymsg "[con_mark=\b$selection\b]" focus
+    exit
+fi
+
+columns=${#header}
+lines=0
+str=""
+marks=($(swaymsg -t get_marks | jq -r '.[]'))
+for mark in "${marks[@]}"; do
+    if [[ ${#mark} -gt $columns ]];
+    then
+        columns=${#mark}
+    fi
+    lines=$((lines+1))
+    str="$str$mark\n"
+done
+
+# some adjustments for floating window size
+lines=$((lines+3))
+columns=$((columns+5))
+
+fifo=/tmp/sms-$(date +%s)
+mkfifo $fifo
+SMS_FIFO=$fifo zsh -c "alacritty -o window.dimensions.columns=$columns -o window.dimensions.lines=$lines -o font.size=16.0 --title "fzf-switcher" -e /home/louis/git/dotfiles/config/sway/scripts/sms"&
+echo -n $str > $fifo

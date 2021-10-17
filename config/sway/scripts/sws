@@ -1,0 +1,41 @@
+#!/bin/bash
+IFS=$'\n'
+
+header="=== Workspaces ==="
+if [[ -n $SWS_FIFO ]]; then
+    # we are in the forked shell, read from
+    # the provided FIFO and obtain window str
+    # and pipe to fzf for selection.
+    str=$(cat $SWS_FIFO)
+    rm -rf $STS_FIFO
+    selection=$(printf $str | fzf --layout reverse --header $header --color)
+    if [[ -z $selection ]]; then
+        exit
+    fi
+    swaymsg workspace $selection
+    exit
+fi
+
+# set initial columns to size
+# of the header so we always have room for it.
+columns=${#header}
+lines=0
+str=""
+workspaces=($(swaymsg -t get_workspaces -r | jq -r -c '.[] | .name'))
+for workspace in "${workspaces[@]}"; do
+    if [[ ${#workspace} -gt $columns ]];
+    then
+        columns=${#workspace}
+    fi
+    lines=$((lines+1))
+    str="$str$workspace\n"
+done
+
+# some adjustments for floating window size
+lines=$((lines+3))
+columns=$((columns+5))
+
+fifo=/tmp/sws-$(date +%s)
+mkfifo $fifo
+SWS_FIFO=$fifo zsh -c "alacritty -o window.dimensions.columns=$columns -o window.dimensions.lines=$lines -o font.size=16.0 --title "fzf-switcher" -e /home/louis/git/dotfiles/config/sway/scripts/sws"&
+echo -n $str > $fifo

@@ -156,97 +156,75 @@ window#waybar.bottom {
 }
 
 #memory.low {
-    color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #memory.mid {
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #memory.high {
-    color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #cpu.low {
-    color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #cpu.mid {
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #cpu.high {
-    color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #disk.low {
-    color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #disk.mid {
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #disk.high {
-    color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #network {
-    color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #network.disconnected {
-    color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #battery {
-    color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #battery.warning {
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #battery.critical {
-    color:              @red;
     border-bottom:      3px solid @red;
 }
 #battery.charging {
-    color:              @green;
     border-bottom:      3px solid @green;
 }
 
 #backlight.low {
-    color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #backlight.mid {
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #backlight.high {
-    color:              @red;
     border-bottom:      3px solid @red;
 }
 
 #pulseaudio.low {
-    color:              @blue;
     border-bottom:      3px solid @blue;
 }
 #pulseaudio.mid {
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
 }
 #pulseaudio.high {
-    color:              @red;
     border-bottom:      3px solid @red;
 }
 #pulseaudio.muted {
-    color:              @red;
     border-bottom:      3px solid @red;
 }
 

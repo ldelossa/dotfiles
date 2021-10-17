@@ -1,6 +1,7 @@
 set $term "TILIX_PROFILE=dark tilix -p Dark"
+set $switcher "TILIX_PROFILE=dark tilix -p Dark --title 'fzf-switcher'"
 set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
 client.focused #9b885c #9b885c #1c1c1c #7c794e
 
 # toggle themes
-bindsym $mod+t exec ~/.config/sway/theme_switch.sh light
+bindsym $mod+p exec ~/.config/sway/theme_switch.sh light

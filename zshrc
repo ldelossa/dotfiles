@@ -24,3 +24,5 @@ source ~/zsh.d/oc.sh
 source ~/zsh.d/ssh.sh
 # tilix aliases and configs
 source ~/zsh.d/tilix.sh
+# sway aliases and configs
+source ~/zsh.d/sway.sh

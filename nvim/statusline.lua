@@ -54,7 +54,7 @@ let g:currentmode={
     \}
 
 set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
+set statusline+=\ %{g:currentmode[mode()]}\ 
 set statusline+=%#StatusLine#
 set statusline+=\ %r%m%f\ >
 set statusline+=\ %{NvimGps()}
@@ -65,5 +65,5 @@ set statusline+=\ %Y
 set statusline+=\ %p%%
 set statusline+=\ %l:%L:%c
 set statusline+=\ %{get(b:,'gitsigns_status','')}
-set statusline+=\ %{tolower(g:currentmode[mode()])}\ 
+set statusline+=\ %{StatuslineGit()}\ 
 ]], false)

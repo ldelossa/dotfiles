@@ -61,6 +61,6 @@ else
 endif
 
 " helpful abbreviations 
-cnoreabbrev F FzfLua
-cnoreabbrev G Gitsigns
+cnoreabbrev f FzfLua
+cnoreabbrev g Gitsigns
 

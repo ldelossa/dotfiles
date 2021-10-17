@@ -64,7 +64,7 @@ window#waybar.bottom {
 #workspaces button {
     margin:             0px 2px 0px 2px;
     padding:            4px 10px 4px 10px;
-    color:              @grey-light;
+    color:              @grey;
     border-radius:      0px;
     border-bottom:      2px solid @trans;
 }
@@ -160,117 +160,79 @@ window#waybar.bottom {
 }
 
 #memory.low {
-    border-radius:      10px 0px 0px 0px;
-    color:              @blue;
     border-bottom:      3px solid @blue;
-    border-top:         none;
 }
 #memory.mid {
-    border-radius:      10px 0px 0px 0px;
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
-    border-top:         none;
 }
 #memory.high {
-    border-radius:      10px 0px 0px 0px;
-    color:              @red;
     border-bottom:      3px solid @red;
-    border-top:         none;
 }
 
 #cpu.low {
-    color:              @blue;
     border-bottom:      3px solid @blue;
-    border-top:         none;
 }
 #cpu.mid {
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
-    border-top:         none;
 }
 #cpu.high {
-    color:              @red;
     border-bottom:      3px solid @red;
-    border-top:         none;
 }
 
 #disk.low {
-    color:              @blue;
     border-bottom:      3px solid @blue;
-    border-top:         none;
 }
 #disk.mid {
-    color:              @yellow;
     border-bottom:      3px solid @yellow;
-    border-top:         none;
 }
 #disk.high {
-    color:              @red;
     border-bottom:      3px solid @red;
-    border-top:         none;
 }
 
 #network {
-    color:              @blue;
     border-bottom:         3px solid @blue;
 }
 #network.disconnected {
-    color:              @red;
     border-bottom:         3px solid @red;
 }
 
 #battery {
-    color:              @blue;
     border-bottom:         3px solid @blue;
 }
 #battery.warning {
-    color:              @yellow;
     border-bottom:         3px solid @yellow;
 }
 #battery.critical {
-    color:              @red;
     border-bottom:         3px solid @red;
 }
 #battery.charging {
-    color:              @green;
     border-bottom:         3px solid @green;
 }
 
 #backlight.low {
-    color:              @blue;
     border-bottom:         3px solid @blue;
 }
 #backlight.mid {
-    color:              @yellow;
     border-bottom:         3px solid @yellow;
 }
 #backlight.high {
-    color:              @red;
     border-bottom:         3px solid @red;
 }
 
 #pulseaudio.low {
-    color:              @blue;
     border-bottom:         3px solid @blue;
 }
 #pulseaudio.mid {
-    color:              @yellow;
     border-bottom:         3px solid @yellow;
 }
 #pulseaudio.high {
-    color:              @red;
     border-bottom:         3px solid @red;
 }
 #pulseaudio.muted {
-    color:              @red;
     border-bottom:         3px solid @red;
 }
 
 #clock {
 }
 #clock.utc {
-}
-
-#tray {
-    padding:            0px 20px 0px 20px;
 }

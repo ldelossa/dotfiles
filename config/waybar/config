@@ -7,28 +7,20 @@
     "modules-right": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-prev", "custom/spotify-play-pause", "custom/spotify-next", "custom/spotify-quit"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
-        "format": "{icon}",
+        "format": "{icon} {name}",
         "format-icons": {
-            "chat":     " chat",
-            "web":      "爵 web",
-            "terminal": " shell",
-            "ebooks":   " ebooks",
-            "music":    " music",
-            "apps":     " apps",
-            "vm":       " vm",
-            "stats":    " stats",
-            "sound":    "蓼 sound",
-            "1":        "1",
-            "2":        "2",
-            "3":        "3",
-            "4":        "4",
-            "5":        "5",
-            "6":        "6",
-            "7":        "7",
-            "8":        "8",
-            "9":        "9"
+            "chat":     "",
+            "web":      "爵",
+            "terminal": "",
+            "ebooks":   "",
+            "music":    "",
+            "apps":     "",
+            "vm":       "",
+            "stats":    "",
+            "sound":    "蓼",
+            "default":  ""
         },
-        "disable-scroll": true
+        "disable-scroll": true,
     },
     "sway/window": {
         "tooltip": false
@@ -89,6 +81,7 @@
     "height": 15,
     "name": "bottom",
     "layer": "bottom",
+    "margin": "10px 50px 0p 50px",
     "position": "bottom",
     "modules-left": ["memory", "cpu", "disk"],
     "modules-center": ["custom/vm", "custom/grimshot", "custom/wfrecord"],

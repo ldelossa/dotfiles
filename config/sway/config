@@ -21,7 +21,7 @@ set $right  l
 include ~/.config/sway/theme
 
 # Appearance
-gaps top 5
+gaps top 10
 gaps bottom 0
 gaps left 40
 gaps right 40
@@ -144,14 +144,18 @@ input "1133:16495:Logitech_MX_Ergo" {
 #
 # Basics:
 #
-    # launcher
-    bindsym Mod4+d exec "wofi --show drun"
-    bindsym Mod4+r exec "wofi --show run"
-    bindsym Mod4+Space exec ~/git/sway/window_selector/window_select.sh
-    bindsym Mod4+Tab exec ~/git/sway/window_selector/window_select.sh
+    # launchers and switchers
+    bindsym Mod4+d exec     "wofi --show drun"
+    bindsym $mod+w exec     '/home/louis/.config/sway/scripts/sws'
+    bindsym $mod+m exec     '/home/louis/.config/sway/scripts/sms'
+    bindsym $mod+c exec     '/home/louis/.config/sway/scripts/sts'
+    bindsym Mod4+Tab exec   '/home/louis/.config/sway/scripts/sts'
+    bindsym Mod4+Space exec '/home/louis/.config/sway/scripts/sts'
 
     # Start a terminal
     bindsym $mod+Return exec $term
+    # Start a floating term
+    bindsym Mod4+Return exec 'alacritty --title "fzf-switcher"'
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -159,8 +163,7 @@ input "1133:16495:Logitech_MX_Ergo" {
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
+    # Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
     floating_modifier $mod normal
 
     # Reload the configuration file
@@ -200,14 +203,18 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+
+    # Move the focused workspace
+    bindsym Mod4+Shift+$left  move workspace to left
+    bindsym Mod4+Shift+$down  move worksapce to down
+    bindsym Mod4+Shift+$up    move workspace to up
+    bindsym Mod4+Shift+$right move workspace to right
 #
 # Workspaces:
 #
+    # Rename workspace
+    bindsym $mod+r exec 'alacritty --title "fzf-switcher" -e sr'
+
     # Switch to workspace
     bindsym Mod4+t workspace  terminal
     bindsym Mod4+w workspace  web
@@ -245,20 +252,22 @@ input "1133:16495:Logitech_MX_Ergo" {
  
     bindsym $mod+Tab workspace back_and_forth
 
-    # The only thing we use Alacritty for us launching
-    # the stats viewer.
-    assign [app_id="Alacritty"]         workspace stats
+    assign [title="Stats"]              workspace stats
     assign [app_id="pavucontrol"]       workspace sound
     assign [app_id="virt-manager"]      workspace vm
     assign [class="Signal"]             workspace chat
     assign [class="Vivaldi-stable"]     workspace web
     assign [class="Lens"]               workspace apps
+
     # hack because spotify sucks.
     for_window [class="Spotify"]    move window to workspace music
     # send signal to waybar element so spotify widget opens
     for_window [class="Spotify"]    exec "sleep .1; pkill -RTMIN+4 waybar"
+
     # 1password should always float
-    for_window [class="1Password"]  floating enable
+    for_window [class="1Password"]      floating enable
+
+    for_window [title="fzf-switcher"]   floating enable
 
 #
 # Layout stuff:
@@ -271,7 +280,7 @@ input "1133:16495:Logitech_MX_Ergo" {
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
+    bindsym $mod+t layout tabbed
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
@@ -320,7 +329,6 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
 
 #
 # Status Bar:
