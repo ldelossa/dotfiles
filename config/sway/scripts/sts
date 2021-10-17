@@ -1,29 +1,32 @@
 #!/bin/bash
 IFS=$'\n'
 
-header="=== Windows ==="
-if [[ -n $STS_FIFO ]]; then
-    # we are in the forked shell, read from
-    # the provided FIFO and obtain window str
-    # and pipe to fzf for selection.
-    str=$(cat $STS_FIFO)
-    rm -rf $STS_FIFO
-    selection=$(printf $str | fzf --layout reverse --header $header --color)
+# check for env variable, if exists we are the
+# forked shell, get the waiting string from the fifo
+# and call fzf and sway from there.
+prompt="Windows> "
+if [[ -n $fifo ]]; then
+    str=$(cat $fifo)
+    rm -rf $fifo
+
+    selection=$(printf $str | fzf --prompt="$prompt" --color)
+
     id=$(echo $selection | cut -d ":" -f1)
     if [[ -z $id ]]; then
         exit
     fi
+
     swaymsg [con_id="$id"] focus
     exit
 fi
 
 windows=($(swaymsg -t get_tree| jq -r 'recurse(.nodes[]?) | recurse(.floating_nodes[]?) | select(.type=="con"), select(.type=="floating_con") | select((.app_id != null) or .name != null) | {id, app_id, name} | .id, .app_id, .name'))
 
-# build strings we will printf to fzf
+# build the selection string we will ultimate
+# pipe to fzf, take note of largest string to set
+# columns and number of lines to set lines for alacritty.
 str=""
-# keep largest string length and lines 
-# for terminal size
-columns=${#header}
+columns=0
 lines=0
 for ((i=0; i<"${#windows[@]}"; i=i+3,lines++)); do
     id="${windows[i]}"
@@ -47,15 +50,22 @@ for ((i=0; i<"${#windows[@]}"; i=i+3,lines++)); do
     str="$str$building_string\n" 
 done
 
-# some adjustments for floating window size
+# add some padding to the terminal for 
+# lines and columns, for columns make sure
+# we take the prompt into the padding consideration
 lines=$((lines+3))
-columns=$((columns+5))
+columns=$((columns+"${#prompt}"+5))
 if [[ columns -gt 100 ]];
 then
     columns=100
 fi
 
-sts_fifo=/tmp/sts-$(date +%s)
-mkfifo $sts_fifo
-STS_FIFO=$sts_fifo zsh -c "alacritty -o window.dimensions.columns=$columns -o window.dimensions.lines=$lines -o font.size=16.0 --title "fzf-switcher" -e /home/louis/git/dotfiles/config/sway/scripts/sts"&
-echo -n $str > $sts_fifo
+fifo=/tmp/sts-$(date +%s)
+mkfifo $fifo
+fifo=$fifo zsh -c "alacritty \
+    -o window.dimensions.columns=$columns \
+    -o window.dimensions.lines=$lines \
+    -o font.size=16.0 \
+    --title "fzf-switcher" \
+    -e /home/louis/git/dotfiles/config/sway/scripts/sts"&
+echo -n $str > $fifo
