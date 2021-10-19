@@ -1,10 +1,11 @@
 [{
     "height": 45,
-    "margin": "10px 50px 0p 50px",
+    "margin": "10px 10px 0p 65px",
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-prev", "custom/spotify-play-pause", "custom/spotify-next", "custom/spotify-quit"],
+    "modules-center": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-prev", "custom/spotify-play-pause", "custom/spotify-next", "custom/spotify-quit"],
+    "modules-right": ["clock", "clock#utc"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon} {name}",
@@ -18,17 +19,21 @@
             "vm":       "",
             "stats":    "",
             "sound":    "蓼",
-            "default":  ""
+            "default":  ""
         },
         "disable-scroll": true,
     },
+    "clock": {
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip": true,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+    "clock#utc": {
+        "format": "{:%H:%M UTC}",
+        "timezone": "Etc/UTC"
+    },
     "sway/window": {
         "tooltip": false
-    },
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10,
-        "show-passive-items": true
     },
     "custom/spotify-monitor": {
         "interval": 30,
@@ -81,17 +86,17 @@
     "height": 15,
     "name": "bottom",
     "layer": "bottom",
-    "margin": "10px 50px 0p 50px",
-    "position": "bottom",
-    "modules-left": ["memory", "cpu", "disk"],
-    "modules-center": ["custom/vm", "custom/grimshot", "custom/wfrecord"],
-    "modules-right": ["network", "pulseaudio", "backlight", "battery", "clock", "clock#utc"],
+    "margin": "19px 0px 10px 0px",
+    "position": "left",
+    "modules-center": ["battery", "backlight", "pulseaudio", "network", "custom/grimshot", "custom/wfrecord", "custom/vm", "memory", "cpu", "disk", "temperature", "tray",  ],
     "clock": {
+        "rotate": 90,
         "format": "{:%a %d %b %H:%M}",
         "tooltip": true,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     },
     "clock#utc": {
+        "rotate": 90,
         "format": "{:%H:%M UTC}",
         "timezone": "Etc/UTC"
     },
@@ -100,7 +105,7 @@
         "format-alt": "{time} {icon}",
         "format-alt-click": "click-right",
         "format-icons": ["", "", "", ""],
-        "format-charging": " {capacity}%",
+        "format-charging": "",
         "interval": 30,
         "on-click": "gnome-control-center power",
         "states": {
@@ -184,7 +189,7 @@
     },
     "cpu": {
         "interval": 10,
-        "format": " {avg_frequency:4}Gz",
+        "format": "",
         "format-alt-click": "click-right",
         "on-click": "~/.config/waybar/custom/stats.sh",
         "states": {
@@ -195,7 +200,7 @@
     },
     "memory": {
         "interval": 30,
-        "format": " {percentage}%",
+        "format": "",
         "tooltip-format": "{used:0.1f}G used\n{avail:0.1f}G available\n{total:0.1f}G total",
         "format-alt-click": "click-right",
         "on-click": "~/.config/waybar/custom/stats.sh",
@@ -207,7 +212,7 @@
     },
     "disk": {
         "interval": 30,
-        "format": " {percentage_used}%",
+        "format": "",
         "format-alt-click": "click-right",
         "tooltip-format": "{used} used\n{free} free\n{total} total",
         "on-click": "~/.config/waybar/custom/stats.sh",
@@ -217,5 +222,14 @@
             "mid": 25,
             "high": 50
         }
-    }
+    },
+    "temperature": {
+        "format": "",
+        "critical-threshold": 80
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 25,
+        "show-passive-items": true
+    },
 }]

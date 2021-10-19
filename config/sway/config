@@ -22,9 +22,9 @@ include ~/.config/sway/theme
 
 # Appearance
 gaps top 10
-gaps bottom 0
-gaps left 40
-gaps right 40
+gaps bottom 10
+gaps left 13
+gaps right 0
 gaps inner 10
 default_border pixel 2
 for_window [class=".*"]     opacity .95
@@ -213,7 +213,7 @@ input "1133:16495:Logitech_MX_Ergo" {
 # Workspaces:
 #
     # Rename workspace
-    bindsym $mod+r exec 'alacritty --title "fzf-switcher" -e sr'
+    bindsym $mod+r exec '/home/louis/.config/sway/scripts/sr'
 
     # Switch to workspace
     bindsym Mod4+t workspace  terminal
