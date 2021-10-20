@@ -144,7 +144,7 @@ window#waybar.bottom {
     font-weight:        bold;
 }
 
-#tray, #custom-vm, #custom-wfrecord, #custom-grimshot, #mode, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight {
+#tray, #custom-vm, #custom-vm, #custom-wfrecord, #custom-grimshot, #mode, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight {
     margin:             1px 1px 1px 1px;
     padding:            10px 2px 10px 8px;
     color:              @white;
@@ -159,6 +159,11 @@ window#waybar.bottom {
 #custom-vm.running {
     color:              @blue-light;
     border-left:         3px solid @blue-light;
+}
+
+#custom-containers.running {
+    color:              @blue-light;
+    border-left:      3px solid @blue-light;
 }
 
 #memory {

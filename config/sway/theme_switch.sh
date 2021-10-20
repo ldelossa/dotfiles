@@ -17,6 +17,9 @@ then
     unlink ~/.config/wofi/style.css
     ln -s ~/.config/wofi/style-dark.css ~/.config/wofi/style.css
 
+    unlink ~/.config/alacritty/alacritty.yml
+    ln -s ~/.config/alacritty/alacritty-dark.yml ~/.config/alacritty/alacritty.yml
+
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
 
     sway reload
@@ -40,7 +43,10 @@ then
     unlink ~/.config/wofi/style.css
     ln -s ~/.config/wofi/style-light.css ~/.config/wofi/style.css
 
-    gsettings set org.gnome.desktop.interface gtk-theme 'Materia-compact'
+    unlink ~/.config/alacritty/alacritty.yml
+    ln -s ~/.config/alacritty/alacritty-light.yml ~/.config/alacritty/alacritty.yml
+
+    gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
 
     sway reload
     exit

@@ -1,6 +1,8 @@
 #!/bin/bash
 IFS=$'\n'
 
+# $THEME env variable set via sway config.
+
 # check for env variable, if exists we are the
 # forked shell, get the waiting string from the fifo
 # and call fzf and sway from there.
@@ -11,7 +13,7 @@ if [[ -n $SMS_FIFO ]]; then
     # and pipe to fzf for selection.
     str=$(cat $SMS_FIFO)
     rm -rf $SMS_FIFO
-    selection=$(printf $str | fzf --prompt="$prompt" --color)
+    selection=$(printf $str | fzf --prompt="$prompt" --color=$THEME)
     if [[ -z $selection ]]; then
         exit
     fi

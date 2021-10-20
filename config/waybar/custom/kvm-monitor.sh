@@ -1,8 +1,15 @@
 #!/bin/bash
 
-vms=$(virsh --connect qemu:///system list | grep -e "[0-9]\+")
-n=$(echo -n $vms | grep -c '^')
-tooltip=$(echo -n $vms | grep -e "[0-9]\+" | sed ':a; N; $!ba; s/\n/\\n/g')
+IFS=$'\n'
+
+vms=($(virsh --connect qemu:///system list | grep -e "[0-9]\+"))
+n="${#vms[@]}"
+
+tooltip="Virtual Machines:"
+for vm in "${vms[@]}";
+do
+    tooltip="$tooltip\n$vm"
+done
 
 if [[ n -gt 0 ]] 
 then

@@ -88,7 +88,7 @@
     "layer": "bottom",
     "margin": "19px 0px 10px 0px",
     "position": "left",
-    "modules-center": ["battery", "backlight", "pulseaudio", "network", "custom/grimshot", "custom/wfrecord", "custom/vm", "memory", "cpu", "disk", "temperature", "tray",  ],
+    "modules-center": ["battery", "backlight", "pulseaudio", "network", "custom/grimshot", "custom/wfrecord", "custom/vm", "custom/containers", "memory", "cpu", "disk", "temperature", "tray",  ],
     "clock": {
         "rotate": 90,
         "format": "{:%a %d %b %H:%M}",
@@ -186,6 +186,12 @@
         "return-type": "json",
         "exec": "~/.config/waybar/custom/kvm-monitor.sh",
         "on-click": "~/.config/waybar/custom/kvm.sh"
+    },
+    "custom/containers": {
+        "format": " {}",
+        "interval": 10,
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/containers-monitor.sh",
     },
     "cpu": {
         "interval": 10,
