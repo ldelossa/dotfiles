@@ -15,4 +15,4 @@ then
    echo "{\"class\": \"running\", \"text\": \"$n\", \"tooltip\": \"$tooltip\"}"
    exit
 fi
-echo "{\"class\": \"\",\"text\": \"$n\", \"tooltip\": \"no running containers\"}"
+echo "{\"class\": \"\",\"text\": \" \", \"tooltip\": \"no running containers\"}"

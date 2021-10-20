@@ -151,13 +151,20 @@ window#waybar.bottom {
 
 #tray, #custom-vm, #custom-containers, #custom-wfrecord, #custom-grimshot, #mode, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight {
     margin:             1px 1px 1px 1px;
-    padding:            13px 0px 13px 4px;
+    padding:            13px 0px 13px 2px;
     color:              @white;
     border-left:        3px solid @orange;
 }
 
 #tray {
     border-left:        3px solid @green;
+}
+
+#custom-wfrecord {
+    font-size:          12px;
+}
+#custom-grimshot {
+    font-size:          12px;
 }
 
 #custom-wfrecord.recording {
@@ -230,7 +237,8 @@ window#waybar.bottom {
 }
 
 #battery {
-    border-left:         3px solid @blue;
+    border-left:      3px solid @blue;
+    font-size:          12px;
 }
 #battery.warning {
     border-left:         3px solid @yellow;
