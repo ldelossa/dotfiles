@@ -23,7 +23,7 @@ include ~/.config/sway/theme
 # Appearance
 gaps top 10
 gaps bottom 10
-gaps left 13
+gaps left 10
 gaps right 0
 gaps inner 10
 default_border pixel 2
