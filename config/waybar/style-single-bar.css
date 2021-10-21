@@ -46,7 +46,6 @@ tooltip label {
 
 window#waybar {
     background: @black-trans;
-    border: 2px solid @black-two;
 }
 
 window#waybar.bottom {

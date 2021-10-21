@@ -1,6 +1,6 @@
 [{
     "height": 45,
-    "margin": "10px 10px 0p 73px",
+    "margin": "10px 10px 0p 70px",
     "name": "top",
     "layer": "top",
     "position": "top",
@@ -13,7 +13,7 @@
             "chat":     "",
             "web":      "爵",
             "terminal": "",
-            "ebooks":   "",
+            "ebooks":   "",
             "music":    "",
             "apps":     "",
             "vm":       "",
@@ -234,7 +234,7 @@
         "critical-threshold": 80
     },
     "tray": {
-        "icon-size": 13,
+        "icon-size": 12,
         "spacing": 25,
         "show-passive-items": true
     },

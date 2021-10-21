@@ -235,7 +235,7 @@ window#waybar.bottom {
     border-left:      3px solid @blue;
     font-size:          12px;
 }
-}
+
 #battery.warning {
     border-left:      3px solid @yellow;
 }

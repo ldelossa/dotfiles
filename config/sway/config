@@ -241,6 +241,7 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym Mod4+Shift+e move container to workspace ebooks
     bindsym Mod4+Shift+m move container to workspace music 
     bindsym Mod4+Shift+v move container to workspace vm
+    font-size:          12px;
     bindsym Mod4+Shift+a move container to workspace apps
     bindsym Mod4+Shift+s move container to workspace stats
     bindsym Mod4+Shift+p move container to workspace sound
