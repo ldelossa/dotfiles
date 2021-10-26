@@ -21,7 +21,7 @@
 window {
     margin: 5px;
     border: 2px solid @orange;
-    background-color: @blue-trans;
+    background-color: @black-trans;
 }
 
 #input {

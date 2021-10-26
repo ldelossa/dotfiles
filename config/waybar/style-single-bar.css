@@ -116,29 +116,31 @@ window#waybar.bottom {
 #custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
     color:              @grey-light;
     font-size:          15px;
-    padding:            1px 10px;
+    padding:            7px 0px 7px 0px;
+    border-left:        3px solid @green;
 }
 #custom-spotify-metadata {
-    min-width:          275px;
-    margin:             0px 0px 0px 0px;
+    margin:             0px 0px 0px 1px;
 }
 #custom-spotify-metadata.playing {
     color:              @green;
+    border-left:        3px solid @green;
 }
 #custom-spotify-metadata.paused {
     color:              @yellow;
+    border-left:        3px solid @yellow;
 }
 #custom-spotify-prev {
-    margin:             0px 0px 0px 0px;
+    margin:             0px 0px 0px 1px;
 }
 #custom-spotify-play-pause {
-    margin:             0px 0px 0px 0px;
+    margin:             0px 0px 0px 1px;
 }
 #custom-spotify-next {
-    margin:             0px 0px 0px 0px;
+    margin:             0px 0px 0px 1px;
 }
 #custom-spotify-quit {
-    margin-right:       0px;
+    margin:             0px 0px 0px 1px;
 }
 
 #clock {
@@ -148,11 +150,16 @@ window#waybar.bottom {
     font-weight:        bold;
 }
 
-#tray, #custom-vm, #custom-containers, #custom-wfrecord, #custom-grimshot, #mode, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight {
+#tray, #custom-vm, #custom-containers, #custom-wfrecord, #custom-grimshot, #mode, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
     margin:             1px 1px 1px 1px;
     padding:            13px 0px 13px 2px;
     color:              @white;
     border-left:        3px solid @orange;
+}
+
+#idle_inhibitor.activated {
+    color:              @blue-light;
+    border-left:      3px solid @blue-light;
 }
 
 #tray {

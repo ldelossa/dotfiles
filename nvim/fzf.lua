@@ -34,18 +34,23 @@ require'fzf-lua'.setup {
   },
   keymap = {
       builtin = {
-        toggle_full   = '<F2>',       -- toggle full screen
-        toggle_wrap   = '<F3>',       -- toggle line wrap
-        toggle_hide   = '<F4>',       -- toggle on/off (not yet in use)
-        page_up       = '<C-p>',      -- preview scroll up
-        page_down     = '<C-n>',      -- preview scroll down
-        page_reset    = '<C-h>',   -- reset scroll to orig pos
+        -- neovim `:tmap` mappings for the fzf win
+        ["<F2>"]        = "toggle-fullscreen",
+        -- Only valid with the 'builtin' previewer
+        ["<F3>"]        = "toggle-preview-wrap",
+        ["<F4>"]        = "toggle-preview",
+        -- Rotate preview clockwise/counter-clockwise
+        ["<F5>"]        = "toggle-preview-ccw",
+        ["<F6>"]        = "toggle-preview-cw",
+        ["<C-n>"]       = "preview-page-down",
+        ["<C-p>"]       = "preview-page-up",
+        ["<S-left>"]    = "preview-page-reset",
       },
       fzf = {               -- fzf '--bind=' options
         ["ctrl-P"]          = "toggle-preview",
         ["f3"]              = "toggle-preview-wrap",
-        ["ctrl-d"]          = "preview-page-down",
-        ["ctrl-u"]          = "preview-page-up",
+        ["ctrl-D"]          = "preview-page-down",
+        ["ctrl-U"]          = "preview-page-up",
         ["ctrl-u"]          = "unix-line-discard",
         ["ctrl-f"]          = "half-page-down",
         ["ctrl-b"]          = "half-page-up",

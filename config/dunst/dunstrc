@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "350x100-30+20"
+    geometry = "350x100-10+20"
 
     # Turn on the progess bar
     progress_bar = true
@@ -84,7 +84,7 @@
     frame_width = 3
 
     # Defines color of the frame around the notification window.
-    frame_color = "#aaaaaa"
+    frame_color = "#8e8e8e"
 
     # Define a color for the separator.
     # possible values are:

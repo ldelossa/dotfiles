@@ -1,10 +1,9 @@
 [{
     "height": 45,
-    "margin": "10px 10px 0p 70px",
+    "margin": "10px 10px 0p 19px",
     "name": "top",
-    "layer": "top",
+    "layer": "bottom",
     "position": "top",
-    "modules-center": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-prev", "custom/spotify-play-pause", "custom/spotify-next", "custom/spotify-quit"],
     "modules-right": ["clock", "clock#utc"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
@@ -13,13 +12,13 @@
             "chat":     "",
             "web":      "爵",
             "terminal": "",
-            "ebooks":   "",
+            "ebooks":   "",
             "music":    "",
             "apps":     "",
             "vm":       "",
             "stats":    "",
             "sound":    "蓼",
-            "default":  ""
+            "default":  ""
         },
         "disable-scroll": true,
     },
@@ -32,63 +31,15 @@
         "format": "{:%H:%M UTC}",
         "timezone": "Etc/UTC"
     },
-    "sway/window": {
-        "tooltip": false
-    },
-    "custom/spotify-monitor": {
-        "interval": 30,
-        "exec": "~/.config/waybar/custom/spotify/monitor.sh",
-        "signal": 4
-    },
-    "custom/spotify-metadata": {
-        "format": " {}",
-        "max-length": 30,
-        "interval": "once",
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "sway workspace music",
-        "signal": 5
-    },
-    "custom/spotify-play-pause": {
-        "format": "{}",
-        "interval": "once",
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/spotify/play-pause.sh",
-        "on-click": "~/.config/waybar/custom/spotify/controls.sh",
-        "signal": 5
-    },
-    "custom/spotify-next": {
-        "format": "怜",
-        "return-type": "json",
-        "interval": "once",
-        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "~/.config/waybar/custom/spotify/controls.sh next",
-        "signal": 5
-    },
-    "custom/spotify-prev": {
-        "format": "玲",
-        "interval": "once",
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "~/.config/waybar/custom/spotify/controls.sh prev",
-        "signal": 5
-    },
-    "custom/spotify-quit": {
-        "format": "",
-        "interval": "once",
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "~/.config/waybar/custom/spotify/quit.sh ",
-        "signal": 6
-    }
 },
 {
     "height": 15,
     "name": "bottom",
     "layer": "bottom",
-    "margin": "19px 0px 10px 0px",
+    "margin": "19px 0px 20px 0px",
     "position": "left",
-    "modules-center": ["battery", "backlight", "pulseaudio", "network", "custom/grimshot", "custom/wfrecord", "custom/vm", "custom/containers", "memory", "cpu", "disk", "temperature", "tray",  ],
+    "modules-right": ["battery", "backlight", "pulseaudio", "network", "custom/grimshot", "custom/wfrecord", "custom/vm", "custom/containers", "memory", "cpu", "disk", "temperature", "tray",  "idle_inhibitor"],
+    "modules-center": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-next", "custom/spotify-play-pause", "custom/spotify-prev", "custom/spotify-quit"],
     "clock": {
         "rotate": 90,
         "format": "{:%a %d %b %H:%M}",
@@ -238,4 +189,61 @@
         "spacing": 25,
         "show-passive-items": true
     },
+    "custom/spotify-monitor": {
+        "interval": 30,
+        "exec": "~/.config/waybar/custom/spotify/monitor.sh",
+        "signal": 4
+    },
+    "custom/spotify-metadata": {
+        "format": " {}",
+        "max-length": 500,
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "sway workspace music",
+        "rotate": 90,
+        "signal": 5
+    },
+    "custom/spotify-play-pause": {
+        "format": "{}",
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/play-pause.sh",
+        "on-click": "~/.config/waybar/custom/spotify/controls.sh",
+        "signal": 5
+    },
+    "custom/spotify-next": {
+        "format": "怜",
+        "return-type": "json",
+        "interval": "once",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "~/.config/waybar/custom/spotify/controls.sh next",
+        "rotate": 90,
+        "signal": 5
+    },
+    "custom/spotify-prev": {
+        "format": "玲",
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "~/.config/waybar/custom/spotify/controls.sh prev",
+        "rotate": 90,
+        "signal": 5
+    },
+    "custom/spotify-quit": {
+        "format": "",
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "~/.config/waybar/custom/spotify/quit.sh ",
+        "rotate": 90,
+        "signal": 6
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    }
 }]
