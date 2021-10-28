@@ -1,0 +1,1 @@
+require('kommentary.config')

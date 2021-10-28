@@ -174,8 +174,8 @@ window#waybar.bottom {
 }
 
 #custom-wfrecord.recording {
-    color:              @blue-light;
-    border-left:      3px solid @blue-light;
+    color:              @green;
+    border-left:      3px solid @green;
 }
 
 #custom-vm.running {

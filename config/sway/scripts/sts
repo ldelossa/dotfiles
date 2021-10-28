@@ -19,6 +19,7 @@ if [[ -n $fifo ]]; then
     fi
 
     swaymsg [con_id="$id"] focus
+    notify-send -u low "moved to window $selection"
     exit
 fi
 

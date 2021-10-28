@@ -74,7 +74,6 @@ require'fzf-lua'.setup {
   fzf_args            = vim.env.FZF_DEFAULT_OPTS, -- adv: fzf extra args, empty unless adv
   preview_border      = 'border',       -- border|noborder
   preview_wrap        = 'nowrap',       -- wrap|nowrap
-  preview_opts        = 'nohidden',     -- hidden|nohidden
   preview_vertical    = 'down:50%',     -- up|down:size
   preview_horizontal  = 'right:60%',    -- right|left:size
   preview_layout      = 'vertical',         -- horizontal|vertical|flex

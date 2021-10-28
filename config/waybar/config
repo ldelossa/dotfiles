@@ -1,5 +1,5 @@
 [{
-    "height": 45,
+    "height": 40,
     "margin": "10px 10px 0p 19px",
     "name": "top",
     "layer": "bottom",
@@ -172,7 +172,7 @@
         "format": "",
         "format-alt-click": "click-right",
         "tooltip-format": "{used} used\n{free} free\n{total} total",
-        "on-click": "~/.config/waybar/custom/stats.sh",
+        "on-click": "~/.config/waybar/custom/disk_stats.sh",
         "path": "/",
         "states": {
             "low": 0,

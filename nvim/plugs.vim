@@ -22,7 +22,7 @@ if has('nvim')
         Plug 'kyazdani42/nvim-web-devicons'
         Plug 'lewis6991/gitsigns.nvim'
         Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-        "Plug 'luukvbaal/nnn.nvim'
+        Plug 'b3nj5m1n/kommentary'
     call plug#end()
     source $HOME/.config/nvim/go-nvim.lua
     source $HOME/.config/nvim/nvim-treesitter.lua
@@ -41,7 +41,7 @@ if has('nvim')
     source $HOME/.config/nvim/statusline.lua
     source $HOME/.config/nvim/gitsigns.lua
     source $HOME/.config/nvim/nvim-treesitter-textobjects.lua
-    "source $HOME/.config/nvim/nnn-nvim.lua
+    source $HOME/.config/nvim/kommentary.lua
 else 
     call plug#begin('~/.local/share/vim/plugged')
         Plug 'prabirshrestha/vim-lsp'

@@ -30,6 +30,7 @@ require'nvim-treesitter.configs'.setup {
         ["]]"] = "@class.outer",
         ["]p"] = "@parameter.outer",
         ["]f"] = "@call.outer",
+        ["]b"] = "@block.outer",
       },
       goto_next_end = {
         ["]t"] = "@function.outer",
@@ -40,6 +41,7 @@ require'nvim-treesitter.configs'.setup {
         ["[["] = "@class.outer",
         ["[p"] = "@parameter.outer",
         ["[f"] = "@call.outer",
+        ["[b"] = "@block.outer",
       },
       goto_previous_end = {
         ["[t"] = "@function.outer",

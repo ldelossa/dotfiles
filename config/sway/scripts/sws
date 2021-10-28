@@ -18,6 +18,7 @@ if [[ -n $SWS_FIFO ]]; then
     fi
 
     swaymsg workspace $selection
+    notify-send -u low "moved to workspace: $selection"
 
     exit
 fi

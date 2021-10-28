@@ -210,6 +210,8 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym Mod4+Shift+$down  move worksapce to down
     bindsym Mod4+Shift+$up    move workspace to up
     bindsym Mod4+Shift+$right move workspace to right
+    # Move a workspace to focused monitor via fzf
+    bindsym $mod+o exec     'THEME=$theme /home/louis/.config/sway/scripts/swm'
 #
 # Workspaces:
 #

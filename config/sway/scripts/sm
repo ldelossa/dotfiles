@@ -1,3 +1,4 @@
 #!/bin/bash
 
 swaymsg mark $1
+notify-send "set window mark to $1"

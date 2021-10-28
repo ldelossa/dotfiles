@@ -6,36 +6,38 @@ IFS=$'\n'
 # check for env variable, if exists we are the
 # forked shell, get the waiting string from the fifo
 # and call fzf and sway from there.
-prompt="Marks> "
-if [[ -n $SMS_FIFO ]]; then
-    # we are in the forked shell, read from
-    # the provided FIFO and obtain the marks str
-    # and pipe to fzf for selection.
-    str=$(cat $SMS_FIFO)
-    rm -rf $SMS_FIFO
+prompt="Workspace> "
+if [[ -n $SWM_FIFO ]]; then
+    str=$(cat $SWM_FIFO)
+    # rm the fifo, we are done with it
+    rm -rf $SWM_FIFO
+
     selection=$(printf $str | fzf --prompt="$prompt" --color=$THEME)
     if [[ -z $selection ]]; then
         exit
     fi
-    swaymsg "[con_mark=\b$selection\b]" focus
-    notify-send -u low "moved to marked window $selection"
+
+    focused_output=$(swaymsg -r -t get_outputs  | jq -r '.[] | select( .focused == true ) | .name')
+    swaymsg workspace $selection
+    swaymsg move workspace to $focused_output
+    notify-send -u low "moved workspace: $selection to output: $focused_output"
     exit
 fi
 
 # build the selection string we will ultimate
 # pipe to fzf, take note of largest string to set
 # columns and number of lines to set lines for alacritty.
-columns=1
+columns=0
 lines=0
 str=""
-marks=($(swaymsg -t get_marks | jq -r '.[]'))
-for mark in "${marks[@]}"; do
-    if [[ ${#mark} -gt $columns ]];
+workspaces=($(swaymsg -t get_workspaces -r | jq -r -c '.[] | .name'))
+for workspace in "${workspaces[@]}"; do
+    if [[ ${#workspace} -gt $columns ]];
     then
-        columns=${#mark}
+        columns=${#workspace}
     fi
     lines=$((lines+1))
-    str="$str$mark\n"
+    str="$str$workspace\n"
 done
 
 # add some padding to the terminal for 
@@ -51,14 +53,14 @@ fi
 # create fifo and launch a terminal with the title "fzf-switcher"
 # run the script in the new terminal which will see the env vars
 # and execute the first if block in this script.
-fifo=/tmp/sts-$(date +%s)
+fifo=/tmp/sws-$(date +%s)
 mkfifo $fifo
-SMS_FIFO=$fifo zsh -c "alacritty \
+SWM_FIFO=$fifo zsh -c "alacritty \
     -o window.dimensions.columns=$columns \
     -o window.dimensions.lines=$lines \
     -o font.size=16.0 \
     -o window.padding.x=20 \
     -o window.padding.y=20 \
     --title "fzf-switcher" \
-    -e /home/louis/git/dotfiles/config/sway/scripts/sms"&
+    -e /home/louis/git/dotfiles/config/sway/scripts/swm"&
 echo -n $str > $fifo
