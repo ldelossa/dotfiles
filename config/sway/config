@@ -146,11 +146,11 @@ input "1133:16495:Logitech_MX_Ergo" {
 #
     # launchers and switchers
     bindsym Mod4+d exec     "wofi --show drun"
-    bindsym $mod+w exec     'THEME=$theme /home/louis/.config/sway/scripts/sws'
-    bindsym $mod+m exec     'THEME=$theme /home/louis/.config/sway/scripts/sms'
-    bindsym $mod+c exec     'THEME=$theme /home/louis/.config/sway/scripts/sts'
-    bindsym Mod4+Tab exec   'THEME=$theme /home/louis/.config/sway/scripts/sts'
-    bindsym Mod4+Space exec 'THEME=$theme /home/louis/.config/sway/scripts/sts'
+    bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-switcher'
+    bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-marks-switcher'
+    bindsym $mod+c exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
+    bindsym Mod4+Tab exec   'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
+    bindsym Mod4+Space exec 'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
 
     # Start a terminal
     bindsym $mod+Return exec $term
@@ -211,14 +211,14 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym Mod4+Shift+$up    move workspace to up
     bindsym Mod4+Shift+$right move workspace to right
     # Move a workspace to focused monitor via fzf
-    bindsym $mod+o exec     'THEME=$theme /home/louis/.config/sway/scripts/swm'
+    bindsym $mod+o exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-move'
 #
 # Workspaces:
 #
     # Rename workspace
-    bindsym $mod+r exec '/home/louis/.config/sway/scripts/sr'
+    bindsym $mod+r exec '~/git/sway/sway-fzfify/sway-rename'
     # Create and focus new workspace 
-    bindsym $mod+n exec '/home/louis/.config/sway/scripts/snw'
+    bindsym $mod+n exec '~/git/sway/sway-fzfify/sway-new-workspace'
 
     # Switch to workspace
     bindsym Mod4+t workspace  terminal
@@ -271,7 +271,6 @@ input "1133:16495:Logitech_MX_Ergo" {
 
     # 1password should always float
     for_window [class="1Password"]      floating enable
-
     for_window [title="fzf-switcher"]   floating enable
 
 #

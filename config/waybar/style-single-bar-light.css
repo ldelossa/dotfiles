@@ -153,6 +153,7 @@ window#waybar.bottom {
     padding:            13px 0px 13px 2px;
     color:              @white;
     border-left:        3px solid @orange;
+    font-size:          20px;
 }
 
 #idle_inhibitor.activated {
@@ -165,10 +166,10 @@ window#waybar.bottom {
 }
 
 #custom-wfrecord {
-    font-size:          12px;
+    font-size:          15px;
 }
 #custom-grimshot {
-    font-size:          12px;
+    font-size:          15px;
 }
 
 #custom-wfrecord.recording {
@@ -242,7 +243,7 @@ window#waybar.bottom {
 
 #battery {
     border-left:      3px solid @blue;
-    font-size:          12px;
+    font-size:          15px;
 }
 
 #battery.warning {

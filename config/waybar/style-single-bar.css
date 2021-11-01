@@ -115,9 +115,9 @@ window#waybar.bottom {
 
 #custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
     color:              @grey-light;
-    font-size:          15px;
     padding:            7px 0px 7px 0px;
     border-left:        3px solid @green;
+    font-size:          20px;
 }
 #custom-spotify-metadata {
     margin:             0px 0px 0px 1px;
@@ -155,6 +155,7 @@ window#waybar.bottom {
     padding:            13px 0px 13px 2px;
     color:              @white;
     border-left:        3px solid @orange;
+    font-size:          20px;
 }
 
 #idle_inhibitor.activated {
@@ -167,10 +168,10 @@ window#waybar.bottom {
 }
 
 #custom-wfrecord {
-    font-size:          12px;
+    font-size:          15px;
 }
 #custom-grimshot {
-    font-size:          12px;
+    font-size:          15px;
 }
 
 #custom-wfrecord.recording {
@@ -244,7 +245,7 @@ window#waybar.bottom {
 
 #battery {
     border-left:      3px solid @blue;
-    font-size:          12px;
+    font-size:          15px;
 }
 #battery.warning {
     border-left:         3px solid @yellow;

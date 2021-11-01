@@ -132,7 +132,7 @@
         "signal": 8
     },
     "custom/vm": {
-        "format": "  穀 {}",
+        "format": "   {}",
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/kvm-monitor.sh",

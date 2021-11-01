@@ -59,6 +59,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<C-n>', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap("n", "<space>o", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
+  buf_set_keymap("n", "<space>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
+  buf_set_keymap("n", "<space>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
 
   vim.api.nvim_command('set shortmess+=c')
   vim.api.nvim_command('sign define DiagnosticSignError text=🄴  texthl=Error linehl= numhl=')
@@ -69,7 +71,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "dartls", "clangd", "rust_analyzer", "yamlls", "bashls", "vimls" }
+local servers = { "dartls", "clangd", "rust_analyzer", "yamlls", "bashls", "vimls", "terraformls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { 
       on_attach = on_attach, 
