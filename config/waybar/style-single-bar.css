@@ -168,10 +168,10 @@ window#waybar.bottom {
 }
 
 #custom-wfrecord {
-    font-size:          15px;
+    font-size:          13px;
 }
 #custom-grimshot {
-    font-size:          15px;
+    font-size:          13px;
 }
 
 #custom-wfrecord.recording {
@@ -179,6 +179,9 @@ window#waybar.bottom {
     border-left:      3px solid @green;
 }
 
+#custom-vm {
+    font-size:          22px;
+}
 #custom-vm.running {
     color:              @blue-light;
     border-left:      3px solid @blue-light;
@@ -238,14 +241,14 @@ window#waybar.bottom {
 
 #network {
     border-left:         3px solid @blue;
+    font-size:           18px;
 }
 #network.disconnected {
     border-left:         3px solid @red;
 }
 
 #battery {
-    border-left:      3px solid @blue;
-    font-size:          15px;
+    font-size:           14px;
 }
 #battery.warning {
     border-left:         3px solid @yellow;
@@ -257,6 +260,9 @@ window#waybar.bottom {
     border-left:         3px solid @green;
 }
 
+#backlight {
+    font-size:           15px;
+}
 #backlight.low {
     border-left:         3px solid @blue;
 }
@@ -267,6 +273,9 @@ window#waybar.bottom {
     border-left:         3px solid @red;
 }
 
+#pulseaudio {
+    font-size:           15px;
+}
 #pulseaudio.low {
     border-left:         3px solid @blue;
 }
