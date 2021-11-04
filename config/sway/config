@@ -148,7 +148,6 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym Mod4+d exec     "wofi --show drun"
     bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-switcher'
     bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-marks-switcher'
-    bindsym $mod+c exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
     bindsym Mod4+Tab exec   'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
     bindsym Mod4+Space exec 'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
 
@@ -204,6 +203,8 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+    # Move window to the desired workspace and switch to it via fzf
+    bindsym $mod+c exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-window-move'
 
     # Move the focused workspace
     bindsym Mod4+Shift+$left  move workspace to left
@@ -219,6 +220,8 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym $mod+r exec '~/git/sway/sway-fzfify/sway-rename'
     # Create and focus new workspace 
     bindsym $mod+n exec '~/git/sway/sway-fzfify/sway-new-workspace'
+    # Set mark on window
+    bindsym $mod+Shift+m exec '~/git/sway/sway-fzfify/sway-mark'
 
     # Switch to workspace
     bindsym Mod4+t workspace  terminal
