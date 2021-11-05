@@ -1,9 +1,17 @@
 local gps = require("nvim-gps")
 
-local colors = { 
-    bg = '#262626',
-    fg = "#e4e4e4"
-}
+local colors = {}
+if vim.g.colors_name == "vimdark" then
+    colors = { 
+        bg = '#262626',
+        fg = "#e4e4e4"
+    }
+else 
+    colors = { 
+        fg = '#262626',
+        bg = "#e4e4e4"
+    }
+end
 
 local vi_mode_utils = require('feline.providers.vi_mode')
 
@@ -124,7 +132,7 @@ comp.active[2] = {
     {
         provider = 'git_branch',
         hl = {
-            fg = 'white',
+            fg = colors.fg,
             bg = colors.bg,
             style = 'bold'
         },
@@ -177,7 +185,12 @@ comp.active[2] = {
     {
         provider = 'scroll_bar',
         short_provider = '',
-        hl = "PmenuSel",
+        left_sep = '  ',
+        right_sep = ' ',
+        hl = {
+            fg = colors.fg,
+            bg = colors.bg,
+        },
     }
 }
 
