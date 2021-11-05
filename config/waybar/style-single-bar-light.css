@@ -111,13 +111,12 @@ window#waybar.bottom {
 
 #custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
     color:              @white;
-    font-size:          15px;
     padding:            7px 0px 7px 0px;
     border-left:        3px solid @green;
+    font-size:          20px;
 }
 #custom-spotify-metadata {
     margin:             0px 0px 0px 1px;
-    min-height:         322px;
 }
 #custom-spotify-metadata.playing {
     color:              @green;
@@ -138,7 +137,6 @@ window#waybar.bottom {
 }
 #custom-spotify-quit {
     margin:             0px 0px 0px 1px;
-    margin-bottom:       0px;
 }
 
 #clock {

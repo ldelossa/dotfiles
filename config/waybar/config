@@ -185,7 +185,7 @@
         "critical-threshold": 80
     },
     "tray": {
-        "icon-size": 12,
+        "icon-size": 20,
         "spacing": 25,
         "show-passive-items": true
     },

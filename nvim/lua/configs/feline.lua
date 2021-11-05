@@ -8,7 +8,7 @@ if vim.g.colors_name == "vimdark" then
     }
 else 
     colors = { 
-        fg = '#262626',
+        fg = '#3a3a3a',
         bg = "#e4e4e4"
     }
 end
@@ -49,10 +49,14 @@ comp.active[1] = {
                 type = 'base-only'
             }
         },
-        hl = "PmenuSel",
+        hl = {
+            fg = 'bg',
+            bg = 'fg'
+        },
         left_sep = {
             ' ', 
-            {str = ' ', hl = "PmenuSel"}
+            {str = ' ', 
+            hl = { fg = 'bg', bg = 'fg'}}
         },
         right_sep = {'slant_right', ' '},
     },
@@ -197,18 +201,13 @@ comp.active[2] = {
 comp.inactive[1] = {
     {
         provider = 'file_info',
-        hl = "PmenuSel",
+        hl = { fg = 'bg', bg = 'fg'},
         left_sep = {
-            str = ' ',
-            hl = "PmenuSel"
+            ' ', 
+            {str = ' ', 
+            hl = { fg = 'bg', bg = 'fg'}}
         },
-        right_sep = {
-            {
-                str = ' ',
-                hl = "PmenuSel"
-            },
-            'slant_right'
-        }
+        right_sep = {'slant_right', ' '},
 
     },
     -- Empty component to fix the highlight till the end of the statusline
