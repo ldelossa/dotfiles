@@ -126,5 +126,5 @@ endfunc
 
 " source modular configs
 source $HOME/.config/nvim/plugs.vim
-source $HOME/.config/nvim/quickfix.vim
-source $HOME/.config/nvim/copycmds.vim
+source $HOME/.config/nvim/lua/configs/quickfix.vim
+source $HOME/.config/nvim/lua/configs/copycmds.vim

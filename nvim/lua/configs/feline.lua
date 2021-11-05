@@ -1,3 +1,5 @@
+local gps = require("nvim-gps")
+
 local colors = { 
     bg = '#262626',
     fg = "#e4e4e4"
@@ -23,16 +25,28 @@ comp.active[1] = {
                 style = 'bold'
             }
         end,
-        right_sep = ' '
+        right_sep = ' ',
+        left_sep = ' '
     },
     {
-        provider = 'file_info',
+        provider = {
+            name ='file_info',
+            opts = {
+                type = 'relative'
+            }
+        },
+        short_provider = {
+            name ='file_info',
+            opts = {
+                type = 'base-only'
+            }
+        },
         hl = "PmenuSel",
         left_sep = {
             ' ', 
             {str = ' ', hl = "PmenuSel"}
         },
-        right_sep = {'slant_right', ' '}
+        right_sep = {'slant_right', ' '},
     },
     {
         provider = 'position',
@@ -49,6 +63,30 @@ comp.active[1] = {
     },
     {
         provider = 'lsp_client_names',
+        short_provider = '',
+        right_sep = {
+            ' ',
+            {
+                str = 'slant_left_2_thin',
+                hl = {
+                    fg = 'fg',
+                    bg = 'bg'
+                }
+            }
+        },
+        left_sep = {
+            ' ', 
+            {str = ' ', hl = {fg = 'fg', bg = 'bg'}}
+        },
+    },
+    {
+        provider = function()
+		    return gps.get_location()
+	        end,
+	    enabled = function()
+		    return gps.is_available()
+	        end,
+        short_provider = '',
         right_sep = {
             ' ',
             {
@@ -90,6 +128,7 @@ comp.active[2] = {
             bg = colors.bg,
             style = 'bold'
         },
+        short_provider = '',
         right_sep = {
             str = ' ',
             hl = {
@@ -126,16 +165,18 @@ comp.active[2] = {
             }
         }
     },
-    {
+    --[[ {
         provider = 'line_percentage',
+        short_provider = '',
         hl = {
             style = 'bold'
         },
         left_sep = '  ',
         right_sep = ' '
-    },
+    }, ]]
     {
         provider = 'scroll_bar',
+        short_provider = '',
         hl = "PmenuSel",
     }
 }

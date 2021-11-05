@@ -10,7 +10,6 @@ if has('nvim')
         Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-lua/popup.nvim'
         Plug 'akinsho/flutter-tools.nvim'
-        "Plug 'mfussenegger/nvim-lint'
         Plug 'ruanyl/vim-gh-line'
         Plug 'ibhagwan/fzf-lua'
         Plug 'vijaymarupudi/nvim-fzf'
@@ -25,25 +24,23 @@ if has('nvim')
         Plug 'b3nj5m1n/kommentary'
         Plug 'famiu/feline.nvim'
     call plug#end()
-    source $HOME/.config/nvim/go-nvim.lua
-    source $HOME/.config/nvim/nvim-treesitter.lua
-    source $HOME/.config/nvim/nvim-lsp.lua
-    source $HOME/.config/nvim/vimdark.vim
-    source $HOME/.config/nvim/fzf.lua
-    source $HOME/.config/nvim/nnn.vim
-    source $HOME/.config/nvim/nvim-autopairs.lua
-    source $HOME/.config/nvim/flutter-tools.lua
-    "source $HOME/.config/nvim/nvim-lint.lua
-    source $HOME/.config/nvim/nvim-echo-diagnostics.lua
-    source $HOME/.config/nvim/lspkind.lua
-    source $HOME/.config/nvim/indent-blankline.lua
-    source $HOME/.config/nvim/nvim-gps.lua
-    source $HOME/.config/nvim/nvim-web-devicons.lua
-    "source $HOME/.config/nvim/statusline.lua
-    source $HOME/.config/nvim/gitsigns.lua
-    source $HOME/.config/nvim/nvim-treesitter-textobjects.lua
-    source $HOME/.config/nvim/kommentary.lua
-    source $HOME/.config/nvim/feline.lua
+    lua require('configs.go-nvim')
+    lua require('configs.nvim-lsp')
+    lua require('configs.fzf')
+    lua require('configs.nvim-autopairs')
+    lua require('configs.flutter-tools')
+    lua require('configs.nvim-echo-diagnostics')
+    lua require('configs.lspkind')
+    lua require('configs.indent-blankline')
+    lua require('configs.nvim-gps')
+    lua require('configs.nvim-web-devicons')
+    lua require('configs.gitsigns')
+    lua require('configs.nvim-treesitter-textobjects')
+    lua require('configs.kommentary')
+    lua require('configs.feline')
+    lua require('configs.nvim-treesitter')
+    source $HOME/.config/nvim/lua/configs/vimdark.vim
+    source $HOME/.config/nvim/lua/configs/nnn.vim
 else 
     call plug#begin('~/.local/share/vim/plugged')
         Plug 'prabirshrestha/vim-lsp'
