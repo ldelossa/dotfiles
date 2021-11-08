@@ -4,12 +4,20 @@ local colors = {}
 if vim.g.colors_name == "vimdark" then
     colors = { 
         bg = '#262626',
-        fg = "#e4e4e4"
+        fg = "#e4e4e4",
+        blue = '#0087af',
+        yellow = '#ffff5f',
+        green = '#87af87',
+        grey = '#e4e4e4'
     }
 else 
     colors = { 
         fg = '#3a3a3a',
-        bg = "#e4e4e4"
+        bg = "#e4e4e4",
+        blue = '#005f87',
+        yellow = '#ffff5f',
+        green = '#87af87',
+        grey = '#4a4a4a'
     }
 end
 
@@ -51,12 +59,12 @@ comp.active[1] = {
         },
         hl = {
             fg = 'bg',
-            bg = 'fg'
+            bg = colors.grey 
         },
         left_sep = {
             ' ', 
             {str = ' ', 
-            hl = { fg = 'bg', bg = 'fg'}}
+            hl = { fg = 'bg', bg = colors.grey}}
         },
         right_sep = {'slant_right', ' '},
     },
@@ -120,15 +128,15 @@ comp.active[1] = {
     },
     {
         provider = 'diagnostic_warnings',
-        hl = { fg = 'yellow' }
+        hl = { fg = colors.blue }
     },
     {
         provider = 'diagnostic_hints',
-        hl = { fg = 'cyan' }
+        hl = { fg = colors.blue }
     },
     {
         provider = 'diagnostic_info',
-        hl = { fg = 'skyblue' }
+        hl = { fg = colors.blue }
     }
 }
 
@@ -192,7 +200,7 @@ comp.active[2] = {
         left_sep = '  ',
         right_sep = ' ',
         hl = {
-            fg = colors.fg,
+            fg = colors.blue,
             bg = colors.bg,
         },
     }

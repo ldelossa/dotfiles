@@ -150,7 +150,7 @@ window#waybar.bottom {
     margin:             1px 1px 1px 1px;
     padding:            13px 0px 13px 2px;
     color:              @white;
-    border-left:        3px solid @orange;
+    border-left:        3px solid @black;
     font-size:          20px;
 }
 
@@ -245,6 +245,7 @@ window#waybar.bottom {
 
 #battery {
     font-size:           14px;
+    border-left:         3px solid @green;
 }
 #battery.warning {
     border-left:      3px solid @yellow;

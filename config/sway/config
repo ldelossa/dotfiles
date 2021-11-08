@@ -346,3 +346,6 @@ bar {
 
 include /etc/sway/config.d/*
   
+
+# enable wlr portal
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
