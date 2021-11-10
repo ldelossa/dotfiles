@@ -26,3 +26,5 @@ source ~/zsh.d/ssh.sh
 source ~/zsh.d/tilix.sh
 # sway aliases and configs
 source ~/zsh.d/sway.sh
+# systemd aliases and configs
+source ~/zsh.d/systemd.sh

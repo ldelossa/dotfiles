@@ -19,7 +19,11 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
     }
 )
 
--- Use an on_attach function to only map the following keys 
+vim.lsp.handlers['callHierarchy/incomingCalls'] = vim.lsp.with(
+            require('calltree.calltree').call_hierarchy_handler, {}
+)
+
+-- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -27,12 +31,6 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local opts = { silent=true }
-
-  -- pass client to aerial if being used
-  local status, _ = pcall(require, 'aerial')
-  if status then
-      require('aerial').on_attach(client)
-  end
 
   -- only define these mappings if fzf-lua is not being used
   local status, _ = pcall(require, 'fzf-lua')
@@ -65,44 +63,29 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_command('set shortmess+=c')
   vim.api.nvim_command('sign define DiagnosticSignError text=🄴  texthl=Error linehl= numhl=')
   vim.api.nvim_command('sign define DiagnosticSignWarn text=🅆  texthl=Warning linehl= numhl=')
-  vim.api.nvim_command('sign define DiagnosticSignInfo text=🄸  texthl=DiagnosticSignInfo linehl= numhl=')
-  vim.api.nvim_command('sign define DiagnosticSignHint text=🄷  texthl=DiagnosticSignHint linehl= numhl=')
+  vim.api.nvim_command('sign define DiagnosticSignInfo text=🄸  texthl=Warning linehl= numhl=')
+  vim.api.nvim_command('sign define DiagnosticSignHint text=🄷  texthl=Warning linehl= numhl=')
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { "dartls", "clangd", "rust_analyzer", "yamlls", "bashls", "vimls", "terraformls" }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { 
-      on_attach = on_attach, 
+  nvim_lsp[lsp].setup {
+      on_attach = on_attach,
       flags = {
           debounce_text_changes = 150,
       },
   }
 end
 
--- this is necessary since vim ships with its own c omnifunc and applies it 
+-- this is necessary since vim ships with its own c omnifunc and applies it
 -- it on FileType c
 vim.api.nvim_command('autocmd FileType c set omnifunc=v:lua.vim.lsp.omnifunc')
 vim.api.nvim_command('autocmd FileType cpp set omnifunc=v:lua.vim.lsp.omnifunc')
 
--- nvim_lsp["ccls"].setup {
---   on_attach = on_attach, 
---   flags = {
---       debounce_text_changes = 150,
---   },
---   init_options = {
---       clang = {
---           extraArgs = { "--include-directory=/usr/lib64/clang/12/include", "--include-directory=/usr/local/lib"  };
---       };
---       cache = {
---         directory = "/home/louis/.cache/ccls"
---       };
---   },
--- }
-
 nvim_lsp["gopls"].setup {
-  on_attach = on_attach, 
+  on_attach = on_attach,
   filetypes = {"go", "gomod"},
   cmd = {
     "gopls", -- share the gopls instance if there is one already
@@ -130,4 +113,32 @@ nvim_lsp["gopls"].setup {
        symbolMatcher = "fuzzy"
      },
    },
+
+nvim_lsp["sumneko_lua"].setup {
+    on_attach = on_attach,
+    cmd = {"/home/louis/git/cpp/lua-language-server/bin/Linux/lua-language-server"},
+    filetypes = { "lua" },
+    settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            path = runtime_path,
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim'},
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+}
 }

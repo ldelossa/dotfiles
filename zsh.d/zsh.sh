@@ -9,7 +9,7 @@ zstyle :prompt:pure:git:stash color 031
 zstyle :prompt:pure:git:dirty color 031
 zstyle :prompt:pure:git:stash color 031
 
-PURE_PROMPT_SYMBOL=" "
+PURE_PROMPT_SYMBOL=" "
 PURE_PROMPT_VICMD_SYMBOL=" "
 
 # read from compinit

@@ -4,6 +4,9 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 font Cousine Medium 10
 
 ### Variables
@@ -346,6 +349,3 @@ bar {
 
 include /etc/sway/config.d/*
   
-
-# enable wlr portal
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

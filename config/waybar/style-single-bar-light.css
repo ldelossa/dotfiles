@@ -150,7 +150,7 @@ window#waybar.bottom {
     margin:             1px 1px 1px 1px;
     padding:            13px 0px 13px 2px;
     color:              @white;
-    border-left:        3px solid @black;
+    border-left:        3px solid @grey-light;
     font-size:          20px;
 }
 
