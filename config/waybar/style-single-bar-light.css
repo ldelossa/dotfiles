@@ -35,7 +35,7 @@
 tooltip {
   font-family:      "FreeMono";
   font-size:        20px;
-  background:       @black-trans;
+  background:       @grey;
   border:           1px solid @yellow;
 }
 tooltip label {
@@ -154,6 +154,9 @@ window#waybar.bottom {
     font-size:          20px;
 }
 
+#idle_inhibitor {
+    font-size:          18px;
+}
 #idle_inhibitor.activated {
     color:              @blue-light;
     border-left:      3px solid @blue-light;
@@ -164,10 +167,10 @@ window#waybar.bottom {
 }
 
 #custom-wfrecord {
-    font-size:          13px;
+    font-size:          14px;
 }
 #custom-grimshot {
-    font-size:          13px;
+    font-size:          14px;
 }
 
 #custom-wfrecord.recording {
@@ -215,7 +218,7 @@ window#waybar.bottom {
 }
 
 #disk {
-    font-weight:        bold;
+    font-size:          18px;
 }
 #disk.low {
     border-left:      3px solid @blue;
@@ -244,7 +247,7 @@ window#waybar.bottom {
 }
 
 #battery {
-    font-size:           14px;
+    font-size:           12px;
     border-left:         3px solid @green;
 }
 #battery.warning {

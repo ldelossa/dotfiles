@@ -128,7 +128,7 @@ comp.active[1] = {
     },
     {
         provider = 'diagnostic_warnings',
-        hl = { fg = colors.blue }
+        hl = { fg = 'orange' }
     },
     {
         provider = 'diagnostic_hints',
@@ -160,7 +160,7 @@ comp.active[2] = {
     {
         provider = 'git_diff_added',
         hl = {
-            fg = 'green',
+            fg = colors.green,
             bg = colors.bg,
         }
     },
@@ -185,15 +185,6 @@ comp.active[2] = {
             }
         }
     },
-    --[[ {
-        provider = 'line_percentage',
-        short_provider = '',
-        hl = {
-            style = 'bold'
-        },
-        left_sep = '  ',
-        right_sep = ' '
-    }, ]]
     {
         provider = 'scroll_bar',
         short_provider = '',

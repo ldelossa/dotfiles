@@ -58,7 +58,6 @@ output DP-2  bg  $wallpaper stretch
 output DP-1  bg  $wallpaper stretch
 output eDP-1 bg  $wallpaper stretch
 
-
 output eDP-1 pos 0 0 res 1920x1200
 
 output DP-2 pos 1920 0 res 2560x1440
@@ -187,6 +186,9 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym XF86MonBrightnessDown exec brightnessctl set 5%-    
     bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ 
 
+    bindsym $mod+Shift+s exec grimshot --notify save output - | swappy -f -
+    bindsym $mod+Shift+a exec grimshot --notify save area - | swappy -f -
+    bindsym $mod+Shift+w exec grimshot --notify save window - | swappy -f -
 #
 # Moving around:
 #

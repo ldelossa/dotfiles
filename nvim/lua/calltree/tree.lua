@@ -1,7 +1,7 @@
 M = {}
 
 -- Node defines a node in our calltree
--- Each node describes a source code symbol
+-- Each Node describes a source code symbol
 -- capable of have it's incoming or outgoing
 -- call hierarchy resolved via an LSP client.
 M.Node = {}
@@ -28,8 +28,11 @@ end
 
 -- eq perfoms a deepequal operation
 -- for two Nodes.
+--
+-- because this is a deep equal it confirms
+-- all children are equal between the provided
+-- roots as well.
 function M.Node.eq(a, b)
-    print("here")
     if a.name ~= b.name then
         return false
     end
@@ -55,16 +58,16 @@ end
 -- a Node in the tree exists.
 --
 -- this data structure looks as follows:
+-- 
 -- {
---   {
---      0 = {Node},
---      1 = {Node}, {Node},
---      2 = {Node}, {Node}, {Node},
---      etc...
---   }
+--    0 = {Node},
+--    1 = {Node}, {Node},
+--    2 = {Node}, {Node}, {Node},
+--    etc...
 -- }
+-- 
 -- Where the integers represent the depth of the tree
--- each Node exists.
+-- each Node in the associated array exists.
 M.depth_table = {}
 
 -- root_node is the root of our call tree
@@ -103,7 +106,7 @@ function M.add_node(depth, parent, children)
         return
     end
 
-    -- search depth_table for parent symbol
+    -- recursive search for parent node
     local pNode = nil
     for _, node in pairs(M.depth_table[depth]) do
         if node.name == parent then
@@ -125,7 +128,59 @@ function M.add_node(depth, parent, children)
     end
 end
 
-function M.remove_node(depth, parent)
+local function _recursive_dpt_compute(node)
+    local depth = node.depth
+    if M.depth_table[depth] == nil then
+        M.depth_table[depth] = {}
+    end
+    table.insert(M.depth_table[depth], node)
+    -- recurse
+    for _, child in ipairs(node.children) do
+        _recursive_dpt_compute(child)
+    end
+end
+
+local function _refresh_dpt()
+    M.depth_table = {}
+    _recursive_dpt_compute(M.root_node)
+end
+
+-- remove node will recursive delete any node
+-- in the tree which represent the provided symbols.
+--
+-- deleting a node will knock out it's entire subtree.
+--
+-- symbols : string array - a list of symbols to delete from
+-- the call tree.
+function M.remove_node(symbols)
+    local function recursive_delete(node)
+        local tree_delete_indexes = {}
+        for i, child in ipairs(node.children) do
+            -- first check if this node matches
+            -- any of the symbols to delete.
+            --
+            -- if so, mark their position, we'll
+            -- remove them from the children array
+            -- on the way back up the tree.
+            for _, symbol in ipairs(symbols) do
+                if child.name == symbol then
+                    table.insert(tree_delete_indexes, i)
+                    goto skip_recursion
+                end
+            end
+            -- this node will not be deleted so
+            -- recurse to check it's children
+            recursive_delete(child)
+            ::skip_recursion::
+        end
+        for _, tree_delete_i in ipairs(tree_delete_indexes) do
+            -- delete from node's children array
+            table.remove(node.children, tree_delete_i)
+        end
+    end
+    recursive_delete(M.root_node)
+    -- refresh the depth_table
+    _refresh_dpt()
 end
 
 return M
