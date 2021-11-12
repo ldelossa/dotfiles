@@ -22,6 +22,10 @@ then
 
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
 
+    kitty +kitten themes --reload-in=all Dark-theme
+    for sock in $(ls /var/local/kitty); 
+        do kitty @ --to unix:/var/local/kitty/$sock send-text '\x1b dm'; 
+    done
     sway reload
     exit
 fi
@@ -47,6 +51,11 @@ then
     ln -s ~/.config/alacritty/alacritty-light.yml ~/.config/alacritty/alacritty.yml
 
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
+
+    kitty +kitten themes --reload-in=all Light-theme
+    for sock in $(ls /var/local/kitty); 
+        do kitty @ --to unix:/var/local/kitty/$sock send-text '\x1b lm'; 
+    done
 
     sway reload
     exit

@@ -11,3 +11,5 @@ if [ "$?" == 2 ]; then
     ssh-add ~/.ssh/* &>/dev/null
   fi
 fi
+
+alias ssh="TERM=xterm-256color ssh"

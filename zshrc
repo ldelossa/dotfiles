@@ -28,3 +28,8 @@ source ~/zsh.d/tilix.sh
 source ~/zsh.d/sway.sh
 # systemd aliases and configs
 source ~/zsh.d/systemd.sh
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -e "$HOME/git/c/kitty/shell-integration/kitty.zsh"; then source "$HOME/git/c/kitty/shell-integration/kitty.zsh"; fi
+# END_KITTY_SHELL_INTEGRATION

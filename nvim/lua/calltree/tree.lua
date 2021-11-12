@@ -1,15 +1,14 @@
 M = {}
 
--- Node defines a node in our calltree
--- Each Node describes a source code symbol
--- capable of have it's incoming or outgoing
--- call hierarchy resolved via an LSP client.
+-- Node represents a symbol in a
+-- call tree.
 M.Node = {}
+
 M.Node.mt = {
     __eq = M.Node.eq
 }
 
--- new construct a new node.
+-- new construct a new Node.
 --
 -- name : string - Name of the Node, this cooresponds
 -- to it's symbol in the source code.
@@ -21,17 +20,14 @@ function M.Node.new(name, depth)
         name=name,
         depth=depth,
         children={},
+        expanded=false
     }
     setmetatable(node, M.Node.mt)
     return node
 end
 
--- eq perfoms a deepequal operation
--- for two Nodes.
---
--- because this is a deep equal it confirms
--- all children are equal between the provided
--- roots as well.
+-- eq perfoms a recursive comparison
+-- between the two roots and their children.
 function M.Node.eq(a, b)
     if a.name ~= b.name then
         return false
@@ -58,40 +54,32 @@ end
 -- a Node in the tree exists.
 --
 -- this data structure looks as follows:
--- 
+--
 -- {
---    0 = {Node},
---    1 = {Node}, {Node},
---    2 = {Node}, {Node}, {Node},
+--    0 = {{Node}}
+--    1 = {{Node}, {Node}}
+--    2 = {{Node}, {Node}, {Node}}
 --    etc...
 -- }
--- 
--- Where the integers represent the depth of the tree
--- each Node in the associated array exists.
 M.depth_table = {}
 
--- root_node is the root of our call tree
--- all other Nodes will be a descendent of
--- this root.
+-- the root of the current call tree.
 M.root_node = {}
 
 -- add_node will add the children to the
 -- node specified by parent and depth.
 --
--- depth : int - depth at which the parent
--- exists, used for quickly looking up the parent
--- in the depth_table
+-- depth : int - depth at which the parent exists,
+-- if this is 0 a new call tree will be created.
 --
--- if depth=0 this signifies a new call tree will
--- be created with the given parent as root.
+-- parent : string - symbol at which children are
+-- to be added to the call tree hierarchy.
 --
--- parent : string - the symbol name of the
--- parent we are attempting to add these children
--- for.
---
--- children : array of strings - a list of children
--- symbol names we will add to the parent.
+-- children : array of strings - the incoming
+-- or outgoing symbols for the given parent symbol.
 function M.add_node(depth, parent, children)
+    -- if depth is 0 we are creating a new
+    -- call tree.
     if depth == 0 then
         M.root_node = M.Node.new(parent, depth)
         M.depth_table = {}
@@ -99,14 +87,14 @@ function M.add_node(depth, parent, children)
         table.insert(M.depth_table[0], M.root_node)
     end
 
-    -- we are adding children to an existing parent
-    -- error out if the desired depth is ont in the table.
+    -- if parent's depth doesn't exist we can't
+    -- continue.
     if M.depth_table[depth] == nil then
         -- this is an error
         return
     end
 
-    -- recursive search for parent node
+    -- lookup parent node in depth tree (faster then then tree diving.)
     local pNode = nil
     for _, node in pairs(M.depth_table[depth]) do
         if node.name == parent then
@@ -115,12 +103,12 @@ function M.add_node(depth, parent, children)
         end
     end
 
-    -- add children to depth table
+    -- add children to parent node and update
+    -- depth_table.
     if M.depth_table[depth+1] == nil then
         M.depth_table[depth+1] = {}
     end
 
-    -- add children to parent and depth_table
     for _, child  in pairs(children) do
         local cNode = M.Node.new(child, depth+1)
         table.insert(pNode.children, cNode)
@@ -128,6 +116,8 @@ function M.add_node(depth, parent, children)
     end
 end
 
+-- recursive_dpt_compute traverses the tree
+-- and flattens it into out depth_table
 local function _recursive_dpt_compute(node)
     local depth = node.depth
     if M.depth_table[depth] == nil then
@@ -140,46 +130,42 @@ local function _recursive_dpt_compute(node)
     end
 end
 
+-- _refresh_dpt dumps the current depth_table
+-- and writes a new one.
 local function _refresh_dpt()
     M.depth_table = {}
     _recursive_dpt_compute(M.root_node)
 end
 
--- remove node will recursive delete any node
--- in the tree which represent the provided symbols.
---
--- deleting a node will knock out it's entire subtree.
+-- remove_node will remove all nodes associated
+-- with the given symbols from the call tree and depth table
 --
 -- symbols : string array - a list of symbols to delete from
--- the call tree.
+-- the call tree and depth table.
 function M.remove_node(symbols)
+    -- in order traversal of call tree
     local function recursive_delete(node)
         local tree_delete_indexes = {}
         for i, child in ipairs(node.children) do
-            -- first check if this node matches
-            -- any of the symbols to delete.
-            --
-            -- if so, mark their position, we'll
-            -- remove them from the children array
-            -- on the way back up the tree.
             for _, symbol in ipairs(symbols) do
+                -- if a child node matches a target
+                -- symbol, record its index for deletion, and continue
+                -- to next node without recursing.
                 if child.name == symbol then
                     table.insert(tree_delete_indexes, i)
                     goto skip_recursion
                 end
             end
-            -- this node will not be deleted so
-            -- recurse to check it's children
             recursive_delete(child)
             ::skip_recursion::
         end
+        -- recursion is done, we can safely delete any matching
+        -- nodes from the children array.
         for _, tree_delete_i in ipairs(tree_delete_indexes) do
-            -- delete from node's children array
             table.remove(node.children, tree_delete_i)
         end
     end
     recursive_delete(M.root_node)
-    -- refresh the depth_table
     _refresh_dpt()
 end
 
