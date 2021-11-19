@@ -17,7 +17,8 @@ remap('n', '<space>ss', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>'
 remap('n', '<space>g', '<cmd>lua require("fzf-lua").live_grep()<CR>', opts)
 remap('n', '<space>gg', '<cmd>lua require("fzf-lua").grep_cword()<CR>', opts)
 remap('n', '<space>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
-remap('n', '<space>t', '<cmd>lua require("fzf-lua").tabs()<CR', opts)
+remap('n', '<space>t', '<cmd>lua require("fzf-lua").tabs()<CR>', opts)
+remap('c', '<C-f>', '<cmd>lua require("fzf-lua").command_history()<CR><CR>', opts)
 
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {
@@ -114,7 +115,9 @@ require'fzf-lua'.setup {
       ["ctrl-T"]      = actions.file_tabedit,
       ["ctrl-Q"]      = actions.file_sel_to_qf,
       ["ctrl-y"]      = function(selected) print(selected[2]) end,
-    }
+    },
+    fd_opts           = [[ --no-ignore-vcs --color never --type f --hidden --follow ]] ..
+                    [[--exclude .git --exclude node_modules --exclude '*.pyc']],
   },
   git = {
     files = {

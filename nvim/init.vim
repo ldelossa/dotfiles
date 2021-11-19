@@ -41,6 +41,7 @@ set directory=$HOME/.cache/vim
 set signcolumn=number
 set termguicolors
 set noequalalways
+set autoread
 
 nnoremap bd :bp\|bd #<cr>
 

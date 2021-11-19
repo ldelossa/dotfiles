@@ -17,7 +17,12 @@ map ctrl+alt+n new_window
 map ctrl+alt+w close_window
 map ctrl+alt+t new_tab
 
+enable_audio_bell no
+
+copy_on_select clipboard
+skip_trailing_lines smart
+
 # BEGIN_KITTY_THEME
-# Light-theme
+# Dark-theme
 include current-theme.conf
 # END_KITTY_THEME

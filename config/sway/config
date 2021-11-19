@@ -25,11 +25,11 @@ include ~/.config/sway/theme
 
 # Appearance
 gaps top 10
-gaps bottom 10
+gaps bottom 0
 gaps left 10
 gaps right 0
 gaps inner 10
-default_border pixel 2
+default_border pixel 5
 for_window [class=".*"]     opacity .95
 for_window [app_id=".*"]    opacity .95
 
@@ -147,7 +147,7 @@ input "1133:16495:Logitech_MX_Ergo" {
 # Basics:
 #
     # launchers and switchers
-    bindsym Mod4+d exec     "wofi --show drun"
+    bindsym Mod4+d exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-dmenu'
     bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-switcher'
     bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-marks-switcher'
     bindsym Mod4+Tab exec   'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
@@ -218,6 +218,9 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym Mod4+Shift+$right move workspace to right
     # Move a workspace to focused monitor via fzf
     bindsym $mod+o exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-move'
+
+    # Move to previous container
+    bindsym $mod+Shift+Tab focus prev sibling
 #
 # Workspaces:
 #
