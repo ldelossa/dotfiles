@@ -24,7 +24,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'phaazon/hop.nvim'
     Plug 'ldelossa/calltree.nvim'
 call plug#end()
-source $HOME/.config/nvim/lua/configs/vimdark.vim
+lua require('configs.vimdark')
 source $HOME/.config/nvim/lua/configs/nnn.vim
 lua require('configs.go-nvim')
 lua require('configs.nvim-lsp')

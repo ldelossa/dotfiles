@@ -23,9 +23,11 @@ then
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
 
     kitty +kitten themes --reload-in=all Dark-theme
-    for sock in $(ls /var/local/kitty); 
-        do kitty @ --to unix:/var/local/kitty/$sock send-text '\x1b dm'; 
+
+    for socket in $(nvr --serverlist); do 
+        nvr --servername $socket --remote-send '<esc> dm' 
     done
+
     sway reload
     exit
 fi
@@ -53,8 +55,9 @@ then
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
 
     kitty +kitten themes --reload-in=all Light-theme
-    for sock in $(ls /var/local/kitty); 
-        do kitty @ --to unix:/var/local/kitty/$sock send-text '\x1b lm'; 
+
+    for socket in $(nvr --serverlist); do 
+        nvr --servername $socket --remote-send '<esc> lm' 
     done
 
     sway reload

@@ -1,5 +1,5 @@
 set $theme "dark"
-set $term "TILIX_PROFILE=dark kitty"
+set $term "kitty"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/tape.jpg"
 set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord_darker.jpg"

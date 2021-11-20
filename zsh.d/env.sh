@@ -28,4 +28,4 @@ export CHROME_EXECUTABLE=chromium-browser
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Set CDPATH
-cdpath=(~/vmmnt/ ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa)
+cdpath=(~/vmmnt/ ~/.config/nvim/after ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa)
