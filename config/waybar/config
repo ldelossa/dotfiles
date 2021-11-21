@@ -4,7 +4,7 @@
     "name": "top",
     "layer": "bottom",
     "position": "top",
-    "modules-right": ["clock", "clock#utc"],
+    "modules-right": ["sway/mode", "clock", "clock#utc"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon} {name}",
@@ -30,6 +30,9 @@
     "clock#utc": {
         "format": "{:%H:%M UTC}",
         "timezone": "Etc/UTC"
+    },
+    "sway/mode": {
+        "format": ""
     },
 },
 {

@@ -139,14 +139,18 @@ window#waybar.bottom {
     margin:             0px 0px 0px 1px;
 }
 
-#clock {
+#clock, #mode {
     margin:             0px 15px 0px 15px;
     padding:            0px 0px 0px 0px;
     color:              @grey;
     font-weight:        bold;
 }
 
-#tray, #custom-vm, #custom-vm, #custom-containers,  #custom-wfrecord, #custom-grimshot, #mode, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
+#mode {
+    font-size:          20px;
+}
+
+#tray, #custom-vm, #custom-vm, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
     margin:             1px 1px 1px 1px;
     padding:            13px 0px 13px 2px;
     color:              @white;
