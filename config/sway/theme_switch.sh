@@ -22,7 +22,7 @@ then
 
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
 
-    kitty +kitten themes --reload-in=all Dark-theme
+    kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
 
     for socket in $(nvr --serverlist); do 
         nvr --servername $socket --remote-send '<esc> dm' 
@@ -54,7 +54,7 @@ then
 
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
 
-    kitty +kitten themes --reload-in=all Light-theme
+    kitty +kitten themes --cache-age -1 --reload-in=all Light-theme
 
     for socket in $(nvr --serverlist); do 
         nvr --servername $socket --remote-send '<esc> lm' 

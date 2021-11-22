@@ -64,9 +64,7 @@ output DP-2 pos 1920 0 res 2560x1440
 output DP-3 pos 1920 0 res 2560x1440
 
 output DP-1 pos 4480 0 res 2560x1440
-output DP-1 transform 180
 output DP-4 pos 4480 0 res 2560x1440
-output DP-4 transform 180
 
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
