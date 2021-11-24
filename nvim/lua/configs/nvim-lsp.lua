@@ -115,6 +115,7 @@ nvim_lsp["gopls"].setup {
        symbolMatcher = "fuzzy"
      },
    },
+}
 
 nvim_lsp["sumneko_lua"].setup {
     on_attach = on_attach,
@@ -142,5 +143,4 @@ nvim_lsp["sumneko_lua"].setup {
           },
         },
       },
-}
 }
