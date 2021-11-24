@@ -3,6 +3,7 @@ export GOPATH=~/git/gopath
 export GOBIN=~/git/gopath/bin
 export GOSRC=~/git/gopath/src/
 export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/protoc-3.14.0/bin
