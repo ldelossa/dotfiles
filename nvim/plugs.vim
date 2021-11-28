@@ -24,7 +24,6 @@ call plug#begin('~/.config/nvim/after')
     Plug 'phaazon/hop.nvim'
     Plug 'ldelossa/calltree.nvim'
 call plug#end()
-lua require('configs.vimdark')
 source $HOME/.config/nvim/lua/configs/nnn.vim
 lua require('configs.go-nvim')
 lua require('configs.nvim-lsp')
@@ -43,6 +42,7 @@ lua require('configs.feline')
 lua require('configs.nvim-treesitter')
 lua require('configs.hop-nvim')
 lua require('configs.calltree')
+lua require('configs.vimdark')
 
 " helpful abbreviations 
 cnoreabbrev f FzfLua
