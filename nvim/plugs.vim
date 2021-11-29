@@ -20,9 +20,9 @@ call plug#begin('~/.config/nvim/after')
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'b3nj5m1n/kommentary'
-    Plug 'famiu/feline.nvim'
     Plug 'phaazon/hop.nvim'
     Plug 'ldelossa/calltree.nvim'
+    Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
 source $HOME/.config/nvim/lua/configs/nnn.vim
 lua require('configs.go-nvim')
@@ -38,11 +38,11 @@ lua require('configs.nvim-web-devicons')
 lua require('configs.gitsigns')
 lua require('configs.nvim-treesitter-textobjects')
 lua require('configs.kommentary')
-lua require('configs.feline')
 lua require('configs.nvim-treesitter')
 lua require('configs.hop-nvim')
 lua require('configs.calltree')
 lua require('configs.vimdark')
+lua require('configs.lualine')
 
 " helpful abbreviations 
 cnoreabbrev f FzfLua
