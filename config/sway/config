@@ -29,9 +29,9 @@ gaps bottom 0
 gaps left 10
 gaps right 0
 gaps inner 10
-default_border pixel 5
-for_window [class=".*"]     opacity .95
-for_window [app_id=".*"]    opacity .95
+default_border pixel 4
+for_window [class=".*"]     opacity 1
+for_window [app_id=".*"]    opacity 1 
 
 ### Monitor Layout
 workspace chat output eDP-1
@@ -156,6 +156,10 @@ input "1133:16495:Logitech_MX_Ergo" {
     # Start a floating term
     bindsym Mod4+Return exec 'THEME=$theme alacritty -o window.padding.x=20 -o window.padding.y=20 --title "fzf-switcher"'
 
+
+    # Screencap 
+    bindsym $mod+Shift+r exec ~/.config/waybar/custom/wfrecord-record.sh
+    bindsym $mod+Shift+x exec ~/.config/waybar/custom/wfrecord-stop.sh
 
     # Kill focused window
     bindsym $mod+Shift+q kill

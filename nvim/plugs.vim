@@ -1,7 +1,6 @@
 call plug#begin('~/.config/nvim/after')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
     Plug 'neovim/nvim-lspconfig'
-    Plug 'mcchrish/nnn.vim'
     Plug 'ldelossa/vimdark'
     Plug 'rust-lang/rust.vim'
     Plug 'windwp/nvim-autopairs'
@@ -19,12 +18,14 @@ call plug#begin('~/.config/nvim/after')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'b3nj5m1n/kommentary'
-    Plug 'phaazon/hop.nvim'
     Plug 'ldelossa/calltree.nvim'
     Plug 'nvim-lualine/lualine.nvim'
+    Plug 'ggandor/lightspeed.nvim'
+    Plug 'luukvbaal/nnn.nvim'
+    Plug 'numToStr/Comment.nvim'
 call plug#end()
 source $HOME/.config/nvim/lua/configs/nnn.vim
+lua require('configs.buffer-resize')
 lua require('configs.go-nvim')
 lua require('configs.nvim-lsp')
 lua require('configs.fzf')
@@ -37,12 +38,14 @@ lua require('configs.nvim-gps')
 lua require('configs.nvim-web-devicons')
 lua require('configs.gitsigns')
 lua require('configs.nvim-treesitter-textobjects')
-lua require('configs.kommentary')
 lua require('configs.nvim-treesitter')
-lua require('configs.hop-nvim')
+lua require('configs.lightspeed')
 lua require('configs.calltree')
 lua require('configs.vimdark')
 lua require('configs.lualine')
+lua require('configs.nnn-nvim')
+lua require('configs.comment')
+lua require('configs.vim-gh-line')
 
 " helpful abbreviations 
 cnoreabbrev f FzfLua

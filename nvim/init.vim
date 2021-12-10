@@ -19,7 +19,7 @@ set number
 set numberwidth=1
 set backspace=2 
 set updatetime=275
-set timeoutlen=300
+set timeoutlen=400
 set autowrite
 set noshowmode
 set ignorecase
@@ -42,6 +42,8 @@ set signcolumn=number
 set termguicolors
 set noequalalways
 set autoread
+set scrolloff=15
+set shortmess=atosTc
 
 nnoremap bd :bp\|bd #<cr>
 

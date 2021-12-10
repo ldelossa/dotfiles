@@ -1,3 +1,3 @@
 # golang aliases
-alias gt='go test -v -run '
-alias gb='go build'
+alias got='go test -v -run '
+alias gob='go build'

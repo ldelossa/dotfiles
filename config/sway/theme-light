@@ -7,7 +7,7 @@ set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/store-front.gif"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/engine_schematic_adjusted_scaled_yellow_grey.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/3d_terraform_light_grey.png"
-client.focused      #5f676a #5f676a #ffffff #7c794e
+client.focused      #1c1c1c #90989B #ffffff #7c794e
 client.unfocused    #1c1c1c #b9bab5 #1c1c1c #7c794e #00000000
 
 # toggle themes

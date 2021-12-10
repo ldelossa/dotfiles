@@ -8,7 +8,7 @@ function kns() {
     kns=$1
 }
 alias kns-kube-system='kns kube-system' 
-alias kns-kube-default='kns kube-default' 
+alias kns-kube-default='kns default' 
 
 alias k='kubectl --namespace $kns'
 alias kp='kubectl --namespace $kns get pods'

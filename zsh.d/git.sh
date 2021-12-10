@@ -12,6 +12,7 @@ gap() {
   git push --force-with-lease
 }
 alias ga='git commit --amend'
+alias gb='git branch --all -vv'
 alias gaq='git commit --amend --no-edit'
 alias gadd='git add'
 alias g='git'
@@ -27,6 +28,7 @@ alias gr='git rebase'
 alias gri='git rebase -i'
 alias gsp='git stash pop'
 alias gsa='git stash apply'
+alias gbr='git branch --format "%(refname:short) <> %(upstream)"'
 
 gsc() {
     git checkout stash@{$1} -- $2

@@ -1,6 +1,5 @@
 local gps = require("nvim-gps")
 
-
 local hide_in_width = function(width)
     return function()
         return vim.fn.winwidth(0) > width
@@ -18,7 +17,7 @@ local branch = {
 local diagnostics = {
     'diagnostics',
     sources = {'nvim_lsp'},
-    cond = hide_in_width(100)
+    cond = hide_in_width(80)
 }
 local gps_comp = {
     gps.get_location,

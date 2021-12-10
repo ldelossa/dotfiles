@@ -39,30 +39,66 @@ local on_attach = function(client, bufnr)
     if not status then
         buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'gdd', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
         buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-        buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
         buf_set_keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
         buf_set_keymap('n', '<leader>u', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+        buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+        -- c-l namespaced
+        buf_set_keymap('n', '<C-l>D', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+        buf_set_keymap('n', '<C-l>d', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', '<C-l>dd', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+        buf_set_keymap('n', '<C-l>ii', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+        buf_set_keymap('n', '<C-l>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('n', '<C-l>u', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+        buf_set_keymap('n', '<C-l>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+        buf_set_keymap('i', '<C-l>D', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+        buf_set_keymap('i', '<C-l>d', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('i', '<C-l>dd', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+        buf_set_keymap('i', '<C-l>ii', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+        buf_set_keymap('i', '<C-l>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('i', '<C-l>u', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+        buf_set_keymap('i', '<C-l>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     end
 
     buf_set_keymap('n', '<leader>i', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap("n", "<leader>l", "<cmd>lua vim.lsp.codelens.run()<CR>", {silent = true;})
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', opts)
+    buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', opts)
     buf_set_keymap('n', '<C-p>', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', opts)
     buf_set_keymap('n', '<C-n>', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    buf_set_keymap("n", "<space>o", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
-    buf_set_keymap("n", "<space>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
-    buf_set_keymap("n", "<space>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
+    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<leader>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
+    buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
 
-    vim.api.nvim_command('set shortmess+=c')
+    -- c-l namespaced
+    buf_set_keymap('n', '<C-l>h', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', '<C-l>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<C-l>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap("n", "<C-l>l", "<cmd>lua vim.lsp.codelens.run()<CR>", {silent = true;})
+    buf_set_keymap('n', '<C-l>e', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', opts)
+    buf_set_keymap('n', '<C-l>p', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', opts)
+    buf_set_keymap('n', '<C-l>n', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
+    buf_set_keymap("n", "<C-l>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    -- buf_set_keymap("n", "<C-l>o", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
+    -- buf_set_keymap("n", "<C-l>i", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
+    -- buf_set_keymap("n", "<C-l>do", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+
+    buf_set_keymap('i', '<C-l>h', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('i', '<C-l>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('i', '<C-l>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap("i", "<C-l>l", "<cmd>lua vim.lsp.codelens.run()<CR>", {silent = true;})
+    buf_set_keymap('i', '<C-l>e', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', opts)
+    buf_set_keymap('i', '<C-l>p', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', opts)
+    buf_set_keymap('i', '<C-l>n', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
+    buf_set_keymap("i", "<C-l>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    -- buf_set_keymap("i", "<C-l>o", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
+    -- buf_set_keymap("i", "<C-l>i", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
+    -- buf_set_keymap("i", "<C-l>do", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+
     vim.api.nvim_command('sign define DiagnosticSignError text=🄴  texthl=Error linehl= numhl=')
     vim.api.nvim_command('sign define DiagnosticSignWarn text=🅆  texthl=Warning linehl= numhl=')
     vim.api.nvim_command('sign define DiagnosticSignInfo text=🄸  texthl=Warning linehl= numhl=')
@@ -71,7 +107,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "dartls", "clangd", "rust_analyzer", "yamlls", "bashls", "vimls", "terraformls" }
+local servers = { "eslint", "pyright", "dartls", "clangd", "rust_analyzer", "yamlls", "bashls", "vimls", "terraformls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
       on_attach = on_attach,

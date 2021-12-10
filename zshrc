@@ -28,6 +28,9 @@ source ~/zsh.d/tilix.sh
 source ~/zsh.d/sway.sh
 # systemd aliases and configs
 source ~/zsh.d/systemd.sh
+# aliases and helper functions for working
+# with cilium
+source ~/zsh.d/cilium.sh
 
 
 # BEGIN_KITTY_SHELL_INTEGRATION
