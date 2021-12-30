@@ -18,11 +18,11 @@ call plug#begin('~/.config/nvim/after')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'ldelossa/calltree.nvim'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'ggandor/lightspeed.nvim'
     Plug 'luukvbaal/nnn.nvim'
     Plug 'numToStr/Comment.nvim'
+    Plug 'ldelossa/litee.nvim'
 call plug#end()
 source $HOME/.config/nvim/lua/configs/nnn.vim
 lua require('configs.buffer-resize')
@@ -40,7 +40,7 @@ lua require('configs.gitsigns')
 lua require('configs.nvim-treesitter-textobjects')
 lua require('configs.nvim-treesitter')
 lua require('configs.lightspeed')
-lua require('configs.calltree')
+lua require('configs.litee')
 lua require('configs.vimdark')
 lua require('configs.lualine')
 lua require('configs.nnn-nvim')

@@ -16,7 +16,7 @@ local branch = {
 }
 local diagnostics = {
     'diagnostics',
-    sources = {'nvim_lsp'},
+    sources = {'nvim_diagnostic'},
     cond = hide_in_width(80)
 }
 local gps_comp = {
@@ -30,6 +30,10 @@ local diff = {
 local filetype = {
     'filetype',
     cond = hide_in_width(100)
+}
+local filename = {
+    'filename',
+    path = 1
 }
 local progress = {
     'progress',
@@ -66,7 +70,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {},
-    lualine_c = {branch, active_lsp, 'filename', gps_comp},
+    lualine_c = {branch, active_lsp, filename, gps_comp},
     lualine_x = {diff, diagnostics, filetype},
     lualine_y = {},
     lualine_z = {progress, location}

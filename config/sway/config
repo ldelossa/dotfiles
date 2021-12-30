@@ -37,20 +37,20 @@ for_window [app_id=".*"]    opacity 1
 workspace chat output eDP-1
 workspace stats output eDP-1
 
-workspace web output DP-2
-workspace ebooks output DP-2
 workspace music output DP-2
 workspace apps output DP-2
 workspace vm output DP-2
+workspace terminal output DP-2
 
-workspace web output DP-3
-workspace ebooks output DP-3
 workspace music output DP-3
 workspace apps output DP-3
 workspace vm output DP-3
+workspace terminal output DP-3
 
-workspace terminal output DP-1
-workspace terminal output DP-4
+workspace web output DP-1
+workspace ebooks output DP-1
+workspace web output DP-4
+workspace ebooks output DP-4
 
 output DP-4  bg  $wallpaper stretch
 output DP-3  bg  $wallpaper stretch

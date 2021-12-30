@@ -1,3 +1,23 @@
+-- build in text objects.
+-- @block.inner
+-- @block.outer
+-- @call.inner
+-- @call.outer
+-- @class.inner
+-- @class.outer
+-- @comment.outer
+-- @conditional.inner
+-- @conditional.outer
+-- @frame.inner
+-- @frame.outer
+-- @function.inner
+-- @function.outer
+-- @loop.inner
+-- @loop.outer
+-- @parameter.inner
+-- @parameter.outer
+-- @scopename.inner
+-- @statement.outer
 require'nvim-treesitter.configs'.setup {
   textobjects = {
     select = {
@@ -33,8 +53,11 @@ require'nvim-treesitter.configs'.setup {
         ["]b"] = "@block.outer",
       },
       goto_next_end = {
-        ["]t"] = "@function.outer",
+        ["]M"] = "@function.outer",
         ["]["] = "@class.outer",
+        ["]P"] = "@parameter.outer",
+        ["]B"] = "@block.outer",
+        ["]F"] = "@call.outer",
       },
       goto_previous_start = {
         ["[m"] = "@function.outer",
@@ -44,8 +67,11 @@ require'nvim-treesitter.configs'.setup {
         ["[b"] = "@block.outer",
       },
       goto_previous_end = {
-        ["[t"] = "@function.outer",
+        ["[M"] = "@function.outer",
         ["[]"] = "@class.outer",
+        ["[P"] = "@parameter.outer",
+        ["[F"] = "@call.outer",
+        ["[B"] = "@block.outer",
       },
     },
   }
