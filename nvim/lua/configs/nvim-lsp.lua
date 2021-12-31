@@ -1,8 +1,3 @@
--- use omnifunc
-vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-vim.o.completeopt = "menuone,noselect"
-vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
-
 local nvim_lsp = require('lspconfig')
 
 -- disable virtual text for all diagnostic handlers.
@@ -27,9 +22,13 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
+    -- use omnifunc
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.o.completeopt = "menuone,noselect"
+    vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
+
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     -- Mappings.
     local opts = { silent=true }
@@ -128,11 +127,6 @@ for _, lsp in ipairs(servers) do
       },
   }
 end
-
--- this is necessary since vim ships with its own c omnifunc and applies it
--- it on FileType c
-vim.api.nvim_command('autocmd FileType c set omnifunc=v:lua.vim.lsp.omnifunc')
-vim.api.nvim_command('autocmd FileType cpp set omnifunc=v:lua.vim.lsp.omnifunc')
 
 nvim_lsp["gopls"].setup {
   on_attach = on_attach,

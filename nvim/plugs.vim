@@ -23,6 +23,9 @@ call plug#begin('~/.config/nvim/after')
     Plug 'luukvbaal/nnn.nvim'
     Plug 'numToStr/Comment.nvim'
     Plug 'ldelossa/litee.nvim'
+    Plug 'ldelossa/litee-filetree.nvim'
+    Plug 'ldelossa/litee-symboltree.nvim'
+    Plug 'ldelossa/litee-calltree.nvim'
 call plug#end()
 source $HOME/.config/nvim/lua/configs/nnn.vim
 lua require('configs.buffer-resize')
