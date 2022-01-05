@@ -5,20 +5,30 @@ require('litee.lib').setup({
     panel = {
         orientation = "left",
         panel_size  = 30
+    },
+    term = {
+        position = "bottom",
+        term_size = 15,
     }
 })
 require('litee.filetree').setup({
+    hide_cursor = false,
 })
 require('litee.symboltree').setup({
     icon_set = "codicons",
+    hide_cursor = false,
 })
 require('litee.calltree').setup({
     icon_set = "codicons",
+    hide_cursor = false,
 })
 
 local opts = { silent = true }
+-- litee.lib mappings
 vim.api.nvim_set_keymap("n", "<C-t>",   ":LTPanel<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-t>t",  ":LTPanel<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>tm", ":LTTerm<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-t>h",  ":LTPClearJumpHL<cr>", opts)
 
 -- calltree specific commands
 vim.api.nvim_set_keymap("n", "<C-h>o",     ":LTOpenToCalltree<cr>", opts)

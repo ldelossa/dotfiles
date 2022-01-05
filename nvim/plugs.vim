@@ -26,6 +26,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'ldelossa/litee-filetree.nvim'
     Plug 'ldelossa/litee-symboltree.nvim'
     Plug 'ldelossa/litee-calltree.nvim'
+    Plug 'Pocco81/HighStr.nvim'
 call plug#end()
 source $HOME/.config/nvim/lua/configs/nnn.vim
 lua require('configs.buffer-resize')
@@ -49,6 +50,8 @@ lua require('configs.lualine')
 lua require('configs.nnn-nvim')
 lua require('configs.comment')
 lua require('configs.vim-gh-line')
+lua require('configs.terminal')
+lua require('configs.highstr')
 
 " helpful abbreviations 
 cnoreabbrev f FzfLua

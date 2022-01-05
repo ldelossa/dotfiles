@@ -1,4 +1,5 @@
 # environment vars 
+export SHELL="/bin/zsh"
 export GOPATH=~/git/gopath
 export GOBIN=~/git/gopath/bin
 export GOSRC=~/git/gopath/src/
