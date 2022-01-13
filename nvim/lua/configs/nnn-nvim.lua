@@ -17,6 +17,6 @@ require("nnn").setup({
 	}
 })
 
-local opts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap('n', '<leader><leader>', ':NnnPicker %:p:h<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>n', ':NnnPicker<CR>', opts)
+-- local opts = {noremap = true, silent = true}
+-- vim.api.nvim_set_keymap('n', '<leader><leader>', ':NnnPicker %:p:h<CR>', opts)
+-- vim.api.nvim_set_keymap('n', '<leader>n', ':NnnPicker<CR>', opts)

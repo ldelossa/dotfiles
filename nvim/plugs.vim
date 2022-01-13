@@ -26,6 +26,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'ldelossa/litee-filetree.nvim'
     Plug 'ldelossa/litee-symboltree.nvim'
     Plug 'ldelossa/litee-calltree.nvim'
+    Plug 'ldelossa/litee-bookmarks.nvim'
     Plug 'Pocco81/HighStr.nvim'
 call plug#end()
 source $HOME/.config/nvim/lua/configs/nnn.vim

@@ -12,3 +12,4 @@ client.unfocused    #1c1c1c #b9bab5 #1c1c1c #7c794e #00000000
 
 # toggle themes
 bindsym $mod+p exec ~/.config/sway/theme_switch.sh dark
+

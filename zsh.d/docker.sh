@@ -7,8 +7,8 @@ alias di='docker images'
 alias drmi='docker rmi'
 alias drm='docker rm'
 alias dpush='docker push'
+alias dit='docker images --format "{{.Repository}}:{{.Tag}}"'
 dkill () {
 	docker kill $1
 	docker rm $1
 }
-
