@@ -19,7 +19,6 @@ call plug#begin('~/.config/nvim/after')
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'ggandor/lightspeed.nvim'
     Plug 'luukvbaal/nnn.nvim'
     Plug 'numToStr/Comment.nvim'
     Plug 'ldelossa/litee.nvim'
@@ -28,6 +27,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'ldelossa/litee-calltree.nvim'
     Plug 'ldelossa/litee-bookmarks.nvim'
     Plug 'Pocco81/HighStr.nvim'
+    Plug 'rlane/pounce.nvim'
 call plug#end()
 source $HOME/.config/nvim/lua/configs/nnn.vim
 lua require('configs.buffer-resize')
@@ -44,7 +44,6 @@ lua require('configs.nvim-web-devicons')
 lua require('configs.gitsigns')
 lua require('configs.nvim-treesitter-textobjects')
 lua require('configs.nvim-treesitter')
-lua require('configs.lightspeed')
 lua require('configs.litee')
 lua require('configs.vimdark')
 lua require('configs.lualine')
@@ -53,8 +52,7 @@ lua require('configs.comment')
 lua require('configs.vim-gh-line')
 lua require('configs.terminal')
 lua require('configs.highstr')
+lua require('configs.pounce')
 
 " helpful abbreviations 
 cnoreabbrev f FzfLua
-cnoreabbrev g Gitsigns
-
