@@ -5,6 +5,9 @@ then
     unlink ~/.config/sway/theme
     ln -s ~/.config/sway/theme-dark ~/.config/sway/theme
 
+    unlink ~/.config/sway/wob.sh
+    ln -s ~/.config/sway/wob-dark.sh ~/.config/sway/wob.sh
+
     unlink ~/.config/waybar/style.css
     ln -s ~/.config/waybar/style-single-bar.css ~/.config/waybar/style.css
 
@@ -38,6 +41,9 @@ if [[ $1 == "light" ]]
 then
     unlink ~/.config/sway/theme
     ln -s ~/.config/sway/theme-light ~/.config/sway/theme
+
+    unlink ~/.config/sway/wob.sh
+    ln -s ~/.config/sway/wob-light.sh ~/.config/sway/wob.sh
 
     unlink ~/.config/waybar/style.css
     ln -s ~/.config/waybar/style-single-bar-light.css ~/.config/waybar/style.css

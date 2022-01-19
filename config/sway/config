@@ -23,6 +23,20 @@ set $right  l
 # sets $term, $wallpaper, $theme, and $mod+t (theme switch)
 include ~/.config/sway/theme
 
+# WOB
+exec_always {
+    ~/.config/sway/wob.sh
+}
+
+# WOB Volume Control
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ | sed -En 's/.*\[([0-9]+)%\].*/\1/p' | head -1 > $SWAYSOCK.wob
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%- | sed -En 's/.*\[([0-9]+)%\].*/\1/p' | head -1 > $SWAYSOCK.wob
+bindsym XF86AudioMute exec amixer sset Master toggle | sed -En '/\[on\]/ s/.*\[([0-9]+)%\].*/\1/ p; /\[off\]/ s/.*/0/p' | head -1 > $SWAYSOCK.wob
+
+# WOB Brightness Control
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
+bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
+
 # Appearance
 gaps top 10
 gaps bottom 0
@@ -175,18 +189,6 @@ input "1133:16495:Logitech_MX_Ergo" {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-
-    #                       
-    # Volume control        
-    #                       
-    bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
-    bindsym XF86AudioLowerVolume exec amixer set Master 5%-
-    bindsym XF86AudioMute exec amixer set Master toggle   
-    #                       
-    # Brightness Control    
-    #                       
-    bindsym XF86MonBrightnessDown exec brightnessctl set 5%-    
-    bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ 
 
     bindsym $mod+Shift+s exec grimshot --notify save output - | swappy -f -
     bindsym $mod+Shift+a exec grimshot --notify save area - | swappy -f -

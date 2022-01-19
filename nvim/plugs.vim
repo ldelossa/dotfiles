@@ -1,5 +1,5 @@
 call plug#begin('~/.config/nvim/after')
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
+    Plug 'nvim-treesitter/nvim-treesitter'  
     Plug 'neovim/nvim-lspconfig'
     Plug 'ldelossa/vimdark'
     Plug 'rust-lang/rust.vim'
