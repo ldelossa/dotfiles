@@ -1,1 +1,1 @@
-/home/louis/.config/sway/wob-light.sh
+/home/louis/.config/sway/wob-dark.sh

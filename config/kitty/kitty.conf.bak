@@ -41,6 +41,6 @@ copy_on_select clipboard
 skip_trailing_lines smart
 
 # BEGIN_KITTY_THEME
-# Dark-theme
+# Light-theme
 include current-theme.conf
 # END_KITTY_THEME
