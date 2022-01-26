@@ -1,1 +1,0 @@
-/home/louis/.config/sway/wob-dark.sh

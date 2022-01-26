@@ -5,5 +5,5 @@ config/sway/wob.sh
 config/waybar/style.css
 config/wofi/style.css
 config/gtk-3.0/settings.ini
-config/gtk-4.0/settings.ini
+./config/gtk-4.0/settings.ini
 config/alacritty/alacritty.yml
