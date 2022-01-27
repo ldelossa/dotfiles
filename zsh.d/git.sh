@@ -11,6 +11,7 @@ gap() {
   git commit --amend --no-edit
   git push --force-with-lease
 }
+alias gs='git status'
 alias ga='git commit --amend'
 alias gb='git branch --all -vv'
 alias gaq='git commit --amend --no-edit'
