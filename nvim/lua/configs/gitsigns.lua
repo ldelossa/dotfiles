@@ -40,7 +40,7 @@ require('gitsigns').setup {
     ['v <C-g>r'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
     ['n <C-g>R'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
     ['n <C-g>pp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n <C-g>bb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+    ['n <C-g>bb'] = '<cmd>lua require"gitsigns".blame_line({full=true})<CR>',
     ['n <C-g>S'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
     ['n <C-g>d'] = '<cmd>lua require"gitsigns".diffthis()<CR>',
 

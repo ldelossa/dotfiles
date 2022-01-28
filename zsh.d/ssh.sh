@@ -15,12 +15,15 @@ fi
 alias ssh="TERM=xterm-256color ssh"
 
 #ssh mount helper
-function vm_mnt() {
+function vmount() {
+    root="/root"
+    if [[ -n $2 ]] then
+        root=$2
+    fi
     mkdir -p ~/vmmnt/$1
-    sshfs root@$1:/root ~/vmmnt/$1 -o workaround=buflimit
+    sshfs root@$1:$root ~/vmmnt/$1 -o workaround=buflimit -o Ciphers=aes128-gcm@openssh.com -o Compression=no
 }
 
-function vm_umnt() {
-    umount ~/vmmnt/$1
-    rm -rf ~/vmmnt/$1
+function vumount() {
+    umount ~/vmmnt/$1 && rm -rf ~/vmmnt/$1
 }

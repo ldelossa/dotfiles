@@ -1,5 +1,6 @@
 # kubectl aliases
 kns="kube-system"
+kconfig="$HOME/.kube/config"
 function kns() {
     if [[ -z  $1 ]]; then
         echo $kns
@@ -10,14 +11,24 @@ function kns() {
 alias kns-kube-system='kns kube-system' 
 alias kns-kube-default='kns default' 
 
-alias k='kubectl --namespace $kns'
-alias kp='kubectl --namespace $kns get pods'
-alias kp-net='kubectl --namespace $kns get pods -o custom-columns=NAME:.metadata.name,IP:.status.podIP,HOST_IP:.status.hostIP,NODE:.spec.nodeName'
-alias kd='kubectl --namespace $kns get deployments'
-alias kdel='kubectl --namespace $kns delete'
-alias ks='kubectl --namespace $kns get services' 
-alias kn='kubectl get nodes' 
-alias kdesc='kubectl --namespace $kns describe'
-alias kexec='kubectl --namespace $kns exec'
-alias kiexec='kubectl --namespace $kns exec -i -t'
-alias klogs='kubectl --namespace $kns logs --timestamps '
+function kconfig() {
+    if [[ -z  $1 ]]; then
+        echo $kconfig
+        return
+    fi
+    kconfig=$1
+}
+
+preamble='kubectl --kubeconfig $kconfig --namespace $kns'
+
+alias k=$preamble
+alias kp="$preamble get pods"
+alias kp-net="$preamble get pods -o custom-columns=NAME:.metadata.name,IP:.status.podIP,HOST_IP:.status.hostIP,NODE:.spec.nodeName"
+alias kd="$preamble get deployments"
+alias kdel="$preamble delete"
+alias ks="$preamble get services" 
+alias kn="$preamble get nodes" 
+alias kdesc="$preamble describe"
+alias kexec="$preamble exec"
+alias kiexec="$preambleexec -i -t"
+alias klogs="$preamble logs --timestamps "

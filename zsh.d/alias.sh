@@ -10,7 +10,7 @@ alias xc='xclip -selection clipboard'
 alias vim='nvim'
 
 if which exa &> /dev/null; then
-    alias ls='exa --header --git'
+    alias ls='exa --header'
 fi
 
 if which ncdu &> /dev/null; then
