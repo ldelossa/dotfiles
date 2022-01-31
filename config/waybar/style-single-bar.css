@@ -184,13 +184,16 @@ window#waybar.bottom {
 }
 
 #custom-vm {
-    font-size:          22px;
+    font-size:          13.5px;
 }
 #custom-vm.running {
     color:              @blue-light;
     border-left:        3px solid @blue-light;
 }
 
+#custom-containers {
+    font-size:          16.5px;
+}
 #custom-containers.running {
     color:              @blue-light;
     border-left:        3px solid @blue-light;

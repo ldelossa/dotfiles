@@ -1,6 +1,6 @@
 [{
     "height": 40,
-    "margin": "10px 10px 0p 11px",
+    "margin": "10px 9px 0p 11px",
     "name": "top",
     "layer": "bottom",
     "position": "top",
@@ -135,14 +135,14 @@
         "signal": 8
     },
     "custom/vm": {
-        "format": "   {}",
+        "format": "   {}",
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/kvm-monitor.sh",
         "on-click": "~/.config/waybar/custom/kvm.sh"
     },
     "custom/containers": {
-        "format": "   {}",
+        "format": "   {}",
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/containers-monitor.sh",

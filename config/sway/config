@@ -42,7 +42,7 @@ gaps top 10
 gaps bottom 0
 gaps left 0
 gaps right 0
-gaps inner 10
+gaps inner 6
 default_border pixel 4
 for_window [class=".*"]     opacity 1
 for_window [app_id=".*"]    opacity 1 
