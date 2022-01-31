@@ -156,7 +156,7 @@ window#waybar.bottom {
 
 #tray, #custom-vm, #custom-containers, #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
     margin:             1px 1px 1px 1px;
-    padding:            13px 0px 13px 2px;
+    padding:            6px 0px 6px 0px;
     color:              @white;
     border-left:        3px solid @white;
     font-size:          20px;
@@ -164,7 +164,7 @@ window#waybar.bottom {
 
 #idle_inhibitor.activated {
     color:              @blue-light;
-    border-left:      3px solid @blue-light;
+    border-left:        3px solid @blue-light;
 }
 
 #tray {
@@ -175,12 +175,12 @@ window#waybar.bottom {
     font-size:          13px;
 }
 #custom-grimshot {
-    font-size:          13px;
+    font-size:          15px;
 }
 
 #custom-wfrecord.recording {
     color:              @green;
-    border-left:      3px solid @green;
+    border-left:        3px solid @green;
 }
 
 #custom-vm {
@@ -188,59 +188,60 @@ window#waybar.bottom {
 }
 #custom-vm.running {
     color:              @blue-light;
-    border-left:      3px solid @blue-light;
+    border-left:        3px solid @blue-light;
 }
 
 #custom-containers.running {
     color:              @blue-light;
-    border-left:      3px solid @blue-light;
+    border-left:        3px solid @blue-light;
 }
 
 #memory {
     font-weight:        bold;
 }
 #memory.low {
-    border-left:      3px solid @blue;
+    border-left:        3px solid @blue;
 }
 #memory.mid {
-    border-left:      3px solid @yellow;
+    border-left:        3px solid @yellow;
 }
 #memory.high {
-    border-left:      3px solid @red;
+    border-left:        3px solid @red;
 }
 
 #cpu {
     font-weight:        bold;
 }
 #cpu.low {
-    border-left:      3px solid @blue;
+    border-left:        3px solid @blue;
 }
 #cpu.mid {
-    border-left:      3px solid @yellow;
+    border-left:        3px solid @yellow;
 }
 #cpu.high {
-    border-left:      3px solid @red;
+    border-left:        3px solid @red;
 }
 
 #disk {
     font-weight:        bold;
 }
 #disk.low {
-    border-left:      3px solid @blue;
+    border-left:        3px solid @blue;
 }
 #disk.mid {
-    border-left:      3px solid @yellow;
+    border-left:        3px solid @yellow;
 }
 #disk.high {
-    border-left:      3px solid @red;
+    border-left:        3px solid @red;
 }
 
 #temperature {
+    font-size:          18px;
     font-weight:        bold;
-    border-left:      3px solid @blue;
+    border-left:        3px solid @blue;
 }
 #temperature.critical {
-    border-left:      3px solid @red;
+    border-left:        3px solid @red;
 }
 
 #network {
@@ -252,7 +253,7 @@ window#waybar.bottom {
 }
 
 #battery {
-    font-size:           14px;
+    font-size:          13.5px;
     border-left:         3px solid @green;
 }
 #battery.warning {

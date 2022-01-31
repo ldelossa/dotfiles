@@ -1,6 +1,6 @@
 [{
     "height": 40,
-    "margin": "10px 10px 0p 19px",
+    "margin": "10px 10px 0p 11px",
     "name": "top",
     "layer": "bottom",
     "position": "top",
@@ -42,7 +42,7 @@
     "margin": "0px 0px 0px 0px",
     "position": "left",
     "modules-right": ["network", "pulseaudio", "backlight", "battery", "custom/grimshot", "custom/wfrecord", "custom/vm", "custom/containers", "memory", "cpu", "disk", "temperature", "tray",  "idle_inhibitor"],
-    "modules-center": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-next", "custom/spotify-play-pause", "custom/spotify-prev", "custom/spotify-quit"],
+    "modules-left": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-next", "custom/spotify-play-pause", "custom/spotify-prev", "custom/spotify-quit"],
     "clock": {
         "rotate": 90,
         "format": "{:%a %d %b %H:%M}",
@@ -199,7 +199,8 @@
     },
     "custom/spotify-metadata": {
         "format": " {}",
-        "max-length": 500,
+        "max-length": 30,
+        "min-length": 30,
         "interval": "once",
         "return-type": "json",
         "exec": "~/.config/waybar/custom/spotify/metadata.sh",

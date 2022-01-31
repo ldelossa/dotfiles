@@ -21,7 +21,7 @@ function vmount() {
         root=$2
     fi
     mkdir -p ~/vmmnt/$1
-    sshfs root@$1:$root ~/vmmnt/$1 -o workaround=buflimit -o Ciphers=aes128-gcm@openssh.com -o Compression=no
+    sshfs root@$1:$root ~/vmmnt/$1 -o workaround=buflimit -o Ciphers=chacha20-poly1305@openssh.com -o Compression=no
 }
 
 function vumount() {
