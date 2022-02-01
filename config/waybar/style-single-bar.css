@@ -192,7 +192,7 @@ window#waybar.bottom {
 }
 
 #custom-containers {
-    font-size:          16.5px;
+    font-size:          14.8px;
 }
 #custom-containers.running {
     color:              @blue-light;
