@@ -28,8 +28,8 @@ call plug#begin('~/.config/nvim/after')
     Plug 'ldelossa/litee-bookmarks.nvim'
     Plug 'Pocco81/HighStr.nvim'
     Plug 'rlane/pounce.nvim'
+    Plug 'mtdl9/vim-log-highlighting'
 call plug#end()
-source $HOME/.config/nvim/lua/configs/nnn.vim
 lua require('configs.buffer-resize')
 lua require('configs.go-nvim')
 lua require('configs.nvim-lsp')

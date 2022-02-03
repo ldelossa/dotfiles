@@ -194,8 +194,8 @@ window#waybar.bottom {
     font-size:          14.8px;
 }
 #custom-containers.running {
-    color:              @blue-light;
-    border-left:        3px solid @blue-light;
+    color:              @blue;
+    border-left:        3px solid @blue;
 }
 
 #memory {

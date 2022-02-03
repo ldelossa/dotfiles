@@ -135,14 +135,14 @@
         "signal": 8
     },
     "custom/vm": {
-        "format": "   {}",
+        "format": "   ",
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/kvm-monitor.sh",
         "on-click": "~/.config/waybar/custom/kvm.sh"
     },
     "custom/containers": {
-        "format": "   {}",
+        "format": "   ",
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/containers-monitor.sh",
