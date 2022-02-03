@@ -29,5 +29,8 @@ export CHROME_EXECUTABLE=chromium-browser
 # see: https://github.com/swaywm/sway/issues/595
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# set manpager to neovim
+export MANPAGER='nvim +Man!'
+
 # Set CDPATH
 cdpath=(~/vmmnt/ ~/.config/nvim/after ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa)
