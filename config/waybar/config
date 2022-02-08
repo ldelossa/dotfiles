@@ -1,6 +1,6 @@
 [{
     "height": 40,
-    "margin": "10px 9px 0p 11px",
+    "margin": "10px 7px 0p 5px",
     "name": "top",
     "layer": "bottom",
     "position": "top",
@@ -38,7 +38,7 @@
 {
     "height": 15,
     "name": "bottom",
-    "layer": "bottom",
+    "layer": "top",
     "margin": "0px 0px 0px 0px",
     "position": "left",
     "modules-right": ["network", "pulseaudio", "backlight", "battery", "custom/grimshot", "custom/wfrecord", "custom/vm", "custom/containers", "memory", "cpu", "disk", "temperature", "tray",  "idle_inhibitor"],
