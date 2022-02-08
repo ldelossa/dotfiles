@@ -37,6 +37,12 @@ bindsym XF86AudioMute exec amixer sset Master toggle | sed -En '/\[on\]/ s/.*\[(
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
 bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
 
+# Notification Daemon
+exec swaync
+
+# Toggle control center
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
 # Appearance
 gaps top 10
 gaps bottom 0
@@ -307,6 +313,7 @@ input "1133:16495:Logitech_MX_Ergo" {
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+f     floating toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle

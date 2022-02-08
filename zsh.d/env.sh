@@ -14,6 +14,7 @@ export PATH=$PATH:/usr/local/flutter/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/goblog/bin
 export PATH=$PATH:/opt/Lens
+export PATH=$PATH:/home/louis/.platformio/penv/bin
 export KEYTIMEOUT=1
 export CC=/usr/bin/clang
 export CCX=/usr/bin/clang++

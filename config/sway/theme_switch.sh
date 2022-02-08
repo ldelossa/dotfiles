@@ -23,6 +23,10 @@ then
     unlink ~/.config/alacritty/alacritty.yml
     ln -s ~/.config/alacritty/alacritty-dark.yml ~/.config/alacritty/alacritty.yml
 
+    unlink ~/.config/swaync/style.css
+    ln -s ~/.config/swaync/style-dark.css ~/.config/swaync/style.css
+    swaync-client -rs
+
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
 
     kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
@@ -59,6 +63,10 @@ then
 
     unlink ~/.config/alacritty/alacritty.yml
     ln -s ~/.config/alacritty/alacritty-light.yml ~/.config/alacritty/alacritty.yml
+
+    unlink ~/.config/swaync/style.css
+    ln -s ~/.config/swaync/style-light.css ~/.config/swaync/style.css
+    swaync-client -rs
 
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
 
