@@ -7,7 +7,6 @@ call plug#begin('~/.config/nvim/after')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'akinsho/flutter-tools.nvim'
-    Plug 'ruanyl/vim-gh-line'
     Plug 'ibhagwan/fzf-lua'
     Plug 'vijaymarupudi/nvim-fzf'
     Plug 'seblj/nvim-echo-diagnostics'
@@ -29,6 +28,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'Pocco81/HighStr.nvim'
     Plug 'rlane/pounce.nvim'
     Plug 'mtdl9/vim-log-highlighting'
+    Plug 'ruifm/gitlinker.nvim'
 call plug#end()
 lua require('configs.buffer-resize')
 lua require('configs.go-nvim')
@@ -49,10 +49,10 @@ lua require('configs.vimdark')
 lua require('configs.lualine')
 lua require('configs.nnn-nvim')
 lua require('configs.comment')
-lua require('configs.vim-gh-line')
 lua require('configs.terminal')
 lua require('configs.highstr')
 lua require('configs.pounce')
+lua require('configs.gitlinker')
 
 " helpful abbreviations 
 cnoreabbrev f FzfLua

@@ -33,7 +33,8 @@ vim.api.nvim_set_keymap("n", "<leader>tm", ":LTTerm<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-t>h",  ":LTClearJumpHL<cr>", opts)
 
 -- calltree specific commands
-vim.api.nvim_set_keymap("n", "<C-h>o",     ":LTPopOutCalltree<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-h>o",     ":LTOpenToCalltree<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-h>oo",    ":LTPopOutCalltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-h>n",     ":LTNextCalltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-h>p",     ":LTPrevCalltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-h>e",     ":LTExpandCalltree<cr>", opts)
@@ -50,7 +51,8 @@ vim.api.nvim_set_keymap("n", "<C-h>d",     ":LTDetailsCalltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-h>x",     ":LTCloseCalltree<cr>", opts)
 
 -- symboltree specific commands
-vim.api.nvim_set_keymap("n", "<C-s>o", ":LTPopOutSymboltree<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-s>o", ":LTOpenToSymboltree<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-s>oo", ":LTPopOutSymboltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-s>n", ":LTNextSymboltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-s>p", ":LTPrevSymboltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-s>e", ":LTExpandSymboltree<cr>", opts)
@@ -67,7 +69,8 @@ vim.api.nvim_set_keymap("n", "<C-s>x", ":LTCloseSymboltree<cr>", opts)
 -- filetree specific commands
 vim.api.nvim_set_keymap("n", "<C-m>f", ":LTOpenFiletree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<leader><leader>", ":LTPopOutFiletree<cr>", opts)
-vim.api.nvim_set_keymap("n", "<C-m>o", ":LTPopOutFiletree<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-m>o", ":LTOpenToFiletree<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-m>oo", ":LTPopOutFiletree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-m>n", ":LTNextFiletree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-m>p", ":LTPrevFiletree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-m>e", ":LTExpandFiletree<cr>", opts)
@@ -87,7 +90,8 @@ vim.api.nvim_set_keymap("n", "<C-m>R", ":LTTRenameFiletree<cr>", opts)
 
 -- bookmarks specific commands
 vim.api.nvim_set_keymap("n", "<C-b>n", ":LTOpenNotebook<cr>", opts)
-vim.api.nvim_set_keymap("n", "<C-b>o", ":LTPopOutNotebook<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-b>o", ":LTOpenToNotebook<cr>", opts)
+vim.api.nvim_set_keymap("n", "<C-b>oo", ":LTPopOutNotebook<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-b>l", ":LTListNotebooks<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-b>c", ":LTCreateBookmark<cr>", opts)
 
