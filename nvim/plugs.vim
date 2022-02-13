@@ -29,6 +29,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'rlane/pounce.nvim'
     Plug 'mtdl9/vim-log-highlighting'
     Plug 'ruifm/gitlinker.nvim'
+    Plug 'ldelossa/nightfox.nvim'
 call plug#end()
 lua require('configs.buffer-resize')
 lua require('configs.go-nvim')

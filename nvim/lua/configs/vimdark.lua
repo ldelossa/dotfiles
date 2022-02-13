@@ -2,7 +2,7 @@
  function! DarkMode()
      let $BAT_THEME="1337"
      let $FZF_DEFAULT_OPTS='--keep-right --color="dark" --color="header:75,info:75" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
-     colorscheme vimdark
+     colorscheme nordfox
      " needs to source in-order to set fzf-lua fzf theme again.
      source ~/.config/nvim/lua/configs/fzf.lua
  endfunction
@@ -12,7 +12,7 @@ vim.cmd [[
 function! LightMode()
      let $BAT_THEME="gruvbox-light"
      let $FZF_DEFAULT_OPTS='--keep-right --color="light" --color="header:25,info:25" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
-     colorscheme vimlight
+     colorscheme dayfox
      source ~/.config/nvim/lua/configs/fzf.lua
 endfunction
 ]]
