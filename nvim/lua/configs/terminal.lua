@@ -33,7 +33,7 @@ function M.terminal_vsplit()
     vim.api.nvim_buf_set_keymap(buf, 't', "<C-w>n", "<C-\\><C-n>", opts)
     vim.api.nvim_buf_set_option(buf, 'bufhidden', 'hide')
     vim.cmd('vsplit')
-    vim.api.nvim_win_set_buf(vim.api.nvim_get_current_win, buf)
+    vim.api.nvim_win_set_buf(vim.api.nvim_get_current_win(), buf)
     vim.fn.termopen("/bin/zsh")
 end
 
