@@ -30,6 +30,8 @@ call plug#begin('~/.config/nvim/after')
     Plug 'mtdl9/vim-log-highlighting'
     Plug 'ruifm/gitlinker.nvim'
     Plug 'ldelossa/nightfox.nvim'
+    Plug 'nvim-treesitter/playground'
+    Plug 'pedrohdz/vim-yaml-folds'
 call plug#end()
 lua require('configs.buffer-resize')
 lua require('configs.go-nvim')

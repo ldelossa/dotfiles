@@ -1,7 +1,7 @@
 {
   "positionX": "right",
   "positionY": "top",
-  "timeout": 10,
+  "timeout": 5,
   "timeout-low": 5,
   "timeout-critical": 0,
   "notification-window-width": 500,
@@ -9,5 +9,5 @@
   "image-visibility": "when-available",
   "transition-time": 200,
   "hide-on-clear": false,
-  "control-center-margin-right": 50
+  "control-center-margin-right": 7
 }
