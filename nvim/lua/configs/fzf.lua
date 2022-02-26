@@ -21,6 +21,7 @@ remap('n', '<C-f>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
 remap('n', '<C-f>t', '<cmd>lua require("fzf-lua").tabs()<CR>', opts)
 remap('n', '<C-f>h', '<cmd>lua require("fzf-lua").oldfiles()<CR>', opts)
 remap('n', '<C-f>r', '<cmd>lua require("fzf-lua").registers()<CR>', opts)
+remap('n', '<C-f>k', '<cmd>lua require("fzf-lua").keymaps()<CR>', opts)
 -- lsp
 remap('n', 'gD', '<Cmd>lua require("fzf-lua").lsp_declarations()<CR>', opts)
 remap('n', 'gd', '<Cmd>lua require("fzf-lua").lsp_definitions()<CR>', opts)

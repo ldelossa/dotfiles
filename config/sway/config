@@ -174,7 +174,7 @@ input "1133:16495:Logitech_MX_Ergo" {
     # Start a terminal
     bindsym $mod+Return exec $term
     # Start a floating term
-    bindsym Mod4+Return exec 'THEME=$theme alacritty -o window.padding.x=20 -o window.padding.y=20 --title "fzf-switcher"'
+    bindsym Mod4+Return exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "fzf-switcher"'
 
 
     # Screencap 
@@ -284,6 +284,7 @@ input "1133:16495:Logitech_MX_Ergo" {
     assign [class="Signal"]             workspace chat
     assign [class="Vivaldi-stable"]     workspace web
     assign [class="Lens"]               workspace apps
+    assign [class="obsidian"]           workspace notes
 
     # hack because spotify sucks.
     for_window [class="Spotify"]    move window to workspace music

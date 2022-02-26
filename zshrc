@@ -31,6 +31,8 @@ source ~/zsh.d/systemd.sh
 # aliases and helper functions for working
 # with cilium
 source ~/zsh.d/cilium.sh
+source ~/zsh.d/bat.sh
+
 
 
 # BEGIN_KITTY_SHELL_INTEGRATION
