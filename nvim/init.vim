@@ -44,6 +44,7 @@ set noequalalways
 set autoread
 set scrolloff=15
 set shortmess=atosTc
+set cc=80
 
 nnoremap bd :bp\|bd #<cr>
 
