@@ -25,12 +25,16 @@ alias grc='git rebase --continue'
 alias gf='git fetch'
 alias gpf='git push --force-with-lease'
 alias gchk='git checkout'
+alias gsw='git switch'
+alias gsh='git show'
 alias gr='git rebase'
 alias gri='git rebase -i'
 alias gst='git stash '
 alias gsp='git stash pop'
 alias gsa='git stash apply'
 alias gbr='git branch --format "%(refname:short) <> %(upstream)"'
+alias gd='git diff'
+alias gdn='git diff --name-only'
 
 gsc() {
     git checkout stash@{$1} -- $2
