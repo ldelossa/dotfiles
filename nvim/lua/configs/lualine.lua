@@ -76,7 +76,7 @@ require'lualine'.setup {
     lualine_z = {progress, location}
   },
   inactive_sections = {
-    lualine_a = {'filename'},
+    lualine_a = {filename},
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},

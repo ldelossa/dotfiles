@@ -12,7 +12,6 @@ call plug#begin('~/.config/nvim/after')
     Plug 'seblj/nvim-echo-diagnostics'
     Plug 'onsails/lspkind-nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'ray-x/go.nvim'
     Plug 'SmiteshP/nvim-gps'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lewis6991/gitsigns.nvim'
@@ -32,9 +31,10 @@ call plug#begin('~/.config/nvim/after')
     Plug 'ldelossa/nightfox.nvim'
     Plug 'nvim-treesitter/playground'
     Plug 'pedrohdz/vim-yaml-folds'
+    Plug 'ray-x/go.nvim'
+    Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')
-lua require('configs.go-nvim')
 lua require('configs.nvim-lsp')
 lua require('configs.fzf')
 lua require('configs.nvim-autopairs')
@@ -56,6 +56,8 @@ lua require('configs.terminal')
 lua require('configs.highstr')
 lua require('configs.pounce')
 lua require('configs.gitlinker')
+" lua require('configs.go-nvim')
+source $HOME/.config/nvim/lua/configs/vim-go.vim
 
 " helpful abbreviations 
 cnoreabbrev f FzfLua
