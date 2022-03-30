@@ -44,7 +44,7 @@ exec swaync
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Appearance
-gaps top 10
+gaps top 5
 gaps bottom 0
 gaps left 0
 gaps right 0
