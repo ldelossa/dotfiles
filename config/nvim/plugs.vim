@@ -33,6 +33,8 @@ call plug#begin('~/.config/nvim/after')
     Plug 'pedrohdz/vim-yaml-folds'
     Plug 'ray-x/go.nvim'
     Plug 'fatih/vim-go'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'pwntester/octo.nvim'
 call plug#end()
 lua require('configs.buffer-resize')
 lua require('configs.nvim-lsp')
@@ -56,6 +58,7 @@ lua require('configs.terminal')
 lua require('configs.highstr')
 lua require('configs.pounce')
 lua require('configs.gitlinker')
+lua require('configs.octo-nvim')
 " lua require('configs.go-nvim')
 source $HOME/.config/nvim/lua/configs/vim-go.vim
 

@@ -1,4 +1,4 @@
-nvim/after
+config/nvim/after
 
 config/sway/theme
 config/sway/wob.sh
