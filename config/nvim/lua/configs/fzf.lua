@@ -299,6 +299,7 @@ require'fzf-lua'.setup {
   file_icon_colors = {
     ["lua"]   = "blue",
   },
-} 
+}
 
-
+-- register FzfLua to handle vim.ui.select
+vim.cmd("FzfLua register_ui_select")

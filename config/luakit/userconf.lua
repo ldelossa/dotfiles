@@ -194,7 +194,7 @@ local tab_favicons = require "tab_favicons"
 local view_source = require "view_source"
 
 -- Add virtual tabs
-local vertical_tabs = require "vertical_tabs"
+-- local vertical_tabs = require "vertical_tabs"
 
 -- Put "userconf.lua" in your Luakit config dir with your own tweaks; if this is
 -- permanent, no need to copy/paste/modify the default rc.lua whenever you
