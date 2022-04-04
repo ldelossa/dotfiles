@@ -175,7 +175,10 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym $mod+Return exec $term
     # Start a floating term
     bindsym Mod4+Return exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "fzf-switcher"'
-
+    # Start a luakit instance
+    bindsym Mod4+b exec 'luakit -U https://google.com'
+    # Start a luakit open to gh notifications
+    bindsym Mod4+g exec 'luakit -U https://github.com/notifications'
 
     # Screencap 
     bindsym $mod+Shift+r exec ~/.config/waybar/custom/wfrecord-record.sh
@@ -294,6 +297,7 @@ input "1133:16495:Logitech_MX_Ergo" {
     # 1password should always float
     for_window [class="1Password"]      floating enable
     for_window [title="fzf-switcher"]   floating enable
+    for_window [app_id="luakit"]        floating enable
 
 #
 # Layout stuff:

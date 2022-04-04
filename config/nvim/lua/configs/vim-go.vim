@@ -25,3 +25,4 @@ let go_highlight_format_strings = 0
 let go_highlight_diagnostic_errors = 0
 let go_highlight_diagnostic_warnings = 0
 let go_highlight_debug = 0
+let g:go_list_type_commands = {"GoFmt": ""}
