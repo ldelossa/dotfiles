@@ -18,3 +18,10 @@ let g:go_def_mapping_enabled = 0
 " linting
 let g:go_metalinter_deadline = "60s"
 let g:go_metalinter_command = "golangci-lint"
+
+" turn off all highlighting
+let go_highlight_string_spellcheck = 0
+let go_highlight_format_strings = 0
+let go_highlight_diagnostic_errors = 0
+let go_highlight_diagnostic_warnings = 0
+let go_highlight_debug = 0
