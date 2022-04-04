@@ -300,6 +300,3 @@ require'fzf-lua'.setup {
     ["lua"]   = "blue",
   },
 }
-
--- register FzfLua to handle vim.ui.select
-vim.cmd("FzfLua register_ui_select")

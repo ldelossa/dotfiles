@@ -39,6 +39,8 @@ call plug#end()
 lua require('configs.buffer-resize')
 lua require('configs.nvim-lsp')
 lua require('configs.fzf')
+"" register FzfLua as vim.ui.select implementor
+lua vim.cmd("FzfLua register_ui_select")
 lua require('configs.nvim-autopairs')
 lua require('configs.flutter-tools')
 lua require('configs.nvim-echo-diagnostics')
@@ -61,6 +63,3 @@ lua require('configs.gitlinker')
 lua require('configs.octo-nvim')
 " lua require('configs.go-nvim')
 source $HOME/.config/nvim/lua/configs/vim-go.vim
-
-" helpful abbreviations 
-cnoreabbrev f FzfLua
