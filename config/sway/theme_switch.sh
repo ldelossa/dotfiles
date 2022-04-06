@@ -27,6 +27,9 @@ then
     ln -s ~/.config/swaync/style-dark.css ~/.config/swaync/style.css
     swaync-client -rs
 
+    unlink ~/.config/k9s/skin.yml
+    ln -s ~/.config/k9s/skin-dark.yml ~/.config/k9s/skin.yml
+
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
 
     kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
@@ -67,6 +70,9 @@ then
     unlink ~/.config/swaync/style.css
     ln -s ~/.config/swaync/style-light.css ~/.config/swaync/style.css
     swaync-client -rs
+
+    unlink ~/.config/k9s/skin.yml
+    ln -s ~/.config/k9s/skin-light.yml ~/.config/k9s/skin.yml
 
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
 

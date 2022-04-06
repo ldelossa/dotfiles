@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'ldelossa/litee-symboltree.nvim'
     Plug 'ldelossa/litee-calltree.nvim'
     Plug 'ldelossa/litee-bookmarks.nvim'
+    Plug 'ldelossa/litee-gh.nvim'
     Plug 'Pocco81/HighStr.nvim'
     Plug 'rlane/pounce.nvim'
     Plug 'mtdl9/vim-log-highlighting'

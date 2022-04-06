@@ -43,6 +43,9 @@ exec swaync
 # Toggle control center
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
+# Toggle waybar
+ bindsym $mod+Shift+b exec killall -SIGUSR1 waybar
+
 # Appearance
 gaps top 5
 gaps bottom 0
@@ -297,7 +300,6 @@ input "1133:16495:Logitech_MX_Ergo" {
     # 1password should always float
     for_window [class="1Password"]      floating enable
     for_window [title="fzf-switcher"]   floating enable
-    for_window [app_id="luakit"]        floating enable
 
 #
 # Layout stuff:

@@ -8,5 +8,5 @@ default:
 link-configs: $(user_configs)
 
 $(user_configs):
-	unlink $@
+	-unlink $@
 	ln -s $(subst /home/louis/.config,$(shell pwd)/config,$@) $@
