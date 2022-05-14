@@ -43,7 +43,7 @@ tooltip label {
 }
 
 window#waybar {
-    background: @white;
+    background: #C9C9C9;
 }
 
 window#waybar.bottom {
@@ -59,54 +59,22 @@ window#waybar.bottom {
 
 #workspaces button {
     margin:             0px 2px 0px 2px;
-    padding:            4px 5px 4px 8px;
+    padding:            0px 5px 0px 5px;
     color:              @grey;
     border-radius:      0px;
-    border-bottom:      2px solid @trans;
+    border-bottom:      4px solid @trans;
 }
 
 #workspaces button.focused {
     color:              @grey;
     font-weight:        bold;
-    font-size:          20px;
-    border-bottom:      2px solid @orange;
+    border-bottom:      4px solid @orange;
+    background:         rgba(245, 245, 245, .5);
+
 }
 
 #workspaces button.urgent {
     color:              @red; 
-}
-
-#workspaces button#sway-workspace-apps.focused {
-    border-bottom:      2px solid @green;
-}
-
-#workspaces button#sway-workspace-chat.focused {
-    border-bottom:      2px solid @turquoise;
-}
-
-#workspaces button#sway-workspace-ebooks.focused {
-    border-bottom:      2px solid @red;
-}
-
-#workspaces button#sway-workspace-music.focused {
-    border-bottom:      2px solid @orange;
-}
-
-#workspaces button#sway-workspace-terminal.focused {
-    border-bottom:      2px solid @blue;
-}
-
-#workspaces button#sway-workspace-web.focused {
-    border-bottom:      2px solid @purple;
-}
-#workspaces button#sway-workspace-vm.focused {
-    border-bottom:      2px solid @green;
-}
-#workspaces button#sway-workspace-stats.focused {
-    border-bottom:      2px solid @turquoise;
-}
-#workspaces button#sway-workspace-sound.focused {
-    border-bottom:      2px solid @red;
 }
 
 #custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
@@ -162,15 +130,14 @@ window#waybar.bottom {
 }
 
 #idle_inhibitor {
-    color:              @blue-light;
-    border-top:        3px solid @blue-light;
+    color:              @grey;
+    border-top:         3px solid @grey;
     font-size:          15px;
 }
 
 #idle_inhibitor.activated {
     color:              @blue-light;
     border-top:        3px solid @blue-light;
-    font-size:          15px;
 }
 
 #tray {

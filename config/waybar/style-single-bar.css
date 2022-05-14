@@ -38,14 +38,14 @@ tooltip {
   font-family:      "FreeMono";
   font-size:        20px;
   background:       @black-trans;
-  border:           1px solid @yellow;
+  border:           2px solid @orange;
 }
 tooltip label {
   color: @grey-light;
 }
 
 window#waybar {
-    background: @black-trans;
+    background: @black-two;
 }
 
 window#waybar.bottom {
@@ -62,56 +62,22 @@ window#waybar.bottom {
 
 #workspaces button {
     margin:             0px 2px 0px 2px;
-    padding:            4px 5px 4px 8px;
-    color:              @grey;
+    padding:            0px 5px 0px 5px;
+    color:              @grey-light;
     border-radius:      0px;
-    border-bottom:      2px solid @trans;
+    border-bottom:      4px solid @trans;
 }
 
 #workspaces button.focused {
     color:              @white;
-    font-size:          18px;
     font-weight:        bold;
-    border-bottom:      2px solid @blue;
+    border-bottom:      4px solid @orange;
+    background:         rgba(85, 85, 85, .4);
 }
 
 #workspaces button.urgent {
     color:              @red; 
 }
-
-#workspaces button#sway-workspace-apps.focused {
-    border-bottom:      2px solid @green;
-}
-
-#workspaces button#sway-workspace-chat.focused {
-    border-bottom:      2px solid @turquoise;
-}
-
-#workspaces button#sway-workspace-ebooks.focused {
-    border-bottom:      2px solid @red;
-}
-
-#workspaces button#sway-workspace-music.focused {
-    border-bottom:      2px solid @orange;
-}
-
-#workspaces button#sway-workspace-terminal.focused {
-    border-bottom:      2px solid @blue;
-}
-
-#workspaces button#sway-workspace-web.focused {
-    border-bottom:      2px solid @purple;
-}
-#workspaces button#sway-workspace-vm.focused {
-    border-bottom:      2px solid @green;
-}
-#workspaces button#sway-workspace-stats.focused {
-    border-bottom:      2px solid @turquoise;
-}
-#workspaces button#sway-workspace-sound.focused {
-    border-bottom:      2px solid @red;
-}
-
 
 #custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
     color:              @grey-light;
@@ -168,15 +134,14 @@ window#waybar.bottom {
 }
 
 #idle_inhibitor {
-    color:              @blue-light;
-    border-top:        3px solid @blue-light;
+    color:              @grey;
+    border-top:         3px solid @grey;
     font-size:          15px;
 }
 
 #idle_inhibitor.activated {
     color:              @blue-light;
     border-top:        3px solid @blue-light;
-    font-size:          15px;
 }
 
 #tray {
