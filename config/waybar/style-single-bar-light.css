@@ -19,7 +19,7 @@
 
 .modules-right {
     font-family:    "Cousine";
-    font-size:      15px;
+    font-size:      12px;
 }
 
 .modules-center {
@@ -53,8 +53,8 @@ window#waybar.bottom {
 /* === work spaces === */
 
 #workspaces {
-    padding:            0px 20px 0px 20px;
-    border-radius:      0px 0px 10px 0px;
+    padding:            0px 0px 0px 0px;
+    border-radius:      0px 0px 0px 0px;
 }
 
 #workspaces button {
@@ -143,31 +143,38 @@ window#waybar.bottom {
     margin:             0px 15px 0px 15px;
     padding:            0px 0px 0px 0px;
     color:              @grey;
-    font-weight:        bold;
 }
 
 #mode {
     font-size:          20px;
 }
 
-#tray, #custom-vm, #custom-vm, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
+#clock, #tray, #custom-vm, #custom-vm, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
     margin:             1px 1px 1px 1px;
-    padding:            6px 0px 6px 0px;
-    color:              @white;
-    border-left:        3px solid @grey-light;
+    padding:            0px 6px 0px 6px;
+    color:              @black;
+    border-top:         3px solid @grey-light;
     font-size:          20px;
 }
 
-#idle_inhibitor {
-    font-size:          18px;
+#clock {
+    font-size: 15px
 }
+
+#idle_inhibitor {
+    color:              @blue-light;
+    border-top:        3px solid @blue-light;
+    font-size:          15px;
+}
+
 #idle_inhibitor.activated {
     color:              @blue-light;
-    border-left:        3px solid @blue-light;
+    border-top:        3px solid @blue-light;
+    font-size:          15px;
 }
 
 #tray {
-    border-left:        3px solid @green;
+    border-top:        3px solid @green;
 }
 
 #custom-wfrecord {
@@ -179,7 +186,7 @@ window#waybar.bottom {
 
 #custom-wfrecord.recording {
     color:              @blue-light;
-    border-left:        3px solid @blue-light;
+    border-top:        3px solid @blue-light;
 }
 
 #custom-vm {
@@ -187,7 +194,7 @@ window#waybar.bottom {
 }
 #custom-vm.running {
     color:              @blue-light;
-    border-left:        3px solid @blue-light;
+    border-top:        3px solid @blue-light;
 }
 
 #custom-containers {
@@ -195,112 +202,106 @@ window#waybar.bottom {
 }
 #custom-containers.running {
     color:              @blue;
-    border-left:        3px solid @blue;
+    border-top:        3px solid @blue;
 }
 
 #memory {
     font-weight:        bold;
 }
 #memory.low {
-    border-left:        3px solid @blue;
+    border-top:        3px solid @blue;
 }
 #memory.mid {
-    border-left:        3px solid @yellow;
+    border-top:        3px solid @yellow;
 }
 #memory.high {
-    border-left:        3px solid @red;
+    border-top:        3px solid @red;
 }
 
 #cpu {
     font-weight:        bold;
 }
 #cpu.low {
-    border-left:        3px solid @blue;
+    border-top:        3px solid @blue;
 }
 #cpu.mid {
-    border-left:        3px solid @yellow;
+    border-top:        3px solid @yellow;
 }
 #cpu.high {
-    border-left:        3px solid @red;
+    border-top:        3px solid @red;
 }
 
 #disk {
+    font-weight:        bold;
     font-size:          18px;
 }
 #disk.low {
-    border-left:        3px solid @blue;
+    border-top:        3px solid @blue;
 }
 #disk.mid {
-    border-left:        3px solid @yellow;
+    border-top:        3px solid @yellow;
 }
 #disk.high {
-    border-left:        3px solid @red;
+    border-top:        3px solid @red;
 }
 
 #temperature {
-    font-size:          18px;
+    font-size:          15px;
     font-weight:        bold;
-    border-left:        3px solid @blue;
+    border-top:        3px solid @blue;
 }
 #temperature.critical {
-    border-left:        3px solid @red;
+    border-top:        3px solid @red;
 }
 
 #network {
-    border-left:        3px solid @blue;
+    border-top:        3px solid @blue;
     font-size:          18px;
 }
 #network.disconnected {
-    border-left:        3px solid @red;
+    border-top:        3px solid @red;
 }
 
 #battery {
     font-size:          13.5px;
-    border-left:        3px solid @green;
+    border-top:        3px solid @green;
 }
 #battery.warning {
-    border-left:        3px solid @yellow;
+    border-top:        3px solid @yellow;
 }
 #battery.critical {
-    border-left:        3px solid @red;
+    border-top:        3px solid @red;
 }
 #battery.charging {
-    border-left:        3px solid @green;
+    border-top:        3px solid @green;
 }
 
 #backlight {
     font-size:           15px;
 }
 #backlight.low {
-    border-left:        3px solid @blue;
+    border-top:        3px solid @blue;
 }
 #backlight.mid {
-    border-left:        3px solid @yellow;
+    border-top:        3px solid @yellow;
 }
 #backlight.high {
-    border-left:        3px solid @red;
+    border-top:        3px solid @red;
 }
 
 #pulseaudio {
     font-size:          15px;
 }
 #pulseaudio.low {
-    border-left:        3px solid @blue;
+    border-top:        3px solid @blue;
 }
 #pulseaudio.mid {
-    border-left:        3px solid @yellow;
+    border-top:        3px solid @yellow;
 }
 #pulseaudio.high {
-    border-left:        3px solid @red;
+    border-top:        3px solid @red;
 }
 #pulseaudio.muted {
-    border-left:        3px solid @red;
-}
-
-#clock {
-    font-weight:        bold;
-}
-#clock.utc {
-    font-weight:        bold;
+    border-top:        3px solid @red;
 }
 

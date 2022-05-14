@@ -45,23 +45,11 @@ set autoread
 set scrolloff=15
 set shortmess=atosTc
 set cc=80
+set nowrap
+set laststatus=3
 
 nnoremap bd :bp\|bd #<cr>
-
-" " term shortcuts
-" if has("nvim")
-"     nnoremap <leader>tm :botright split <bar> resize 16 <bar> terminal<cr>
-"     tnoremap <C-w>v <C-\><C-n>: vsplit <bar> terminal<cr>
-"     tnoremap <C-w>h <C-\><C-n><C-w>h
-"     tnoremap <C-w>j <C-\><C-n><C-w>j
-"     tnoremap <C-w>k <C-\><C-n><C-w>k
-"     tnoremap <C-w>l <C-\><C-n><C-w>l
-"     tnoremap <C-w>n <C-\><C-n>
-" else
-"     nnoremap <leader>tm :topleft term<CR>
-"     tmap <C-W>v <C-W>:vert term<CR>
-"     tmap <C-W>s <C-W>:term<CR>
-" endif
+nnoremap P "0p
 
 " remove highlights
 nnoremap <C-h> :noh <CR>

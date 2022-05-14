@@ -14,17 +14,17 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-ldelossa-dev
-  currentCluster: kind-ldelossa-dev
+  currentContext: kind-clab-srv6-vpnv4-simple
+  currentCluster: kind-clab-srv6-vpnv4-simple
   clusters:
-    kind-ldelossa-dev:
+    kind-clab-srv6-vpnv4-simple:
       namespace:
         active: all
         favorites:
         - all
         - default
       view:
-        active: pod
+        active: pods
       featureGates:
         nodeShell: false
       shellPod:

@@ -25,6 +25,11 @@ require('litee.calltree').setup({
 require('litee.bookmarks').setup({
 })
 
+require('litee.gh').setup({
+    icon_set = "codicons",
+    map_resize_keys = true
+})
+
 local opts = { silent = true }
 -- litee.lib mappings
 vim.api.nvim_set_keymap("n", "<C-t>",   ":LTPanel<cr>", opts)

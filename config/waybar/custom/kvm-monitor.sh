@@ -16,4 +16,3 @@ then
    echo "{\"class\": \"running\", \"text\": \"$n\", \"tooltip\": \"$tooltip\"}"
    exit
 fi
-echo "{\"class\": \"\", \"text\": \" \", \"tooltip\": \"no running vms\"}"

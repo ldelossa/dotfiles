@@ -1,15 +1,15 @@
 # K9s Gruvbox Light Skin Contributed by [@indiebrain](https://github.com/indiebrain)
-foreground: &foreground "#3c3735"
-background: &background "#fbf1c7"
-current_line: &current_line "#ebdbb2"
-selection: &selection "#3c3735"
-comment: &comment "#bdad93"
-cyan: &cyan "#689d69"
-green: &green "#989719"
-orange: &orange "#d79920"
-magenta: &magenta "#b16185"
-blue: &blue "#448488"
-red: &red "#cc231c"
+foreground: &foreground "#1D344F"
+background: &background "#bcbcbc"
+current_line: &current_line "#6080b0"
+selection: &selection "#6080b0"
+comment: &comment "#767B85"
+cyan: &cyan "#40626B"
+green: &green "#5A7C6B"
+orange: &orange "#BA774A"
+magenta: &magenta "#4c4c4c"
+blue: &blue "#5070a0"
+red: &red "#B95D76"
 
 k9s:
   body:

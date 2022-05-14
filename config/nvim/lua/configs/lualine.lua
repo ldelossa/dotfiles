@@ -21,8 +21,8 @@ local diagnostics = {
 }
 local gps_comp = {
     gps.get_location,
-    cond = gps_hide_in_width
 }
+
 local diff = {
     'diff',
     cond = hide_in_width(100)

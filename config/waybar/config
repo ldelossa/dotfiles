@@ -1,10 +1,11 @@
-[{
-    "height": 40,
-    "margin": "5px 7px 0p 5px",
+{
+    "id": "top",
+    "height": "10px",
+    "margin": "0px 0px 0p 0px",
     "name": "top",
-    "layer": "bottom",
+    "layer": "top",
     "position": "top",
-    "modules-right": ["sway/mode", "clock", "clock#utc"],
+    "modules-right": ["sway/mode", "custom/containers", "custom/vm", "temperature", "disk", "memory", "cpu", "pulseaudio", "network", "battery", "idle_inhibitor", "clock", "clock#utc"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon} {name}",
@@ -33,26 +34,6 @@
     },
     "sway/mode": {
         "format": ""
-    },
-},
-{
-    "height": 15,
-    "name": "bottom",
-    "layer": "top",
-    "margin": "0px 0px 0px 0px",
-    "position": "left",
-    "modules-right": ["network", "pulseaudio", "backlight", "battery", "custom/grimshot", "custom/wfrecord", "custom/vm", "custom/containers", "memory", "cpu", "disk", "temperature", "tray",  "idle_inhibitor"],
-    "modules-left": ["custom/spotify-monitor", "custom/spotify-metadata", "custom/spotify-next", "custom/spotify-play-pause", "custom/spotify-prev", "custom/spotify-quit"],
-    "clock": {
-        "rotate": 90,
-        "format": "{:%a %d %b %H:%M}",
-        "tooltip": true,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    },
-    "clock#utc": {
-        "rotate": 90,
-        "format": "{:%H:%M UTC}",
-        "timezone": "Etc/UTC"
     },
     "battery": {
         "format": "{icon}",
@@ -86,19 +67,6 @@
         "on-click": "gnome-control-center network",
         "tooltip": true
     },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon}",
-        "format-icons": ["", "", ""],
-        "on-scroll-up": "exec brightnessctl set 5%+",
-        "on-scroll-down": "brightnessctl set 5%-",
-        "tooltip-format": "{percent}",
-        "states": {
-            "low": 0,
-            "mid": 50,
-            "high": 75
-        }
-    },
     "pulseaudio": {
         "format": "{icon}",
         "format-alt-click": "click-right",
@@ -116,36 +84,6 @@
             "mid": 50,
             "high": 75
         }
-    },
-    "custom/grimshot": {
-        "format": "",
-        "tooltip": false,
-        "on-click": "grimshot --notify save output - | swappy -f -",
-        "on-click-middle": "grimshot --notify save area - | swappy -f -",
-        "on-click-right": "grimshot --notify save window - | swappy -f -"
-    }, 
-    "custom/wfrecord": {
-        "format": "",
-        "tooltip": false,
-        "interval": "once",
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/wfrecord-monitor.sh",
-        "on-click": "~/.config/waybar/custom/wfrecord-record.sh",
-        "on-click-right": "~/.config/waybar/custom/wfrecord-stop.sh",
-        "signal": 8
-    },
-    "custom/vm": {
-        "format": "   ",
-        "interval": 10,
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/kvm-monitor.sh",
-        "on-click": "~/.config/waybar/custom/kvm.sh"
-    },
-    "custom/containers": {
-        "format": "   ",
-        "interval": 10,
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/containers-monitor.sh",
     },
     "cpu": {
         "interval": 10,
@@ -187,61 +125,18 @@
         "format": "",
         "critical-threshold": 80
     },
-    "tray": {
-        "icon-size": 16,
-        "spacing": 25,
-        "show-passive-items": true
-    },
-    "custom/spotify-monitor": {
-        "interval": 30,
-        "exec": "~/.config/waybar/custom/spotify/monitor.sh",
-        "signal": 4
-    },
-    "custom/spotify-metadata": {
-        "format": " {}",
-        "max-length": 30,
-        "min-length": 30,
-        "interval": "once",
+    "custom/vm": {
+        "format": "   ",
+        "interval": 10,
         "return-type": "json",
-        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "sway workspace music",
-        "rotate": 90,
-        "signal": 5
+        "exec": "~/.config/waybar/custom/kvm-monitor.sh",
+        "on-click": "~/.config/waybar/custom/kvm.sh"
     },
-    "custom/spotify-play-pause": {
-        "format": "{}",
-        "interval": "once",
+    "custom/containers": {
+        "format": "   ",
+        "interval": 10,
         "return-type": "json",
-        "exec": "~/.config/waybar/custom/spotify/play-pause.sh",
-        "on-click": "~/.config/waybar/custom/spotify/controls.sh",
-        "signal": 5
-    },
-    "custom/spotify-next": {
-        "format": "怜",
-        "return-type": "json",
-        "interval": "once",
-        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "~/.config/waybar/custom/spotify/controls.sh next",
-        "rotate": 90,
-        "signal": 5
-    },
-    "custom/spotify-prev": {
-        "format": "玲",
-        "interval": "once",
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "~/.config/waybar/custom/spotify/controls.sh prev",
-        "rotate": 90,
-        "signal": 5
-    },
-    "custom/spotify-quit": {
-        "format": "",
-        "interval": "once",
-        "return-type": "json",
-        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "~/.config/waybar/custom/spotify/quit.sh ",
-        "rotate": 90,
-        "signal": 6
+        "exec": "~/.config/waybar/custom/containers-monitor.sh",
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -250,4 +145,5 @@
             "deactivated": ""
         }
     }
-}]
+}
+

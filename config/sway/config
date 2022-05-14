@@ -7,7 +7,7 @@
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-font Cousine Medium 10
+font Cousine Medium 11
 
 ### Variables
 # Logo key. Use Mod1 for Alt.
@@ -47,14 +47,16 @@ bindsym $mod+Shift+n exec swaync-client -t -sw
  bindsym $mod+Shift+b exec killall -SIGUSR1 waybar
 
 # Appearance
-gaps top 5
+gaps top 0
 gaps bottom 0
 gaps left 0
 gaps right 0
-gaps inner 6
+gaps inner 0
 default_border pixel 4
 for_window [class=".*"]     opacity 1
 for_window [app_id=".*"]    opacity 1 
+smart_gaps on
+smart_borders on
 
 ### Monitor Layout
 workspace chat output eDP-1
@@ -264,21 +266,21 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym $mod+4 workspace number 4
     bindsym $mod+5 workspace number 5
     # Move focused container to workspace
-    bindsym Mod4+Shift+c move container to workspace chat
-    bindsym Mod4+Shift+w move container to workspace web
-    bindsym Mod4+Shift+t move container to workspace terminal
-    bindsym Mod4+Shift+e move container to workspace ebooks
-    bindsym Mod4+Shift+m move container to workspace music 
-    bindsym Mod4+Shift+v move container to workspace vm
-    bindsym Mod4+Shift+a move container to workspace apps
-    bindsym Mod4+Shift+s move container to workspace stats
-    bindsym Mod4+Shift+p move container to workspace sound
-
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
+    # bindsym Mod4+Shift+c move container to workspace chat
+    # bindsym Mod4+Shift+w move container to workspace web
+    # bindsym Mod4+Shift+t move container to workspace terminal
+    # bindsym Mod4+Shift+e move container to workspace ebooks
+    # bindsym Mod4+Shift+m move container to workspace music 
+    # bindsym Mod4+Shift+v move container to workspace vm
+    # bindsym Mod4+Shift+a move container to workspace apps
+    # bindsym Mod4+Shift+s move container to workspace stats
+    # bindsym Mod4+Shift+p move container to workspace sound
+    #
+    # bindsym $mod+Shift+1 move container to workspace number 1
+    # bindsym $mod+Shift+2 move container to workspace number 2
+    # bindsym $mod+Shift+3 move container to workspace number 3
+    # bindsym $mod+Shift+4 move container to workspace number 4
+    # bindsym $mod+Shift+5 move container to workspace number 5
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
  
@@ -289,7 +291,9 @@ input "1133:16495:Logitech_MX_Ergo" {
     assign [app_id="virt-manager"]      workspace vm
     assign [class="Signal"]             workspace chat
     assign [class="Vivaldi-stable"]     workspace web
+    assign [app_id="vivaldi-stable"]    workspace web
     assign [class="Lens"]               workspace apps
+    assign [app_id="org.zealdocs.zeal"] workspace apps
     assign [class="obsidian"]           workspace notes
 
     # hack because spotify sucks.
@@ -299,6 +303,7 @@ input "1133:16495:Logitech_MX_Ergo" {
 
     # 1password should always float
     for_window [class="1Password"]      floating enable
+    # anything with fzf-switcher title floats.
     for_window [title="fzf-switcher"]   floating enable
 
 #
