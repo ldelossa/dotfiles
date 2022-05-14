@@ -12,10 +12,10 @@ gap() {
   git push --force-with-lease
 }
 alias gs='git status'
-alias ga='git commit --amend'
+alias ga='git add'
 alias gb='git branch --all -vv'
 alias gaq='git commit --amend --no-edit'
-alias gadd='git add'
+alias gam='git commit --amend'
 alias g='git'
 alias gc="git commit"
 alias gl='git log --format=short'
