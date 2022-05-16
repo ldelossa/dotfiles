@@ -133,7 +133,7 @@
         "on-click": "~/.config/waybar/custom/kvm.sh"
     },
     "custom/containers": {
-        "format": "   ",
+        "format": " ",
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/containers-monitor.sh",

@@ -45,8 +45,11 @@ tooltip label {
 }
 
 window#waybar {
-    background: @black-two;
+    background: @black;
 }
+/* window#waybar { */
+/*     background: @black-two; */
+/* } */
 
 window#waybar.bottom {
     background: @trans;
@@ -61,7 +64,7 @@ window#waybar.bottom {
 }
 
 #workspaces button {
-    margin:             0px 2px 0px 2px;
+    margin:             0px 0px 0px 0px;
     padding:            0px 5px 0px 5px;
     color:              @grey-light;
     border-radius:      0px;

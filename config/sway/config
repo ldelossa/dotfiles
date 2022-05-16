@@ -231,9 +231,10 @@ input "1133:16495:Logitech_MX_Ergo" {
 
     # Move the focused workspace
     bindsym Mod4+Shift+$left  move workspace to left
-    bindsym Mod4+Shift+$down  move worksapce to down
+    bindsym Mod4+Shift+$down  move workspace to down
     bindsym Mod4+Shift+$up    move workspace to up
     bindsym Mod4+Shift+$right move workspace to right
+
     # Move a workspace to focused monitor via fzf
     bindsym $mod+o exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-move'
 
@@ -265,24 +266,6 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym $mod+3 workspace number 3
     bindsym $mod+4 workspace number 4
     bindsym $mod+5 workspace number 5
-    # Move focused container to workspace
-    # bindsym Mod4+Shift+c move container to workspace chat
-    # bindsym Mod4+Shift+w move container to workspace web
-    # bindsym Mod4+Shift+t move container to workspace terminal
-    # bindsym Mod4+Shift+e move container to workspace ebooks
-    # bindsym Mod4+Shift+m move container to workspace music 
-    # bindsym Mod4+Shift+v move container to workspace vm
-    # bindsym Mod4+Shift+a move container to workspace apps
-    # bindsym Mod4+Shift+s move container to workspace stats
-    # bindsym Mod4+Shift+p move container to workspace sound
-    #
-    # bindsym $mod+Shift+1 move container to workspace number 1
-    # bindsym $mod+Shift+2 move container to workspace number 2
-    # bindsym $mod+Shift+3 move container to workspace number 3
-    # bindsym $mod+Shift+4 move container to workspace number 4
-    # bindsym $mod+Shift+5 move container to workspace number 5
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
  
     bindsym $mod+Tab workspace back_and_forth
 

@@ -43,8 +43,11 @@ tooltip label {
 }
 
 window#waybar {
-    background: #C9C9C9;
+    background: @white;
 }
+/* window#waybar { */
+/*     background: #C9C9C9; */
+/* } */
 
 window#waybar.bottom {
     background: @trans;
