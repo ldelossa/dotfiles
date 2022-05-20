@@ -38,13 +38,15 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]
 bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
 
 # Notification Daemon
-exec swaync
+exec_always {
+    ~/.config/sway/swaync.sh
+}
 
-# Toggle control center
+# # Toggle control center
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Toggle waybar
- bindsym $mod+Shift+b exec killall -SIGUSR1 waybar
+bindsym $mod+Shift+b exec killall -SIGUSR1 waybar
 
 # Appearance
 gaps top 0
@@ -139,7 +141,8 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_options ctrl:nocaps          
 }
 input "2:10:TPPS/2_Elan_TrackPoint" {
-   pointer_accel    .7
+   pointer_accel    .9
+   accel_profile "flat" 
 }
 input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
    pointer_accel    .5 
@@ -229,11 +232,8 @@ input "1133:16495:Logitech_MX_Ergo" {
     # Move window to the desired workspace and switch to it via fzf
     bindsym $mod+c exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-window-move'
 
-    # Move the focused workspace
-    bindsym Mod4+Shift+$left  move workspace to left
-    bindsym Mod4+Shift+$down  move workspace to down
-    bindsym Mod4+Shift+$up    move workspace to up
-    bindsym Mod4+Shift+$right move workspace to right
+    bindsym Mod4+Shift+$left  workspace prev 
+    bindsym Mod4+Shift+$right workspace next
 
     # Move a workspace to focused monitor via fzf
     bindsym $mod+o exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-move'

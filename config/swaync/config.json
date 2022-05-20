@@ -9,5 +9,5 @@
   "image-visibility": "when-available",
   "transition-time": 200,
   "hide-on-clear": false,
-  "control-center-margin-right": 7
+  "control-center-margin-right": 0
 }

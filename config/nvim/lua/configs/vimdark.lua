@@ -2,7 +2,7 @@
  function! DarkMode()
      let $BAT_THEME="1337"
      let $FZF_DEFAULT_OPTS='--keep-right --color="dark" --color="header:75,info:75" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
-     colorscheme nordfox
+     colorscheme nightfox
      " needs to source in-order to set fzf-lua fzf theme again.
      source ~/.config/nvim/lua/configs/fzf.lua
  endfunction

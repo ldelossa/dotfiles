@@ -8,6 +8,7 @@ set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord_darker.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/3d_terraform_dark.png"
 
 client.focused #5b839a #5b839a #ffffff #7c794e
+client.unfocused #333333 #222222 #888888 #292d2e #222222
 
 # toggle themes
 bindsym $mod+p exec ~/.config/sway/theme_switch.sh light

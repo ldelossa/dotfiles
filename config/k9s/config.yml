@@ -14,10 +14,10 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-clab-srv6-vpnv4-simple
-  currentCluster: kind-clab-srv6-vpnv4-simple
+  currentContext: kind-clab-bgp-cplane-devel
+  currentCluster: kind-clab-bgp-cplane-devel
   clusters:
-    kind-clab-srv6-vpnv4-simple:
+    kind-clab-bgp-cplane-devel:
       namespace:
         active: all
         favorites:
