@@ -120,7 +120,7 @@ window#waybar.bottom {
     font-size:          20px;
 }
 
-#clock, #tray, #custom-vm, #custom-vm, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
+#clock, #tray, #custom-vm, #custom-vm, #custom-notification, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
     margin:             1px 1px 1px 1px;
     padding:            0px 6px 0px 6px;
     color:              @black;
@@ -136,6 +136,11 @@ window#waybar.bottom {
     color:              @grey;
     border-top:         3px solid @grey;
     font-size:          15px;
+}
+
+#custom-notification {
+  border-top:        3px solid @grey-light;
+  font-family:       "NotoSansMono Nerd Font";
 }
 
 #idle_inhibitor.activated {

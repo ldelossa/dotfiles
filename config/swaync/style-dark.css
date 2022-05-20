@@ -2,43 +2,95 @@
  * vim: ft=less 
  */
 
-@define-color border-color rgb(7, 7, 7);
-@define-color bg rgba(35, 35, 35, 1);
-@define-color bg-hover rgb(68, 68, 68);
-@define-color bg-focus rgba(68, 68, 68, 0.6);
+@define-color trans             rgba(28, 28, 28, .0);
+@define-color black             #1c1c1c;
+@define-color black-two         #252525;
+@define-color black-trans       rgba(35, 35, 35, .95);
+@define-color blue              #437890;
+@define-color blue-light        #87afd7;
+@define-color yellow            #7c794e;
+@define-color yellow-light      #9b9761;
+@define-color red               #755754;
+@define-color green             #497964;
+@define-color grey              #545555;
+@define-color grey-light        #8e8e8e;
+@define-color white             #ababaa;
+@define-color orange            #9b885c;
+@define-color orange-darker     #756643;
+@define-color purple            #6b6098;
+@define-color purple-light      #988acf;
+@define-color turquoise         #268889;
+@define-color turquoise-light   #4dc5c6;
+
+@define-color cc-bg rgba(0, 0, 0, 1);
+
+@define-color noti-border-color rgba(255, 255, 255, 0.15);
+@define-color noti-bg rgb(48, 48, 48);
+@define-color noti-bg-hover rgb(56, 56, 56);
+@define-color noti-bg-focus rgba(68, 68, 68, 0.6);
+@define-color noti-close-bg rgba(255, 255, 255, 0.1);
+@define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
+
 @define-color bg-selected rgb(0, 128, 255);
 
 .notification-row {
   outline: none;
 }
+
 .notification-row:focus,
 .notification-row:hover {
-  background: @bg-focus;
+  background: @noti-bg-focus;
 }
 
 .notification {
-  border-radius: 10px;
+  border-radius: 12px;
   margin: 6px 12px;
-  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 1px 3px 1px rgba(0, 0, 0, 0.7),
+    0 2px 6px 2px rgba(0, 0, 0, 0.3);
   padding: 0;
 }
+
+/* Uncomment to enable specific urgency colors
+.low {
+  background: yellow;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.normal {
+  background: green;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.critical {
+  background: red;
+  padding: 6px;
+  border-radius: 12px;
+}
+*/
 
 .notification-content {
   background: transparent;
   padding: 6px;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .close-button {
-  background: black;
+  background: @noti-close-bg;
   color: white;
   text-shadow: none;
-  padding: 0 2px;
-  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.3);
+  padding: 0 4px;
   border-radius: 100%;
+  margin-top: 10px;
+  margin-right: 16px;
+  box-shadow: none;
 }
+
 .close-button:hover {
-  background: rgb(30, 30, 30);
+  box-shadow: none;
+  background: @noti-close-bg-hover;
   transition: all 0.15s ease-in-out;
 }
 
@@ -47,17 +99,19 @@
   padding: 4px;
   margin: 0;
   box-shadow: none;
-  background: @bg;
-  border: 1px solid @border-color;
+  background: @noti-bg;
+  border: 1px solid @noti-border-color;
+  color: white;
 }
 
 .notification-default-action:hover,
 .notification-action:hover {
-  background: @bg-hover;
+  -gtk-icon-effect: none;
+  background: @noti-bg-hover;
 }
 
 .notification-default-action {
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 /* When alternative actions are visible */
@@ -76,18 +130,18 @@
 .notification-action:first-child {
   border-bottom-left-radius: 10px;
 }
+
 .notification-action:last-child {
   border-bottom-right-radius: 10px;
-  border-right: 1px solid @border-color;
+  border-right: 1px solid @noti-border-color;
 }
 
-.image {
-}
+.image {}
 
 .body-image {
   margin-top: 6px;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .summary {
@@ -98,6 +152,7 @@
 .time {
   color: white;
   text-shadow: none;
+  margin-right: 18px;
 }
 
 .body {
@@ -106,6 +161,7 @@
   text-shadow: none;
 }
 
+/* The "Notifications" and "Do Not Disturb" text widget */
 .top-action-title {
   color: white;
   text-shadow: none;
@@ -114,32 +170,35 @@
 .control-center-clear-all {
   color: white;
   text-shadow: none;
-  background: @black-trans;
-  border: 1px solid @border-color;
+  background: @noti-bg;
+  border: 1px solid @noti-border-color;
   box-shadow: none;
-  border-radius: 10px;
+  border-radius: 12px;
 }
+
 .control-center-clear-all:hover {
-  background: @bg-hover;
+  background: @noti-bg-hover;
 }
 
 .control-center-dnd {
-  border-radius: 10px;
-  background: @bg;
-  border: 1px solid @border-color;
+  border-radius: 12px;
+  background: @noti-bg;
+  border: 1px solid @noti-border-color;
   box-shadow: none;
 }
 
 .control-center-dnd:checked {
   background: @bg-selected;
 }
+
 .control-center-dnd slider {
-  background: @bg-hover;
+  background: @noti-bg-hover;
 }
 
 .control-center {
-  background: rgba(0, 0, 0, 0.7);
+  background: @cc-bg;
 }
+
 .control-center-list {
   background: transparent;
 }

@@ -5,7 +5,7 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": ["sway/mode", "tray", "custom/containers", "custom/vm", "temperature", "disk", "memory", "cpu", "pulseaudio", "network", "battery", "idle_inhibitor", "clock", "clock#utc"],
+    "modules-right": ["sway/mode", "tray", "custom/containers", "custom/vm", "temperature", "disk", "memory", "cpu", "pulseaudio", "network", "battery", "idle_inhibitor", "clock", "clock#utc", "custom/notification"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon} {name}",
@@ -144,6 +144,22 @@
             "activated": "",
             "deactivated": ""
         }
-    }
+    },
+    "custom/notification": {
+       "tooltip": false,
+       "format": "{icon}",
+       "format-icons": {
+         "notification": "<span foreground='red'><sup></sup></span>",
+         "none": "",
+         "dnd-notification": "<span foreground='red'><sup></sup></span>",
+         "dnd-none": ""
+       },
+       "return-type": "json",
+       "exec-if": "which swaync-client",
+       "exec": "swaync-client -swb",
+       "on-click": "swaync-client -t -sw",
+       "on-click-right": "swaync-client --close-all",
+       "escape": true
+     },
 }
 
