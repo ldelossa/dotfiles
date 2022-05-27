@@ -196,7 +196,7 @@
 }
 
 .control-center {
-  background: @cc-bg;
+  background: @black-trans;
 }
 
 .control-center-list {

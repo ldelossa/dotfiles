@@ -27,7 +27,7 @@ remap('n', '<C-f>c', '<cmd>lua require("fzf-lua").commands()<CR>', opts)
 remap('n', 'gD', '<Cmd>lua require("fzf-lua").lsp_declarations()<CR>', opts)
 remap('n', 'gd', '<Cmd>lua require("fzf-lua").lsp_definitions()<CR>', opts)
 remap('n', 'gdd', '<Cmd>lua require("fzf-lua").lsp_typedefs()<CR>', opts)
-remap('n', 'gi', '<cmd>lua require("fzf-lua").lsp_implementations()<CR>', opts)
+-- remap('n', 'gi', '<cmd>lua require("fzf-lua").lsp_implementations()<CR>', opts)
 remap('n', '<leader>a', '<cmd>lua require("fzf-lua").lsp_code_actions()<CR>', opts)
 remap('n', '<leader>u', '<cmd>lua require("fzf-lua").lsp_references()<CR>', opts)
 remap('n', '<space>e', '<cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>', opts)
@@ -137,6 +137,14 @@ require'fzf-lua'.setup {
     },
   },
   -- provider setup
+  nvim = {
+    commands = {
+      actions = {
+        -- default is actions.ex_run
+        ["default"] = require'fzf-lua'.actions.ex_run_cr,
+      },
+    },
+  },
   files = {
     prompt            = 'Files❯ ',
     cmd               = '',             -- "find . -type f -printf '%P\n'",

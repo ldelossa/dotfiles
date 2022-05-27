@@ -162,7 +162,7 @@ nvim_lsp["gopls"].setup {
 
 nvim_lsp["sumneko_lua"].setup {
    on_attach = on_attach,
-   cmd = {"/home/louis/git/cpp/lua-language-server/bin/Linux/lua-language-server"},
+   cmd = {"/home/louis/git/lua/lua-language-server/bin/lua-language-server"},
    filetypes = { "lua" },
    settings = {
        Lua = {

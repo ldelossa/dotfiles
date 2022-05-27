@@ -61,6 +61,7 @@ smart_gaps on
 smart_borders on
 
 ### Monitor Layout
+### view with swaymsg -t get_outputs
 workspace chat output eDP-1
 workspace stats output eDP-1
 
@@ -86,6 +87,7 @@ output DP-1  bg  $wallpaper stretch
 output eDP-1 bg  $wallpaper stretch
 
 output eDP-1 pos 0 0 res 1920x1200
+output eDP-1 scale 1
 
 output DP-2 pos 1920 0 res 2560x1440
 output DP-3 pos 1920 0 res 2560x1440
@@ -141,7 +143,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_options ctrl:nocaps          
 }
 input "2:10:TPPS/2_Elan_TrackPoint" {
-   pointer_accel    .9
+   pointer_accel    .5
    accel_profile "flat" 
 }
 input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
