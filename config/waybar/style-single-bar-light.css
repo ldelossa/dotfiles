@@ -7,7 +7,7 @@
 @define-color yellow-light      #9b9761;
 @define-color red               #755754;
 @define-color green             #609075;
-@define-color grey              #545555;
+@define-color grey              #525050;
 @define-color grey-light        #8e8e8e;
 @define-color grey-trans        rgba(84, 85, 85, .60);
 @define-color white             #b9bab5;
@@ -19,7 +19,7 @@
 
 .modules-right {
     font-family:    "Cousine";
-    font-size:      12px;
+    font-size:      15px;
 }
 
 .modules-center {
@@ -45,9 +45,6 @@ tooltip label {
 window#waybar {
     background: @white;
 }
-/* window#waybar { */
-/*     background: #C9C9C9; */
-/* } */
 
 window#waybar.bottom {
     background: @trans;
@@ -121,7 +118,7 @@ window#waybar.bottom {
 }
 
 #clock, #tray, #custom-vm, #custom-vm, #custom-notification, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
-    margin:             1px 1px 1px 1px;
+    margin:             1px 1px 0px 1px;
     padding:            0px 6px 0px 6px;
     color:              @black;
     border-top:         3px solid @grey-light;
@@ -135,7 +132,7 @@ window#waybar.bottom {
 #idle_inhibitor {
     color:              @grey;
     border-top:         3px solid @grey;
-    font-size:          15px;
+    font-size:          25px;
 }
 
 #custom-notification {
@@ -165,7 +162,7 @@ window#waybar.bottom {
 }
 
 #custom-vm {
-    font-size:          13.5px;
+    font-size:          20px;
 }
 #custom-vm.running {
     color:              @blue-light;
@@ -173,8 +170,9 @@ window#waybar.bottom {
 }
 
 #custom-containers {
-    font-size:          14.8px;
+    font-size:          20px;
 }
+
 #custom-containers.running {
     color:              @blue;
     border-top:        3px solid @blue;
@@ -208,7 +206,7 @@ window#waybar.bottom {
 
 #disk {
     font-weight:        bold;
-    font-size:          18px;
+    font-size:          17px;
 }
 #disk.low {
     border-top:        3px solid @blue;
@@ -217,15 +215,6 @@ window#waybar.bottom {
     border-top:        3px solid @yellow;
 }
 #disk.high {
-    border-top:        3px solid @red;
-}
-
-#temperature {
-    font-size:          15px;
-    font-weight:        bold;
-    border-top:        3px solid @blue;
-}
-#temperature.critical {
     border-top:        3px solid @red;
 }
 
@@ -238,7 +227,7 @@ window#waybar.bottom {
 }
 
 #battery {
-    font-size:          13.5px;
+    font-size:          25px;
     border-top:        3px solid @green;
 }
 #battery.warning {
@@ -249,6 +238,7 @@ window#waybar.bottom {
 }
 #battery.charging {
     border-top:        3px solid @green;
+    font-size:          13px;
 }
 
 #backlight {
@@ -265,7 +255,7 @@ window#waybar.bottom {
 }
 
 #pulseaudio {
-    font-size:          15px;
+    font-size:           22px;
 }
 #pulseaudio.low {
     border-top:        3px solid @blue;

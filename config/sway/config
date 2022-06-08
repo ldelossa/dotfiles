@@ -1,13 +1,7 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-font Cousine Medium 11
+font Cousine 11
 
 ### Variables
 # Logo key. Use Mod1 for Alt.
@@ -24,7 +18,7 @@ set $right  l
 include ~/.config/sway/theme
 
 # WOB
-exec_always {
+exec {
     ~/.config/sway/wob.sh
 }
 
@@ -38,7 +32,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]
 bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
 
 # Notification Daemon
-exec_always {
+exec {
     ~/.config/sway/swaync.sh
 }
 
@@ -87,7 +81,6 @@ output DP-1  bg  $wallpaper stretch
 output eDP-1 bg  $wallpaper stretch
 
 output eDP-1 pos 0 0 res 1920x1200
-output eDP-1 scale 1
 
 output DP-2 pos 1920 0 res 2560x1440
 output DP-3 pos 1920 0 res 2560x1440
@@ -95,12 +88,13 @@ output DP-3 pos 1920 0 res 2560x1440
 output DP-1 pos 4480 0 res 2560x1440
 output DP-4 pos 4480 0 res 2560x1440
 
-set $laptop eDP-1
-bindswitch --reload --locked lid:on output $laptop disable
-bindswitch --reload --locked lid:off output $laptop enable
+exec_always ~/.config/sway/clamshell.sh
+
+bindswitch --reload --locked lid:on output eDP-1 dpms off
+bindswitch --reload --locked lid:off output eDP-1 dpms on
 
 ### Lock screen
-bindsym Mod4+l exec swaylock 
+bindsym Mod4+l exec gtklock -s ~/.config/gtklock/style.css
 
 ## Output configuration
 #
@@ -117,9 +111,10 @@ bindsym Mod4+l exec swaylock
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 600    'swaylock -f -c 000000' \
-         timeout 1200   'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep   'swaylock -f -c 000000'
+         timeout 300   'gtklock -d -s ~/.config/gtklock/style.css' \
+         timeout 600   'swaymsg "output * dpms off"' \
+         resume        'swaymsg "output * dpms on"' \
+         before-sleep  'gtklock -d -s ~/.config/gtklock/style.css'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -178,8 +173,9 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym Mod4+d exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-dmenu'
     bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-switcher'
     bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-marks-switcher'
-    bindsym Mod4+Tab exec   'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
+    bindsym Mod4+Tab   exec 'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
     bindsym Mod4+Space exec 'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
+    bindsym Mod4+x     exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "fzf-switcher" nnn'
 
     # Start a terminal
     bindsym $mod+Return exec $term
@@ -247,8 +243,10 @@ input "1133:16495:Logitech_MX_Ergo" {
 #
     # Rename workspace
     bindsym $mod+r exec '~/git/sway/sway-fzfify/sway-rename'
-    # Create and focus new workspace 
-    bindsym $mod+n exec '~/git/sway/sway-fzfify/sway-new-workspace'
+    # Create and focus new workspace, if we provide cdpath opening workspaces
+    # by their abbreviated paths will open a kitty terminal directly to it.
+    set $cdpaths '/home/louis:/home/louis/vmmnt/:/home/louis/.config/nvim/after:/home/louis/git:/home/louis/git/go:/home/louis/git/gopath/src:/home/louis/git/gopath/src/github.com:/home/louis/git/gopath/src/github.com/ldelossa'
+    bindsym $mod+n exec 'CDPATH=$cdpaths ~/git/sway/sway-fzfify/sway-new-workspace'
     # Set mark on window
     bindsym $mod+Shift+m exec '~/git/sway/sway-fzfify/sway-mark'
 
@@ -277,6 +275,7 @@ input "1133:16495:Logitech_MX_Ergo" {
     assign [class="Signal"]             workspace chat
     assign [class="Vivaldi-stable"]     workspace web
     assign [app_id="vivaldi-stable"]    workspace web
+    assign [app_id="firefox"]           workspace web
     assign [class="Lens"]               workspace apps
     assign [app_id="org.zealdocs.zeal"] workspace apps
     assign [class="obsidian"]           workspace notes

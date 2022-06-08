@@ -1,9 +1,7 @@
-indicator
-clock
-timestr=%I:%M %p
-screenshot
+color=31455b
 
 indicator-idle-visible
+indicator-radius=100
 
 inside-color=353535ef
 ring-color=497964
@@ -20,5 +18,3 @@ text-ver-color=8e8e8e
 inside-wrong-color=353535ef
 ring-wrong-color=755754
 text-wrong-color=8e8e8e
-
-effect-blur=7x5

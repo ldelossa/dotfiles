@@ -155,7 +155,8 @@ nvim_lsp["gopls"].setup {
        matcher = "fuzzy",
        diagnosticsDelay = "500ms",
        experimentalWatchedFileDelay = "100ms",
-       symbolMatcher = "fuzzy"
+       symbolMatcher = "fuzzy",
+       experimentalUseInvalidMetadata = true
     },
    },
 }

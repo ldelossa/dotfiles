@@ -8,6 +8,7 @@ alias m='make'
 alias c='wl-copy'
 alias xc='xclip -selection clipboard'
 alias vim='nvim'
+alias t='kitty --detach -d $(pwd)'
 
 if which exa &> /dev/null; then
     alias ls='exa --icons --header'
@@ -20,5 +21,3 @@ fi
 if which duf &> /dev/null; then
     alias df='duf'
 fi
-
-
