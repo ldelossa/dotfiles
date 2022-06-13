@@ -90,8 +90,8 @@ output DP-4 pos 4480 0 res 2560x1440
 
 exec_always ~/.config/sway/clamshell.sh
 
-bindswitch --reload --locked lid:on output eDP-1 dpms off
-bindswitch --reload --locked lid:off output eDP-1 dpms on
+bindswitch --reload --locked lid:on output eDP-1 disable
+bindswitch --reload --locked lid:off output eDP-1 enable
 
 ### Lock screen
 bindsym Mod4+l exec gtklock -s ~/.config/gtklock/style.css
@@ -114,7 +114,8 @@ exec swayidle -w \
          timeout 300   'gtklock -d -s ~/.config/gtklock/style.css' \
          timeout 600   'swaymsg "output * dpms off"' \
          resume        'swaymsg "output * dpms on"' \
-         before-sleep  'gtklock -d -s ~/.config/gtklock/style.css'
+         before-sleep  'gtklock -d -s ~/.config/gtklock/style.css' \
+         after-resume  'gtklock -d -s ~/.config/gtklock/style.css'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
