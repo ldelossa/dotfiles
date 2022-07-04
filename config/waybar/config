@@ -104,8 +104,8 @@
         "on-click": "~/.config/waybar/custom/stats.sh",
         "states": {
             "low": 0,
-            "mid": 25,
-            "high": 50
+            "mid": 50,
+            "high": 75
         }
     },
     "disk": {
@@ -157,5 +157,9 @@
        "on-click-right": "swaync-client --close-all",
        "escape": true
      },
+    "tray": {
+      "icon-size": 15,
+      "spacing": 10, 
+    }
 }
 

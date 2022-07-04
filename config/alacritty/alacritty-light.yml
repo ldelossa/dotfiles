@@ -179,7 +179,7 @@
 colors:
   # Default Colors
   primary:
-    background: '0xbfbfbf'
+    background: '0xe0e0e0'
     foreground: '0x262626'
   # Normal colors
   normal:

@@ -111,11 +111,11 @@ bindsym Mod4+l exec gtklock -s ~/.config/gtklock/style.css
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300   'gtklock -d -s ~/.config/gtklock/style.css' \
-         timeout 600   'swaymsg "output * dpms off"' \
+         timeout 600   'gtklock -d' \
+         timeout 1200   'swaymsg "output * dpms off"' \
          resume        'swaymsg "output * dpms on"' \
-         before-sleep  'gtklock -d -s ~/.config/gtklock/style.css' \
-         after-resume  'gtklock -d -s ~/.config/gtklock/style.css'
+         before-sleep  'gtklock -d' \
+         after-resume  'gtklock -d'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when

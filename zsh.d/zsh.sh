@@ -3,13 +3,13 @@ zmodload zsh/nearcolor
 zstyle :prompt:pure:path color 031
 zstyle :prompt:pure:prompt:success color 028 
 zstyle :prompt:pure:prompt:failure color 131
-zstyle :prompt:pure:git:branch color 226
+zstyle :prompt:pure:git:branch color 028
 zstyle :prompt:pure:git:arrow color 031
 zstyle :prompt:pure:git:stash color 031
 zstyle :prompt:pure:git:dirty color 031
 zstyle :prompt:pure:git:stash color 031
 
-PURE_PROMPT_SYMBOL="🖭 "
+PURE_PROMPT_SYMBOL="🖳 "
 PURE_PROMPT_VICMD_SYMBOL=" "
 
 # read from compinit

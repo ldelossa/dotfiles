@@ -45,7 +45,7 @@ tooltip label {
 }
 
 window#waybar {
-    background: @black;
+    background: #2a2a2a;
 }
 window#waybar.bottom {
     background: @trans;
@@ -69,7 +69,6 @@ window#waybar.bottom {
 
 #workspaces button.focused {
     color:              @white;
-    font-weight:        bold;
     border-bottom:      4px solid @orange;
     background:         rgba(85, 85, 85, .4);
 }

@@ -11,6 +11,8 @@
 @define-color grey-light        #8e8e8e;
 @define-color grey-trans        rgba(84, 85, 85, .60);
 @define-color white             #b9bab5;
+@define-color white-alt         #eeeeee;
+@define-color white-lighter     #c9cac5;
 @define-color white-light       @grey; 
 @define-color orange            #9b885c;
 @define-color purple            #6b6098;
@@ -43,7 +45,7 @@ tooltip label {
 }
 
 window#waybar {
-    background: @white;
+    background: @white-alt;
 }
 
 window#waybar.bottom {
@@ -67,7 +69,6 @@ window#waybar.bottom {
 
 #workspaces button.focused {
     color:              @grey;
-    font-weight:        bold;
     border-bottom:      4px solid @orange;
     background:         rgba(245, 245, 245, .5);
 
