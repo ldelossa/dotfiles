@@ -34,13 +34,11 @@ then
 
     kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
 
-    for socket in $(nvr --serverlist); do 
-        nvr --servername $socket --nostart --remote-send '<esc> dm'&
+    for sock in $(ls ~/.cache/nvim); do
+        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:colorscheme nightfox<CR>'
     done
 
     sway reload
-    sleep 4
-    ps aux | grep nvr | cut -f 5 -d " " | xargs kill -SIGKILL
     exit
 fi
 
@@ -78,12 +76,11 @@ then
 
     kitty +kitten themes --cache-age -1 --reload-in=all Light-theme
 
-    for socket in $(nvr --serverlist); do 
-        nvr --servername $socket --remote-send '<esc> lm'& 
+    for sock in $(ls ~/.cache/nvim); do
+        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:colorscheme dayfox<CR>'
     done
+
     sway reload
-    sleep 4
-    ps aux | grep nvr | cut -f 5 -d " " | xargs kill -SIGKILL
     exit
 fi
 

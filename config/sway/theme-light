@@ -7,8 +7,8 @@ set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/store-front.gif"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/engine_schematic_adjusted_scaled_yellow_grey.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/3d_terraform_light_grey.png"
-client.focused      #1c1c1c #e8eee2 #000000 #7c794e #000000
-client.unfocused    #1c1c1c #ffffff #1c1c1c #7c794e #000000
+client.focused      #437790 #e8eee2 #000000 #ffffff #437790
+client.unfocused    #1c1c1c #ffffff #1c1c1c #7c794e #e8eee2
 
 # toggle themes
 bindsym $mod+p exec ~/.config/sway/theme_switch.sh dark

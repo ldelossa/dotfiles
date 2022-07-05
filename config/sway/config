@@ -14,7 +14,7 @@ set $right  l
 
 # include theme file here, this is a symlink to
 # the current theme.
-# sets $term, $wallpaper, $theme, and $mod+t (theme switch)
+# sets $term, $wallpaper, $theme, and $mod+p (theme switch)
 include ~/.config/sway/theme
 
 # WOB
@@ -143,6 +143,10 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
    accel_profile "flat" 
 }
 input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
+   pointer_accel    .5 
+   tap              enabled
+}
+input "1739:52914:SYNA8017:00_06CB:CEB2_Touchpad" {
    pointer_accel    .5 
    tap              enabled
 }

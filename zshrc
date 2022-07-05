@@ -40,3 +40,5 @@ if test -e "$HOME/git/c/kitty/shell-integration/kitty.zsh"; then source "$HOME/g
 # END_KITTY_SHELL_INTEGRATION
 
 alias luamake=/home/louis/git/cpp/lua-language-server/3rd/luamake/luamake
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

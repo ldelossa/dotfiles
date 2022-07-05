@@ -7,7 +7,8 @@ alias lsf='ls -laFGh'
 alias m='make'
 alias c='wl-copy'
 alias xc='xclip -selection clipboard'
-alias vim='nvim'
+alias nvim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
+alias vim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
 alias t='kitty --detach -d $(pwd)'
 
 if which exa &> /dev/null; then
