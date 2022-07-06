@@ -64,12 +64,12 @@ window#waybar.bottom {
     padding:            0px 5px 0px 5px;
     color:              @grey-light;
     border-radius:      0px;
-    border-bottom:      4px solid @trans;
+    border-top:         5px solid @trans;
 }
 
 #workspaces button.focused {
     color:              @white;
-    border-bottom:      4px solid @orange;
+    border-top:         5px solid @blue;
     background:         rgba(85, 85, 85, .4);
 }
 
