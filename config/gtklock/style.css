@@ -5,3 +5,7 @@ window {
    background-position: center;
    background-color: #31455b;
 }
+
+#clock-label, #input-label {
+    color: #ffffff;
+}

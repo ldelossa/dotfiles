@@ -18,7 +18,7 @@ set $right  l
 include ~/.config/sway/theme
 
 # WOB
-exec {
+exec_always {
     ~/.config/sway/wob.sh
 }
 
@@ -59,20 +59,17 @@ smart_borders on
 workspace chat output eDP-1
 workspace stats output eDP-1
 
-workspace music output DP-2
-workspace apps output DP-2
-workspace vm output DP-2
-workspace terminal output DP-2
+workspace music output DP-4
+workspace apps output DP-4
+workspace vm output DP-4
+workspace terminal output DP-4
 
 workspace music output DP-3
 workspace apps output DP-3
 workspace vm output DP-3
 workspace terminal output DP-3
-
-workspace web output DP-1
-workspace ebooks output DP-1
-workspace web output DP-4
-workspace ebooks output DP-4
+workspace ebooks output DP-3
+workspace notes output DP-3
 
 output DP-4  bg  $wallpaper stretch
 output DP-3  bg  $wallpaper stretch
@@ -83,10 +80,10 @@ output eDP-1 bg  $wallpaper stretch
 output eDP-1 pos 0 0 res 1920x1200
 
 output DP-2 pos 1920 0 res 2560x1440
-output DP-3 pos 1920 0 res 2560x1440
+output DP-4 pos 1920 0 res 2560x1440
 
 output DP-1 pos 4480 0 res 2560x1440
-output DP-4 pos 4480 0 res 2560x1440
+output DP-3 pos 4480 0 res 2560x1440
 
 exec_always ~/.config/sway/clamshell.sh
 
@@ -94,7 +91,7 @@ bindswitch --reload --locked lid:on output eDP-1 disable
 bindswitch --reload --locked lid:off output eDP-1 enable
 
 ### Lock screen
-bindsym Mod4+l exec gtklock -s ~/.config/gtklock/style.css
+bindsym Mod4+l exec gtklock -d
 
 ## Output configuration
 #
@@ -372,4 +369,3 @@ bar {
 }
 
 include /etc/sway/config.d/*
-  

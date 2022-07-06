@@ -180,7 +180,6 @@ window#waybar.bottom {
 }
 
 #memory {
-    font-weight:        bold;
 }
 #memory.low {
     border-top:        3px solid @blue;
@@ -193,7 +192,6 @@ window#waybar.bottom {
 }
 
 #cpu {
-    font-weight:        bold;
 }
 #cpu.low {
     border-top:        3px solid @blue;
@@ -206,7 +204,6 @@ window#waybar.bottom {
 }
 
 #disk {
-    font-weight:        bold;
     font-size:          17px;
 }
 #disk.low {

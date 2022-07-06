@@ -14,12 +14,13 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-clab-bgp-metallb-demo
-  currentCluster: kind-clab-bgp-metallb-demo
+  currentContext: ""
+  currentCluster: ""
   clusters:
-    kind-clab-bgp-metallb-demo:
+    "":
       namespace:
-        active: all
+        active: default
+        lockFavorites: false
         favorites:
         - default
       view:
