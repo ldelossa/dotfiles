@@ -20,11 +20,11 @@
 @define-color purple            #6b6098;
 @define-color turquoise         #6b6098;
 
-@define-color cc-bg #d0d0d0;
+@define-color cc-bg #eeeeee;
 
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
-@define-color noti-bg @grey;
-@define-color noti-bg-hover rgb(56, 56, 56);
+@define-color noti-bg #f5f5e3;
+@define-color noti-bg-hover rgb(255, 255, 255);
 @define-color noti-bg-focus rgba(68, 68, 68, 0.0);
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
@@ -77,7 +77,7 @@
 
 .close-button {
   background: @noti-close-bg;
-  color: white;
+  color: black;
   text-shadow: none;
   padding: 0 4px;
   border-radius: 100%;
@@ -99,7 +99,7 @@
   box-shadow: none;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
-  color: white;
+  color: black;
 }
 
 .notification-default-action:hover,
@@ -143,19 +143,19 @@
 }
 
 .summary {
-  color: white;
+  color: black;
   text-shadow: none;
 }
 
 .time {
-  color: white;
+  color: black;
   text-shadow: none;
   margin-right: 18px;
 }
 
 .body {
   background: transparent;
-  color: white;
+  color: black;
   text-shadow: none;
 }
 
@@ -166,10 +166,10 @@
 }
 
 .control-center-clear-all {
-  color: white;
+  color: black;
   text-shadow: none;
   background: @noti-bg;
-  border: 1px solid @noti-border-color;
+  border: 1px solid black;
   box-shadow: none;
   border-radius: 12px;
 }
@@ -195,6 +195,7 @@
 
 .control-center {
   background: @cc-bg;
+  border-top: 1px solid black;
 }
 
 .control-center-list {
