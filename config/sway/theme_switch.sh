@@ -35,7 +35,7 @@ then
     kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
 
     for sock in $(ls ~/.cache/nvim); do
-        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:colorscheme nightfox<CR>'
+        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:lua vim.fn.DarkMode()<CR>'
     done
 
     sway reload
@@ -77,7 +77,7 @@ then
     kitty +kitten themes --cache-age -1 --reload-in=all Light-theme
 
     for sock in $(ls ~/.cache/nvim); do
-        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:colorscheme dayfox<CR>'
+        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:lua vim.fn.LightMode()<CR>'
     done
 
     sway reload
