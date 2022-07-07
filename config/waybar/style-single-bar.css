@@ -1,22 +1,23 @@
-@define-color trans             rgba(28, 28, 28, .0);
-@define-color black             #1c1c1c;
-@define-color black-two         #252525;
-@define-color black-trans       rgba(35, 35, 35, .95);
-@define-color blue              #437890;
-@define-color blue-light        #87afd7;
-@define-color yellow            #7c794e;
-@define-color yellow-light      #9b9761;
-@define-color red               #755754;
-@define-color green             #497964;
-@define-color grey              #545555;
-@define-color grey-light        #8e8e8e;
-@define-color white             #ababaa;
-@define-color orange            #9b885c;
-@define-color orange-darker     #756643;
-@define-color purple            #6b6098;
-@define-color purple-light      #988acf;
-@define-color turquoise         #268889;
-@define-color turquoise-light   #4dc5c6;
+@define-color trans                 rgba(28, 28, 28, .0);
+@define-color black                 #1c1c1c;
+@define-color black-two             #252525;
+@define-color black-trans           rgba(35, 35, 35, .95);
+@define-color black-trans-overlay   rgba(85, 85, 85, .4);
+@define-color blue                  #437890;
+@define-color blue-light            #87afd7;
+@define-color yellow                #7c794e;
+@define-color yellow-light          #9b9761;
+@define-color red                   #755754;
+@define-color green                 #497964;
+@define-color grey                  #545555;
+@define-color grey-light            #8e8e8e;
+@define-color white                 #ababaa;
+@define-color orange                #9b885c;
+@define-color orange-darker         #756643;
+@define-color purple                #6b6098;
+@define-color purple-light          #988acf;
+@define-color turquoise             #268889;
+@define-color turquoise-light       #4dc5c6;
 
 
 .modules-right {
@@ -70,7 +71,19 @@ window#waybar.bottom {
 #workspaces button.focused {
     color:              @white;
     border-top:         5px solid @blue;
-    background:         rgba(85, 85, 85, .4);
+    border-left:        1px solid @black-trans-overlay;
+    border-bottom:      1px solid @black-trans-overlay;
+    border-right:       1px solid @black-trans-overlay;
+    background:         @black-trans-overlay;
+}
+
+#workspaces button:hover {
+    border-left:        1px solid @black-trans-overlay;
+    border-bottom:      1px solid @black-trans-overlay;
+    border-right:       1px solid @black-trans-overlay;
+    background:         @black-trans-overlay;
+    box-shadow:         inherit;
+    text-shadow:        inherit;
 }
 
 #workspaces button.urgent {

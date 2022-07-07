@@ -106,7 +106,7 @@ bindsym Mod4+l exec gtklock -d
 #
 exec swayidle -w \
          timeout 600   'gtklock -d' \
-         timeout 1200   'swaymsg "output * dpms off"' \
+         timeout 1200  'swaymsg "output * dpms off"' \
          resume        'swaymsg "output * dpms on"' \
          before-sleep  'gtklock -d' \
          after-resume  'gtklock -d'
@@ -156,6 +156,13 @@ input "76:613:Apple_Inc._Magic_Trackpad_2" {
    middle_emulation enabled
    tap_button_map   lrm
 }
+input "1452:613:Apple_Inc._Magic_Trackpad" {
+   pointer_accel    .5 
+   tap              enabled
+   middle_emulation enabled
+   tap_button_map   lrm
+}
+
 input "1133:16495:Logitech_MX_Ergo" {
    pointer_accel    .5 
    tap              enabled

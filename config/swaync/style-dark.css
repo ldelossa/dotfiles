@@ -197,6 +197,7 @@
 
 .control-center {
   background: @black-trans;
+  border-left: 1px solid black;
 }
 
 .control-center-list {

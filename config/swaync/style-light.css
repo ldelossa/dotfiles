@@ -8,23 +8,23 @@
 @define-color blue              #437890;
 @define-color blue-light        @blue;
 @define-color yellow            #8d905f;
-@define-color yellow-light      #9b9761;
+@define-color yellow-light      #f5f5e3;
 @define-color red               #755754;
 @define-color green             #609075;
 @define-color grey              #545555;
 @define-color grey-light        #8e8e8e;
 @define-color grey-trans        rgba(84, 85, 85, .60);
-@define-color white             #b9bab5;
+@define-color white             #eeeeee;
 @define-color white-light       @grey; 
 @define-color orange            #9b885c;
 @define-color purple            #6b6098;
 @define-color turquoise         #6b6098;
 
-@define-color cc-bg #eeeeee;
+@define-color cc-bg @white;
 
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
-@define-color noti-bg #f5f5e3;
-@define-color noti-bg-hover rgb(255, 255, 255);
+@define-color noti-bg @white;
+@define-color noti-bg-hover @yellow-light;
 @define-color noti-bg-focus rgba(68, 68, 68, 0.0);
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
@@ -195,7 +195,7 @@
 
 .control-center {
   background: @cc-bg;
-  border-top: 1px solid black;
+  border-left: 1px solid black;
 }
 
 .control-center-list {

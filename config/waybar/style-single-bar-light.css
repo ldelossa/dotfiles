@@ -4,7 +4,7 @@
 @define-color blue              #437890;
 @define-color blue-light        @blue;
 @define-color yellow            #8d905f;
-@define-color yellow-light      #9b9761;
+@define-color yellow-light      #f5f5e3;
 @define-color red               #755754;
 @define-color green             #609075;
 @define-color grey              #525050;
@@ -37,8 +37,7 @@
 tooltip {
   font-family:      "FreeMono";
   font-size:        20px;
-  background:       #f5f5e3;
-  color:            @grey-light;
+  background:       @yellow-light;
   border:           1px solid @yellow;
 }
 
@@ -72,7 +71,19 @@ window#waybar.bottom {
 #workspaces button.focused {
     color:              @grey;
     border-top:         5px solid @blue;
-    background:         #f5f5e3;
+    border-left:        1px solid @yellow-light;
+    border-bottom:      1px solid @yellow-light;
+    border-right:       1px solid @yellow-light;
+    background:         @yellow-light;
+}
+
+#workspaces button:hover {
+    border-left:        1px solid @yellow-light;
+    border-bottom:      1px solid @yellow-light;
+    border-right:       1px solid @yellow-light;
+    background:         @yellow-light;
+    box-shadow:         inherit;
+    text-shadow:        inherit;
 }
 
 #workspaces button.urgent {
