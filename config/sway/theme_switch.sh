@@ -30,12 +30,12 @@ then
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-dark.yml ~/.config/k9s/skin.yml
 
-    gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
     kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
 
     for sock in $(ls ~/.cache/nvim); do
-        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:lua vim.fn.DarkMode()<CR>'
+        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:lua vim.fn.DarkMode()<CR>'&
     done
 
     sway reload
@@ -72,12 +72,12 @@ then
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-light.yml ~/.config/k9s/skin.yml
 
-    gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
     kitty +kitten themes --cache-age -1 --reload-in=all Light-theme
 
     for sock in $(ls ~/.cache/nvim); do
-        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:lua vim.fn.LightMode()<CR>'
+        nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:lua vim.fn.LightMode()<CR>'&
     done
 
     sway reload
