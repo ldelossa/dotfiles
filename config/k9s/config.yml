@@ -14,12 +14,12 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-ldelossa-dev
-  currentCluster: kind-ldelossa-dev
+  currentContext: ""
+  currentCluster: ""
   clusters:
-    kind-ldelossa-dev:
+    "":
       namespace:
-        active: all
+        active: default
         lockFavorites: false
         favorites:
         - default

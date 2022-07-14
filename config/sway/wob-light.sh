@@ -27,5 +27,5 @@ tail -f $SWAYSOCK.wob | wob --anchor "top" \
                             --offset 0 \
                             --border 0 \
                             --margin 10 \
-                            --background-color '#a8a8a8FF' \
-                            --bar-color '#806CCFFFFFFF'
+                            --background-color '#eeeeeeFF' \
+                            --bar-color '#87afd7FF'
