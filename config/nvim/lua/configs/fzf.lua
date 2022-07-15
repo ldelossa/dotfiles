@@ -10,6 +10,7 @@ remap('n', '<space>gg', '<cmd>lua require("fzf-lua").grep_cword()<CR>', opts)
 remap('n', '<space>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
 remap('n', '<space>t', '<cmd>lua require("fzf-lua").tabs()<CR>', opts)
 -- c-f (fzf) namespaced
+remap('n', '<C-f>', ':FzfLua<CR>', opts)
 remap('n', '<C-f>f', '<cmd>lua require("fzf-lua").files()<CR>', opts)
 remap('n', '<C-f>cc', '<cmd>lua require("fzf-lua").command_history()<CR><CR>', opts)
 remap('n', "<C-f>'", '<cmd>lua require("fzf-lua").buffers()<CR>', opts)

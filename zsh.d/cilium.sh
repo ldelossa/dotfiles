@@ -1,5 +1,8 @@
 #!/bin/bash
 
+alias cilium-backport='docker run -e GITHUB_TOKEN=$(cat ~/git/isovalent/tophat_gh_token) -v $(pwd):/cilium -v "$HOME/.ssh":/home/user/.ssh \
+      -w /cilium -it cilium-backport /bin/bash'
+
 # CILIUM_SRC is the environment variable pointing to Cilium's source code, if
 # it does not exist we default it to GoPath.
 SRC=${CILIUM_SRC:-$GOPATH/src/github.com/cilium/cilium}
