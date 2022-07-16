@@ -176,11 +176,11 @@ input "1133:16495:Logitech_MX_Ergo" {
 # Basics:
 #
     # launchers and switchers
-    bindsym Mod4+d exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-dmenu'
-    bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-switcher'
-    bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-marks-switcher'
-    bindsym Mod4+Tab   exec 'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
-    bindsym Mod4+Space exec 'THEME=$theme ~/git/sway/sway-fzfify/sway-tree-switcher'
+    bindsym Mod4+d exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-drun.sh'
+    bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-switcher.sh'
+    bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-marks-switcher.sh'
+    bindsym Mod4+Tab   exec 'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-tree-switcher.sh'
+    bindsym Mod4+Space exec 'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-tree-switcher.sh'
     bindsym Mod4+x     exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "fzf-switcher" nnn'
 
     # Start a terminal
@@ -234,13 +234,13 @@ input "1133:16495:Logitech_MX_Ergo" {
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
     # Move window to the desired workspace and switch to it via fzf
-    bindsym $mod+c exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-window-move'
+    bindsym $mod+c exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-window-move.sh'
 
     bindsym Mod4+Shift+$left  workspace prev 
     bindsym Mod4+Shift+$right workspace next
 
     # Move a workspace to focused monitor via fzf
-    bindsym $mod+o exec     'THEME=$theme ~/git/sway/sway-fzfify/sway-workspace-move'
+    bindsym $mod+o exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-move.sh'
 
     # Move to previous container
     bindsym $mod+Shift+Tab focus prev sibling
@@ -248,13 +248,13 @@ input "1133:16495:Logitech_MX_Ergo" {
 # Workspaces:
 #
     # Rename workspace
-    bindsym $mod+r exec '~/git/sway/sway-fzfify/sway-rename'
+    bindsym $mod+r exec '~/git/sway/sway-rofi-scripts/sway-rename.sh'
     # Create and focus new workspace, if we provide cdpath opening workspaces
     # by their abbreviated paths will open a kitty terminal directly to it.
     set $cdpaths '/home/louis:/home/louis/vmmnt/:/home/louis/.config/nvim/after:/home/louis/git:/home/louis/git/go:/home/louis/git/gopath/src:/home/louis/git/gopath/src/github.com:/home/louis/git/gopath/src/github.com/ldelossa'
-    bindsym $mod+n exec 'CDPATH=$cdpaths ~/git/sway/sway-fzfify/sway-new-workspace'
+    bindsym $mod+n exec 'CDPATH=$cdpaths ~/git/sway/sway-rofi-scripts/sway-new-workspace.sh'
     # Set mark on window
-    bindsym $mod+Shift+m exec '~/git/sway/sway-fzfify/sway-mark'
+    bindsym $mod+Shift+m exec '~/git/sway/sway-rofi-scripts/sway-mark.sh'
 
     # Switch to workspace
     bindsym Mod4+t workspace  terminal

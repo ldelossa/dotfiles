@@ -10,3 +10,5 @@ config/alacritty/alacritty.yml
 config/kitty/current-theme.conf
 config/kitty/kitty.conf
 config/kitty/kitty.conf.bak
+config/k9s/skin.yml
+config/swaync/style.css

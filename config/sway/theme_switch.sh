@@ -30,6 +30,9 @@ then
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-dark.yml ~/.config/k9s/skin.yml
 
+    unlink ~/.config/rofi/config.rasi
+    ln -s ~/.config/rofi/config-dark.rasi ~/.config/rofi/config.rasi
+
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
     kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
@@ -71,6 +74,9 @@ then
 
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-light.yml ~/.config/k9s/skin.yml
+
+    unlink ~/.config/rofi/config.rasi
+    ln -s ~/.config/rofi/config-light.rasi ~/.config/rofi/config.rasi
 
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
