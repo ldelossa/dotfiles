@@ -1,0 +1,1 @@
+require('buffertag').enable()

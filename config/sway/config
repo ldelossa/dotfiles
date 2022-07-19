@@ -74,11 +74,11 @@ workspace web    output $right_dp
 output $center_dp  bg  $wallpaper stretch
 output $right_dp   bg  $wallpaper stretch
 output eDP-1 bg  $wallpaper stretch
+output HEADLESS-1 bg $wallpaper stretch
 
 output eDP-1 pos 0 0 res 1920x1200
-
+output HEADLESS-1 pos 1920 0 res 2732x2048
 output $center_dp pos 1920 0 res 2560x1440
-
 output $right_dp pos 4480 0 res 2560x1440
 output $right_dp transform 90
 
@@ -176,7 +176,7 @@ input "1133:16495:Logitech_MX_Ergo" {
 # Basics:
 #
     # launchers and switchers
-    bindsym Mod4+d exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-drun.sh'
+    bindsym Mod4+d exec     'rofi -display-drun "Open an application" -show drun -show-icons'
     bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-switcher.sh'
     bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-marks-switcher.sh'
     bindsym Mod4+Tab   exec 'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-tree-switcher.sh'

@@ -24,9 +24,6 @@ end)
 
 require "unique_instance"
 
--- Set the number of web processes to use. A value of 0 means 'no limit'. This
--- has no effect since WebKit 2.26
-luakit.process_limit = 4
 -- Set the cookie storage location
 soup.cookies_storage = luakit.data_dir .. "/cookies.db"
 
@@ -105,10 +102,6 @@ local tabhistory = require "tabhistory"
 
 -- Add command to list open tabs
 local tabmenu = require "tabmenu"
-
--- Allow for tabs to be grouped together.
--- One tab group is displayed in a window at any given time.
-local tabgroups = require "tabgroups"
 
 -- Add gopher protocol support (this module needs luasocket)
 -- local gopher = require "gopher"
@@ -193,37 +186,12 @@ local tab_favicons = require "tab_favicons"
 -- Add :view-source command
 local view_source = require "view_source"
 
--- Add virtual tabs
--- local vertical_tabs = require "vertical_tabs"
-
 -- Put "userconf.lua" in your Luakit config dir with your own tweaks; if this is
 -- permanent, no need to copy/paste/modify the default rc.lua whenever you
 -- update Luakit.
 if pcall(function () lousy.util.find_config("userconf.lua") end) then
     require "userconf"
 end
-
-webview.add_signal("init", function (view)
-    view:add_signal("navigation-request", function (v, uri)
-        if string.match(string.lower(uri), "^mailto:") then
-            local mailto = "https://mail.google.com/mail/?extsrc=mailto&url=%s"
-            local w = window.ancestor(v)
-            w:new_tab(string.format(mailto, uri))
-            return false
-        end
-        if string.match(string.lower(uri), "^zoommtg:") then
-            local cmd = string.format('%s %q', "zoom", uri)
-            luakit.spawn(cmd)
-            return false
-        end
-    end)
-end)
-
-webview.add_signal("init", function (view)
-    view:add_signal("permission-request", function (v, type)
-        if type == "notification" then return true end
-    end)
-end)
 
 -----------------------------
 -- End user script loading --
@@ -241,5 +209,3 @@ else
 end
 
 -- vim: et:sw=4:ts=8:sts=4:tw=80
-
--- 

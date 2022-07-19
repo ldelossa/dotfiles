@@ -29,6 +29,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'nvim-treesitter/playground'
     Plug 'pedrohdz/vim-yaml-folds'
     Plug 'ray-x/go.nvim'
+    Plug 'ldelossa/buffertag'
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')
@@ -53,4 +54,5 @@ lua require('configs.terminal')
 lua require('configs.pounce')
 lua require('configs.gitlinker')
 lua require('configs.go-nvim')
+lua require('configs.buffertag')
 " source $HOME/.config/nvim/lua/configs/vim-go.vim
