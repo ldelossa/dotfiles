@@ -35,10 +35,15 @@ alias gsa='git stash apply'
 alias gbr='git branch --format "%(refname:short) <> %(upstream)"'
 alias gd='git diff'
 alias gdn='git diff --name-only'
+alias gintro='git log --diff-filter=A -- '
 
 gsc() {
     git checkout stash@{$1} -- $2
 }
 glogs() {
     nvim <(curl -XGET "$1")
+}
+
+gshowat() {
+    git show $1:$2
 }
