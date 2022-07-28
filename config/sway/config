@@ -57,8 +57,8 @@ smart_borders on
 ### Monitor Layout
 ### view with swaymsg -t get_outputs
 
-set $center_dp 'Goldstar Company Ltd LG HDR 4K 0x0000BFEC'
-set $right_dp  'Goldstar Company Ltd LG HDR 4K 0x0000F5CE'
+set $center_dp 'Unknown M32UC 22110B004728'
+set $right_dp  'Goldstar Company Ltd LG HDR 4K 0x0000BFEC'
 
 workspace chat output eDP-1
 workspace stats output eDP-1
@@ -71,16 +71,16 @@ workspace terminal output $center_dp
 workspace notes  output $right_dp
 workspace web    output $right_dp
 
+output eDP-1 bg  $wallpaper stretch
 output $center_dp  bg  $wallpaper stretch
 output $right_dp   bg  $wallpaper stretch
-output eDP-1 bg  $wallpaper stretch
-output HEADLESS-1 bg $wallpaper stretch
 
-output eDP-1 pos 0 0 res 1920x1200
-output HEADLESS-1 pos 1920 0 res 2732x2048
-output $center_dp pos 1920 0 res 2560x1440
-output $right_dp pos 4480 0 res 2560x1440
+output eDP-1 pos  0 0 res 1920x1200
+output $center_dp pos 1920 0 res 3840x2160
+output $right_dp  pos 5122 0 res 2560x1440
 output $right_dp transform 90
+
+output $center_dp scale 1.2
 
 exec_always ~/.config/sway/clamshell.sh
 

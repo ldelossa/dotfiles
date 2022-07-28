@@ -44,7 +44,7 @@ remap('n', '<C-l>u', '<cmd>lua require("fzf-lua").lsp_references()<CR>', opts)
 remap('n', '<C-l>e', '<cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>', opts)
 remap('n', '<C-l>ee', '<cmd>lua require("fzf-lua").lsp_workspace_diagnostics()<CR>', opts)
 remap('n', '<C-l>w', '<cmd>lua require("fzf-lua").lsp_live_workspace_symbols()<CR>', opts)
-remap('n', '<C-l>s', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
+remap('n', '<C-l>S', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
 -- c-g (git) namespaced
 remap('n', '<C-g>ss', '<cmd>lua require("fzf-lua").git_status()<CR>', opts)
 remap('n', '<C-g>b', '<cmd>lua require("fzf-lua").git_branches()<CR>', opts)
