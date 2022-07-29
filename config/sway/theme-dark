@@ -1,15 +1,14 @@
-# set tilix to start in light theme
-set $theme "light"
+set $theme "dark"
 set $term "XCURSOR_SIZE=32 kitty"
-#set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
-set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord.jpg"
-#set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord_lighter.jpg"
-#set $wallpaper "/home/louis/Dropbox/Wallpapers/store-front.gif"
+set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/tape.jpg"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord_darker.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/engine_schematic_adjusted_scaled_yellow_grey.jpg"
-#set $wallpaper "/home/louis/Dropbox/Wallpapers/3d_terraform_light_grey.png"
-client.focused      #437790 #f5f5e3 #000000 #ffffff #437790
-client.unfocused    #1c1c1c #ffffff #1c1c1c #7c794e #e8eee2
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/store-front.gif"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/3d_terraform_dark.png"
+
+client.focused #5b839a #5b839a #ffffff #7c794e
+client.unfocused #333333 #222222 #888888 #292d2e #222222
 
 # toggle themes
-bindsym $mod+p exec ~/.config/sway/theme_switch.sh dark
-
+bindsym $mod+p exec ~/.config/sway/theme_switch.sh light

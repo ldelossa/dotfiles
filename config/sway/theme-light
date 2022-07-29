@@ -1,8 +1,8 @@
 # set tilix to start in light theme
 set $theme "light"
 set $term "XCURSOR_SIZE=32 kitty"
-#set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
-set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord.jpg"
+set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord_lighter.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/store-front.gif"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/engine_schematic_adjusted_scaled_yellow_grey.jpg"
