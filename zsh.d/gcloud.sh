@@ -1,5 +1,6 @@
 # source and completes for google cloud
-source /usr/share/google-cloud-sdk/completion.zsh.inc
+[[ -d /usr/share/google-cloud-sdk/completion.zsh.inc  ]] && \
+    source /usr/share/google-cloud-sdk/completion.zsh.inc
 
 # gcloud aliases
 alias gssh='gcloud compute ssh'

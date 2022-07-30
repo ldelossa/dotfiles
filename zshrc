@@ -18,8 +18,6 @@ source ~/zsh.d/git.sh
 source ~/zsh.d/go.sh
 # kubectl aliases and configs
 source ~/zsh.d/kubectl.sh
-# oc aliases and configs
-source ~/zsh.d/oc.sh
 # ssh aliases and configs
 source ~/zsh.d/ssh.sh
 # tilix aliases and configs
