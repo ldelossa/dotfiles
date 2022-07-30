@@ -43,7 +43,7 @@ bindsym $mod+Shift+n exec swaync-client -t -sw
 bindsym $mod+Shift+b exec killall -SIGUSR1 waybar
 
 # Appearance
-gaps top 0
+gaps top    0
 gaps bottom 0
 gaps left 0
 gaps right 0
@@ -71,16 +71,17 @@ workspace terminal output $center_dp
 workspace notes  output $right_dp
 workspace web    output $right_dp
 
-output eDP-1 bg  $wallpaper stretch
-output $center_dp  bg  $wallpaper stretch
-output $right_dp   bg  $wallpaper stretch
+output eDP-1        bg  $wallpaper stretch
+output $center_dp   bg  $wallpaper stretch
+output $right_dp    bg  $wallpaper fill
 
 output eDP-1 pos  0 0 res 1920x1200
 output $center_dp pos 1920 0 res 3840x2160
-output $right_dp  pos 5122 0 res 2560x1440
+output $right_dp  pos 5122 0 res 3840x2160
 output $right_dp transform 90
 
 output $center_dp scale 1.2
+output $right_dp  scale 1.2
 
 exec_always ~/.config/sway/clamshell.sh
 
@@ -178,7 +179,7 @@ input "1133:16495:Logitech_MX_Ergo" {
     # launchers and switchers
     bindsym Mod4+d exec     'rofi -display-drun "Open an application" -show drun -show-icons'
     bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-switcher.sh'
-    bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-marks-switcher.sh'
+    bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-mark-switcher.sh'
     bindsym Mod4+Tab   exec 'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-tree-switcher.sh'
     bindsym Mod4+Space exec 'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-tree-switcher.sh'
     bindsym Mod4+x     exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "fzf-switcher" nnn'

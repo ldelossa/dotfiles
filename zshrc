@@ -35,3 +35,6 @@ source ~/zsh.d/bat.sh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export KITTY_SHELL_INTEGRATION="enabled"
+autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-integration; unfunction kitty-integration
