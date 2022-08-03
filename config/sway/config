@@ -178,6 +178,7 @@ input "1133:16495:Logitech_MX_Ergo" {
 #
     # launchers and switchers
     bindsym Mod4+d exec     'rofi -display-drun "Open an application" -show drun -show-icons'
+    bindsym $mod+d exec     'rofi -display-drun "Open an application" -show drun -show-icons'
     bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-switcher.sh'
     bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-mark-switcher.sh'
     bindsym Mod4+Tab   exec 'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-tree-switcher.sh'

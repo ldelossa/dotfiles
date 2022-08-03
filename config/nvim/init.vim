@@ -59,7 +59,7 @@ nnoremap <C-h> :noh <CR>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " reset window ratio on resize
-autocmd VimResized * exec "normal \<c-w>\<c-=>"
+" autocmd VimResized * exec "normal \<c-w>\<c-=>"
 
 " don't mistype W as Window
 :cabbrev W <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'w' : 'W')<CR>
