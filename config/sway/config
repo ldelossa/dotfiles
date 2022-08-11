@@ -171,6 +171,13 @@ input "1133:16495:Logitech_MX_Ergo" {
    tap_button_map   lrm
 }
 
+input "1133:16641:Logitech_Rechargeable_Touchpad_T650" {
+   pointer_accel    1
+   tap              enabled
+   middle_emulation enabled
+   tap_button_map   lrm
+}
+
 
 ### Key bindings
 #

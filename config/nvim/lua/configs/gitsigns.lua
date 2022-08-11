@@ -78,4 +78,6 @@ require('gitsigns').setup {
     enable = false
   },
 }
-
+-- Mappings.
+local opts = { silent=true }
+vim.api.nvim_set_keymap('n', '<C-g>', ':Gitsigns<CR>', opts)

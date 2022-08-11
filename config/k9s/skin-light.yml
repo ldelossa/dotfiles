@@ -1,6 +1,6 @@
 # K9s Gruvbox Light Skin Contributed by [@indiebrain](https://github.com/indiebrain)
 foreground: &foreground "#1D344F"
-background: &background "#bcbcbc"
+background: &background "#e5e5e5"
 current_line: &current_line "#6080b0"
 selection: &selection "#6080b0"
 comment: &comment "#767B85"

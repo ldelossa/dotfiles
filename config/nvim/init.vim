@@ -48,6 +48,7 @@ set shortmess=atosTc
 set cc=80
 set nowrap
 set laststatus=3
+set cursorline
 
 nnoremap bd :bp\|bd #<cr>
 nnoremap P "0p

@@ -55,4 +55,5 @@ lua require('configs.pounce')
 lua require('configs.gitlinker')
 lua require('configs.go-nvim')
 lua require('configs.buffertag')
+lua require('configs.filter')
 " source $HOME/.config/nvim/lua/configs/vim-go.vim
