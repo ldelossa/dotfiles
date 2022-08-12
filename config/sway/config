@@ -151,13 +151,8 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
    middle_emulation enabled
    tap_button_map   lrm
 }
+
 input "76:613:Apple_Inc._Magic_Trackpad_2" {
-   pointer_accel    .5 
-   tap              enabled
-   middle_emulation enabled
-   tap_button_map   lrm
-}
-input "1452:613:Apple_Inc._Magic_Trackpad" {
    pointer_accel    .5 
    tap              enabled
    middle_emulation enabled

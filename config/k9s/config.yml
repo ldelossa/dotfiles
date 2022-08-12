@@ -6,6 +6,7 @@ k9s:
   logoless: false
   crumbsless: false
   readOnly: false
+  noExitOnCtrlC: false
   noIcons: false
   logger:
     tail: 100
@@ -22,7 +23,6 @@ k9s:
         active: all
         lockFavorites: false
         favorites:
-        - all
         - default
       view:
         active: ciliumsrv6egresspolicies

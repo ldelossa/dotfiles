@@ -33,3 +33,7 @@ alias kexec="$preamble exec"
 alias kiexec="$preamble exec -i -t"
 alias klogs="$preamble logs --timestamps "
 alias klogsf="$preamble logs --timestamps --follow "
+
+function klogstream() {
+    eval $preamble logs --timestamps --follow "$1" > "$2"&
+}
