@@ -35,5 +35,8 @@ alias klogs="$preamble logs --timestamps "
 alias klogsf="$preamble logs --timestamps --follow "
 
 function klogstream() {
-    eval $preamble logs --timestamps --follow "$1" > "$2"&
+    log_name=/tmp/klogstream_$RANDOM
+    eval "($preamble logs --timestamps --follow "$1" > $log_name)&"; bg_job=$!
+    nvim $log_name # blocks until closed
+    kill -SIGKILL $bg_job; rm -rf $log_name
 }
