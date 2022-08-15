@@ -1,4 +1,4 @@
-local gps = require("nvim-gps")
+local navic = require("nvim-navic")
 
 local hide_in_width = function(width)
     return function()
@@ -6,8 +6,8 @@ local hide_in_width = function(width)
     end
 end
 
-local gps_hide_in_width = function()
-    return gps.is_available() and hide_in_width(90)()
+local navic_hide_in_width = function()
+    return navic.is_available() and hide_in_width(90)()
 end
 
 local branch = {
@@ -19,8 +19,8 @@ local diagnostics = {
     sources = {'nvim_diagnostic'},
     cond = hide_in_width(80)
 }
-local gps_comp = {
-    gps.get_location,
+local navic_comp = {
+    navic.get_location,
 }
 
 local diff = {
@@ -70,7 +70,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {},
-    lualine_c = {branch, active_lsp, filename, gps_comp},
+    lualine_c = {branch, active_lsp, filename, navic_comp},
     lualine_x = {diff, diagnostics, filetype},
     lualine_y = {},
     lualine_z = {progress, location}

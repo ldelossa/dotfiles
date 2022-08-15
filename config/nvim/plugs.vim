@@ -10,7 +10,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'seblj/nvim-echo-diagnostics'
     Plug 'onsails/lspkind-nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'SmiteshP/nvim-gps'
+    Plug 'SmiteshP/nvim-navic'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -41,7 +41,7 @@ lua require('configs.nvim-autopairs')
 lua require('configs.nvim-echo-diagnostics')
 lua require('configs.lspkind')
 lua require('configs.indent-blankline')
-lua require('configs.nvim-gps')
+lua require('configs.nvim-navic')
 lua require('configs.nvim-web-devicons')
 lua require('configs.gitsigns')
 lua require('configs.nvim-treesitter-textobjects')

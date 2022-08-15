@@ -26,7 +26,7 @@ k9s:
         - all
         - default
       view:
-        active: pod
+        active: ciliumsrv6vrfs
       featureGates:
         nodeShell: false
       shellPod:

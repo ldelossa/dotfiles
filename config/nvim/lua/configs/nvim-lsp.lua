@@ -22,7 +22,7 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     -- use omnifunc
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     vim.o.completeopt = "menuone,noselect"
@@ -32,6 +32,11 @@ local on_attach = function(_, bufnr)
 
     -- Mappings.
     local opts = { silent=true }
+
+    -- nvim-navic setup
+    if pcall(require, "nvim-navic") then
+        require('nvim-navic').attach(client, bufnr)
+    end
 
     -- only define these mappings if fzf-lua is not being used
     local status, _ = pcall(require, 'fzf-lua')
