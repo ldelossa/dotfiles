@@ -179,6 +179,7 @@ input "1133:16641:Logitech_Rechargeable_Touchpad_T650" {
 #
     # launchers and switchers
     bindsym Mod4+d exec     'rofi -display-drun "Open an application" -show drun -show-icons'
+    bindsym Mod4+s exec     'rofi -display-drun "Open an ssh session to" -show ssh -show-icons'
     bindsym $mod+d exec     'rofi -display-drun "Open an application" -show drun -show-icons'
     bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-switcher.sh'
     bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-mark-switcher.sh'
@@ -267,8 +268,6 @@ input "1133:16641:Logitech_Rechargeable_Touchpad_T650" {
     bindsym Mod4+c workspace  chat
     bindsym Mod4+m workspace  music
     bindsym Mod4+v workspace  vm
-    bindsym Mod4+s workspace  stats
-    bindsym Mod4+p workspace  sound
 
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2

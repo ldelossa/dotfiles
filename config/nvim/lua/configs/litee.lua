@@ -28,7 +28,6 @@ require('litee.bookmarks').setup({
 require('litee.gh').setup({
     icon_set = "codicons",
     map_resize_keys = true,
-    debug_logging = false
 })
 
 local opts = { silent = true }
