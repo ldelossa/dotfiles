@@ -42,7 +42,6 @@ set signcolumn=number
 set termguicolors
 set noequalalways
 set autoread
-set scrolloff=15
 set sidescrolloff=15
 set shortmess=atosTc
 set cc=80
