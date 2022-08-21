@@ -10,7 +10,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
             vim.lsp.handlers.signature_help, {
                 border = 'rounded',
-                close_events = {"CursorMoved", "BufHidden", "InsertCharPre"},
+                close_events = {"BufHidden", "InsertLeave"},
     }
 )
 
