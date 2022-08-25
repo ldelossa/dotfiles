@@ -22,3 +22,8 @@ link-zsh:
 
 link-gdb-config:
 	ln -s $(HOME)/git/dotfiles/gdb/.gdbinit $(HOME)/.gdbinit
+
+link-global-gitignore:
+	-unlink ~/.gitignore
+	ln -s $(HOME)/git/dotfiles/global_git_ignore $(HOME)/.gitignore
+	git config --global core.excludesfile '~/.gitignore'
