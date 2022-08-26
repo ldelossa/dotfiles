@@ -5,7 +5,7 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": ["sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "pulseaudio", "network", "battery", "idle_inhibitor", "clock", "clock#utc", "custom/notification"],
+    "modules-right": ["sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "pulseaudio", "network", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon} {name}",
@@ -133,6 +133,14 @@
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/containers-monitor.sh",
+    },
+    "custom/bluelightfilter": {
+        "format": "",
+        "interval": 10,
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/bluelightfilter-monitor.sh",
+        "on-click": "~/.config/waybar/custom/bluelightfilter-toggle.sh",
+        "signal": 8
     },
     "idle_inhibitor": {
         "format": "{icon}",

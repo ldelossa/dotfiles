@@ -15,14 +15,15 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-clab-srv6-vpnv4-simple
-  currentCluster: kind-clab-srv6-vpnv4-simple
+  currentContext: kind-clab-bgp-metallb-demo
+  currentCluster: kind-clab-bgp-metallb-demo
   clusters:
-    kind-clab-srv6-vpnv4-simple:
+    kind-clab-bgp-metallb-demo:
       namespace:
         active: all
         lockFavorites: false
         favorites:
+        - kube-system
         - all
         - default
       view:

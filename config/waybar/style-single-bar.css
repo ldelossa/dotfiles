@@ -131,7 +131,7 @@ window#waybar.bottom {
     font-size:          20px;
 }
 
-#clock, #tray, #custom-vm, #custom-notification, #custom-containers, #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
+#clock, #tray, #custom-bluelightfilter, #custom-vm, #custom-notification, #custom-containers, #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
     margin:             1px 1px 0px 1px;
     padding:            0px 6px 0px 6px;
     color:              @white;
@@ -156,8 +156,19 @@ window#waybar.bottom {
 }
 
 #idle_inhibitor.activated {
-    color:              @blue-light;
-    border-top:        3px solid @blue-light;
+    color:              @white;
+    border-top:        3px solid @white;
+}
+
+#custom-bluelightfilter {
+    color:              @grey;
+    border-top:         3px solid @grey;
+    font-size:          25px;
+}
+
+#custom-bluelightfilter.activated {
+    color:              @white;
+    border-top:        3px solid @white;
 }
 
 #tray {
