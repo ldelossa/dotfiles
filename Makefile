@@ -7,7 +7,7 @@ default:
 	@echo make link-zsh			- link zshrc and zsh.d directories
 	@echo make link-gdb-config	- link .gdbinit to ~/.gdbinit
 
-all: link-configs link-zsh link-gdb-config
+all: link-configs link-zsh link-gdb-config link-global-gitignore
 
 link-configs: $(user_configs)
 
@@ -17,6 +17,8 @@ $(user_configs):
 	ln -s $(subst $(HOME)/.config,$(shell pwd)/config,$@) $@
 
 link-zsh:
+	rm -rf ~/.zshrc
+	rm -rf ~/zsh.d
 	ln -s $(HOME)/git/dotfiles/zshrc $(HOME)/.zshrc
 	ln -s $(HOME)/git/dotfiles/zsh.d $(HOME)/zsh.d
 
