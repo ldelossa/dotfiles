@@ -30,6 +30,9 @@ call plug#begin('~/.config/nvim/after')
     Plug 'pedrohdz/vim-yaml-folds'
     Plug 'ray-x/go.nvim'
     Plug 'ldelossa/buffertag'
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/nvim-dap-ui'
+    Plug 'ldelossa/nvim-dap-projects' 
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')
@@ -56,4 +59,5 @@ lua require('configs.gitlinker')
 lua require('configs.go-nvim')
 lua require('configs.buffertag')
 lua require('configs.filter')
+lua require('nvim-dap-projects').search_project_config()
 " source $HOME/.config/nvim/lua/configs/vim-go.vim
