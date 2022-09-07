@@ -48,10 +48,6 @@ tooltip label {
 window#waybar {
     background: #2a2a2a;
 }
-window#waybar.bottom {
-    background: @trans;
-    border:     none;
-}
 
 /* === work spaces === */
 

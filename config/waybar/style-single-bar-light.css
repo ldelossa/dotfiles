@@ -49,10 +49,6 @@ window#waybar {
     background: @white-alt;
 }
 
-window#waybar.bottom {
-    background: @trans;
-}
-
 /* === work spaces === */
 
 #workspaces {
