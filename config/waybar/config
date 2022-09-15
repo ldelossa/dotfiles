@@ -5,7 +5,7 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": ["sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "pulseaudio", "network", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
+    "modules-right": ["sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "pulseaudio", "backlight", "network", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "format": "{icon} {name}",
@@ -67,6 +67,18 @@
         "on-click": "gnome-control-center network",
         "tooltip": true
     },
+    "backlight": {
+           "device": "intel_backlight",
+           "format": "{icon}",
+           "format-icons": ["", "", ""],
+           "on-scroll-up": "exec brightnessctl set 5%+",
+           "on-scroll-down": "brightnessctl set 5%-",
+           "states": {
+               "low": 0,
+               "mid": 50,
+               "high": 75
+           },
+       },
     "pulseaudio": {
         "format": "{icon}",
         "format-alt-click": "click-right",
