@@ -75,9 +75,9 @@ output eDP-1        bg  $wallpaper stretch
 output $center_dp   bg  $wallpaper stretch
 output $right_dp    bg  $wallpaper fill
 
-output eDP-1 pos  0 0 res 1920x1200
-output $center_dp pos 1920 0 res 3840x2160
-output $right_dp  pos 5122 0 res 3840x2160
+output eDP-1 pos  0 0 res 2560x1600
+output $center_dp pos 2560 0 res 3840x2160
+output $right_dp  pos 5760 0 res 3840x2160
 output $right_dp transform 90
 
 output $center_dp scale 1.2
@@ -87,6 +87,8 @@ exec_always ~/.config/sway/clamshell.sh
 
 bindswitch --reload --locked lid:on output eDP-1 disable
 bindswitch --reload --locked lid:off output eDP-1 enable
+
+bindsym $mod+Shift+o exec swaymsg "output * enable"
 
 ### Lock screen
 bindsym Mod4+l exec gtklock -d
@@ -172,6 +174,12 @@ input "1133:16641:Logitech_Rechargeable_Touchpad_T650" {
    tap_button_map   lrm
 }
 
+input "1267:12689:ELAN0E03:00_04F3:3191_Touchpad" {
+   pointer_accel    .5 
+   tap              enabled
+   middle_emulation enabled
+   tap_button_map   lrm
+}
 
 ### Key bindings
 #
@@ -210,7 +218,7 @@ input "1133:16641:Logitech_Rechargeable_Touchpad_T650" {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+c exec swaymsg reload; swaymsg "output eDP-1 enable"
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'

@@ -46,6 +46,7 @@ tooltip label {
 }
 
 window#waybar {
+    border-bottom:         .3px solid @grey-light;
     background: #2a2a2a;
 }
 
@@ -68,6 +69,7 @@ window#waybar {
     color:              @white;
     border-top:         5px solid @blue;
     background:         @black-trans-overlay;
+    border-bottom:      .3px solid @grey-light;
 }
 
 #workspaces button:hover {

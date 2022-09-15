@@ -3,9 +3,13 @@ user_configs := $(addprefix $(HOME)/.config/, $(configs))
 
 default:
 	@echo Usage:
-	@echo make link-configs 	- link ./config dirs to home directory
-	@echo make link-zsh			- link zshrc and zsh.d directories
-	@echo make link-gdb-config	- link .gdbinit to ~/.gdbinit
+	@echo make link-configs 			- link ./config dirs to home directory
+	@echo make link-zsh					- link zshrc and zsh.d directories
+	@echo make link-gdb-config			- link .gdbinit to ~/.gdbinit
+	@echo make link-global-gitignore	- link and configure git with global .gitignore file
+	@echo 
+	@echo resulting config directories: \
+		$(user_configs)
 
 all: link-configs link-zsh link-gdb-config link-global-gitignore
 
@@ -17,8 +21,8 @@ $(user_configs):
 	ln -s $(subst $(HOME)/.config,$(shell pwd)/config,$@) $@
 
 link-zsh:
-	rm -rf ~/.zshrc
-	rm -rf ~/zsh.d
+	-unlink -rf ~/.zshrc
+	-unlink -rf ~/zsh.d
 	ln -s $(HOME)/git/dotfiles/zshrc $(HOME)/.zshrc
 	ln -s $(HOME)/git/dotfiles/zsh.d $(HOME)/zsh.d
 
@@ -29,3 +33,8 @@ link-global-gitignore:
 	-unlink ~/.gitignore
 	ln -s $(HOME)/git/dotfiles/global_git_ignore $(HOME)/.gitignore
 	git config --global core.excludesfile '~/.gitignore'
+
+link-docker-config:
+	-unlink ~/.docker/config.json
+	ln -s $(HOME)/git/dotfiles/config/.docker/config.json $(HOME)/.docker/config.json
+

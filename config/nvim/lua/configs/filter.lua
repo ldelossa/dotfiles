@@ -4,6 +4,7 @@ local counters = {}
 
 function M.filter_buffer(args)
     vim.cmd(":%!ag " .. args["args"])
+    vim.cmd("set syntax=log")
 end
 
 function M.filter_buffer_tab(args)
@@ -28,6 +29,7 @@ function M.filter_buffer_tab(args)
     vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.api.nvim_buf_get_lines(cur_buf, 0, -1, false))
     vim.api.nvim_buf_set_lines(cur_buf, 0, -1, false, vim.api.nvim_buf_get_lines(tmp_buf, 0, -1, false))
     vim.api.nvim_buf_delete(tmp_buf, {force=true})
+    vim.cmd("set syntax=log")
 end
 
 vim.api.nvim_create_user_command("FilterBuffer", M.filter_buffer, {

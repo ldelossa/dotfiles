@@ -30,6 +30,7 @@ source ~/zsh.d/systemd.sh
 # with cilium
 source ~/zsh.d/cilium.sh
 source ~/zsh.d/bat.sh
+source ~/zsh.d/devspaces.sh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
