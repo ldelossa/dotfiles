@@ -31,6 +31,9 @@ bindsym XF86AudioMute exec amixer sset Master toggle | sed -En '/\[on\]/ s/.*\[(
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
 bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
 
+bindsym $mod+Shift+d exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
+bindsym $mod+Shift+u exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $SWAYSOCK.wob
+
 # Notification Daemon
 exec {
     ~/.config/sway/swaync.sh
