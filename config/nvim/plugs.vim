@@ -34,6 +34,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'ldelossa/nvim-dap-projects' 
     Plug 'ldelossa/nvim-ide-toolkit'
+    Plug 'projekt0n/github-nvim-theme'
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')

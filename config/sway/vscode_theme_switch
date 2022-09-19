@@ -1,0 +1,29 @@
+#!/bin/node
+
+/*
+  Set the theme for visual studio code
+  based on the given argument.
+*/
+
+var arg = process.argv[2];
+var path = "/home/louis/.config/Code/User/settings.json";
+var settings = require(path);
+var fs = require('fs')
+
+if(arg === "--dark" || arg === "-d")
+  settings["workbench.colorTheme"] = "GitHub Dark Dimmed";
+
+else if(arg === "--light" || arg=== "-l")
+  settings["workbench.colorTheme"] = "GitHub Light";
+
+else {
+  console.error("Invalid use");
+  return;
+}
+
+try {
+  fs.writeFileSync(path, JSON.stringify(settings, null, 4));
+} catch (err) {
+  console.error(err);
+}
+

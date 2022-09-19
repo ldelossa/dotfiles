@@ -37,6 +37,8 @@ then
 
     kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
 
+    ~/.config/sway/vscode_theme_switch --dark
+
     for sock in $(ls ~/.cache/nvim); do
         nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:lua vim.fn.DarkMode()<CR>'&
     done
@@ -82,6 +84,8 @@ then
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
     kitty +kitten themes --cache-age -1 --reload-in=all Light-theme
+
+    ~/.config/sway/vscode_theme_switch --light
 
     for sock in $(ls ~/.cache/nvim); do
         nvim --server ~/.cache/nvim/$sock --remote-send '<C-\><C-n>:lua vim.fn.LightMode()<CR>'&
