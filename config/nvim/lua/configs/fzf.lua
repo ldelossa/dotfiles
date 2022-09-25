@@ -32,8 +32,6 @@ remap('n', '<leader>a', '<cmd>lua require("fzf-lua").lsp_code_actions()<CR>', op
 remap('n', '<leader>u', '<cmd>lua require("fzf-lua").lsp_references()<CR>', opts)
 remap('n', '<leader>e', '<cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>', opts)
 remap('n', '<leader>ee', '<cmd>lua require("fzf-lua").lsp_workspace_diagnostics()<CR>', opts)
-remap('n', '<leader>SS', '<cmd>lua require("fzf-lua").lsp_live_workspace_symbols()<CR>', opts)
-remap('n', '<leader>S', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
 -- c-l (lsp) namespaced
 remap('n', '<C-l>D', '<Cmd>lua require("fzf-lua").lsp_declarations()<CR>', opts)
 remap('n', '<C-l>d', '<Cmd>lua require("fzf-lua").lsp_definitions()<CR>', opts)
@@ -44,7 +42,7 @@ remap('n', '<C-l>u', '<cmd>lua require("fzf-lua").lsp_references()<CR>', opts)
 remap('n', '<C-l>e', '<cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>', opts)
 remap('n', '<C-l>ee', '<cmd>lua require("fzf-lua").lsp_workspace_diagnostics()<CR>', opts)
 remap('n', '<C-l>w', '<cmd>lua require("fzf-lua").lsp_live_workspace_symbols()<CR>', opts)
-remap('n', '<C-l>S', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
+remap('n', '<C-l>s', '<cmd>lua require("fzf-lua").lsp_document_symbols()<CR>', opts)
 -- c-g (git) namespaced
 remap('n', '<C-g>ss', '<cmd>lua require("fzf-lua").git_status()<CR>', opts)
 remap('n', '<C-g>b', '<cmd>lua require("fzf-lua").git_branches()<CR>', opts)
@@ -564,6 +562,7 @@ require'fzf-lua'.setup {
     git_icons         = true,
   },
   lsp = {
+    fzf_opts={ ['--with-nth'] = '2..' },
     prompt_postfix    = '❯ ',       -- will be appended to the LSP label
                                     -- to override use 'prompt' instead
     cwd_only          = false,      -- LSP/diagnostics for cwd only?
@@ -574,7 +573,7 @@ require'fzf-lua'.setup {
     -- settings for 'lsp_{document|workspace|lsp_live_workspace}_symbols'
     symbols = {
         async_or_timeout  = true,       -- symbols are async by default
-        symbol_style      = 1,          -- style for document/workspace symbols
+        symbol_style      = 2,          -- style for document/workspace symbols
                                         -- false: disable,    1: icon+kind
                                         --     2: icon only,  3: kind only
                                         -- NOTE: icons are extracted from
@@ -582,9 +581,10 @@ require'fzf-lua'.setup {
         -- colorize using nvim-cmp's CmpItemKindXXX highlights
         -- can also be set to 'TS' for treesitter highlights ('TSProperty', etc)
         -- or 'false' to disable highlighting
-        symbol_hl_prefix  = "CmpItemKind",
-        -- additional symbol formatting, works with or without style
-        symbol_fmt        = function(s) return "["..s.."]" end,
+        symbol_hl_prefix  = "TS",
+        -- -- additional symbol formatting, works with or without style
+        -- symbol_fmt        = function(s) return "["..s.."]" end,
+        fzf_opts={ ['--with-nth'] = '2..' },
     },
   },
   diagnostics ={

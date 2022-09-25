@@ -113,7 +113,7 @@ bindsym Mod4+l exec gtklock -d
 exec swayidle -w \
          timeout 600   'gtklock -d' \
          timeout 1200  'swaymsg "output * dpms off"' \
-         resume        'swaymsg "output * dpms on"' \
+         after-resume  'swaymsg "output * dpms on"' \
          before-sleep  'gtklock -d' 
 
 # This will lock your screen after 300 seconds of inactivity, then turn off

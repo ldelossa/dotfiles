@@ -73,6 +73,13 @@ vim.api.nvim_set_keymap("n", "<C-s>d", ":LTDetailsSymboltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-s>h", ":LTHideSymboltree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-s>x", ":LTCloseSymboltree<cr>", opts)
 
+vim.api.nvim_set_keymap("n", "<C-l>o", "<cmd>lua require('litee.lib.lsp.wrappers').buf_outgoing_calls()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-l>i", "<cmd>lua require('litee.lib.lsp.wrappers').buf_incoming_calls()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-l>S", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
+vim.api.nvim_set_keymap("i", "<C-l>o", "<cmd>lua require('litee.lib.lsp.wrappers').buf_outgoing_calls()<CR>", opts)
+vim.api.nvim_set_keymap("i", "<C-l>i", "<cmd>lua require('litee.lib.lsp.wrappers').buf_incoming_calls()<CR>", opts)
+vim.api.nvim_set_keymap("i", "<C-l>S", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
+
 -- filetree specific commands
 vim.api.nvim_set_keymap("n", "<leader><leader>", ":LTPopOutFiletree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-x>o", ":LTOpenToFiletree<cr>", opts)
@@ -103,9 +110,3 @@ vim.api.nvim_set_keymap("n", "<C-b>l", ":LTListNotebooks<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-b>c", ":LTCreateBookmark<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-b>h", ":LTHideBookmarks<cr>", opts)
 
-vim.api.nvim_set_keymap("n", "<C-l>o", "<cmd>lua require('litee.lib.lsp.wrappers').buf_outgoing_calls()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-l>i", "<cmd>lua require('litee.lib.lsp.wrappers').buf_incoming_calls()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-l>s", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
-vim.api.nvim_set_keymap("i", "<C-l>o", "<cmd>lua require('litee.lib.lsp.wrappers').buf_outgoing_calls()<CR>", opts)
-vim.api.nvim_set_keymap("i", "<C-l>i", "<cmd>lua require('litee.lib.lsp.wrappers').buf_incoming_calls()<CR>", opts)
-vim.api.nvim_set_keymap("i", "<C-l>s", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
