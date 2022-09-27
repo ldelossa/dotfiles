@@ -21,8 +21,8 @@ $(user_configs):
 	ln -s $(subst $(HOME)/.config,$(shell pwd)/config,$@) $@
 
 link-zsh:
-	-unlink -rf ~/.zshrc
-	-unlink -rf ~/zsh.d
+	-unlink ~/.zshrc
+	-unlink ~/zsh.d
 	ln -s $(HOME)/git/dotfiles/zshrc $(HOME)/.zshrc
 	ln -s $(HOME)/git/dotfiles/zsh.d $(HOME)/zsh.d
 
