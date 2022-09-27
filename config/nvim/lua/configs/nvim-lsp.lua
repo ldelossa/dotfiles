@@ -28,10 +28,10 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    -- use omnifunc
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    vim.o.completeopt = "menuone,noselect"
-    vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
+    -- -- use omnifunc
+    -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- vim.o.completeopt = "menuone,noselect"
+    -- vim.api.nvim_command('inoremap <C-space> <C-x><C-o>')
 
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
@@ -114,6 +114,11 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_command('sign define DiagnosticSignHint text=🄷  texthl=Warning linehl= numhl=')
 end
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
@@ -133,6 +138,7 @@ local servers = {
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
       on_attach = on_attach,
+      capabilities = capabilities,
       flags = {
           debounce_text_changes = 150,
       },
@@ -147,6 +153,7 @@ nvim_lsp["gopls"].setup {
     "-remote.debug=:0"
   },
   flags = {allow_incremental_sync = true, debounce_text_changes = 150},
+  capabilities = capabilities,
   settings = {
       gopls = {
         analyses = {unusedparams = true, unreachable = false},
@@ -159,14 +166,15 @@ nvim_lsp["gopls"].setup {
           generate = true,
           gc_details = true
        },
-       usePlaceholders = true,
+       usePlaceholders = false,
        completeUnimported = true,
        staticcheck = true,
        matcher = "fuzzy",
        diagnosticsDelay = "500ms",
        experimentalWatchedFileDelay = "100ms",
        symbolMatcher = "fuzzy",
-       experimentalUseInvalidMetadata = true
+       experimentalUseInvalidMetadata = true,
+       semanticTokens = true
     },
    },
 }
@@ -175,6 +183,7 @@ nvim_lsp["sumneko_lua"].setup {
    on_attach = on_attach,
    cmd = {"/home/louis/git/lua/lua-language-server/bin/lua-language-server"},
    filetypes = { "lua" },
+   capabilities = capabilities,
    settings = {
        Lua = {
          runtime = {

@@ -8,6 +8,7 @@ remap('n', '<leader>g', '<cmd>lua require("fzf-lua").live_grep()<CR>', opts)
 remap('n', '<leader>gg', '<cmd>lua require("fzf-lua").grep_cword()<CR>', opts)
 remap('n', '<leader>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
 remap('n', '<leader>t', '<cmd>lua require("fzf-lua").tabs()<CR>', opts)
+remap('n', '<C-c>', '<cmd>lua require("fzf-lua").commands()<CR>', opts)
 -- c-f (fzf) namespaced
 remap('n', '<C-f>', ':FzfLua<CR>', opts)
 remap('n', '<C-f>f', '<cmd>lua require("fzf-lua").files()<CR>', opts)
@@ -202,7 +203,7 @@ require'fzf-lua'.setup {
       ["ctrl-s"]      = actions.buf_split,
       ["ctrl-v"]      = actions.buf_vsplit,
       ["ctrl-t"]      = actions.buf_tabedit,
-    }
+    },
   },
   fzf_opts = {
     -- options are sent as `<left>=<right>`
@@ -280,6 +281,14 @@ require'fzf-lua'.setup {
     },
   },
   -- provider setup
+  nvim = {
+      commands = {
+        prompt              = 'Commands> ',
+        actions = {
+          ["default"]       = actions.ex_run_cr,
+        },
+      },
+  },
   files = {
     -- previewer      = "bat",          -- uncomment to override previewer
                                         -- (name from 'previewers' table)

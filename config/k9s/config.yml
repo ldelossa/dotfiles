@@ -15,18 +15,17 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-clab-srv6-vpnv4-simple
-  currentCluster: kind-clab-srv6-vpnv4-simple
+  currentContext: ""
+  currentCluster: ""
   clusters:
-    kind-clab-srv6-vpnv4-simple:
+    "":
       namespace:
-        active: all
+        active: default
         lockFavorites: false
         favorites:
-        - all
         - default
       view:
-        active: pod
+        active: po
       featureGates:
         nodeShell: false
       shellPod:

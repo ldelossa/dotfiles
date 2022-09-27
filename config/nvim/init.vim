@@ -12,6 +12,12 @@ else
     set clipboard=unnamedplus
 endif
 
+" map normal clipboard keys
+nnoremap <C-c> "+y
+nnoremap <C-v> "+p
+inoremap <C-c> "+y
+inoremap <C-v> "+p
+
 " general configurations
 syntax on
 filetype plugin indent on
@@ -49,6 +55,7 @@ set nowrap
 set laststatus=3
 set cursorline
 set mouse=a
+set guifont=FiraCode\ Nerd\ Font\ Mono:h13
 
 nnoremap bd :bp\|bd #<cr>
 nnoremap P "0p

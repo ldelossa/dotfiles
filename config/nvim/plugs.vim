@@ -35,6 +35,12 @@ call plug#begin('~/.config/nvim/after')
     Plug 'ldelossa/nvim-dap-projects' 
     Plug 'ldelossa/nvim-ide-toolkit'
     Plug 'projekt0n/github-nvim-theme'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/vim-vsnip'
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')
@@ -62,4 +68,7 @@ lua require('configs.go-nvim')
 lua require('configs.buffertag')
 lua require('configs.filter')
 lua require('nvim-dap-projects').search_project_config()
+lua require('configs.nvim-cmp')
+lua require('configs.nvim-dap')
+
 " source $HOME/.config/nvim/lua/configs/vim-go.vim
