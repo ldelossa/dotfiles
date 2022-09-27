@@ -23,6 +23,7 @@ require('litee.calltree').setup({
     hide_cursor = false,
 })
 require('litee.bookmarks').setup({
+    icon_set = "codicons",
 })
 
 require('litee.gh').setup({

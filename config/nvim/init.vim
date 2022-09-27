@@ -127,6 +127,10 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+if exists("g:neovide")
+    let g:neovide_transparency=1.0
+    let g:neovide_floating_opacity=1.0
+endif
 
 " source modular configs
 source $HOME/.config/nvim/plugs.vim
