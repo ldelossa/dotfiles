@@ -55,7 +55,7 @@ set nowrap
 set laststatus=3
 set cursorline
 set mouse=a
-set guifont=FiraCode\ Nerd\ Font\ Mono:h13
+set guifont=FiraCode\ Nerd\ Font\ Mono:h12
 
 nnoremap bd :bp\|bd #<cr>
 nnoremap P "0p

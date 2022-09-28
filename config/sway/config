@@ -79,12 +79,9 @@ output $center_dp   bg  $wallpaper stretch
 output $right_dp    bg  $wallpaper fill
 
 output eDP-1 pos  0 0 res 2560x1600
-output $center_dp pos 2560 0 res 3840x2160
-output $right_dp  pos 5760 0 res 3840x2160
+output $center_dp pos 2560 0 res 2560x1600
+output $right_dp  pos 5620 res 2560x1600
 output $right_dp transform 90
-
-output $center_dp scale 1.2
-output $right_dp  scale 1.2
 
 exec_always ~/.config/sway/clamshell.sh
 
@@ -113,7 +110,7 @@ bindsym Mod4+l exec gtklock -d
 exec swayidle -w \
          timeout 600   'gtklock -d' \
          timeout 1200  'swaymsg "output * dpms off"' \
-         after-resume  'swaymsg "output * dpms on"' \
+         resume        'swaymsg "output * dpms on"' \
          before-sleep  'gtklock -d' 
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
