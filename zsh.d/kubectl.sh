@@ -35,7 +35,7 @@ alias klogs="$preamble logs --timestamps "
 alias klogsf="$preamble logs --timestamps --follow "
 
 function klogstream() {
-    log_name=/tmp/klogstream_$RANDOM
+    log_name=/tmp/klogstream_$1_$RANDOM.log
     eval "($preamble logs --timestamps --follow "$1" > $log_name)&"; bg_job=$!
     nvim -c "set syntax=log" $log_name # blocks until closed
     kill -SIGKILL $bg_job; rm -rf $log_name

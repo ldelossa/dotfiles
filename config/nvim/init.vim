@@ -25,7 +25,7 @@ set number
 set numberwidth=1
 set backspace=2 
 set updatetime=275
-set timeoutlen=400
+set timeoutlen=500
 set autowrite
 set noshowmode
 set ignorecase
@@ -59,6 +59,9 @@ set guifont=FiraCode\ Nerd\ Font\ Mono:h12
 
 nnoremap bd :bp\|bd #<cr>
 nnoremap P "0p
+
+" set Alt-r to allow pasting from registers in terminal mode.
+lua vim.keymap.set('t', '<C-R>', [['<C-\><C-N>"'.nr2char(getchar()).'pi']], { expr = true })
 
 " remove highlights
 nnoremap <C-h> :noh <CR>
@@ -130,7 +133,16 @@ endfunc
 if exists("g:neovide")
     let g:neovide_transparency=1.0
     let g:neovide_floating_opacity=1.0
+    " system clipboard
+    nmap <c-c> "+y
+    vmap <c-c> "+y
+    nmap <c-v> "+p
+    inoremap <c-v> <c-r>+
+    cnoremap <c-v> <c-r>+
+    " use <c-r> to insert original character without triggering things like auto-pairs
+    inoremap <c-r> <c-v>
 endif
+
 
 " source modular configs
 source $HOME/.config/nvim/plugs.vim

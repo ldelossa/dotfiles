@@ -41,6 +41,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'mtdl9/vim-log-highlighting'
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')
