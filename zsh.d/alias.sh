@@ -9,6 +9,7 @@ alias c='wl-copy'
 alias xc='xclip -selection clipboard'
 alias nvim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
 alias vim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
+alias nv='neovide --multigrid'
 alias t='kitty --detach -d $(pwd)'
 
 if which exa &> /dev/null; then

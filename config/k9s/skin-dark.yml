@@ -1,5 +1,5 @@
 foreground: &foreground "#DADEE8"
-background: &background "#30343F"
+background: &background "#22272e"
 current_line: &current_line "#383D4A"
 selection: &selection "#D9DEE8"
 comment: &comment "#8891A7"

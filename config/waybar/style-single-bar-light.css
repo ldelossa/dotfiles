@@ -4,14 +4,14 @@
 @define-color blue              #437890;
 @define-color blue-light        @blue;
 @define-color yellow            #8d905f;
-@define-color yellow-light      #f5f5e3;
+@define-color yellow-light      #fff8c5;
 @define-color red               #755754;
 @define-color green             #609075;
 @define-color grey              #525050;
 @define-color grey-light        #8e8e8e;
 @define-color grey-trans        rgba(84, 85, 85, .60);
 @define-color white             #b9bab5;
-@define-color white-alt         #eeeeee;
+@define-color white-alt         #eaeef2;
 @define-color white-lighter     #c9cac5;
 @define-color white-light       @grey; 
 @define-color orange            #9b885c;
@@ -69,7 +69,7 @@ window#waybar {
     color:              @grey;
     border-top:         5px solid @blue;
     background:         @yellow-light;
-    border-bottom:         .5px solid @grey-light;
+    border-bottom:      .5px solid @grey-light;
 }
 
 #workspaces button:hover {
