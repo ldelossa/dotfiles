@@ -44,7 +44,6 @@ then
     done
 
     sway reload
-    swaymsg "output eDP-1 enable"
     exit
 fi
 
@@ -92,7 +91,6 @@ then
     done
 
     sway reload
-    swaymsg "output eDP-1 enable"
     exit
 fi
 
