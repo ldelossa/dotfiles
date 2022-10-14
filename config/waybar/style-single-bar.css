@@ -67,13 +67,13 @@ window#waybar {
 
 #workspaces button.focused {
     color:              @white;
-    border-top:         5px solid @blue;
-    background:         @black-trans-overlay;
-    border-bottom:      .3px solid @grey-light;
+    border-bottom:         5px solid @blue;
+    /* background:         @black-trans-overlay; */
+    /* border-bottom:      .3px solid @grey-light; */
 }
 
 #workspaces button:hover {
-    background:         @black-trans-overlay;
+    background:         inherit;
     box-shadow:         inherit;
     text-shadow:        inherit;
 }

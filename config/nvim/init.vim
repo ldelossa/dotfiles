@@ -61,10 +61,11 @@ nnoremap bd :bp\|bd #<cr>
 nnoremap P "0p
 
 " set Alt-r to allow pasting from registers in terminal mode.
-lua vim.keymap.set('t', '<C-R>', [['<C-\><C-N>"'.nr2char(getchar()).'pi']], { expr = true })
+" lua vim.keymap.set('t', '<C->', [['<C-\><C-N>"'.nr2char(getchar()).'pi']], { expr = true })
+lua vim.keymap.set('t', '<M-v>', [['<C-\><C-N>"'.'*'.'pi']], { expr = true })
 
 " remove highlights
-nnoremap <C-h> :noh <CR>
+nnoremap <leader>h :noh <CR>
 
 " disable auto comments on next line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

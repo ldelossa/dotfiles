@@ -1,15 +1,16 @@
-# K9s Gruvbox Light Skin Contributed by [@indiebrain](https://github.com/indiebrain)
-foreground: &foreground "#1D344F"
-background: &background "#FFFFFF"
-current_line: &current_line "#6080b0"
-selection: &selection "#6080b0"
-comment: &comment "#767B85"
-cyan: &cyan "#40626B"
-green: &green "#5A7C6B"
-orange: &orange "#BA774A"
-magenta: &magenta "#4c4c4c"
-blue: &blue "#5070a0"
-red: &red "#B95D76"
+# K9s Solarized Light Skin Contributed by [@leg100](louisgarman@gmail.com)
+foreground: &foreground "#657b83"
+background: &background "#fffff"
+current_line: &current_line "#eee8d5"
+selection: &selection "#eee8d5"
+comment: &comment "#93a1a1"
+cyan: &cyan "#2aa198"
+green: &green "#859900"
+yellow: &yellow "#b58900"
+orange: &orange "#cb4b16"
+magenta: &magenta "#d33682"
+blue: &blue "#268bd2"
+red: &red "#dc322f"
 
 k9s:
   body:
@@ -23,12 +24,6 @@ k9s:
   info:
     fgColor: *magenta
     sectionColor: *foreground
-  help:
-    fgColor: *foreground
-    bgColor: *background
-    keyColor: *magenta
-    numKeyColor: *blue
-    sectionColor: *green
   dialog:
     fgColor: *foreground
     bgColor: *background
@@ -41,32 +36,32 @@ k9s:
   frame:
     border:
       fgColor: *selection
-      focusColor: *current_line
+      focusColor: *foreground
     menu:
       fgColor: *foreground
       keyColor: *magenta
       numKeyColor: *magenta
     crumbs:
-      fgColor: *foreground
-      bgColor: *comment
-      activeColor: *blue
+      fgColor: white
+      bgColor: *cyan
+      activeColor: *yellow
     status:
       newColor: *cyan
       modifyColor: *blue
       addColor: *green
       errorColor: *red
-      highlightcolor: *orange
+      highlightColor: *orange
       killColor: *comment
       completedColor: *comment
     title:
       fgColor: *foreground
       bgColor: *background
-      highlightColor: *orange
-      counterColor: *blue
+      highlightColor: *blue
+      counterColor: *magenta
       filterColor: *magenta
   views:
     charts:
-      bgColor: background
+      bgColor: default
       defaultDialColors:
         - *blue
         - *red
@@ -76,12 +71,13 @@ k9s:
     table:
       fgColor: *foreground
       bgColor: *background
-      cursorFgColor: *foreground
-      cursorBgColor: *current_line
+      cursorFgColor: white
+      cursorBgColor: *background
+      markColor: darkgoldenrod
       header:
         fgColor: *foreground
         bgColor: *background
-        sorterColor: *selection
+        sorterColor: *cyan
     xray:
       fgColor: *foreground
       bgColor: *background
@@ -97,4 +93,4 @@ k9s:
       bgColor: *background
       indicator:
         fgColor: *foreground
-        bgColor: *background
+        bgColor: *selection

@@ -50,12 +50,12 @@ gaps top    0
 gaps bottom 0
 gaps left 0
 gaps right 0
-gaps inner 0
-default_border pixel 4
+gaps inner 5
+default_border pixel 5
 for_window [class=".*"]     opacity 1
 for_window [app_id=".*"]    opacity 1 
-smart_gaps on
-smart_borders on
+smart_gaps off
+smart_borders off
 
 ### Monitor Layout
 ### view with swaymsg -t get_outputs

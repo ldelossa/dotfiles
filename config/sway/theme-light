@@ -3,12 +3,12 @@ set $theme "light"
 set $term "XCURSOR_SIZE=32 kitty"
 set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord.jpg"
-#set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord_lighter.jpg"
+# set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord_lighter.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/store-front.gif"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/engine_schematic_adjusted_scaled_yellow_grey.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/3d_terraform_light_grey.png"
-client.focused      #437790 #fff8c5 #000000 #ffffff #437790
-client.unfocused    #1c1c1c #ffffff #1c1c1c #7c794e #e8eee2
+client.focused      #437790 #6b6098 #ffffff #ffffff #6b6098
+client.unfocused    #1c1c1c #ffffff #1c1c1c #7c794e #00000000
 
 # toggle themes
 bindsym $mod+p exec ~/.config/sway/theme_switch.sh dark

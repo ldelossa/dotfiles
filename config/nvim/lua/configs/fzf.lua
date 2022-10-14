@@ -9,6 +9,7 @@ remap('n', '<leader>gg', '<cmd>lua require("fzf-lua").grep_cword()<CR>', opts)
 remap('n', '<leader>m', '<cmd>lua require("fzf-lua").marks()<CR>', opts)
 remap('n', '<leader>t', '<cmd>lua require("fzf-lua").tabs()<CR>', opts)
 remap('n', '<C-c>', '<cmd>lua require("fzf-lua").commands()<CR>', opts)
+remap('n', '<C-h>', '<cmd>lua require("fzf-lua").command_history()<CR>', opts)
 -- c-f (fzf) namespaced
 remap('n', '<C-f>', ':FzfLua<CR>', opts)
 remap('n', '<C-f>f', '<cmd>lua require("fzf-lua").files()<CR>', opts)
@@ -191,18 +192,18 @@ require'fzf-lua'.setup {
       -- to open all files whether single or multiple
       -- ["default"]     = actions.file_edit,
       ["default"]     = actions.file_edit_or_qf,
-      ["ctrl-s"]      = actions.file_split,
-      ["ctrl-v"]      = actions.file_vsplit,
-      ["ctrl-t"]      = actions.file_tabedit,
+      ["ctrl-S"]      = actions.file_split,
+      ["ctrl-V"]      = actions.file_vsplit,
+      ["ctrl-T"]      = actions.file_tabedit,
       ["alt-q"]       = actions.file_sel_to_qf,
     },
     buffers = {
       -- providers that inherit these actions:
       --   buffers, tabs, lines, blines
       ["default"]     = actions.buf_edit,
-      ["ctrl-s"]      = actions.buf_split,
-      ["ctrl-v"]      = actions.buf_vsplit,
-      ["ctrl-t"]      = actions.buf_tabedit,
+      ["ctrl-S"]      = actions.buf_split,
+      ["ctrl-V"]      = actions.buf_vsplit,
+      ["ctrl-T"]      = actions.buf_tabedit,
     },
   },
   fzf_opts = {
@@ -367,9 +368,9 @@ require'fzf-lua'.setup {
       --preview_pager = "delta --width=$FZF_PREVIEW_COLUMNS",
       actions = {
         ["default"] = actions.git_buf_edit,
-        ["ctrl-s"]  = actions.git_buf_split,
-        ["ctrl-v"]  = actions.git_buf_vsplit,
-        ["ctrl-t"]  = actions.git_buf_tabedit,
+        ["ctrl-S"]  = actions.git_buf_split,
+        ["ctrl-V"]  = actions.git_buf_vsplit,
+        ["ctrl-T"]  = actions.git_buf_tabedit,
       },
     },
     branches = {
