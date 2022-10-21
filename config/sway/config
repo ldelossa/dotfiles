@@ -79,9 +79,11 @@ output $center_dp   bg  $wallpaper stretch
 output $right_dp    bg  $wallpaper fill
 
 output eDP-1 pos  0 0 res 2560x1600
-output $center_dp pos 2560 0 res 2560x1600
-output $right_dp  pos 6400 0 res 2560x1600
+output $center_dp pos 2560 0 res 3840x2160 
+output $center_dp scale 1.2
+output $right_dp  pos 5750 0 res 3840x2160
 output $right_dp transform 90
+output $right_dp scale 1.2
 
 exec_always ~/.config/sway/clamshell.sh
 

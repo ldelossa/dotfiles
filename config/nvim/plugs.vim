@@ -71,5 +71,5 @@ lua require('configs.filter')
 lua require('nvim-dap-projects').search_project_config()
 lua require('configs.nvim-cmp')
 lua require('configs.nvim-dap')
-
+lua require('configs.nvim-ide')
 " source $HOME/.config/nvim/lua/configs/vim-go.vim

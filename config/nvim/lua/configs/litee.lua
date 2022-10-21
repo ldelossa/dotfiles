@@ -82,7 +82,7 @@ vim.api.nvim_set_keymap("i", "<C-l>i", "<cmd>lua require('litee.lib.lsp.wrappers
 vim.api.nvim_set_keymap("i", "<C-l>S", "<cmd>lua require('litee.lib.lsp.wrappers').buf_document_symbol()<CR>", opts)
 
 -- filetree specific commands
-vim.api.nvim_set_keymap("n", "<leader><leader>", ":LTOpenFiletree<cr>", opts)
+-- vim.api.nvim_set_keymap("n", "<leader><leader>", ":LTOpenFiletree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-x>o", ":LTOpenToFiletree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-x>oo", ":LTPopOutFiletree<cr>", opts)
 vim.api.nvim_set_keymap("n", "<C-x>n", ":LTNextFiletree<cr>", opts)
