@@ -33,7 +33,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'mfussenegger/nvim-dap'
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'ldelossa/nvim-dap-projects' 
-    Plug 'ldelossa/nvim-ide-toolkit'
+    Plug 'ldelossa/nvim-ide'
     Plug 'projekt0n/github-nvim-theme'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'

@@ -23,6 +23,7 @@ k9s:
         active: all
         lockFavorites: false
         favorites:
+        - all
         - default
       view:
         active: po

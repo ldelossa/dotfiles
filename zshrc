@@ -31,6 +31,7 @@ source ~/zsh.d/systemd.sh
 source ~/zsh.d/cilium.sh
 source ~/zsh.d/bat.sh
 source ~/zsh.d/devspaces.sh
+source ~/zsh.d/gh.sh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

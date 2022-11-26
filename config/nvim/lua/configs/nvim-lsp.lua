@@ -79,7 +79,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', opts)
     buf_set_keymap('n', '<C-p>', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', opts)
     buf_set_keymap('n', '<C-n>', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
     buf_set_keymap("n", "<leader>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
     buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
 

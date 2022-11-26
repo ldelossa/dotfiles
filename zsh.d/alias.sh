@@ -11,7 +11,6 @@ alias nvim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
 alias vim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
 alias nv='neovide --multigrid'
 alias t='kitty --detach -d $(pwd)'
-alias man="NVIM_MAN=true man"
 
 if which exa &> /dev/null; then
     alias ls='exa --icons --header'
