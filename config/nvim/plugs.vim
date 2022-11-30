@@ -23,7 +23,6 @@ call plug#begin('~/.config/nvim/after')
     Plug 'ldelossa/litee-bookmarks.nvim'
     Plug 'ldelossa/gh.nvim'
     Plug 'rlane/pounce.nvim'
-    Plug 'mtdl9/vim-log-highlighting'
     Plug 'ruifm/gitlinker.nvim'
     Plug 'ldelossa/nightfox.nvim'
     Plug 'nvim-treesitter/playground'
@@ -41,7 +40,8 @@ call plug#begin('~/.config/nvim/after')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/vim-vsnip'
-    Plug 'mtdl9/vim-log-highlighting'
+    Plug 'dnlhc/glance.nvim'
+    Plug 'rcarriga/nvim-notify'
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')
@@ -72,4 +72,6 @@ lua require('nvim-dap-projects').search_project_config()
 lua require('configs.nvim-cmp')
 lua require('configs.nvim-dap')
 lua require('configs.nvim-ide')
+lua require('configs.glance')
+lua require('configs.nvim-notify')
 " source $HOME/.config/nvim/lua/configs/vim-go.vim
