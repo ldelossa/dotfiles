@@ -6,7 +6,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'windwp/nvim-autopairs'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
-    Plug 'ibhagwan/fzf-lua'
+    " Plug 'ibhagwan/fzf-lua'
     Plug 'seblj/nvim-echo-diagnostics'
     Plug 'onsails/lspkind-nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -42,13 +42,15 @@ call plug#begin('~/.config/nvim/after')
     Plug 'hrsh7th/vim-vsnip'
     Plug 'dnlhc/glance.nvim'
     Plug 'rcarriga/nvim-notify'
+    Plug 'https://gitlab.com/yorickpeterse/nvim-window.git'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    Plug 'nvim-telescope/telescope-ui-select.nvim'
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')
-lua require('configs.nvim-lsp')
-lua require('configs.fzf')
+" lua require('configs.fzf')
 "" register FzfLua as vim.ui.select implementor
-lua vim.cmd("FzfLua register_ui_select")
+" lua vim.cmd("FzfLua register_ui_select")
 lua require('configs.nvim-autopairs')
 lua require('configs.nvim-echo-diagnostics')
 lua require('configs.lspkind')
@@ -74,4 +76,8 @@ lua require('configs.nvim-dap')
 lua require('configs.nvim-ide')
 lua require('configs.glance')
 lua require('configs.nvim-notify')
+lua require('configs.nvim-window')
+lua require('configs.telescope')
+lua require('configs.github-theme')
+lua require('configs.nvim-lsp')
 " source $HOME/.config/nvim/lua/configs/vim-go.vim

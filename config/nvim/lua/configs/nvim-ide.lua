@@ -1,5 +1,14 @@
 require('ide').setup({
     icon_set = "codicons",
+    components = {
+        BufferList = {
+            -- current_buffer_top = true
+        },
+        TerminalBrowser = {
+            default_height = 5
+        },
+
+    }
 })
 
 local opts = { silent = true }

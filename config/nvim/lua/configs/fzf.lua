@@ -31,7 +31,7 @@ remap('n', '<C-f>c', '<cmd>lua require("fzf-lua").commands()<CR>', opts)
 -- remap('n', 'gi', '<cmd>lua require("fzf-lua").lsp_implementations()<CR>', opts)
 remap('n', '<leader>a', '<cmd>lua require("fzf-lua").lsp_code_actions()<CR>', opts)
 remap('n', '<leader>u', '<cmd>lua require("fzf-lua").lsp_references()<CR>', opts)
-remap('n', '<leader>e', '<cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>', opts)
+-- remap('n', '<leader>e', '<cmd>lua require("fzf-lua").lsp_document_diagnostics()<CR>', opts)
 remap('n', '<leader>ee', '<cmd>lua require("fzf-lua").lsp_workspace_diagnostics()<CR>', opts)
 -- c-l (lsp) namespaced
 remap('n', '<C-l>D', '<Cmd>lua require("fzf-lua").lsp_declarations()<CR>', opts)
