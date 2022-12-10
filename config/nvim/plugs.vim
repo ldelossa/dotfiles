@@ -33,6 +33,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'ldelossa/nvim-dap-projects' 
     Plug 'ldelossa/nvim-ide'
+    Plug 'nvim-telescope/telescope-dap.nvim'
     Plug 'projekt0n/github-nvim-theme'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -45,6 +46,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'https://gitlab.com/yorickpeterse/nvim-window.git'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     Plug 'nvim-telescope/telescope-ui-select.nvim'
+    Plug 'akinsho/git-conflict.nvim'
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')
@@ -80,4 +82,5 @@ lua require('configs.nvim-window')
 lua require('configs.telescope')
 lua require('configs.github-theme')
 lua require('configs.nvim-lsp')
+lua require('configs.git-conflict')
 " source $HOME/.config/nvim/lua/configs/vim-go.vim

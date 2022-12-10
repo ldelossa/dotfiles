@@ -40,16 +40,33 @@ require('telescope').setup({
 -- use ui-select
 require("telescope").load_extension("ui-select")
 
+-- -- dap exts
+-- require("telescope").load_extension("dap")
+
 
 local opts = { silent = true }
 
 vim.keymap.set('n', '<C-f>', ':Telescope<CR>', opts)
 
-vim.keymap.set('n', '\'', function() builtin.buffers({ sort_lastused = true, ignore_current_buffer = true }) end, opts)
-vim.keymap.set('n', '<leader>c', function() builtin.commands(themes.get_dropdown()) end, {})
-vim.keymap.set('n', '<leader>', builtin.find_files, {})
-vim.keymap.set('n', '<leader>h', builtin.oldfiles, {})
-vim.keymap.set('n', '<C-h>', builtin.command_history, {})
+-- vim.keymap.set('n', '\'', function() builtin.buffers({ sort_lastused = true, ignore_current_buffer = true }) end, opts)
+vim.keymap.set('n', '\'', function() builtin.buffers(themes.get_dropdown({
+        previewer = false,
+        sort_lastused = true, ignore_current_buffer = true
+    }))
+end, opts)
+vim.keymap.set('n', '<leader>c', function() builtin.commands(themes.get_dropdown())
+end, {})
+vim.keymap.set('n', '<leader>', function() builtin.find_files(themes.get_dropdown({
+        previewer = false,
+    }))
+end
+    , {})
+vim.keymap.set('n', '<leader>h', function() builtin.oldfiles(themes.get_dropdown({
+        previewer = false,
+    }))
+end,
+    {})
+vim.keymap.set('n', '<C-h>', function() builtin.command_history(themes.get_dropdown()) end, {})
 
 -- git stuff
 vim.keymap.set('n', '<C-g>ss', builtin.git_status, {})

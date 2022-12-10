@@ -4,8 +4,7 @@ require("github-theme").setup({
   overrides = function(c)
     return {
       DiffChange = {fg = c.bright_blue, bg = c.bg_visual_selection},
-      -- DiffAdd    = {fg = c.bright_green, bg = c.diff.add},
-
+      DiffAdd    = {fg = c.diff.add_fg, bg = c.diff.add},
     }
   end
 })

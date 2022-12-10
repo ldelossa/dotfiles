@@ -2,6 +2,7 @@ require('ide').setup({
     icon_set = "codicons",
     components = {
         BufferList = {
+            default_height = 5
             -- current_buffer_top = true
         },
         TerminalBrowser = {

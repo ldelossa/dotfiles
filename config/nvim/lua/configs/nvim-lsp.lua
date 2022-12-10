@@ -1,13 +1,19 @@
 local nvim_lsp = require('lspconfig')
 
 vim.diagnostic.config {
-    float = { border = "rounded" },
+    float = {
+        border = "rounded",
+        -- suffix = function(diagnostic, i, total)
+        --     print(vim.inspect(diagnostic))
+        --     return string.format(" [%d:%d]", diagnostic.col + 1, diagnostic.end_col + 1)
+        -- end
+    },
 }
 
 -- disable virtual text for all diagnostic handlers.
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline    = false,
+    underline    = true,
     virtual_text = false,
     float        = { border = "rounded" },
 }
