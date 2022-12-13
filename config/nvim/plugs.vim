@@ -41,6 +41,9 @@ call plug#begin('~/.config/nvim/after')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'rafamadriz/friendly-snippets'
     Plug 'dnlhc/glance.nvim'
     Plug 'rcarriga/nvim-notify'
     Plug 'https://gitlab.com/yorickpeterse/nvim-window.git'
@@ -83,4 +86,7 @@ lua require('configs.telescope')
 lua require('configs.github-theme')
 lua require('configs.nvim-lsp')
 lua require('configs.git-conflict')
+" load snippets from friendly-snippets
+lua require("luasnip.loaders.from_vscode").lazy_load()
 " source $HOME/.config/nvim/lua/configs/vim-go.vim
+
