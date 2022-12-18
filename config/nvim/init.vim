@@ -144,6 +144,8 @@ if exists("g:neovide")
     inoremap <c-r> <c-v>
 endif
 
+" set c fileype for headers, not cpp
+let g:c_syntax_for_h = 1
 
 " source modular configs
 source $HOME/.config/nvim/plugs.vim
