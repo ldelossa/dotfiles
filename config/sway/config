@@ -51,7 +51,7 @@ gaps bottom 0
 gaps left 0
 gaps right 0
 gaps inner 5
-default_border pixel 5
+default_border normal 3
 for_window [class=".*"]     opacity 1
 for_window [app_id=".*"]    opacity 1 
 smart_gaps off
@@ -195,12 +195,12 @@ input "1267:12689:ELAN0E03:00_04F3:3191_Touchpad" {
     bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-mark-switcher.sh'
     bindsym Mod4+Tab   exec 'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-tree-switcher.sh'
     bindsym Mod4+Space exec 'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-tree-switcher.sh'
-    bindsym Mod4+x     exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "fzf-switcher" nnn'
+    bindsym Mod4+x     exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "floating-term" nnn'
 
     # Start a terminal
     bindsym $mod+Return exec $term
     # Start a floating term
-    bindsym Mod4+Return exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "fzf-switcher"'
+    bindsym Mod4+Return exec 'kitty -o remember_window_size=no -o initial_window_height=1000 -o initial_window_width=1000 --title "floating-term"'
     # Start a luakit instance
     bindsym Mod4+b exec 'luakit -U https://google.com'
     # Start a luakit open to gh notifications
@@ -305,8 +305,8 @@ input "1267:12689:ELAN0E03:00_04F3:3191_Touchpad" {
 
     # 1password should always float
     for_window [class="1Password"]      floating enable
-    # anything with fzf-switcher title floats.
-    for_window [title="fzf-switcher"]   floating enable
+    # anything with floating title floats.
+    for_window [title="floating-*"]   floating enable
 
 #
 # Layout stuff:
