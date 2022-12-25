@@ -32,7 +32,7 @@
 
 .modules-left {
     font-family:    "Cousine Regular Nerd Font Complete Mono Nerd Font Complete";
-    font-size:      15px;
+    font-size:      16px;
 }
 
 tooltip {
@@ -48,7 +48,7 @@ tooltip label {
 
 window#waybar {
     border-bottom:         .5px solid @grey-light;
-    background: @white-alt-trans;
+    background: @white-alt;
 }
 
 /* === work spaces === */
