@@ -47,7 +47,6 @@ tooltip label {
 }
 
 window#waybar {
-    border-radius: 5px;
     border-bottom:         .3px solid @grey-light;
     background: @black-trans-two;
 }
@@ -125,7 +124,7 @@ window#waybar {
 }
 
 #clock, #tray, #custom-bluelightfilter, #custom-vm, #custom-notification, #custom-containers, #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
-    margin:             1px 1px 0px 1px;
+    margin:             0px 1px 0px 1px;
     padding:            0px 6px 0px 6px;
     color:              @white;
     font-size:          20px;
@@ -133,12 +132,11 @@ window#waybar {
 
 #clock {
     font-size: 15px;
-    border-top:        3px solid @grey;
+    border-top:         3px solid @grey;
 }
 
 #custom-notification {
-  border-top:        3px solid @grey;
-  font-family:       "NotoSansMono Nerd Font";
+  border-top:           3px solid @grey;
 }
 
 #idle_inhibitor {
@@ -220,7 +218,7 @@ window#waybar {
 }
 
 #disk {
-    font-size:          17px;
+    font-size:          16px;
 }
 #disk.low {
     border-top:        3px solid @blue;
@@ -234,7 +232,7 @@ window#waybar {
 
 #network {
     border-top:         3px solid @blue;
-    font-size:           18px;
+    font-size:          18px;
 }
 #network.disconnected {
     border-top:         3px solid @red;

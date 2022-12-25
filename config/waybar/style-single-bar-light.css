@@ -47,7 +47,6 @@ tooltip label {
 }
 
 window#waybar {
-    border-radius: 5px;
     border-bottom:         .5px solid @grey-light;
     background: @white-alt-trans;
 }
@@ -136,7 +135,6 @@ window#waybar {
 
 #custom-notification {
   border-top:        3px solid @grey-light;
-  font-family:       "NotoSansMono Nerd Font";
 }
 
 #idle_inhibitor {
@@ -219,7 +217,7 @@ window#waybar {
 }
 
 #disk {
-    font-size:          17px;
+    font-size:          16px;
 }
 #disk.low {
     border-top:        3px solid @blue;

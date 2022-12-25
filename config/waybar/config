@@ -24,7 +24,8 @@
     },
     "battery": {
         "format": "{icon}",
-        "format-alt": "{time} {icon}",
+        "format-alt": "{time}  {icon}",
+        "tooltip-format": "{time} {capacity}% {power}",
         "format-alt-click": "click-right",
         "format-icons": ["", "", "", ""],
         "format-charging": "",
@@ -37,7 +38,6 @@
     },
     "network": {
         "format": "{icon}",
-        "format-alt": "{icon}",
         "format-icons": {
             "wifi": ["﬉"],
             "ethernet": [""],
@@ -46,7 +46,7 @@
         "format-alt-click": "click-right",
         "format-wifi": "﬉",
         "format-ethernet": "",
-        "format-disconnected": "", 
+        "format-disconnected": "睊", 
         "tooltip-format": "{ifname} via {gwaddr}",
         "tooltip-format-wifi": "{essid} {signalStrength}% ﬉",
         "tooltip-format-ethernet": "{ifname} {ipaddr} ",
@@ -69,7 +69,7 @@
     "pulseaudio": {
         "format": "{icon}",
         "format-alt-click": "click-right",
-        "format-bluetooth": "",
+        "format-bluetooth": "",
         "format-muted": "婢",
         "format-icons": {
             "headphone": "",
