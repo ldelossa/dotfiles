@@ -5,22 +5,9 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": ["sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "pulseaudio", "backlight", "network", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
+    "modules-right": [ "sway/mode", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network","pulseaudio","battery","idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
-        "format": "{icon} {name}",
-        "format-icons": {
-            "chat":     "",
-            "web":      "爵",
-            "terminal": "",
-            "ebooks":   "",
-            "music":    "",
-            "apps":     "",
-            "vm":       "",
-            "stats":    "",
-            "sound":    "蓼",
-            "default":  ""
-        },
         "disable-scroll": true,
     },
     "clock": {
@@ -39,8 +26,8 @@
         "format": "{icon}",
         "format-alt": "{time} {icon}",
         "format-alt-click": "click-right",
-        "format-icons": ["", "", "", ""],
-        "format-charging": "",
+        "format-icons": ["", "", "", ""],
+        "format-charging": "",
         "interval": 30,
         "on-click": "gnome-control-center power",
         "states": {
@@ -147,7 +134,7 @@
         "exec": "~/.config/waybar/custom/containers-monitor.sh",
     },
     "custom/bluelightfilter": {
-        "format": "",
+        "format": "望",
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/bluelightfilter-monitor.sh",
@@ -157,8 +144,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "﯎",
+            "deactivated": "﯏"
         }
     },
     "custom/notification": {

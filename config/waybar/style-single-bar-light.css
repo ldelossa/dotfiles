@@ -12,6 +12,7 @@
 @define-color grey-trans        rgba(84, 85, 85, .60);
 @define-color white             #b9bab5;
 @define-color white-alt         #eaeef2;
+@define-color white-alt-trans   rgba(234, 238, 242, .90);
 @define-color white-lighter     #c9cac5;
 @define-color white-light       @grey; 
 @define-color orange            #9b885c;
@@ -20,17 +21,17 @@
 
 
 .modules-right {
-    font-family:    "Cousine";
+    font-family:    "Cousine Regular Nerd Font Complete Mono Nerd Font Complete";
     font-size:      15px;
 }
 
 .modules-center {
-    font-family:    "Cousine";
+    font-family:    "Cousine Regular Nerd Font Complete Mono Nerd Font Complete";
     font-size:      15px;
 }
 
 .modules-left {
-    font-family:    "Cousine";
+    font-family:    "Cousine Regular Nerd Font Complete Mono Nerd Font Complete";
     font-size:      15px;
 }
 
@@ -48,7 +49,7 @@ tooltip label {
 window#waybar {
     border-radius: 5px;
     border-bottom:         .5px solid @grey-light;
-    background: @white-alt;
+    background: @white-alt-trans;
 }
 
 /* === work spaces === */
@@ -63,12 +64,11 @@ window#waybar {
     padding:            0px 5px 0px 5px;
     color:              @grey;
     border-radius:      0px;
-    border-top:         5px solid @trans;
 }
 
 #workspaces button.focused {
     color:              @grey;
-    border-bottom:         5px solid @purple;
+    border-bottom:         3px solid @purple;
     /* background:         @yellow-light; */
     /* border-bottom:      .5px solid @grey-light; */
 }
@@ -124,10 +124,9 @@ window#waybar {
 }
 
 #clock, #tray, #custom-bluelightfilter, #custom-vm, #custom-vm, #custom-notification, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
-    margin:             1px 1px 0px 1px;
+    margin:             0px 1px 0px 1px;
     padding:            0px 6px 0px 6px;
     color:              @black;
-    border-top:         3px solid @grey-light;
     font-size:          20px;
 }
 
@@ -143,7 +142,7 @@ window#waybar {
 #idle_inhibitor {
     color:              @grey;
     border-top:         3px solid @white;
-    font-size:          25px;
+    font-size:          12px;
 }
 
 #idle_inhibitor.activated {
@@ -154,7 +153,7 @@ window#waybar {
 #custom-bluelightfilter {
     color:              @grey;
     border-top:         3px solid @white;
-    font-size:          25px;
+    font-size:          12px;
 }
 
 #custom-bluelightfilter.activated {
@@ -241,7 +240,7 @@ window#waybar {
 }
 
 #battery {
-    font-size:          25px;
+    font-size:         12px;
     border-top:        3px solid @green;
 }
 #battery.warning {
