@@ -66,6 +66,7 @@
                "mid": 50,
                "high": 75
            },
+           "smooth-scrolling-threshold": 1.0,
        },
     "pulseaudio": {
         "format": "{icon}",
@@ -83,7 +84,8 @@
             "low": 0,
             "mid": 50,
             "high": 75
-        }
+        },
+        "smooth-scrolling-threshold": 1.0,
     },
     "cpu": {
         "interval": 10,
@@ -169,22 +171,18 @@
       "icon-size": 12,
       "spacing": 10, 
     },
-    "custom/spotify-monitor": {
-        "interval": 10,
-        "exec": "~/.config/waybar/custom/spotify/monitor.sh",
-        "signal": 4
-    },
     "custom/spotify-metadata": {
         "format": " {}",
         "max-length": 120,
-        "interval": "once",
+        "interval": 2,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/spotify/metadata.sh",
-        "on-click": "playerctl -p spotify play",
-        "on-scroll-up": "playerctl -p spotify next",
-        "on-scroll-down": "playerctl -p spotify previous",
-        "on-click-right": "playerctl -p spotify pause",
-        "signal": 5
+        "on-click": "~/.config/waybar/custom/spotify/controls.sh play",
+        "on-scroll-up": "~/.config/waybar/custom/spotify/controls.sh next",
+        "on-scroll-down": "~/.config/waybar/custom/spotify/controls.sh previous",
+        "on-click-right": "~/.config/waybar/custom/spotify/controls.sh pause",
+        "signal": 5,
+        "smooth-scrolling-threshold": 1.0,
     },
 }
 

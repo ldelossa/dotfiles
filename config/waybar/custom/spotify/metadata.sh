@@ -14,12 +14,14 @@ fi
 if [[ $status == "Playing" ]]
 then
    echo "{\"class\": \"playing\", \"text\": \"$artist - $title\", \"tooltip\": \"$artist - $title - $album\"}"
+   pkill -RTMIN+5 waybar
    exit
 fi
 
 if [[ $status == "Paused" ]]
 then
    echo "{\"class\": \"paused\", \"text\": \"$artist - $title\", \"tooltip\": \"$artist - $title - $album\"}"
+   pkill -RTMIN+5 waybar
    exit
 fi
 

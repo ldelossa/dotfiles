@@ -10,18 +10,20 @@ fi
 if [[ $1 == "prev" ]]
 then
    playerctl -p spotify previous
-   # we don't need to send a signal
-   # ourselves, dunst is notified of
-   # track changes and will do this instead.
+   sleep .1
+   # trigger the monitor to resync all
+   # spotify elements
+   pkill -RTMIN+4 waybar
    exit
 fi
 
 if [[ $1 == "next" ]]
 then
    playerctl -p spotify next
-   # we don't need to send a signal
-   # ourselves, dunst is notified of
-   # track changes and will do this instead.
+   sleep .1
+   # trigger the monitor to resync all
+   # spotify elements
+   pkill -RTMIN+4 waybar
    exit
 fi
 
