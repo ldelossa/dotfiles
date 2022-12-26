@@ -5,7 +5,8 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": [ "sway/mode", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network","pulseaudio","battery","idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
+    "modules-right": [ "sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
+    "modules-center": ["custom/spotify-monitor", "custom/spotify-metadata" ],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -165,8 +166,25 @@
        "escape": true
      },
     "tray": {
-      "icon-size": 15,
+      "icon-size": 12,
       "spacing": 10, 
-    }
+    },
+    "custom/spotify-monitor": {
+        "interval": 10,
+        "exec": "~/.config/waybar/custom/spotify/monitor.sh",
+        "signal": 4
+    },
+    "custom/spotify-metadata": {
+        "format": " {}",
+        "max-length": 120,
+        "interval": "once",
+        "return-type": "json",
+        "exec": "~/.config/waybar/custom/spotify/metadata.sh",
+        "on-click": "playerctl -p spotify play",
+        "on-scroll-up": "playerctl -p spotify next",
+        "on-scroll-down": "playerctl -p spotify previous",
+        "on-click-right": "playerctl -p spotify pause",
+        "signal": 5
+    },
 }
 

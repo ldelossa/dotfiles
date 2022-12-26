@@ -32,14 +32,14 @@
 
 .modules-left {
     font-family:    "Cousine Regular Nerd Font Complete Mono Nerd Font Complete";
-    font-size:      16px;
+    font-size:      15px;
 }
 
 tooltip {
   font-family:      "FreeMono";
   font-size:        20px;
-  background:       @yellow-light;
-  border:           1px solid @yellow;
+  background:       @white-alt;
+  border:           2px solid @purple;
 }
 
 tooltip label {
@@ -84,20 +84,17 @@ window#waybar {
 
 #custom-spotify-metadata, #custom-spotify-play-pause, #custom-spotify-prev, #custom-spotify-next, #custom-spotify-quit {
     color:              @white;
-    padding:            7px 0px 7px 0px;
-    border-left:        3px solid @green;
-    font-size:          20px;
+    padding:            0px 6px 0px 6px;
+    font-size:          12px;
 }
 #custom-spotify-metadata {
     margin:             0px 0px 0px 1px;
 }
 #custom-spotify-metadata.playing {
     color:              @green;
-    border-left:        3px solid @green;
 }
 #custom-spotify-metadata.paused {
     color:              @yellow;
-    border-left:        3px solid @yellow;
 }
 #custom-spotify-prev {
     margin:             0px 0px 0px 1px;
@@ -134,33 +131,29 @@ window#waybar {
 }
 
 #custom-notification {
-  border-top:        3px solid @grey-light;
+  color:        @grey;
 }
 
 #idle_inhibitor {
     color:              @grey;
-    border-top:         3px solid @white;
     font-size:          12px;
 }
 
 #idle_inhibitor.activated {
     color:              @blue-light;
-    border-top:        3px solid @blue-light;
 }
 
 #custom-bluelightfilter {
     color:              @grey;
-    border-top:         3px solid @white;
     font-size:          12px;
 }
 
 #custom-bluelightfilter.activated {
     color:              @blue-light;
-    border-top:        3px solid @blue-light;
 }
 
 #tray {
-    border-top:        3px solid @green;
+    color:        @green;
 }
 
 #custom-wfrecord {
@@ -172,7 +165,6 @@ window#waybar {
 
 #custom-wfrecord.recording {
     color:              @blue-light;
-    border-top:        3px solid @blue-light;
 }
 
 #custom-vm {
@@ -180,7 +172,6 @@ window#waybar {
 }
 #custom-vm.running {
     color:              @blue-light;
-    border-top:        3px solid @blue-light;
 }
 
 #custom-containers {
@@ -189,95 +180,94 @@ window#waybar {
 
 #custom-containers.running {
     color:              @blue;
-    border-top:        3px solid @blue;
 }
 
 #memory {
 }
 #memory.low {
-    border-top:        3px solid @blue;
+    color:        @blue;
 }
 #memory.mid {
-    border-top:        3px solid @yellow;
+    color:        @yellow;
 }
 #memory.high {
-    border-top:        3px solid @red;
+    color:        @red;
 }
 
 #cpu {
 }
 #cpu.low {
-    border-top:        3px solid @blue;
+    color:        @blue;
 }
 #cpu.mid {
-    border-top:        3px solid @yellow;
+    color:        @yellow;
 }
 #cpu.high {
-    border-top:        3px solid @red;
+    color:        @red;
 }
 
 #disk {
     font-size:          16px;
 }
 #disk.low {
-    border-top:        3px solid @blue;
+    color:        @blue;
 }
 #disk.mid {
-    border-top:        3px solid @yellow;
+    color:        @yellow;
 }
 #disk.high {
-    border-top:        3px solid @red;
+    color:        @red;
 }
 
 #network {
-    border-top:        3px solid @blue;
+    color:        @blue;
     font-size:          18px;
 }
 #network.disconnected {
-    border-top:        3px solid @red;
+    color:        @red;
 }
 
 #battery {
-    font-size:         12px;
-    border-top:        3px solid @green;
+    font-size:         11px;
+    color:        @green;
 }
 #battery.warning {
-    border-top:        3px solid @yellow;
+    color:        @yellow;
 }
 #battery.critical {
-    border-top:        3px solid @red;
+    color:        @red;
 }
 #battery.charging {
-    border-top:        3px solid @green;
+    color:        @green;
     font-size:          13px;
 }
 
 #backlight {
-    font-size:           15px;
+    font-size:           12px;
 }
 #backlight.low {
-    border-top:        3px solid @blue;
+    color:        @blue;
 }
 #backlight.mid {
-    border-top:        3px solid @yellow;
+    color:        @yellow;
 }
 #backlight.high {
-    border-top:        3px solid @red;
+    color:        @red;
 }
 
 #pulseaudio {
     font-size:           22px;
 }
 #pulseaudio.low {
-    border-top:        3px solid @blue;
+    color:        @blue;
 }
 #pulseaudio.mid {
-    border-top:        3px solid @yellow;
+    color:        @yellow;
 }
 #pulseaudio.high {
-    border-top:        3px solid @red;
+    color:        @red;
 }
 #pulseaudio.muted {
-    border-top:        3px solid @red;
+    color:        @red;
 }
 
