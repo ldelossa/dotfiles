@@ -5,8 +5,8 @@ then
     unlink ~/.config/sway/theme
     ln -s ~/.config/sway/theme-dark ~/.config/sway/theme
 
-    unlink ~/.config/sway/wob.sh
-    ln -s ~/.config/sway/wob-dark.sh ~/.config/sway/wob.sh
+    unlink ~/.config/wob/wob.ini
+    ln -s ~/.config/wob/wob-dark.ini ~/.config/wob/wob.ini
 
     unlink ~/.config/waybar/style.css
     ln -s ~/.config/waybar/style-single-bar.css ~/.config/waybar/style.css
@@ -52,8 +52,8 @@ then
     unlink ~/.config/sway/theme
     ln -s ~/.config/sway/theme-light ~/.config/sway/theme
 
-    unlink ~/.config/sway/wob.sh
-    ln -s ~/.config/sway/wob-light.sh ~/.config/sway/wob.sh
+    unlink ~/.config/wob/wob.ini
+    ln -s ~/.config/wob/wob-light.ini ~/.config/wob/wob.ini
 
     unlink ~/.config/waybar/style.css
     ln -s ~/.config/waybar/style-single-bar-light.css ~/.config/waybar/style.css

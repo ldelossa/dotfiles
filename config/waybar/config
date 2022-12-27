@@ -5,8 +5,8 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": [ "sway/mode", "wlr/taskbar", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
-    "modules-center": ["custom/spotify-monitor", "custom/spotify-metadata" ],
+    "modules-right": [ "sway/mode", "custom/spotify-monitor", "custom/spotify-metadata", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
+    "modules-center": [ "wlr/taskbar" ],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -172,8 +172,8 @@
       "spacing": 10, 
     },
     "custom/spotify-metadata": {
-        "format": " {}",
-        "max-length": 120,
+        "format": "  {}",
+        "max-length": 60,
         "interval": 2,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/spotify/metadata.sh",

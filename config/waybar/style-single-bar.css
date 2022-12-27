@@ -89,7 +89,8 @@ window#waybar {
 }
 
 #custom-spotify-metadata {
-    margin:             0px 0px 0px 1px;
+    margin:             0px 8px 0px 1px;
+    font-size:          16px;
 }
 #custom-spotify-metadata.playing {
     color:              @green;
