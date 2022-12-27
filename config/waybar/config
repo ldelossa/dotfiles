@@ -5,7 +5,7 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": [ "sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
+    "modules-right": [ "sway/mode", "wlr/taskbar", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
     "modules-center": ["custom/spotify-monitor", "custom/spotify-metadata" ],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
@@ -49,7 +49,7 @@
         "format-ethernet": "",
         "format-disconnected": "睊", 
         "tooltip-format": "{ifname} via {gwaddr}",
-        "tooltip-format-wifi": "{essid} {signalStrength}% ﬉",
+        "tooltip-format-wifi": "{essid} {signalStrength}% {ipaddr} ﬉",
         "tooltip-format-ethernet": "{ifname} {ipaddr} ",
         "tooltip-format-disconnected": "Disconnected",
         "on-click": "gnome-control-center network",
@@ -184,5 +184,16 @@
         "signal": 5,
         "smooth-scrolling-threshold": 1.0,
     },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 12,
+        "icon-theme": "Numix-Circle",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+           "kitty"
+        ],
+    }
 }
 
