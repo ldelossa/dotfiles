@@ -1,14 +1,15 @@
 require('ide').setup({
-    icon_set = "codicons",
+    icon_set = "codicon",
     components = {
+        Explorer = {
+            show_file_permissions = false
+        },
         BufferList = {
-            default_height = 5
-            -- current_buffer_top = true
+            default_height = 5,
         },
         TerminalBrowser = {
             default_height = 5
         },
-
     }
 })
 

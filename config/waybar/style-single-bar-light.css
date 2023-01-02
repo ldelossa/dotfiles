@@ -136,7 +136,6 @@ window#waybar {
 
 #idle_inhibitor {
     color:              @grey;
-    font-size:          12px;
 }
 
 #idle_inhibitor.activated {
@@ -145,7 +144,7 @@ window#waybar {
 
 #custom-bluelightfilter {
     color:              @grey;
-    font-size:          12px;
+    font-size:          19px;
 }
 
 #custom-bluelightfilter.activated {
@@ -171,7 +170,7 @@ window#waybar {
     font-size:          20px;
 }
 #custom-vm.running {
-    color:              @blue-light;
+    color:              @blue;
 }
 
 #custom-containers {
@@ -220,7 +219,7 @@ window#waybar {
 }
 
 #network {
-    color:        @blue;
+    color:        @green;
     font-size:          18px;
 }
 #network.disconnected {

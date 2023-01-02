@@ -147,7 +147,6 @@ window#waybar {
 
 #custom-bluelightfilter {
     color:              @grey;
-    font-size:          12px;
 }
 
 #custom-bluelightfilter.activated {
@@ -220,7 +219,7 @@ window#waybar {
 }
 
 #network {
-    color:         @blue;
+    color:         @green;
     font-size:          18px;
 }
 #network.disconnected {

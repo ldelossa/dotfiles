@@ -1,8 +1,15 @@
 #!/bin/bash
 
-if ! pgrep alacritty
-then
-    alacritty -e gotop&
+swaymsg workspace stats
+if [ "$1" == "cpu" ]; then
+    kitty "htop" "-s" "PERCENT_CPU"
+    exit
 fi
 
-swaymsg workspace stats
+if [ "$1" == "memory" ]; then
+    kitty "htop" "-s" "M_RESIDENT"
+    exit
+fi
+
+kitty "htop"
+exit

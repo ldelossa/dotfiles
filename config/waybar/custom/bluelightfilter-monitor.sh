@@ -1,7 +1,7 @@
 #!/bin/bash
 if pgrep gammastep &> /dev/null
 then
-   echo '{"class": "activated"}'
+   echo '{"class": "activated", "tooltip": "activated"}'
    exit
 fi 
-echo '{"class": ""}'
+echo '{"class": "", "tooltip": "deactivated"}'
