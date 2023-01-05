@@ -10,6 +10,7 @@
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "disable-scroll": true,
+        "alphabetical_sort": true
     },
     "clock": {
         "format": "{:%a %d %b %H:%M}",
