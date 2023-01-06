@@ -36,7 +36,7 @@ local function lsp_keymaps(bufnr)
     local opts = { silent = true }
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-    buf_set_keymap('n', '<C-l>S', '<cmd>lua vim.lsp.buf.document_symbol()', opts)
+    buf_set_keymap('n', '<C-l>s', '<cmd>lua vim.lsp.buf.document_symbol()', opts)
     buf_set_keymap('n', '<leader>S', '<cmd>lua vim.lsp.buf.document_symbol()', opts)
 
     buf_set_keymap('n', '<C-l>w', '<cmd>lua vim.lsp.buf.workspace_symbol()', opts)
@@ -71,8 +71,8 @@ local function lsp_keymaps(bufnr)
 
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<C-l>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('i', '<C-l>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<C-l>S', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('i', '<C-l>S', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
     buf_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('i', '<C-l>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -95,6 +95,7 @@ local function lsp_keymaps(bufnr)
     -- if telescope is available, override some defaults above
     if pcall(require, "telescope") then
         local builtin = require('telescope.builtin')
+        local themes = require('telescope.themes')
         buf_set_keymap('n', '<C-l>ee', '',
             { silent = true, noremap = true, callback = function() builtin.diagnostics({ bufnr = 0 }) end })
         buf_set_keymap('n', '<leader>u', '', { silent = true, noremap = true, callback = builtin.lsp_references })
@@ -102,8 +103,16 @@ local function lsp_keymaps(bufnr)
         buf_set_keymap('n', 'gd', '', { silent = true, noremap = true, callback = builtin.lsp_definitions })
         buf_set_keymap('n', 'gdd', '', { silent = true, noremap = true, callback = builtin.lsp_type_definitions })
 
-        buf_set_keymap('n', '<C-l>S', '', { silent = true, noremap = true, callback = builtin.lsp_document_symbols })
-        buf_set_keymap('n', '<leader>S', '', { silent = true, noremap = true, callback = builtin.lsp_document_symbols })
+        buf_set_keymap('n', '<C-l>s', '',
+            { silent = true, noremap = true, callback = function() builtin.lsp_document_symbols(themes.get_dropdown({
+                    previewer = false,
+                }))
+            end })
+        buf_set_keymap('n', '<leader>s', '',
+            { silent = true, noremap = true, callback = function() builtin.lsp_document_symbols(themes.get_dropdown({
+                    previewer = false,
+                }))
+            end })
 
         buf_set_keymap('n', '<C-l>w', '',
             { silent = true, noremap = true, callback = function() builtin.lsp_workspace_symbols({ query = "" }) end })
