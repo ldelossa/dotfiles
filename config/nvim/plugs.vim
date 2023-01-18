@@ -16,11 +16,6 @@ call plug#begin('~/.config/nvim/after')
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'numToStr/Comment.nvim'
-    Plug 'ldelossa/litee.nvim'
-    Plug 'ldelossa/litee-filetree.nvim'
-    Plug 'ldelossa/litee-symboltree.nvim'
-    Plug 'ldelossa/litee-calltree.nvim'
-    Plug 'ldelossa/litee-bookmarks.nvim'
     Plug 'ldelossa/gh.nvim'
     Plug 'rlane/pounce.nvim'
     Plug 'ruifm/gitlinker.nvim'
@@ -65,11 +60,9 @@ lua require('configs.nvim-web-devicons')
 lua require('configs.gitsigns')
 lua require('configs.nvim-treesitter-textobjects')
 lua require('configs.nvim-treesitter')
-lua require('configs.litee')
 lua require('configs.vimdark')
 lua require('configs.lualine')
 lua require('configs.comment')
-lua require('configs.terminal')
 lua require('configs.pounce')
 lua require('configs.gitlinker')
 lua require('configs.go-nvim')
@@ -86,6 +79,7 @@ lua require('configs.telescope')
 lua require('configs.github-theme')
 lua require('configs.nvim-lsp')
 lua require('configs.git-conflict')
+lua require('configs.luasnips')
 " load snippets from friendly-snippets
 lua require("luasnip.loaders.from_vscode").lazy_load()
 " source $HOME/.config/nvim/lua/configs/vim-go.vim

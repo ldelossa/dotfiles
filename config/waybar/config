@@ -186,7 +186,8 @@
     },
     "wlr/taskbar": {
         "format": "{icon}",
-        "icon-size": 12,
+        "sort-by-app-id": true,
+        "icon-size": 13,
         "icon-theme": "Numix-Circle",
         "tooltip-format": "{title}",
         "on-click": "activate",

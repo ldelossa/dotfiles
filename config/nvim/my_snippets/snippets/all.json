@@ -1,0 +1,8 @@
+{
+    "nvim-dap-config": {
+        "prefix": "dap",
+        "body": ["local dap = require('dap')\n\ndap.adapters.${1:_adapter_} = {\n\ttype = 'executable',\n\tcommand = \"\",\n\tname = \"\"\n}\n\n dap.configurations.${2:_filetype_} = {\n {\n\tname = \"\",\n\ttype = \"${1:_adapter_}\",\n\trequest = 'launch',\n\tprogram = \"\",\n\tcwd = '${${workspaceFolder}}',\n\tstopOnEntry = false,\n\targs = {},\n },\n}"],
+        "description": "Creates a nvim-dap config template"
+    }
+}
+

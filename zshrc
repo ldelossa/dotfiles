@@ -32,6 +32,7 @@ source ~/zsh.d/cilium.sh
 source ~/zsh.d/bat.sh
 source ~/zsh.d/devspaces.sh
 source ~/zsh.d/gh.sh
+source ~/zsh.d/kernel.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh

@@ -47,3 +47,15 @@ glogs() {
 gshowat() {
     git show $1:$2
 }
+
+# intersecting diff, performs a diff between head:file and $1:file for all 
+# changed files in $1, where $1 is a git-rev.
+ginterdiff() {
+    echo "Will show diffs for the following files:"
+    echo ""
+    git show --pretty=format: --name-only "$1"
+    echo ""
+    echo "Hit any key to continue, <ctrl-c> to cancel."
+    read
+    git show --pretty=format: --name-only "$1" | xargs -I{} git diff HEAD:{} "$1":{}
+}

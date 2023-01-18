@@ -1,4 +1,3 @@
-local lib_panel = require('litee.lib.panel')
 local M = {}
 
 local opts = {noremap = true, silent=true}

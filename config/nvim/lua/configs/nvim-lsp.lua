@@ -51,8 +51,9 @@ local function lsp_keymaps(bufnr)
     buf_set_keymap('n', '<C-n>', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
     buf_set_keymap('n', '<C-l>p', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', opts)
     buf_set_keymap('n', '<C-l>n', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
-    buf_set_keymap('i', '<C-l>p', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', opts)
-    buf_set_keymap('i', '<C-l>n', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
+    -- used for lua snips in i
+    -- buf_set_keymap('i', '<C-l>p', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', opts)
+    -- buf_set_keymap('i', '<C-l>n', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
 
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -134,8 +135,8 @@ local function lsp_keymaps(bufnr)
         buf_set_keymap('n', '<C-l>ii', '<cmd>Glance implementations<CR>', opts)
         buf_set_keymap('n', '<C-l>u', '<cmd>Glance references<CR>', opts)
         buf_set_keymap('n', '<C-l>dd', '<cmd>Glance type_definitions<CR>', opts)
-        buf_set_keymap('n', 'gd', '<cmd>Glance definitions<CR>', opts)
-        buf_set_keymap('n', 'gdd', '<cmd>Glance type_definitions<CR>', opts)
+        -- buf_set_keymap('n', 'gd', '<cmd>Glance definitions<CR>', opts)
+        -- buf_set_keymap('n', 'gdd', '<cmd>Glance type_definitions<CR>', opts)
     end
 
     -- if nvim-ide available, override call hierarchy.
@@ -166,6 +167,11 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_command('sign define DiagnosticSignWarn text=🅆  texthl=Warning linehl= numhl=')
     vim.api.nvim_command('sign define DiagnosticSignInfo text=🄸  texthl=Warning linehl= numhl=')
     vim.api.nvim_command('sign define DiagnosticSignHint text=🄷  texthl=Warning linehl= numhl=')
+
+    if client.name == "clangd" then
+        -- remove semanitic tokens, makes reading C code with ifdefs hard.
+        client.server_capabilities.semanticTokensProvider = nil
+    end
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
