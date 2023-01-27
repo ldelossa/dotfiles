@@ -1,3 +1,7 @@
+if [[ -e ~/Dropbox/Docs/GithubToken-Isovalent-TopHat ]]; then
+    export GITHUB_TOKEN=$(cat ~/Dropbox/Docs/GithubToken-Isovalent-TopHat)
+fi
+
 # git aliases & functions
 alias gsub='git submodule update --init --recursive'
 gfpull() {
