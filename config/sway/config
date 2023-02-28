@@ -184,6 +184,13 @@ input "1267:12689:ELAN0E03:00_04F3:3191_Touchpad" {
    tap_button_map   lrm
 }
 
+input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
+   pointer_accel    .2
+   tap              enabled
+   middle_emulation enabled
+   tap_button_map   lrm
+}
+
 ### Key bindings
 #
 # Basics:
