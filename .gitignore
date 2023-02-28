@@ -1,7 +1,6 @@
 config/nvim/after/
 
 config/sway/theme
-config/sway/wob.sh
 config/waybar/style.css
 config/wofi/style.css
 config/gtk-3.0/settings.ini

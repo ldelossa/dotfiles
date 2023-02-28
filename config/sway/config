@@ -19,7 +19,7 @@ include ~/.config/sway/theme
 
 # WOB
 exec_always {
-    ~/.config/sway/wob.sh
+    ~/.config/sway/wob.sh $SWAYSOCK.wob
 }
 
 # WOB Volume Control
