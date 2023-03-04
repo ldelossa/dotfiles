@@ -27,7 +27,8 @@ link-zsh:
 	ln -s $(HOME)/git/dotfiles/zsh.d $(HOME)/zsh.d
 
 link-gdb-config:
-	ln -s $(HOME)/git/dotfiles/gdb/.gdbinit $(HOME)/.gdbinit
+	-unlink $(HOME)/.gdbinit
+	ln -s $(HOME)/git/dotfiles/config/gdb/.gdbinit $(HOME)/.gdbinit
 
 link-global-gitignore:
 	-unlink ~/.gitignore
