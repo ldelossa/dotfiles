@@ -7,11 +7,12 @@ default:
 	@echo make link-zsh					- link zshrc and zsh.d directories
 	@echo make link-gdb-config			- link .gdbinit to ~/.gdbinit
 	@echo make link-global-gitignore	- link and configure git with global .gitignore file
+	@echo make link-clang-format	    - link global clang-format
 	@echo 
 	@echo resulting config directories: \
 		$(user_configs)
 
-all: link-configs link-zsh link-gdb-config link-global-gitignore
+all: link-configs link-zsh link-gdb-config link-global-gitignore link-clang-format
 
 link-configs: $(user_configs)
 
@@ -38,4 +39,8 @@ link-global-gitignore:
 link-docker-config:
 	-unlink ~/.docker/config.json
 	ln -s $(HOME)/git/dotfiles/config/.docker/config.json $(HOME)/.docker/config.json
+
+link-clang-format:
+	-unlink ~/.clang-format
+	ln -s $(HOME)/git/dotfiles/config/clang-format/clang-format $(HOME)/.clang-format
 
