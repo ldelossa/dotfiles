@@ -12,5 +12,3 @@ config/kitty/kitty.conf.bak
 config/k9s/skin.yml
 config/swaync/style.css
 config/rofi/config.rasi
-zsh.d/chatgpt.sh
-
