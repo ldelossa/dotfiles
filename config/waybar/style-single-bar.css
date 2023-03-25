@@ -66,12 +66,15 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    color:              @white;
-    border-bottom:      3px solid @blue;
+    color:              #FFFFFF;
+    background:         @blue;
+    border-radius:      2px;
+    /* border-bottom:      3px solid @blue; */
 }
 
 #workspaces button:hover {
-    background:         inherit;
+    background:         @grey;
+    border-radius:      2px;
     box-shadow:         inherit;
     text-shadow:        inherit;
 }

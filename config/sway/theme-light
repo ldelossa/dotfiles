@@ -11,7 +11,7 @@ set $status_line_ws_focus_fg #ffffff
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/store-front.gif"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/engine_schematic_adjusted_scaled_yellow_grey.jpg"
 #set $wallpaper "/home/louis/Dropbox/Wallpapers/3d_terraform_light_grey.png"
-client.focused      #437790 #6b6098 #ffffff #ffffff #6b6098
+client.focused      #437790 #437890 #ffffff #ffffff #437890
 client.unfocused    #1c1c1c #ffffff #1c1c1c #7c794e #6E6E6E
 
 # toggle themes
