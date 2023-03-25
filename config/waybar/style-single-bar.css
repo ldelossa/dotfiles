@@ -4,7 +4,7 @@
 @define-color black-trans           rgba(35, 35, 35, .95);
 @define-color black-trans-two       rgba(42, 42, 42, .95);
 @define-color black-trans-overlay   rgba(85, 85, 85, .4);
-@define-color blue                  #437890;
+@define-color blue                  #5b839a;
 @define-color blue-light            #87afd7;
 @define-color yellow                #7c794e;
 @define-color yellow-light          #9b9761;
@@ -68,7 +68,7 @@ window#waybar {
 #workspaces button.focused {
     color:              #FFFFFF;
     background:         @blue;
-    border-radius:      2px;
+    border-radius:      1px;
     /* border-bottom:      3px solid @blue; */
 }
 
