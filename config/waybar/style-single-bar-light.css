@@ -21,18 +21,18 @@
 
 
 .modules-right {
-    font-family:    "Cousine Regular Nerd Font Complete Mono Nerd Font Complete";
+    font-family:    "Fira Code Regular Nerd Font Complete Mono";
     font-size:      15px;
 }
 
 .modules-center {
-    font-family:    "Cousine Regular Nerd Font Complete Mono Nerd Font Complete";
+    font-family:    "Fira Code Regular Nerd Font Complete Mono";
     font-size:      15px;
 }
 
 .modules-left {
-    font-family:    "Cousine Regular Nerd Font Complete Mono Nerd Font Complete";
-    font-size:      15px;
+    font-family:    "Fira Code Regular Nerd Font Complete Mono";
+    font-size:      12px;
 }
 
 tooltip {
@@ -61,15 +61,13 @@ window#waybar {
 #workspaces button {
     margin:             0px 2px 0px 2px;
     padding:            0px 5px 0px 5px;
-    color:              @grey;
+    color:              @black;
     border-radius:      0px;
 }
 
 #workspaces button.focused {
-    color:              @grey;
+    color:              @black;
     border-bottom:         3px solid @purple;
-    /* background:         @yellow-light; */
-    /* border-bottom:      .5px solid @grey-light; */
 }
 
 #workspaces button:hover {
@@ -119,7 +117,7 @@ window#waybar {
     font-size:          20px;
 }
 
-#clock, #tray, #custom-bluelightfilter, #custom-vm, #custom-vm, #custom-notification, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
+#scratchpad, #clock, #tray, #custom-bluelightfilter, #custom-vm, #custom-vm, #custom-notification, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
     margin:             0px 1px 0px 1px;
     padding:            0px 6px 0px 6px;
     color:              @black;

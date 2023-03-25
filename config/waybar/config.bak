@@ -6,7 +6,6 @@
     "layer": "top",
     "position": "top",
     "modules-right": [ "sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", "clock", "clock#utc", "custom/notification"],
-    "modules-center": [ "sway/scratchpad" ],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -196,13 +195,6 @@
         "ignore-list": [
            "kitty"
         ],
-    },
-    "sway/scratchpad": {
-            "format": "{icon}",
-            "show-empty": false,
-            "format-icons": ["", ""],
-            "tooltip": true,
-            "tooltip-format": "{app}: {title}"
-    },
+    }
 }
 
