@@ -59,10 +59,9 @@ window#waybar {
 }
 
 #workspaces button {
-    margin:             0px 2px 0px 2px;
+    margin:             0px 0px 0px 0px;
     padding:            0px 5px 0px 5px;
     color:              @black;
-    border-radius:      0px;
 }
 
 #workspaces button.focused {
