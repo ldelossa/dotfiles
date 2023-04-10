@@ -63,12 +63,16 @@ window#waybar {
     padding:            0px 5px 0px 5px;
     color:              @grey-light;
     border-radius:      0px;
+    border-top-left-radius:       5px;
+    border-top-right-radius:      5px;
 }
 
 #workspaces button.focused {
     color:              #FFFFFF;
     background:         @blue;
     border-radius:      1px;
+    border-top-left-radius:      5px;
+    border-top-right-radius:      5px;
     /* border-bottom:      3px solid @blue; */
 }
 
@@ -77,6 +81,8 @@ window#waybar {
     border-radius:      2px;
     box-shadow:         inherit;
     text-shadow:        inherit;
+    border-top-left-radius:       5px;
+    border-top-right-radius:      5px;
 }
 
 #workspaces button.urgent {
@@ -131,6 +137,10 @@ window#waybar {
 
 #clock {
     font-size: 15px;
+}
+
+#custom-notification {
+
 }
 
 #custom-notification {

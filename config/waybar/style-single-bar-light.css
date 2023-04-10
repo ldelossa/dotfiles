@@ -68,6 +68,8 @@ window#waybar {
     color:              #FFFFFF;
     background:         @blue;
     border-radius:      1px;
+    border-top-left-radius:       5px;
+    border-top-right-radius:      5px;
     /* border-bottom:      3px solid @blue; */
 }
 
@@ -76,6 +78,8 @@ window#waybar {
     border-radius:      2px;
     box-shadow:         inherit;
     text-shadow:        inherit;
+    border-top-left-radius:       5px;
+    border-top-right-radius:      5px;
 }
 
 #workspaces button.urgent {
