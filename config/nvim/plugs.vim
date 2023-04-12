@@ -1,7 +1,6 @@
 call plug#begin('~/.config/nvim/after')
     Plug 'nvim-treesitter/nvim-treesitter'  
     Plug 'neovim/nvim-lspconfig'
-    Plug 'ldelossa/vimdark'
     Plug 'rust-lang/rust.vim'
     Plug 'windwp/nvim-autopairs'
     Plug 'nvim-lua/plenary.nvim'
@@ -27,7 +26,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'mfussenegger/nvim-dap'
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'ldelossa/nvim-dap-projects' 
-    Plug 'ldelossa/nvim-ide'
+    " Plug 'ldelossa/nvim-ide'
     Plug 'nvim-telescope/telescope-dap.nvim'
     Plug 'projekt0n/github-nvim-theme'
     Plug 'hrsh7th/nvim-cmp'
@@ -60,7 +59,6 @@ lua require('configs.nvim-web-devicons')
 lua require('configs.gitsigns')
 lua require('configs.nvim-treesitter-textobjects')
 lua require('configs.nvim-treesitter')
-lua require('configs.vimdark')
 lua require('configs.lualine')
 lua require('configs.comment')
 lua require('configs.pounce')
@@ -71,7 +69,7 @@ lua require('configs.filter')
 lua require('nvim-dap-projects').search_project_config()
 lua require('configs.nvim-cmp')
 lua require('configs.nvim-dap')
-lua require('configs.nvim-ide')
+" lua require('configs.nvim-ide')
 lua require('configs.glance')
 lua require('configs.nvim-notify')
 lua require('configs.nvim-window')

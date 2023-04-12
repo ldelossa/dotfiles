@@ -11,3 +11,14 @@ require("github-theme").setup({
 })
 
 
+-- check kitty theme
+local file = io.open("/home/louis/.config/kitty/current-theme.conf")
+io.input(file)
+local theme_line = io.read()
+
+if theme_line == "# light" then
+    vim.cmd("colorscheme github_light")
+else
+    vim.cmd("colorscheme github_dimmed")
+end
+

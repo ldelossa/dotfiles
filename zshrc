@@ -49,4 +49,4 @@ autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-
 if [ -f '/home/louis/google-cloud-sdk/path.zsh.inc' ]; then . '/home/louis/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/louis/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/louis/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/louis/googl-cloud-sdk/completion.zsh.inc' ]; then . '/home/louis/google-cloud-sdk/completion.zsh.inc'; fi
