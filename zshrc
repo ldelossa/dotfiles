@@ -34,6 +34,7 @@ source ~/zsh.d/devspaces.sh
 source ~/zsh.d/gh.sh
 source ~/zsh.d/kernel.sh
 source ~/zsh.d/ip.sh
+source ~/zsh.d/rsync.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh

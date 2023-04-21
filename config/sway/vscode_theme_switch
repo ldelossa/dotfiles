@@ -6,24 +6,31 @@
 */
 
 var arg = process.argv[2];
-var path = "/home/louis/.config/Code/User/settings.json";
-var settings = require(path);
-var fs = require('fs')
+var paths = [
+	"/home/louis/.config/Code/User/settings.json", 
+	// cilium-kernel profile
+	"/home/louis/.config/Code/User/profiles/30521f8c/settings.json"
+]
 
-if(arg === "--dark" || arg === "-d")
-  settings["workbench.colorTheme"] = "GitHub Dark Dimmed";
+paths.forEach((path)=>{
+	var settings = require(path);
+	var fs = require('fs')
 
-else if(arg === "--light" || arg=== "-l")
-  settings["workbench.colorTheme"] = "GitHub Light";
+	if(arg === "--dark" || arg === "-d")
+		settings["workbench.colorTheme"] = "GitHub Dark Dimmed";
 
-else {
-  console.error("Invalid use");
-  return;
-}
+	else if(arg === "--light" || arg=== "-l")
+		settings["workbench.colorTheme"] = "GitHub Light";
 
-try {
-  fs.writeFileSync(path, JSON.stringify(settings, null, 4));
-} catch (err) {
-  console.error(err);
-}
+	else {
+		console.error("Invalid use");
+		return;
+	}
+
+	try {
+		fs.writeFileSync(path, JSON.stringify(settings, null, 4));
+	} catch (err) {
+		console.error(err);
+	}
+})
 
