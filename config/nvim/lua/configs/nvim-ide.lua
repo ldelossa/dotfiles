@@ -10,7 +10,11 @@ require('ide').setup({
         TerminalBrowser = {
             default_height = 5
         },
-    }
+    },
+    workspaces = {
+        -- which panels to open by default, one of: 'left', 'right', 'both', 'none'
+        auto_open = 'none',
+    },
 })
 
 local opts = { silent = true }

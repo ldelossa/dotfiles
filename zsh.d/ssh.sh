@@ -12,7 +12,15 @@ if [ "$?" == 2 ]; then
   fi
 fi
 
+alias ss=ssh
 alias ssh="TERM=xterm-256color ssh"
+
+function sshu() {
+    ssh louis@"${1}"
+}
+function sshr() {
+    ssh root@"${1}"
+}
 
 #ssh mount helper
 function vmount() {
