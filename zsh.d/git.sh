@@ -63,3 +63,5 @@ ginterdiff() {
     read
     git show --pretty=format: --name-only "$1" | xargs -I{} git diff HEAD:{} "$1":{}
 }
+
+alias giter="GIT_SEQUENCE_EDITOR=\"sed -i -e '/^$/d' -e '/^#/d' -e 's/.*/&\nbreak/'\" git rebase --interactive"

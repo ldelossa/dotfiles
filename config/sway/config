@@ -61,8 +61,8 @@ smart_borders on
 ### Monitor Layout
 ### view with swaymsg -t get_outputs
 
-set $center_dp 'Unknown M32UC 22110B004728'
-set $right_dp  'Goldstar Company Ltd LG HDR 4K 0x0000BFEC'
+set $center_dp 'GIGA-BYTE TECHNOLOGY CO., LTD. M32UC 22110B004728'
+set $right_dp  'LG Electronics LG HDR 4K 0x0000BFEC'
 
 workspace chat output eDP-1
 workspace stats output eDP-1
@@ -149,18 +149,20 @@ input "1739:52914:SYNA8017:00_06CB:CEB2_Touchpad" {
    pointer_accel    .5 
    tap              enabled
 }
-input "1452:613:Apple_Inc._Magic_Trackpad_2" {
+input "1452:613:Apple_Inc._Magic_Trackpad" {
    pointer_accel    .5 
    tap              enabled
    middle_emulation enabled
    tap_button_map   lrm
+   natural_scroll   diabled
 }
 
-input "76:613:Apple_Inc._Magic_Trackpad_2" {
+input "76:613:Apple_Inc._Magic_Trackpad" {
    pointer_accel    .5 
    tap              enabled
    middle_emulation enabled
    tap_button_map   lrm
+   natural_scroll   diabled
 }
 
 input "1133:16495:Logitech_MX_Ergo" {
