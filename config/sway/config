@@ -165,6 +165,14 @@ input "76:613:Apple_Inc._Magic_Trackpad" {
    natural_scroll   diabled
 }
 
+input "76:613:Apple_Inc._Magic_Trackpad_2" {
+   pointer_accel    .5 
+   tap              enabled
+   middle_emulation enabled
+   tap_button_map   lrm
+   natural_scroll   diabled
+}
+
 input "1133:16495:Logitech_MX_Ergo" {
    pointer_accel    .5 
    tap              enabled
