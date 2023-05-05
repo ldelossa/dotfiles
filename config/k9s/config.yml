@@ -15,10 +15,10 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-cilium-testing
-  currentCluster: kind-cilium-testing
+  currentContext: kind-srv6-l3vpn-multi-node
+  currentCluster: kind-srv6-l3vpn-multi-node
   clusters:
-    kind-cilium-testing:
+    kind-srv6-l3vpn-multi-node:
       namespace:
         active: all
         lockFavorites: false

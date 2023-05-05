@@ -22,3 +22,10 @@ else
     vim.cmd("colorscheme github_dark_dimmed")
 end
 
+function Light_theme()
+    vim.cmd("colorscheme github_light")
+end
+
+function Dark_theme()
+    vim.cmd("colorscheme github_dark_dimmed")
+end
