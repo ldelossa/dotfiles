@@ -91,3 +91,13 @@ cilium-build-and-deploy() {
         cilium-agent-push ${1} && cilium-operator-push ${1} && cilium-helm-install ${1}
     )
 }
+
+# build operator and agent from local repository and push it to a kind cluster
+# $1 = tag to use
+# $2 = kind cluster to push to
+# e.g: cilium-build-kind local kind-cluster-1
+cilium-build-kind() {
+    export DOCKER_IMAGE_TAG="$1"
+    make docker-operator-generic-image && make dev-docker-image && kind load --name "$2" docker-image quay.io/cilium/operator-generic:"$1" && kind load --name "$2" docker-image quay.io/cilium/cilium-dev:"$1"
+}
+
