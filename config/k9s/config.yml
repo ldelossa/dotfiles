@@ -15,14 +15,15 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-srv6-l3vpn-multi-node
-  currentCluster: kind-srv6-l3vpn-multi-node
+  currentContext: kind-clab-srv6-vpnv4-simple
+  currentCluster: kind-clab-srv6-vpnv4-simple
   clusters:
-    kind-srv6-l3vpn-multi-node:
+    kind-clab-srv6-vpnv4-simple:
       namespace:
         active: all
         lockFavorites: false
         favorites:
+        - all
         - default
       view:
         active: po
