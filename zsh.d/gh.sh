@@ -1,4 +1,3 @@
-
 function prfetch() {
    if [[ -z $1 ]]; then
        printf "error: must provide a pr number"
@@ -32,4 +31,23 @@ function prfetch() {
 
    printf "\nChecking branch out...\n"
    git checkout "$branch"
+}
+
+alias gh-iss-comment="gh issue comment -e"
+alias gh-iss-edit="gh issue comment"
+alias gh-iss="gh issue view"
+
+# If single argument is provided, its a shorthand for --label=$1
+# If multiple, all arguments are forwarded as is
+# If none, default list
+function gh-iss-list() {
+    if [ $# -eq 1 ]; then 
+        gh issue list --label "$1"
+        return
+    fi
+    if [ $# -gt 1 ]; then 
+        gh issue list "$@"
+        return
+    fi
+    gh issue list
 }
