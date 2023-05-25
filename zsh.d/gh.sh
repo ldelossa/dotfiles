@@ -35,6 +35,7 @@ function prfetch() {
 
 alias gh-iss-comment="gh issue comment -e"
 alias gh-iss-edit="gh issue comment"
+alias gh-iss-create="gh issue create"
 alias gh-iss="gh issue view"
 
 # If single argument is provided, its a shorthand for --label=$1
