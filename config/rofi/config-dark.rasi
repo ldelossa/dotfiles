@@ -150,6 +150,7 @@ configuration {
     background-color:               #2a2a2a;
     text-color:                     #545555;
     border-color:                   #8e8e8e;
+    border-radius:                  6px;
 }
 
 #mainbox {
@@ -172,6 +173,28 @@ configuration {
 #textbox-prompt-colon {
     text-color:                     #8e8e8e;
 }
+
+element {
+    border-radius:                  3px;
+}
+
+element normal.normal {
+    background-color: #444444;
+    text-color: #aaaaaa;
+}
+element alternate.normal {
+    background-color: #545555;
+    text-color: #aaaaaa;
+}
+
+element selected normal, element selected active {
+    background-color:   #5b839a;
+}
+
+listview {
+    background-color:   transparent;
+}
+
 
 #scrollbar {
     width:        4px ;
