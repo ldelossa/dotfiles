@@ -183,7 +183,7 @@ element normal.normal {
     text-color: #aaaaaa;
 }
 element alternate.normal {
-    background-color: #545555;
+    background-color: #444444;
     text-color: #aaaaaa;
 }
 
