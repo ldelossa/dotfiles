@@ -62,9 +62,6 @@ window#waybar {
     margin:             0px 0px 0px 0px;
     padding:            0px 5px 0px 5px;
     color:              @grey-light;
-    border-radius:      0px;
-    border-top-left-radius:       5px;
-    border-top-right-radius:      5px;
 }
 
 #workspaces button.focused {
@@ -79,10 +76,10 @@ window#waybar {
 
 #workspaces button:hover {
     color:              @white;
-    background:         @grey;
+    background:         @trans;
     border-radius:      2px;
-    box-shadow:         inherit;
-    text-shadow:        inherit;
+    box-shadow:         @trans;
+    text-shadow:        @trans;
     /* border-top-left-radius:       5px; */
     /* border-top-right-radius:      5px; */
 }

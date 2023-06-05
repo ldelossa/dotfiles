@@ -52,3 +52,5 @@ function gh-iss-list() {
     fi
     gh issue list
 }
+
+alias gh-review='gh pr list -S "review-requested:@me"'
