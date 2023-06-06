@@ -15,11 +15,12 @@
     "clock": {
         "format": "{:%a %d %b %H:%M}",
         "tooltip": true,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "swaync-client -t -sw",
     },
     "clock#utc": {
         "format": "{:%H:%M UTC}",
-        "timezone": "Etc/UTC"
+        "timezone": "Etc/UTC",
+        "on-click": "swaync-client -t -sw",
     },
     "sway/mode": {
         "format": ""
@@ -156,10 +157,10 @@
        "tooltip": false,
        "format": "{icon}",
        "format-icons": {
-         "notification": "<span foreground='red'><sup></sup></span>",
-         "none": "",
-         "dnd-notification": "<span foreground='red'><sup></sup></span>",
-         "dnd-none": ""
+         "notification": "<span foreground='red'><sup></sup></span>",
+         "none": " ",
+         "dnd-notification": "<span foreground='red'><sup></sup></span>",
+         "dnd-none": " "
        },
        "return-type": "json",
        "exec-if": "which swaync-client",

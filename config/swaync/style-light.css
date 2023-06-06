@@ -6,7 +6,7 @@
 @define-color black             #2f2f2f;
 @define-color black-trans       @white;
 @define-color blue              #437890;
-@define-color blue-light        @blue;
+@define-color blue-light        #87afd7;
 @define-color yellow            #8d905f;
 @define-color yellow-light      #f5f5e3;
 @define-color red               #755754;
@@ -16,20 +16,30 @@
 @define-color grey-trans        rgba(84, 85, 85, .60);
 @define-color white             #eeeeee;
 @define-color white-light       @grey; 
+@define-color white-alt         #eaeef2;
+@define-color white-alt-trans   rgba(234, 238, 242, .95);
 @define-color orange            #9b885c;
 @define-color purple            #6b6098;
 @define-color turquoise         #6b6098;
 
 @define-color cc-bg @white;
 
-@define-color noti-border-color rgba(255, 255, 255, 0.15);
+@define-color noti-border-color @grey-light;
 @define-color noti-bg @white;
+@define-color noti-fg @black;
+@define-color noti-bg-alt @white-alt-trans;
 @define-color noti-bg-hover @yellow-light;
 @define-color noti-bg-focus rgba(68, 68, 68, 0.0);
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
+@define-color noti-urgent #BF616A;
 
 @define-color bg-selected rgb(0, 128, 255);
+
+*{
+  color: @noti-fg;
+  box-shadow: none;
+}
 
 .notification-row {
   outline: none;
@@ -43,14 +53,13 @@
 .notification {
   border-radius: 12px;
   margin: 6px 12px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3),
-    0 1px 3px 1px rgba(0, 0, 0, 0.7),
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
     0 2px 6px 2px rgba(0, 0, 0, 0.3);
   padding: 0;
 }
 
-/* Uncomment to enable specific urgency colors
-.low {
+/* Uncomment to enable specific urgency colors */
+/* .low {
   background: yellow;
   padding: 6px;
   border-radius: 12px;
@@ -60,14 +69,14 @@
   background: green;
   padding: 6px;
   border-radius: 12px;
-}
+} */
 
 .critical {
-  background: red;
-  padding: 6px;
+  background: @noti-urgent;
+  padding: 2px;
   border-radius: 12px;
 }
-*/
+
 
 .notification-content {
   background: transparent;
@@ -77,19 +86,23 @@
 
 .close-button {
   background: @noti-close-bg;
-  color: black;
+  color: white;
   text-shadow: none;
-  padding: 0 4px;
+  padding: 0;
   border-radius: 100%;
   margin-top: 10px;
   margin-right: 16px;
   box-shadow: none;
+  border: none;
+  min-width: 24px;
+  min-height: 24px;
 }
 
 .close-button:hover {
   box-shadow: none;
   background: @noti-close-bg-hover;
   transition: all 0.15s ease-in-out;
+  border: none;
 }
 
 .notification-default-action,
@@ -99,7 +112,7 @@
   box-shadow: none;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
-  color: black;
+  color: white;
 }
 
 .notification-default-action:hover,
@@ -143,59 +156,40 @@
 }
 
 .summary {
-  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  background: transparent;
+  color: @noti-fg;
   text-shadow: none;
 }
 
 .time {
-  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  background: transparent;
+  color: @noti-fg;
   text-shadow: none;
   margin-right: 18px;
 }
 
 .body {
+  font-size: 15px;
+  font-weight: normal;
   background: transparent;
-  color: black;
+  color: @noti-fg;
   text-shadow: none;
 }
 
 /* The "Notifications" and "Do Not Disturb" text widget */
 .top-action-title {
-  color: @black;
+  color: @noti-fg;
   text-shadow: none;
-}
-
-.control-center-clear-all {
-  color: black;
-  text-shadow: none;
-  background: @noti-bg;
-  border: 1px solid black;
-  box-shadow: none;
-  border-radius: 12px;
-}
-
-.control-center-clear-all:hover {
-  background: @noti-bg-hover;
-}
-
-.control-center-dnd {
-  border-radius: 12px;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
-  box-shadow: none;
-}
-
-.control-center-dnd:checked {
-  background: @bg-selected;
-}
-
-.control-center-dnd slider {
-  background: @noti-bg-hover;
 }
 
 .control-center {
-  background: @cc-bg;
-  border-left: 1px solid black;
+  background-color: @noti-bg-alt;
+  border-radius: 12px;
+  border: 3px solid @blue-light;
 }
 
 .control-center-list {
@@ -205,3 +199,169 @@
 .floating-notifications {
   background: transparent;
 }
+
+/* Window behind control center and on all other monitors */
+.blank-window {
+  background: transparent;
+}
+
+/*** Widgets ***/
+
+/* Title widget */
+.widget-title {
+  margin: 8px;
+  font-size: 1.5rem;
+}
+
+.widget-title>button {
+  font-size: initial;
+  color: white;
+  text-shadow: none;
+  background: @noti-bg;
+  border: 1px solid @noti-border-color;
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+.widget-title>button:hover {
+  background: @noti-bg-hover;
+}
+
+/* DND widget */
+.widget-dnd {
+  margin: 8px;
+  font-size: 1.1rem;
+}
+
+.widget-dnd>switch {
+  font-size: initial;
+  border-radius: 12px;
+  background: @noti-bg;
+  border: 1px solid @noti-border-color;
+  box-shadow: none;
+}
+
+.widget-dnd>switch:checked {
+  background: @bg-selected;
+}
+
+.widget-dnd>switch slider {
+  background: @noti-bg-hover;
+  border-radius: 12px;
+}
+
+/* Label widget */
+.widget-label {
+  margin: 8px;
+}
+
+.widget-label>label {
+  font-size: 1.1rem;
+}
+
+/* Mpris widget */
+.widget-mpris {
+  /* The parent to all players */
+}
+
+.widget-mpris-player {
+  padding: 8px;
+  margin: 8px;
+}
+
+.widget-mpris-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.widget-mpris-subtitle {
+  font-size: 1.1rem;
+}
+
+/* Volume and Brightness Widget*/
+
+.widget-volume {
+  background-color: @noti-bg;
+  padding: 4px 8px 8px 8px;
+  margin: 0px 8px 8px 8px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.widget-backlight {
+  background-color: @noti-bg;
+  padding: 8px 8px 4px 8px;
+  margin: 8px 8px 0px 8px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.KB {
+  padding: 4px 8px 4px 8px;
+  margin: 0px 8px 0px 8px;
+  border-radius: 0;
+}
+
+.power-buttons{
+  background-color: @blue-light;
+  border: 2px solid @grey;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 12px;
+}
+
+.power-buttons>button {
+  background: @noti-bg-alt;
+  border: none;
+  margin: 4px;
+}
+
+.power-buttons>button:hover {
+  background: @noti-bg;
+}
+
+.widget-menubar>box>.menu-button-bar>button{
+  border: 1px solid @grey;
+  background: @noti-bg-alt;
+  margin: 8px;
+}
+
+.topbar-buttons>button{
+  border: none;
+  background: transparent;
+}
+
+.widget-buttons-grid{
+  padding: 8px;
+  margin: 8px;
+  border-radius: 12px;
+  background-color: @noti-bg;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button{
+  background: @noti-bg;
+  border-radius: 12px;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button:hover {
+  background: @noti-bg-hover;
+}
+
+.powermode-buttons{
+  background-color: @blue-light;
+  border: 2px solid @grey;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 12px;
+}
+
+.powermode-buttons>button {
+  background: @noti-bg-alt;
+  border: none;
+  margin: 4px;
+}
+
+.powermode-buttons>button:hover {
+  background: @noti-bg;
+}
+

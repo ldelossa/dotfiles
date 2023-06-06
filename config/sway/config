@@ -56,7 +56,7 @@ default_floating_border pixel 3
 for_window [class=".*"]     opacity 1
 for_window [app_id=".*"]    opacity 1 
 smart_gaps off
-smart_borders on
+# smart_borders on
 
 ### Monitor Layout
 ### view with swaymsg -t get_outputs
@@ -401,5 +401,15 @@ bindsym mod4+r mode "resize"
 bar {
         swaybar_command waybar
 }
+
+#
+# SwayFX:
+#
+
+corner_radius 6
+shadows enable
+default_dim_inactive 0.05
+layer_effects "waybar" blur enable; shadows enable;
+scratchpad_minimize disable
 
 include /etc/sway/config.d/*
