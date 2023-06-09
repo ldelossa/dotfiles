@@ -105,3 +105,12 @@ cilium-build-kind() {
     make docker-operator-generic-image && make dev-docker-image && kind load --name "$2" docker-image quay.io/cilium/operator-generic:"$1" && kind load --name "$2" docker-image quay.io/cilium/cilium-dev:"$1"
 }
 
+# expect $CDPATH to handle the prefix path to repositories 
+cilium-iss-create() {
+    cd cilium/cilium && gh issue create && cd -
+}
+
+# expect $CDPATH to handle the prefix path to repositories 
+cilium-iss-create-cee() {
+    cd cilium/cilium-enterprise && gh issue create && cd -
+}

@@ -12,7 +12,7 @@ default:
 	@echo resulting config directories: \
 		$(user_configs)
 
-all: link-configs link-zsh link-gdb-config link-global-gitignore link-clang-format
+all: link-configs link-zsh link-gdb-config link-global-gitignore link-clang-format link-mail
 
 link-configs: $(user_configs)
 
@@ -44,3 +44,8 @@ link-clang-format:
 	-unlink ~/.clang-format
 	ln -s $(HOME)/git/dotfiles/config/clang-format/clang-format $(HOME)/.clang-format
 
+link-mail:
+	-unlink ~/.config/mutt
+	ln -s ~/Dropbox/Fedora/system_setup/mutt ~/.config/mutt
+	-unlink ~/.msmtprc
+	ln -s ~/Dropbox/Fedora/system_setup/.msmtprc ~/.msmtprc
