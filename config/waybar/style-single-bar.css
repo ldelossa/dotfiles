@@ -42,6 +42,7 @@ tooltip {
   background:       @black-trans;
   border:           2px solid @blue;
 }
+
 tooltip label {
   color: @grey-light;
 }
@@ -78,8 +79,8 @@ window#waybar {
     color:              @white;
     background:         @trans;
     border-radius:      2px;
-    box-shadow:         @trans;
-    text-shadow:        @trans;
+    box-shadow:         none;
+    text-shadow:        none;
     /* border-top-left-radius:       5px; */
     /* border-top-right-radius:      5px; */
 }

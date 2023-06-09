@@ -9,7 +9,7 @@
   "control-center-margin-bottom": 6,
   "control-center-margin-right": 6,
   "control-center-margin-left": 6,
-  "control-center-width": 500,
+  "control-center-width": 550,
   "control-center-height": 1200,
   "fit-to-screen": false,
 
@@ -45,12 +45,15 @@
       "button-text": "Clear All"
     },
     "volume": {
-      "label": ""
+      "label": "",
+      "show-per-app": true,
+      "icon-size": 24
     },
     "backlight": {
       "label": "",
       "device": "intel_backlight",
-      "min": 10
+      "min": 10,
+      "icon-size": 24
     },
     "menubar#label": {
       "menu#power-buttons": {

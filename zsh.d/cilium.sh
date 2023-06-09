@@ -7,6 +7,10 @@ alias cilium-backport='docker run -e GITHUB_TOKEN=$(cat ~/Dropbox/Docs/GithubTok
 # it does not exist we default it to GoPath.
 SRC=${CILIUM_SRC:-$GOPATH/src/github.com/cilium/cilium}
 
+export CIL_AGENT_LABEL="app.kubernetes.io/name=cilium-agent"
+
+export CIL_OP_LABEL="app.kubernetes.io/name=cilium-operator"
+
 # below functions run in a sub-shell to avoid any conflicts of changes in the
 # parent shell issuing these functions.
 

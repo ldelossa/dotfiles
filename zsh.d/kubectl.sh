@@ -40,3 +40,17 @@ function klogstream() {
     nvim -c "set syntax=log" $log_name # blocks until closed
     kill -SIGKILL $bg_job; rm -rf $log_name
 }
+
+# interactive exec into first pod which matches label
+# $1 - label
+# #2 - command
+function kiexec-label() {
+    kiexec $(k get pods -l="$1" -o json | jq -r ".items[0].metadata.name") $2
+}
+
+# exec command on first pod which matches label
+# $1 - label
+# #2 - command
+function kexec-label() {
+    kexec $(k get pods -l="$1" -o json | jq -r ".items[0].metadata.name") $2
+}
