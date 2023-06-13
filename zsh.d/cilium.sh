@@ -114,3 +114,8 @@ cilium-iss-create() {
 cilium-iss-create-cee() {
     cd cilium/cilium-enterprise && gh issue create && cd -
 }
+
+# from cilium's repository root.
+cilium-builder() {
+    docker run -it --rm -v $(pwd):/src --privileged -w /src -e RUN_WITH_SUDO=false $(cat images/cilium/Dockerfile | grep "ARG CILIUM_BUILDER_IMAGE=" | cut -d"=" -f2) "/bin/bash"
+}

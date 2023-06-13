@@ -49,3 +49,6 @@ link-mail:
 	ln -s ~/Dropbox/Fedora/system_setup/mutt ~/.config/mutt
 	-unlink ~/.msmtprc
 	ln -s ~/Dropbox/Fedora/system_setup/.msmtprc ~/.msmtprc
+	-unlink ~/.mbsyncrc
+	ln -s ~/Dropbox/Fedora/system_setup/mbsync/.mbsyncrc ~/.mbsyncrc
+
