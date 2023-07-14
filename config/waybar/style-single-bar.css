@@ -179,7 +179,7 @@ window#waybar {
 }
 
 #custom-vm {
-    font-size:          20px;
+    font-size:          12px;
 }
 #custom-vm.running {
     color:              @blue-light;

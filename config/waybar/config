@@ -30,8 +30,8 @@
         "format-alt": "{time}  {icon}",
         "tooltip-format": "{time}",
         "format-alt-click": "click-right",
-        "format-icons": ["", "", "", ""],
-        "format-charging": "",
+        "format-icons": ["󰁺", "󰁼", "󰁿", "󰁹"],
+        "format-charging": "󰚥",
         "interval": 30,
         "on-click": "gnome-control-center power",
         "states": {
@@ -201,7 +201,8 @@
     "sway/scratchpad": {
             "format": "{icon}",
             "show-empty": false,
-            "format-icons": ["", ""],
+            "format-icons": ["", ""],
+            "icon-size": 7,
             "tooltip": true,
             "tooltip-format": "{app}: {title}"
     },
