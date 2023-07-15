@@ -42,14 +42,14 @@
     "network": {
         "format": "{icon}",
         "format-icons": {
-            "wifi": ["﬉"],
-            "ethernet": [""],
-            "disconnected": [""]
+            "wifi": [""],
+            "ethernet": ["󰈀"],
+            "disconnected": ["󰖪"]
         },   
         "format-alt-click": "click-right",
-        "format-wifi": "﬉",
-        "format-ethernet": "",
-        "format-disconnected": "睊", 
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪", 
         "tooltip-format": "{ifname} via {gwaddr}",
         "tooltip-format-wifi": "    {essid} ﬉\n{ipaddr} {signalStrength}%",
         "tooltip-format-ethernet": "{ifname} {ipaddr} ",
@@ -60,7 +60,7 @@
     "backlight": {
            "device": "intel_backlight",
            "format": "{icon}",
-           "format-icons": ["", "", ""],
+           "format-icons": ["󰃞", "󰃝", "󰃠"],
            "on-scroll-up": "exec brightnessctl set 5%+",
            "on-scroll-down": "brightnessctl set 5%-",
            "states": {
@@ -73,10 +73,10 @@
     "pulseaudio": {
         "format": "{icon}",
         "format-alt-click": "click-right",
-        "format-bluetooth": "",
-        "format-muted": "婢",
+        "format-bluetooth": "󰂰",
+        "format-muted": "󰝟",
         "format-icons": {
-            "headphone": "",
+            "headphone": "󰋋",
             "default": ["", ""]
         },
         "tooltip-format": "{volume}",
@@ -85,13 +85,13 @@
         "states": {
             "low": 0,
             "mid": 50,
-            "high": 75
+            "high": 100
         },
         "smooth-scrolling-threshold": 1.0,
     },
     "cpu": {
         "interval": 10,
-        "format": "",
+        "format": "󰍛",
         "format-alt-click": "click-right",
         "on-click": "~/.config/waybar/custom/stats.sh cpu",
         "states": {
@@ -114,7 +114,7 @@
     },
     "disk": {
         "interval": 30,
-        "format": "",
+        "format": "󰋊",
         "format-alt-click": "click-right",
         "tooltip-format": "{used} used\n{free} free\n{total} total",
         "on-click": "~/.config/waybar/custom/disk_stats.sh",
@@ -149,8 +149,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "﯎",
-            "deactivated": "﯏"
+            "activated": "󰈈",
+            "deactivated": "󰛐"
         }
     },
     "custom/notification": {

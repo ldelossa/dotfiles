@@ -22,22 +22,22 @@
 
 
 .modules-right {
-    font-family:    "Fira Code Regular Nerd Font Complete Mono";
+    font-family:    "Cousine Nerd Font Mono";
     font-size:      15px;
 }
 
 .modules-center {
-    font-family:    "Fira Code Regular Nerd Font Complete Mono";
+    font-family:    "Cousine Nerd Font Mono";
     font-size:      15px;
 }
 
 .modules-left {
-    font-family:    "Fira Code Regular Nerd Font Complete Mono";
+    font-family:    "Cousine Nerd Font Mono";
     font-size:      12px;
 }
 
 tooltip {
-  font-family:      "FreeMono";
+    font-family:    "Cousine Nerd Font Mono";
   font-size:        20px;
   background:       @black-trans;
   border:           2px solid @blue;
