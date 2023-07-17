@@ -149,7 +149,6 @@ window#waybar {
 
 #idle_inhibitor {
     color:              @grey;
-    font-size:          12px;
 }
 
 #idle_inhibitor.activated {
@@ -186,7 +185,6 @@ window#waybar {
 }
 
 #custom-containers {
-    font-size:          20px;
 }
 #custom-containers.running {
     color:              @blue-light;
@@ -253,7 +251,6 @@ window#waybar {
 }
 
 #backlight {
-    font-size:           15px;
 }
 #backlight.low {
     color:         @blue;

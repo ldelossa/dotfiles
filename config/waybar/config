@@ -51,8 +51,8 @@
         "format-ethernet": "󰈀",
         "format-disconnected": "󰖪", 
         "tooltip-format": "{ifname} via {gwaddr}",
-        "tooltip-format-wifi": "    {essid} ﬉\n{ipaddr} {signalStrength}%",
-        "tooltip-format-ethernet": "{ifname} {ipaddr} ",
+        "tooltip-format-wifi": "    {essid} \n{ipaddr} {signalStrength}%",
+        "tooltip-format-ethernet": "{ifname} {ipaddr} 󰈀",
         "tooltip-format-disconnected": "Disconnected",
         "on-click": "gnome-control-center network",
         "tooltip": true
@@ -139,7 +139,7 @@
         "exec": "~/.config/waybar/custom/containers-monitor.sh",
     },
     "custom/bluelightfilter": {
-        "format": "",
+        "format": "󱩌",
         "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/custom/bluelightfilter-monitor.sh",

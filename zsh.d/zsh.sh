@@ -10,12 +10,12 @@ zstyle :prompt:pure:git:dirty color 031
 zstyle :prompt:pure:git:stash color 031
 
 PURE_PROMPT_SYMBOL="🖳 "
-PURE_PROMPT_VICMD_SYMBOL=" "
+PURE_PROMPT_VICMD_SYMBOL=""
 
 # if we are running in a DEVSPACE container, make our prompt indicate this.
 if [ -n "$DEVSPACE" ]; then
     PURE_PROMPT_SYMBOL="($DEVSPACE)🖳 "
-    PURE_PROMPT_VICMD_SYMBOL="($DEVSPACE) "
+    PURE_PROMPT_VICMD_SYMBOL="($DEVSPACE)"
 fi
 
 # read from compinit

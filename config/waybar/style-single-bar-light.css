@@ -144,7 +144,7 @@ window#waybar {
     color:              @grey;
 }
 
-#idle_inhibitor.activated {
+#idle_inhibitor.activated { 
     color:              @blue-light;
 }
 
@@ -226,7 +226,6 @@ window#waybar {
 
 #network {
     color:        @green;
-    font-size:          18px;
 }
 #network.disconnected {
     color:        @red;
@@ -248,7 +247,6 @@ window#waybar {
 }
 
 #backlight {
-    font-size:           12px;
 }
 #backlight.low {
     color:        @blue;

@@ -50,7 +50,7 @@
       "icon-size": 24
     },
     "backlight": {
-      "label": "",
+      "label": "󰃟",
       "device": "intel_backlight",
       "min": 10,
       "icon-size": 24
@@ -79,7 +79,7 @@
         ]
       },
       "menu#powermode-buttons": {
-        "label": "", 
+        "label": "", 
         "position": "left",
         "actions": [ 
           {
