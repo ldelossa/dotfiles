@@ -119,3 +119,7 @@ cilium-iss-create-cee() {
 cilium-builder() {
     docker run -it --rm -v $(pwd):/src --privileged -w /src -e RUN_WITH_SUDO=false $(cat images/cilium/Dockerfile | grep "ARG CILIUM_BUILDER_IMAGE=" | cut -d"=" -f2) "/bin/bash"
 }
+
+function cilium-sysdump-k9s() {
+  docker run --rm -ti -v "$(readlink -f ${1}):/sysdump:ro" quay.io/isovalent-dev/sysdump-kas:k9s
+}
