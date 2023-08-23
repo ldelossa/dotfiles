@@ -40,6 +40,7 @@ alias gbr='git branch --format "%(refname:short) <> %(upstream)"'
 alias gd='git diff'
 alias gdn='git diff --name-only'
 alias gintro='git log --diff-filter=A -- '
+alias gcp='git cherry-pick'
 
 gsc() {
     git checkout stash@{$1} -- $2
