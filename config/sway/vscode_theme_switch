@@ -9,7 +9,7 @@ var arg = process.argv[2];
 var paths = [
 	"/home/louis/.config/Code/User/settings.json", 
 	// cilium-kernel profile
-	"/home/louis/.config/Code/User/profiles/-222c78ef/settings.json"
+	"/home/louis/.config/Code/User/profiles/-35c97bae/settings.json"
 ]
 
 paths.forEach((path)=>{
