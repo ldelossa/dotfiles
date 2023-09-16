@@ -193,7 +193,8 @@ local servers = {
     "vimls",
     "terraformls",
     "jsonls",
-    "cssls"
+    "cssls",
+    "zls"
 }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
