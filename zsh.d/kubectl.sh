@@ -54,3 +54,11 @@ function kiexec-label() {
 function kexec-label() {
     kexec $(k get pods -l="$1" -o json | jq -r ".items[0].metadata.name") $2
 }
+
+function kshell() {
+    shell=$2
+    if [[ -z $shell ]]; then
+        shell='/bin/bash'
+    fi
+    kiexec "$1" "$shell"
+}

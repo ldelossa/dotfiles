@@ -127,3 +127,9 @@ cilium-builder() {
 function cilium-sysdump-k9s() {
   docker run --rm -ti -v "$(readlink -f ${1}):/sysdump:ro" quay.io/isovalent-dev/sysdump-kas:k9s
 }
+
+# bind mount which makes ctx-> autocompletion work, run from repo root
+alias cilium-bind-ctx='sudo mount --bind bpf/include/bpf/ctx/ctx.h bpf/lib/overloadable_skb.h'
+alias cilium-unbind-ctx='sudo umount bpf/lib/overloadable_skb.h'
+alias cilium-bind-xdp='sudo mount --bind bpf/include/bpf/ctx/ctx.h bpf/lib/overloadable_xdp.h'
+alias cilium-unbind-xdp='sudo umount bpf/lib/overloadable_skb.h'

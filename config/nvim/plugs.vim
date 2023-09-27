@@ -44,6 +44,7 @@ call plug#begin('~/.config/nvim/after')
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     Plug 'nvim-telescope/telescope-ui-select.nvim'
     Plug 'akinsho/git-conflict.nvim'
+    Plug 'github/copilot.vim'
     " Plug 'fatih/vim-go'
 call plug#end()
 lua require('configs.buffer-resize')

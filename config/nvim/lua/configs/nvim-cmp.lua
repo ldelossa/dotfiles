@@ -31,10 +31,10 @@ cmp.setup({
   },
   window = {
     completion = {
-        -- border = border
+        border = border
     },
     documentation = {
-        -- border = "single",
+        border = border,
         winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
     }
   },
