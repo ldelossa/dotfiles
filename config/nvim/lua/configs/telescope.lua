@@ -56,7 +56,9 @@ vim.keymap.set('n', '\'', function() builtin.buffers(themes.get_dropdown({
 end, opts)
 vim.keymap.set('n', '<leader>c', function() builtin.commands(themes.get_dropdown())
 end, {})
-vim.keymap.set('n', '<leader>', function() builtin.find_files()
+vim.keymap.set('n', '<leader>', function() builtin.find_files(themes.get_dropdown(
+        { previewer = false, }
+    ))
 end
     , {})
 vim.keymap.set('n', '<leader>h', function() builtin.oldfiles(themes.get_dropdown({

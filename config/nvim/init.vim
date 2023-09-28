@@ -151,3 +151,6 @@ let g:c_syntax_for_h = 1
 source $HOME/.config/nvim/plugs.vim
 source $HOME/.config/nvim/lua/configs/quickfix.vim
 source $HOME/.config/nvim/lua/configs/copycmds.vim
+
+" set this for kernel hacking
+autocmd FileType c,cpp setlocal tabstop=8 shiftwidth=8
