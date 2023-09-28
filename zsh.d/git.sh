@@ -66,13 +66,3 @@ ginterdiff() {
 }
 
 alias giter="GIT_SEQUENCE_EDITOR=\"sed -i -e 's/^pick/edit/'\" git rebase --interactive"
-
-gworktree-checkout() {
-    git worktree add "$1" --checkout "$2"
-    cd "$1" || return
-}
-
-gworktree-branch() {
-    git worktree add "$1" -b "$2"
-    cd "$1" || return
-}
