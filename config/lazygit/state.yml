@@ -1,0 +1,12 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/louis/go/lazygit
+- /home/louis/git/dotfiles
+- /home/louis/git/gopath/src/github.com/cilium/cilium-code-review
+- /home/louis/git/c/linux-mainline
+startuppopupversion: 5
+customcommandshistory:
+- qa!
+hidecommandlog: false
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
