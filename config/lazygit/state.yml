@@ -1,5 +1,6 @@
 lastupdatecheck: 0
 recentrepos:
+- /home/louis/go/lazygit
 - /home/louis/git/gopath/src/github.com/cilium/cilium-enterprise
 - /home/louis/git/dotfiles
 startuppopupversion: 5
@@ -7,3 +8,4 @@ customcommandshistory:
 - qa!
 hidecommandlog: false
 ignorewhitespaceindiffview: false
+diffcontextsize: 3

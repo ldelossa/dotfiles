@@ -5,7 +5,7 @@ return {
       views = {
         cmdline_popup = {
           position = {
-            row = "100%",
+            row = "80%",
             col = "50%",
           },
           border = {
@@ -17,6 +17,13 @@ return {
             winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
           },
         },
+      },
+      lsp = {
+				documentation = {
+          opts = {
+            border = { style = "shadow" },
+          },
+				}
       },
     },
   },

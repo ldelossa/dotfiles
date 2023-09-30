@@ -5,10 +5,20 @@
 local opts = { silent = true }
 local map = vim.keymap.set
 
+-- Arrow keys to adjust window size
+map("n", "<Right>", "<cmd>vertical resize +2<CR>", opts)
+map("n", "<Left>", "<cmd>vertical resize -2<CR>", opts)
+map("n", "<Down>", "<cmd>resize +2<CR>", opts)
+map("n", "<Up>", "<cmd>resize -2<CR>", opts)
+
+-- Append common characters characters
+vim.api.nvim_set_keymap('i', '<C-;>', '<Esc>A;<Esc>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<C-}>', '<Esc>A}<Esc>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<C-{>', '<Esc>A{<Esc>', {noremap = true, silent = true})
+
 -- Telescope
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
-
 map("n", "'", function()
   builtin.buffers(themes.get_dropdown({
     previewer = false,
@@ -25,34 +35,24 @@ end, {})
 
 -- LSP
 map("n", "<C-l>s", "<cmd>lua vim.lsp.buf.document_symbol()", opts)
-
 map("n", "<C-l>w", "<cmd>lua vim.lsp.buf.workspace_symbol()", opts)
-
 map("n", "<C-l>hi", "<cmd>lua vim.lsp.buf.incoming_calls()", opts)
 map("n", "<C-l>ho", "<cmd>lua vim.lsp.buf.outgoing_calls()", opts)
-
 map("n", "<C-l>p", "<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>", opts)
 map("n", "<C-l>n", "<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>", opts)
-
 map("n", "<C-l>h", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 map("n", "<leader>i", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 map("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 map("n", "<C-l>S", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 map("i", "<C-l>S", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-
 map("i", "<C-l>r", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 map("n", "<C-l>r", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-
 map("n", "<C-l>e", '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', opts)
 map("i", "<C-l>e", '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', opts)
-
 map("n", "<leader>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
 map("n", "<leader>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
-
 map("n", "<C-l>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
-
 map("n", "<C-l>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 -- if telescope is available, override some defaults above
@@ -122,7 +122,7 @@ if pcall(require, "glance") then
   map("n", "<C-l>dd", "<cmd>Glance type_definitions<CR>", opts)
 end
 
-map('i', '<Tab>', function()
+map("i", "<Tab>", function()
   if require("copilot.suggestion").is_visible() then
     require("copilot.suggestion").accept()
   else

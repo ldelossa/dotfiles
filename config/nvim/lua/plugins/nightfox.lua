@@ -1,0 +1,5 @@
+return {
+	{
+		"ldelossa/nightfox.nvim"
+	}
+}

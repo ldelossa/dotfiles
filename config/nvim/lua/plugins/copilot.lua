@@ -9,11 +9,11 @@ return {
         auto_trigger = false,
         debounce = 75,
         keymap = {
-          accept = "<C-]>",
+          accept = false, -- <Tab> but set in nvim-cmp settings
           accept_word = false,
           accept_line = false,
-          next = "<M-]>",
-          prev = "<M-[>",
+          next = "<C-j>",
+          prev = false,
           dismiss = "<C-[>",
         },
       },
