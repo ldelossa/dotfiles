@@ -19,7 +19,7 @@ local theme_line = io.read()
 if theme_line == "# light" then
     vim.cmd("colorscheme github_light")
 else
-    vim.cmd("colorscheme github_dark_dimmed")
+    vim.cmd("colorscheme github_dark")
 end
 
 function Light_theme()

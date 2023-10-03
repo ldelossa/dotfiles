@@ -1,6 +1,8 @@
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+set $cdpaths '/home/louis:/home/louis/vmmnt/:/home/louis/.config/nvim/after:/home/louis/git:/home/louis/git/go:/home/louis/git/gopath/src:/home/louis/git/gopath/src/github.com:/home/louis/git/gopath/src/github.com/ldelossa'
+
 font Cousine 11
 
 ### Variables
@@ -215,7 +217,9 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
     bindsym Mod4+x     exec 'kitty -o remember_window_size=no -o initial_window_height=1200 -o initial_window_width=1200 --title "floating-term" nnn'
 
     # Start a terminal
-    bindsym $mod+Return exec $term
+    # bindsym $mod+Return exec $term
+    bindsym $mod+Return exec 'CDPATH=$cdpaths TERM=$term ~/.config/sway/shell_open.sh'
+
     # Start a floating term
     bindsym Mod4+Return exec 'kitty -o remember_window_size=no -o initial_window_height=1200 -o initial_window_width=1200 --title "floating-term"'
     # Start a luakit instance
@@ -282,7 +286,6 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
     bindsym $mod+r exec '~/git/sway/sway-rofi-scripts/sway-rename.sh'
     # Create and focus new workspace, if we provide cdpath opening workspaces
     # by their abbreviated paths will open a kitty terminal directly to it.
-    set $cdpaths '/home/louis:/home/louis/vmmnt/:/home/louis/.config/nvim/after:/home/louis/git:/home/louis/git/go:/home/louis/git/gopath/src:/home/louis/git/gopath/src/github.com:/home/louis/git/gopath/src/github.com/ldelossa'
     bindsym $mod+n exec 'CDPATH=$cdpaths ~/git/sway/sway-rofi-scripts/sway-new-workspace.sh'
     # Set mark on window
     bindsym $mod+Shift+m exec '~/git/sway/sway-rofi-scripts/sway-mark.sh'

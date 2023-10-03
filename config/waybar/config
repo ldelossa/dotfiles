@@ -23,7 +23,7 @@
         "on-click": "swaync-client -t -sw",
     },
     "sway/mode": {
-        "format": ""
+        "format": "󰩨"
     },
     "battery": {
         "format": "{icon}",

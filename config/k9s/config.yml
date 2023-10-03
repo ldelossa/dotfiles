@@ -26,7 +26,7 @@ k9s:
         - all
         - default
       view:
-        active: pods
+        active: po
       featureGates:
         nodeShell: false
       shellPod:

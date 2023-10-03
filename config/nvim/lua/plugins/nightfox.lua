@@ -1,5 +1,5 @@
 return {
 	{
-		"ldelossa/nightfox.nvim"
+		"edeneast/nightfox.nvim"
 	}
 }

@@ -5,32 +5,45 @@
 local opts = { silent = true }
 local map = vim.keymap.set
 
+-- leader w for write
+map("n", "<leader>w", "<cmd>w<cr>")
+
 -- Arrow keys to adjust window size
 map("n", "<Right>", "<cmd>vertical resize +2<CR>", opts)
 map("n", "<Left>", "<cmd>vertical resize -2<CR>", opts)
 map("n", "<Down>", "<cmd>resize +2<CR>", opts)
 map("n", "<Up>", "<cmd>resize -2<CR>", opts)
 
--- Append common characters characters
-vim.api.nvim_set_keymap('i', '<C-;>', '<Esc>A;<Esc>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', '<C-}>', '<Esc>A}<Esc>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', '<C-{>', '<Esc>A{<Esc>', {noremap = true, silent = true})
+-- append common characters characters
+map("i", "<C-;>", "<Esc>A;<Esc>", opts)
+map("i", "<C-e>", "<Esc>A }<Esc>", opts)
+map("i", "<C-b>", "<Esc>A {<Esc>", opts)
+
+-- buffer maps
+map("n", "bn", "<cmd>bnext<cr>", opts)
+map("n", "bp", "<cmd>bprevious<cr>", opts)
+map("n", "bd", "<cmd>bdelete<cr>", opts)
+
+-- tab maps
+map("n", "tn", "<cmd>tabnext<cr>", opts)
+map("n", "tp", "<cmd>tabprevious<cr>", opts)
+map("n", "td", "<cmd>tabclose<cr>", opts)
 
 -- Telescope
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 map("n", "'", function()
-  builtin.buffers(themes.get_dropdown({
-    previewer = false,
-    sort_lastused = true,
-    ignore_current_buffer = true,
-  }))
+	builtin.buffers(themes.get_dropdown({
+		previewer = false,
+		sort_lastused = true,
+		ignore_current_buffer = true,
+	}))
 end, opts)
 map("n", "<leader>c", function()
-  builtin.commands(themes.get_dropdown())
+	builtin.commands(themes.get_dropdown())
 end, {})
 map("n", "<leader><leader>", function()
-  builtin.find_files(themes.get_dropdown({ previewer = false }))
+	builtin.find_files(themes.get_dropdown({ previewer = false }))
 end, {})
 
 -- LSP
@@ -57,75 +70,75 @@ map("n", "<C-l>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
 -- if telescope is available, override some defaults above
 if pcall(require, "telescope") then
-  local builtin = require("telescope.builtin")
-  local themes = require("telescope.themes")
-  map("n", "<C-l>ee", "", {
-    silent = true,
-    noremap = true,
-    callback = function()
-      builtin.diagnostics({ bufnr = 0 })
-    end,
-  })
-  map("n", "<leader>u", "", { silent = true, noremap = true, callback = builtin.lsp_references })
-  map("n", "gi", "", { silent = true, noremap = true, callback = builtin.lsp_implementations })
-  map("n", "gd", "", { silent = true, noremap = true, callback = builtin.lsp_definitions })
-  map("n", "gdd", "", { silent = true, noremap = true, callback = builtin.lsp_type_definitions })
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
+	map("n", "<C-l>ee", "", {
+		silent = true,
+		noremap = true,
+		callback = function()
+			builtin.diagnostics({ bufnr = 0 })
+		end,
+	})
+	map("n", "<leader>u", "", { silent = true, noremap = true, callback = builtin.lsp_references })
+	map("n", "gi", "", { silent = true, noremap = true, callback = builtin.lsp_implementations })
+	map("n", "gd", "", { silent = true, noremap = true, callback = builtin.lsp_definitions })
+	map("n", "gdd", "", { silent = true, noremap = true, callback = builtin.lsp_type_definitions })
 
-  map("n", "<C-l>s", "", {
-    silent = true,
-    noremap = true,
-    callback = function()
-      builtin.lsp_document_symbols(themes.get_dropdown({
-        previewer = false,
-      }))
-    end,
-  })
-  map("n", "<leader>s", "", {
-    silent = true,
-    noremap = true,
-    callback = function()
-      builtin.lsp_document_symbols(themes.get_dropdown({
-        previewer = false,
-      }))
-    end,
-  })
+	map("n", "<C-l>s", "", {
+		silent = true,
+		noremap = true,
+		callback = function()
+			builtin.lsp_document_symbols(themes.get_dropdown({
+				previewer = false,
+			}))
+		end,
+	})
+	map("n", "<leader>s", "", {
+		silent = true,
+		noremap = true,
+		callback = function()
+			builtin.lsp_document_symbols(themes.get_dropdown({
+				previewer = false,
+			}))
+		end,
+	})
 
-  map("n", "<C-l>w", "", {
-    silent = true,
-    noremap = true,
-    callback = function()
-      builtin.lsp_workspace_symbols({ query = "" })
-    end,
-  })
-  map("n", "<leader>W", "", {
-    silent = true,
-    noremap = true,
-    callback = function()
-      builtin.lsp_workspace_symbols({ query = "" })
-    end,
-  })
+	map("n", "<C-l>w", "", {
+		silent = true,
+		noremap = true,
+		callback = function()
+			builtin.lsp_workspace_symbols({ query = "" })
+		end,
+	})
+	map("n", "<leader>W", "", {
+		silent = true,
+		noremap = true,
+		callback = function()
+			builtin.lsp_workspace_symbols({ query = "" })
+		end,
+	})
 
-  map("n", "<C-l>hi", "", { silent = true, noremap = true, callback = builtin.lsp_incoming_calls })
-  map("n", "<C-l>ho", "", { silent = true, noremap = true, callback = builtin.lsp_outgoing_calls })
-  map("n", "<leader>hi", "", { silent = true, noremap = true, callback = builtin.lsp_incoming_calls })
-  map("n", "<leader>ho", "", { silent = true, noremap = true, callback = builtin.lsp_outgoing_calls })
+	map("n", "<C-l>hi", "", { silent = true, noremap = true, callback = builtin.lsp_incoming_calls })
+	map("n", "<C-l>ho", "", { silent = true, noremap = true, callback = builtin.lsp_outgoing_calls })
+	map("n", "<leader>hi", "", { silent = true, noremap = true, callback = builtin.lsp_incoming_calls })
+	map("n", "<leader>ho", "", { silent = true, noremap = true, callback = builtin.lsp_outgoing_calls })
 
-  map("n", "<C-l>ii", "", { silent = true, noremap = true, callback = builtin.lsp_implementations })
-  map("n", "<leader>ii", "", { silent = true, noremap = true, callback = builtin.lsp_implementations })
+	map("n", "<C-l>ii", "", { silent = true, noremap = true, callback = builtin.lsp_implementations })
+	map("n", "<leader>ii", "", { silent = true, noremap = true, callback = builtin.lsp_implementations })
 end
 
 -- if glance is available, override some more defaults above.
 if pcall(require, "glance") then
-  map("n", "<C-l>d", "<cmd>Glance definitions<CR>", opts)
-  map("n", "<C-l>ii", "<cmd>Glance implementations<CR>", opts)
-  map("n", "<C-l>u", "<cmd>Glance references<CR>", opts)
-  map("n", "<C-l>dd", "<cmd>Glance type_definitions<CR>", opts)
+	map("n", "<C-l>d", "<cmd>Glance definitions<CR>", opts)
+	map("n", "<C-l>ii", "<cmd>Glance implementations<CR>", opts)
+	map("n", "<C-l>u", "<cmd>Glance references<CR>", opts)
+	map("n", "<C-l>dd", "<cmd>Glance type_definitions<CR>", opts)
 end
 
 map("i", "<Tab>", function()
-  if require("copilot.suggestion").is_visible() then
-    require("copilot.suggestion").accept()
-  else
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-  end
+	if require("copilot.suggestion").is_visible() then
+		require("copilot.suggestion").accept()
+	else
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+	end
 end, { desc = "Super Tab" })

@@ -9,6 +9,7 @@ opt.signcolumn = "number"
 opt.expandtab = false
 opt.shiftwidth = 4
 opt.tabstop = 4
+opt.colorcolumn = "80"
 
 -- set c fileype for headers, not cpp
 vim.g.c_syntax_for_h = 1
