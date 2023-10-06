@@ -1,7 +1,7 @@
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-set $cdpaths '/home/louis:/home/louis/vmmnt/:/home/louis/.config/nvim/after:/home/louis/git:/home/louis/git/go:/home/louis/git/gopath/src:/home/louis/git/gopath/src/github.com:/home/louis/git/gopath/src/github.com/ldelossa'
+set $cdpaths '~/vmmnt/:~/.config/nvim/after:~/git:~/git/go:~/git/gopath/src:~/git/gopath/src/github.com:~/git/gopath/src/github.com/ldelossa:~/.local/share/nvim/lazy/'
 
 font Cousine 11
 

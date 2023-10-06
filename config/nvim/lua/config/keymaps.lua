@@ -22,7 +22,7 @@ map("i", "<C-b>", "<Esc>A {<Esc>", opts)
 -- buffer maps
 map("n", "bn", "<cmd>bnext<cr>", opts)
 map("n", "bp", "<cmd>bprevious<cr>", opts)
-map("n", "bd", "<cmd>bdelete<cr>", opts)
+map("n", "bd", "<cmd>lua require('mini.bufremove').delete()<cr>", opts)
 
 -- tab maps
 map("n", "tn", "<cmd>tabnext<cr>", opts)
