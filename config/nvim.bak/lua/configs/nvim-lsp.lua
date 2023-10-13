@@ -116,9 +116,9 @@ local function lsp_keymaps(bufnr)
             end })
 
         buf_set_keymap('n', '<C-l>w', '',
-            { silent = true, noremap = true, callback = function() builtin.lsp_workspace_symbols({ query = "" }) end })
+            { silent = true, noremap = true, callback = function() builtin.lsp_dynamic_workspace_symbols() end })
         buf_set_keymap('n', '<leader>W', '',
-            { silent = true, noremap = true, callback = function() builtin.lsp_workspace_symbols({ query = "" }) end })
+            { silent = true, noremap = true, callback = function() builtin.lsp_dynamic_workspace_symbols() end })
 
         buf_set_keymap('n', '<C-l>hi', '', { silent = true, noremap = true, callback = builtin.lsp_incoming_calls })
         buf_set_keymap('n', '<C-l>ho', '', { silent = true, noremap = true, callback = builtin.lsp_outgoing_calls })

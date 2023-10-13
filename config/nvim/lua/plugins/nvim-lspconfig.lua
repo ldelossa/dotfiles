@@ -20,11 +20,12 @@ local on_attach = function(client, bufnr)
   end
 end
 
+vim.g.autoformat = false
+
 return {
   "neovim/nvim-lspconfig",
   keys = {},
   opts = {
-    autoformat = false,
     diagnostics = {
       virtual_text = {},
     },

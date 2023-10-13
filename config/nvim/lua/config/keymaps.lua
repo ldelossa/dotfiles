@@ -107,14 +107,14 @@ if pcall(require, "telescope") then
 		silent = true,
 		noremap = true,
 		callback = function()
-			builtin.lsp_workspace_symbols({ query = "" })
+			builtin.lsp_dynamic_workspace_symbols()
 		end,
 	})
 	map("n", "<leader>W", "", {
 		silent = true,
 		noremap = true,
 		callback = function()
-			builtin.lsp_workspace_symbols({ query = "" })
+			builtin.lsp_dynamic_workspace_symbols()
 		end,
 	})
 

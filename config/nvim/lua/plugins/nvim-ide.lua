@@ -26,15 +26,21 @@ return {
 			local bookmarks = require("ide.components.bookmarks")
 
 			require("ide").setup({
-				log_level = "debug",
+				-- log_level = "debug",
 				components = {
+					global_keymaps = {
+						hide = "h"
+					},
 					Explorer = {
 						show_file_permissions = false,
 						default_height = 30,
 					},
+					TerminalBrowser = {
+						hidden = true
+					},
 				},
         panel_groups = {
-            explorer = { explorer.Name,  outline.Name, bookmarks.Name, callhierarchy.Name},
+            explorer = { explorer.Name,  outline.Name, bookmarks.Name, callhierarchy.Name, terminalbrowser.Name},
             terminal = { terminal.Name },
             git = { changes.Name, commits.Name, timeline.Name, branches.Name }
         },
@@ -57,6 +63,8 @@ return {
 			{ "<leader>Wgc", "<cmd>Workspace Commits Focus<cr>", desc = "Focus Commits" },
 			{ "<leader>Wgt", "<cmd>Workspace Timeline Focus<cr>", desc = "Focus Timeline" },
 			{ "<leader>Wgb", "<cmd>Workspace Branches Focus<cr>", desc = "Focus Branches" },
+			{ "<leader>gi", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", desc = "Show Incoming Calls" },
+			{ "<leader>go", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", desc = "Show Outgoing Calls" },
 		},
 	},
 }
