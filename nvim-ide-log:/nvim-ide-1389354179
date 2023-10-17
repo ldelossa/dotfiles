@@ -1,0 +1,7 @@
+
+[2023-10-16T17:42:52] [info] [workspaces] [WorkspaceController.init]: WorkspaceController init starting...
+[2023-10-16T17:42:52] [info] [workspaces] [WorkspaceController.init]: WorkspaceController now handling new tab events.
+[2023-10-16T17:42:52] [info] [workspaces] [WorkspaceController.init]: WorkspaceController now handling closed tab events.
+[2023-10-16T17:42:52] [info] [workspaces] [WorkspaceController.init]: WorkspaceController now handling recording viewed window history
+[2023-10-16T17:42:52] [info] [workspaces] [WorkspaceController.init]: Workspace command now registered.
+[2023-10-16T17:42:52] [info] [workspaces] [WorkspaceController.assign_ws]: assigned and initialized workspace for tab 1

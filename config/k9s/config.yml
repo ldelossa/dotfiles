@@ -15,14 +15,15 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-clab-srv6-vpnv4-simple
-  currentCluster: kind-clab-srv6-vpnv4-simple
+  currentContext: kind-cilium-testing
+  currentCluster: kind-cilium-testing
   clusters:
-    kind-clab-srv6-vpnv4-simple:
+    kind-cilium-testing:
       namespace:
         active: all
         lockFavorites: false
         favorites:
+        - all
         - default
       view:
         active: po
