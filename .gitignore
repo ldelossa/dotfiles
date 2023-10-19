@@ -13,3 +13,5 @@ config/k9s/skin.yml
 config/swaync/style.css
 config/rofi/config.rasi
 config/mutt
+config/nvim/lazy-lock.json
+config/wob/wob.ini
