@@ -332,10 +332,10 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
+    # $mod+b or $mod+v, for vertical and horizontal splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+b splitv
+    bindsym $mod+v splith
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
