@@ -12,7 +12,7 @@ default:
 	@echo resulting config directories: \
 		$(user_configs)
 
-all: link-configs link-zsh link-gdb-config link-global-gitignore link-clang-format link-mail
+all: link-configs link-zsh link-gdb-config link-global-gitignore link-clang-format link-mail link-docker-config
 
 link-configs: $(user_configs)
 
@@ -51,4 +51,3 @@ link-mail:
 	ln -s ~/Dropbox/Fedora/system_setup/.msmtprc ~/.msmtprc
 	-unlink ~/.mbsyncrc
 	ln -s ~/Dropbox/Fedora/system_setup/mbsync/.mbsyncrc ~/.mbsyncrc
-

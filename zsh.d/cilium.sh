@@ -121,7 +121,15 @@ cilium-iss-create-cee() {
 
 # from cilium's repository root.
 cilium-builder() {
-    docker run -it --rm -v $(pwd):/src --privileged -w /src -e RUN_WITH_SUDO=false $(cat images/cilium/Dockerfile | grep "ARG CILIUM_BUILDER_IMAGE=" | cut -d"=" -f2) "/bin/bash"
+	docker run -it --rm \
+	    -v /etc/group:/etc/group:ro \
+		-v /etc/passwd:/etc/passwd:ro \
+		-v /etc/shadow:/etc/shadow:ro \
+		-v $(pwd):$(pwd) \
+		--privileged \
+		-w $(pwd) \
+		-e RUN_WITH_SUDO=false \
+		$(cat images/cilium/Dockerfile | grep "ARG CILIUM_BUILDER_IMAGE=" | cut -d"=" -f2) "/bin/bash"
 }
 
 function cilium-sysdump-k9s() {
