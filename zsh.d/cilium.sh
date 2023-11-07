@@ -15,6 +15,8 @@ export CIL_REPO_PREFIX="/home/louis/git/gopath/src/github.com/cilium"
 
 export CIL_SRC=$CIL_REPO_PREFIX/cilium
 
+alias pwr="docker run --privileged --rm -t --pid=host -v /sys/kernel/debug/:/sys/kernel/debug/ cilium/pwru pwru"
+
 # below functions run in a sub-shell to avoid any conflicts of changes in the
 # parent shell issuing these functions.
 
@@ -141,3 +143,4 @@ alias cilium-bind-ctx='sudo mount --bind bpf/include/bpf/ctx/ctx.h bpf/lib/overl
 alias cilium-unbind-ctx='sudo umount bpf/lib/overloadable_skb.h'
 alias cilium-bind-xdp='sudo mount --bind bpf/include/bpf/ctx/ctx.h bpf/lib/overloadable_xdp.h'
 alias cilium-unbind-xdp='sudo umount bpf/lib/overloadable_skb.h'
+
