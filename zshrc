@@ -41,7 +41,6 @@ if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh
 fi
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export KITTY_SHELL_INTEGRATION="enabled"

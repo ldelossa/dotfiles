@@ -15,15 +15,14 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: kind-cilium-testing
-  currentCluster: kind-cilium-testing
+  currentContext: ""
+  currentCluster: ""
   clusters:
-    kind-cilium-testing:
+    "":
       namespace:
-        active: all
+        active: default
         lockFavorites: false
         favorites:
-        - all
         - default
       view:
         active: po
