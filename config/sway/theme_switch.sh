@@ -33,7 +33,7 @@ then
     unlink ~/.config/rofi/config.rasi
     ln -s ~/.config/rofi/config-dark.rasi ~/.config/rofi/config.rasi
 
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+	gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
     kitty +kitten themes --cache-age -1 --reload-in=all Dark-theme
 
@@ -80,7 +80,7 @@ then
     unlink ~/.config/rofi/config.rasi
     ln -s ~/.config/rofi/config-light.rasi ~/.config/rofi/config.rasi
 
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+	gsettings set org.gnome.desktop.interface gtk-theme Adwaita
 
     kitty +kitten themes --cache-age -1 --reload-in=all Light-theme
 
