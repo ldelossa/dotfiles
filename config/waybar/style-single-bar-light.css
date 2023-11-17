@@ -65,13 +65,13 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    color:              @blue;
-    /* color:              #FFFFFF; */
-    /* background:         @blue; */
-    /* border-radius:      1px; */
-    /* border-top-left-radius:       5px; */
-    /* border-top-right-radius:      5px; */
-    /* border-bottom:      3px solid @blue; */
+    /* color:              @blue; */
+    color:              #FFFFFF;
+    background:         @blue;
+    border-radius:      1px;
+    border-top-left-radius:      0px;
+    border-top-right-radius:      0px;
+   /* border-bottom:      3px solid @blue; */
 }
 
 #workspaces button:hover {
