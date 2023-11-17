@@ -16,6 +16,10 @@ if which exa &> /dev/null; then
     alias ls='exa --icons --header'
 fi
 
+if which eza &> /dev/null; then
+    alias ls='eza --icons --header'
+fi
+
 if which ncdu &> /dev/null; then
     alias du='ncdu'
 fi
