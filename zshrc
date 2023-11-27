@@ -36,6 +36,7 @@ source ~/zsh.d/kernel.sh
 source ~/zsh.d/ip.sh
 source ~/zsh.d/rsync.sh
 source ~/zsh.d/mail.sh
+source ~/zsh.d/gdb.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh
