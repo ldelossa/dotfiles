@@ -1,7 +1,7 @@
 {
   "$schema": "/etc/xdg/swaync/configSchema.json",
 
-  "positionX": "right",
+  "positionX": "center",
   "positionY": "top",
   "control-center-positionX": "none",
   "control-center-positionY": "top",
@@ -9,8 +9,8 @@
   "control-center-margin-bottom": 6,
   "control-center-margin-right": 6,
   "control-center-margin-left": 6,
-  "control-center-width": 550,
-  "control-center-height": 1200,
+  "control-center-width": 800,
+  "control-center-height": 640,
   "fit-to-screen": false,
 
   "layer": "overlay",

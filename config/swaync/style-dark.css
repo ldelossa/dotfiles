@@ -194,9 +194,9 @@
 }
 
 .control-center {
-  background-color: @noti-bg-alt;
-  border-radius: 12px;
-  border: 3px solid @blue-light;
+  background-color: @black-two;
+  border-radius: 15px;
+  border: 1px solid @grey;
 }
 
 .control-center-list {
@@ -327,10 +327,15 @@
   background: @noti-bg;
 }
 
+.widget-menubar>box>.menu-button-bar{
+	margin: 20px;
+}
+
 .widget-menubar>box>.menu-button-bar>button{
   border: 1px solid @grey;
   background: @noti-bg-alt;
-  margin: 8px;
+  border-radius: 25%;
+  background: transparent;
 }
 
 .topbar-buttons>button{
@@ -347,7 +352,6 @@
 
 .widget-buttons-grid>flowbox>flowboxchild>button{
   background: @noti-bg;
-  border-radius: 12px;
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {

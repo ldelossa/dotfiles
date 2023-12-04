@@ -133,7 +133,10 @@ window#waybar {
 }
 
 #clock {
-    font-size: 15px
+    font-size: 15px;
+    background: @blue;
+	color: #FFFFFF;
+	border-radius: 10px;
 }
 
 #custom-notification {

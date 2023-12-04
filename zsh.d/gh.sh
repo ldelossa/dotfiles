@@ -1,4 +1,4 @@
-function prfetch() {
+function gh-prfetch() {
    if [[ -z $1 ]]; then
        printf "error: must provide a pr number"
        return
