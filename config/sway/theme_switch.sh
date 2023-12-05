@@ -23,9 +23,9 @@ then
     unlink ~/.config/alacritty/alacritty.yml
     ln -s ~/.config/alacritty/alacritty-dark.yml ~/.config/alacritty/alacritty.yml
 
-    unlink ~/.config/swaync/style.css
-    ln -s ~/.config/swaync/style-dark.css ~/.config/swaync/style.css
-    swaync-client -rs
+    # unlink ~/.config/swaync/style.css
+    # ln -s ~/.config/swaync/style-dark.css ~/.config/swaync/style.css
+    # swaync-client -rs
 
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-dark.yml ~/.config/k9s/skin.yml
@@ -71,9 +71,9 @@ then
     unlink ~/.config/alacritty/alacritty.yml
     ln -s ~/.config/alacritty/alacritty-light.yml ~/.config/alacritty/alacritty.yml
 
-    unlink ~/.config/swaync/style.css
-    ln -s ~/.config/swaync/style-light.css ~/.config/swaync/style.css
-    swaync-client -rs
+    # unlink ~/.config/swaync/style.css
+    # ln -s ~/.config/swaync/style-light.css ~/.config/swaync/style.css
+    # swaync-client -rs
 
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-light.yml ~/.config/k9s/skin.yml

@@ -5,8 +5,8 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": [ "sway/scratchpad", "sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", ],
-    "modules-center": [ "clock", "clock#utc", "custom/notification" ],
+    "modules-right": [ "sway/scratchpad", "sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", "custom/settings"],
+    "modules-center": [ "clock", "custom/notification" ],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -15,7 +15,7 @@
     "clock": {
         "format": "{:%a %d %b %H:%M}",
         "tooltip": true,
-        "on-click": "swaync-client -t -sw",
+        "on-click": "ags -t 'dashboard'",
     },
     "clock#utc": {
         "format": "{:%H:%M UTC}",
@@ -157,9 +157,9 @@
        "tooltip": false,
        "format": "{icon}",
        "format-icons": {
-         "notification": "<span foreground='red'><sup></sup></span>",
+         "notification": "",
          "none": " ",
-         "dnd-notification": "<span foreground='red'><sup></sup></span>",
+         "dnd-notification": "",
          "dnd-none": " "
        },
        "return-type": "json",
@@ -184,6 +184,10 @@
         "on-scroll-down": "~/.config/waybar/custom/spotify/controls.sh previous",
         "signal": 5,
         "smooth-scrolling-threshold": 1.0,
+    },
+    "custom/settings": {
+        "format": "",
+        "on-click": "ags -t 'quicksettings'",
     },
     "wlr/taskbar": {
         "format": "{icon}",
