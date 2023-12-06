@@ -5,8 +5,8 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "modules-right": [ "sway/scratchpad", "sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", "custom/settings"],
-    "modules-center": [ "clock", "custom/notification" ],
+    "modules-right": [ "sway/scratchpad", "sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "idle_inhibitor", "custom/bluelightfilter", "network", "backlight", "pulseaudio", "battery", "custom/settings"],
+    "modules-center": [ "clock" ],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -33,7 +33,7 @@
         "format-icons": ["󰁺", "󰁼", "󰁿", "󰁹"],
         "format-charging": "󰚥",
         "interval": 30,
-        "on-click": "gnome-control-center power",
+        "on-click": "ags -t 'quicksettings'",
         "states": {
             "warning": 50,
             "critical": 20
@@ -54,13 +54,14 @@
         "tooltip-format-wifi": "    {essid} \n{ipaddr} {signalStrength}%",
         "tooltip-format-ethernet": "{ifname} {ipaddr} 󰈀",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "gnome-control-center network",
+        "on-click": "ags -t 'quicksettings'",
         "tooltip": true
     },
     "backlight": {
            "device": "intel_backlight",
            "format": "{icon}",
            "format-icons": ["󰃞", "󰃝", "󰃠"],
+           "on-click": "ags -t 'quicksettings'",
            "on-scroll-up": "exec brightnessctl set 5%+",
            "on-scroll-down": "brightnessctl set 5%-",
            "states": {
@@ -81,7 +82,7 @@
         },
         "tooltip-format": "{volume}",
         "scroll-step": 10,
-        "on-click": "~/.config/waybar/custom/pulseaudio.sh",
+        "on-click": "ags -t 'quicksettings'",
         "states": {
             "low": 0,
             "mid": 50,
