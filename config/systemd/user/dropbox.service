@@ -1,0 +1,10 @@
+[Unit]
+Description=Launches DropBox Flatpack 
+
+[Service]
+Type=exec
+ExecStart=flatpak run com.dropbox.Client
+
+[Install]
+WantedBy=default.target
+
