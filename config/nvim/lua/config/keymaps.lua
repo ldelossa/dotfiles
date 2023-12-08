@@ -39,6 +39,13 @@ map("n", "'", function()
 		ignore_current_buffer = true,
 	}))
 end, opts)
+map("n", "<C-Tab>", function()
+	builtin.buffers(themes.get_dropdown({
+		previewer = false,
+		sort_lastused = true,
+		ignore_current_buffer = true,
+	}))
+end, opts)
 map("n", "<leader>c", function()
 	builtin.commands(themes.get_dropdown())
 end, {})
@@ -47,10 +54,10 @@ map("n", "<leader><leader>", function()
 end, {})
 
 -- LSP
-map("n", "<C-l>s", "<cmd>lua vim.lsp.buf.document_symbol()", opts)
-map("n", "<C-l>w", "<cmd>lua vim.lsp.buf.workspace_symbol()", opts)
-map("n", "<C-l>hi", "<cmd>lua vim.lsp.buf.incoming_calls()", opts)
-map("n", "<C-l>ho", "<cmd>lua vim.lsp.buf.outgoing_calls()", opts)
+map("n", "<C-l>s", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+map("n", "<C-l>w", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
+map("n", "<C-l>hi", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
+map("n", "<C-l>ho", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
 map("n", "<C-l>p", "<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>", opts)
 map("n", "<C-l>n", "<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>", opts)
 map("n", "<C-l>h", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -93,7 +100,7 @@ if pcall(require, "telescope") then
 			}))
 		end,
 	})
-	map("n", "<leader>s", "", {
+	map("n", "<C-S-o>", "", {
 		silent = true,
 		noremap = true,
 		callback = function()
@@ -111,6 +118,13 @@ if pcall(require, "telescope") then
 		end,
 	})
 	map("n", "<leader>W", "", {
+		silent = true,
+		noremap = true,
+		callback = function()
+			builtin.lsp_dynamic_workspace_symbols()
+		end,
+	})
+	map("n", "<C-t>", "", {
 		silent = true,
 		noremap = true,
 		callback = function()

@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../git/c/gnomeland"
+		},
+		{
+			"path": "../../git/c/gtk4-layer-shell"
+		},
+		{
+			"path": "../../git/c/glib"
+		},
+		{
+			"path": "../../git/c/gtk"
+		},
+		{
+			"path": "../../git/c/wayland"
+		}
+	],
+	"settings": {}
+}

@@ -1,3 +1,4 @@
+local map = vim.keymap.set
 return {
 	{
 		"jackMort/ChatGPT.nvim",
@@ -130,7 +131,7 @@ return {
 					},
 				},
 				openai_params = {
-					model = "gpt-4",
+					model = "gpt-4-1106-preview",
 					frequency_penalty = 0,
 					presence_penalty = 0,
 					max_tokens = 300,
@@ -139,7 +140,7 @@ return {
 					n = 1,
 				},
 				openai_edit_params = {
-					model = "gpt-4",
+					model = "gpt-4-1106-preview",
 					frequency_penalty = 0,
 					presence_penalty = 0,
 					temperature = 0,
@@ -151,6 +152,7 @@ return {
 				show_quickfixes_cmd = "Trouble quickfix",
 				predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
 			})
+			map("n", "<C-S-i>", "", { silent = true, noremap = true, callback = require('chatgpt').openChat })
 		end,
 		dependencies = {
 			"MunifTanjim/nui.nvim",
