@@ -21,3 +21,7 @@ function sms() {
     exit
 }
 
+# unplugs all virtual outputs.
+function sway-unplug { 
+	for a in $(echo $(swaymsg -t get_outputs --raw | jq ".[].name" | grep HEAD)); do sway output $a unplug; done 
+}

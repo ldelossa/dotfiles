@@ -15,3 +15,5 @@ config/rofi/config.rasi
 config/mutt
 config/nvim/lazy-lock.json
 config/wob/wob.ini
+
+config/cgdb/logs
