@@ -28,6 +28,7 @@
 .modules-center {
     font-family:    "Cousine Nerd Font Mono";
     font-size:      15px;
+	background:     @blue;
 }
 
 .modules-left {
@@ -125,7 +126,7 @@ window#waybar {
     font-size:          20px;
 }
 
-#scratchpad, #clock, #tray, #custom-bluelightfilter, #custom-vm, #custom-vm, #custom-notification, #custom-containers,  #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor {
+#scratchpad, #clock, #tray, #custom-bluelightfilter, #custom-vm, #custom-notification, #custom-containers, #custom-wfrecord, #custom-grimshot, #battery, #disk, #cpu, #memory, #temperature, #network, #pulseaudio, #backlight, #idle_inhibitor, #custom-settings{
     margin:             0px 1px 0px 1px;
     padding:            0px 6px 0px 6px;
     color:              @black;
@@ -136,7 +137,7 @@ window#waybar {
     font-size: 15px;
     background: @blue;
 	color: #FFFFFF;
-	border-radius: 10px;
+	border-radius: 2px;
 }
 
 #custom-notification {

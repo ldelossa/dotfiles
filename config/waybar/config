@@ -6,7 +6,7 @@
     "layer": "top",
     "position": "top",
     "modules-right": [ "sway/scratchpad", "sway/mode", "tray", "custom/containers", "custom/vm", "disk", "memory", "cpu", "network", "pulseaudio", "backlight", "battery", "idle_inhibitor", "custom/bluelightfilter", ],
-    "modules-center": [ "clock", "clock#utc", "custom/notification" ],
+    "modules-center": [ "clock", "custom/notification" ],
     "modules-left": ["sway/workspaces"],
     "sway/workspaces": {
         "disable-scroll": true,
