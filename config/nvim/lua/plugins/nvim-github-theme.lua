@@ -3,7 +3,7 @@ function Light_theme()
 end
 
 function Dark_theme()
-  vim.cmd("colorscheme github_dark_dimmed")
+  vim.cmd("colorscheme github_dark")
 end
 
 return {
@@ -29,7 +29,7 @@ return {
     if theme_line == "# light" then
       vim.cmd("colorscheme github_light")
     else
-      vim.cmd("colorscheme github_dark_dimmed")
+      vim.cmd("colorscheme github_dark")
     end
   end,
 }

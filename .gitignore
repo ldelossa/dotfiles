@@ -17,3 +17,4 @@ config/nvim/lazy-lock.json
 config/wob/wob.ini
 
 config/cgdb/logs
+config/k9s/config.yml

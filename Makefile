@@ -8,7 +8,7 @@ default:
 	@echo make link-gdb-config			- link .gdbinit to ~/.gdbinit
 	@echo make link-global-gitignore	- link and configure git with global .gitignore file
 	@echo make link-clang-format	    - link global clang-format
-	@echo 
+	@echo make linkg-git-config 	    - link global git config
 	@echo resulting config directories: \
 		$(user_configs)
 
@@ -51,3 +51,7 @@ link-mail:
 	ln -s ~/Dropbox/Fedora/system_setup/.msmtprc ~/.msmtprc
 	-unlink ~/.mbsyncrc
 	ln -s ~/Dropbox/Fedora/system_setup/mbsync/.mbsyncrc ~/.mbsyncrc
+
+link-git-config:
+	-unlink ~/.gitconfig
+	ln -s $(HOME)/git/dotfiles/.gitconfig $(HOME)/.gitconfig
