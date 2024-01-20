@@ -5,6 +5,7 @@
 	email = louis.delos@gmail.com
 	name = ldelossa
 [credential]
+	helper = "!f() { /home/louis/.vscode-server/bin/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/node /tmp/vscode-remote-containers-38fced28-d616-4ed2-a92c-1e7625df8ff8.js git-credential-helper $*; }; f"
 
 [init]
 	defaultBranch = main

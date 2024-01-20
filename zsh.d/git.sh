@@ -56,13 +56,26 @@ gshowat() {
 # intersecting diff, performs a diff between head:file and $1:file for all 
 # changed files in $1, where $1 is a git-rev.
 ginterdiff() {
-    echo "Will show diffs for the following files:"
+	from=$1
+	to=$2
+
+	if [[ -z $from ]]; then
+		echo "FROM commit not provided"
+		return
+	fi
+
+	if [[ -z $to ]]; then
+		echo "TO commit not provided"
+		return
+	fi
+
+    echo "Will show diffs for the following files"
     echo ""
     git show --pretty=format: --name-only "$1"
     echo ""
     echo "Hit any key to continue, <ctrl-c> to cancel."
     read
-    git show --pretty=format: --name-only "$1" | xargs -I{} git diff HEAD:{} "$1":{}
+    git show --pretty=format: --name-only "$1" | xargs -I{} git diff "$1":{} "$2":{}
 }
 
 alias giter="GIT_SEQUENCE_EDITOR=\"sed -i -e 's/^pick/edit/'\" git rebase --interactive"

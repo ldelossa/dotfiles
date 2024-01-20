@@ -1,0 +1,7 @@
+[Unit]
+Description= A slice used to scope applications which run away with a laptop's battery
+
+[Slice]
+CPUAccounting=true
+CPUQuota=300%
+

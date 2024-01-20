@@ -1,0 +1,12 @@
+[Unit]
+Description=Invokes powertop to auto-tune all features to "GOOD". Requires sudo, edit visudo appropriately. 
+Documentation=man:powertop(8)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sudo /usr/sbin/powertop --auto-tune
+
+[Install]
+WantedBy=default.target
+
+
