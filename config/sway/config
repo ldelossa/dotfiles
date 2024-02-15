@@ -308,7 +308,7 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
     bindsym $mod+Tab workspace back_and_forth
 
     assign [title="Stats"]              workspace stats
-    assign [app_id="pavucontrol"]       workspace sound
+    # assign [app_id="pavucontrol"]       workspace sound
     assign [app_id="virt-manager"]      workspace vm
     assign [class="Signal"]             workspace chat
     assign [class="Vivaldi-stable"]     workspace web

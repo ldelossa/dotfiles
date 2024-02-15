@@ -31,8 +31,14 @@ alias kn="$preamble get nodes"
 alias kdesc="$preamble describe"
 alias kexec="$preamble exec"
 alias kiexec="$preamble exec -i -t"
-alias klogs="$preamble logs --timestamps "
-alias klogsf="$preamble logs --timestamps --follow "
+
+function klogs() {
+	eval "$preamble logs --timestamps $1 2>&1 | bat -llog"
+}
+
+function klogsf() {
+	eval "$preamble logs --timestamps --follow $1 2>&1 | bat -llog"
+}
 
 function klogstream() {
     log_name=/tmp/klogstream_$1_$RANDOM.log
