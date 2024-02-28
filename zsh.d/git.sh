@@ -79,3 +79,4 @@ ginterdiff() {
 }
 
 alias giter="GIT_SEQUENCE_EDITOR=\"sed -i -e 's/^pick/edit/'\" git rebase --interactive"
+

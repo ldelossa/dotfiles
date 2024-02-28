@@ -1,9 +1,10 @@
 [core]
-    pager = delta
 	excludesfile = ~/.gitignore
+
 [user]
 	email = louis.delos@gmail.com
 	name = ldelossa
+
 [credential]
 	helper = "!f() { /home/louis/.vscode-server/bin/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/node /tmp/vscode-remote-containers-7a898d00-761d-4cde-a7af-7a0cc60565f4.js git-credential-helper $*; }; f"
 
@@ -11,13 +12,6 @@
 	defaultBranch = main
 
 [interactive]
-    diffFilter = delta --color-only
-
-[delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-    syntax-theme = Monokai Extended
-	line-numbers = true
 
 [merge]
     conflictstyle = diff3
