@@ -26,10 +26,6 @@ then
     unlink ~/.config/alacritty/alacritty.yml
     ln -s ~/.config/alacritty/alacritty-dark.yml ~/.config/alacritty/alacritty.yml
 
-    # unlink ~/.config/swaync/style.css
-    # ln -s ~/.config/swaync/style-dark.css ~/.config/swaync/style.css
-    # swaync-client -rs
-
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-dark.yml ~/.config/k9s/skin.yml
 
@@ -44,7 +40,7 @@ then
     ~/.config/sway/vscode_theme_switch --dark
 
     for sock in $(ls ~/.cache/nvim/nvim-*); do
-        nvim --server $sock --remote-send '<C-\><C-n>:lua Dark_theme()<CR>'&
+		nvim --server $sock --remote-send '<C-\><C-n>:lua set_dark_theme()<CR>' > /dev/null &
     done
 
     sway reload
@@ -77,10 +73,6 @@ then
     unlink ~/.config/alacritty/alacritty.yml
     ln -s ~/.config/alacritty/alacritty-light.yml ~/.config/alacritty/alacritty.yml
 
-    # unlink ~/.config/swaync/style.css
-    # ln -s ~/.config/swaync/style-light.css ~/.config/swaync/style.css
-    # swaync-client -rs
-
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-light.yml ~/.config/k9s/skin.yml
 
@@ -95,7 +87,7 @@ then
     ~/.config/sway/vscode_theme_switch --light
 
     for sock in $(ls ~/.cache/nvim/nvim-*); do
-        nvim --server $sock --remote-send '<C-\><C-n>:lua Light_theme()<CR>'&
+        nvim --server $sock --remote-send '<C-\><C-n>:lua set_light_theme()<CR>' > /dev/null &
     done
 
     sway reload

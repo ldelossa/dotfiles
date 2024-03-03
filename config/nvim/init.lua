@@ -21,6 +21,7 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 now(function()
   require('mini.notify').setup()
+	vim.notify = require('mini.notify').make_notify()
 end)
 now(function() require('mini.tabline').setup() end)
 now(function() require('mini.statusline').setup() end)
@@ -285,41 +286,13 @@ now(function()
 	require('gitsigns').setup()
 end)
 
--- copilot
+-- github/copilot.vim
 later(function()
-	add({source = 'zbirenbaum/copilot.lua'})
-	require('copilot').setup({
-			 panel = {
-				enabled = true,
-				auto_refresh = false,
-				keymap = {
-					jump_prev = "[[",
-					jump_next = "]]",
-					accept = "<CR>",
-					refresh = "gr",
-					-- this doesn't seem to open the panel, so there's a specific map
-					-- below.
-					open = "<C-CR>"
-				},
-				layout = {
-					position = "bottom", -- | top | left | right
-					ratio = 0.4
-				},
-  		},
-			suggestion = {
-			enabled = true,
-			auto_trigger = false,
-			debounce = 75,
-			keymap = {
-				accept = "<C-Tab>",
-				accept_word = "<C-S-k>",
-				accept_line = false,
-				next = "<C-j>",
-				prev = "<C-S-j>",
-				dismiss = "<C-]>",
-			},
-		}
+	add({
+		source = 'github/copilot.vim',
 	})
+	-- start with it always disabled and trigger completion
+	vim.cmd("Copilot disable")
 end)
 
 --
@@ -355,11 +328,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   virtual_text = false,
 })
 
-local on_attach = function(client, bufnr)
-  if client.name == "clangd" then
-    -- remove semanitic tokens, makes reading C code with ifdefs hard.
-    client.server_capabilities.semanticTokensProvider = false
-  end
+local on_init = function(client, initialization_result)
+	if client.server_capabilities then
+		client.server_capabilities.semanticTokensProvider = false
+	end
 end
 
 local nvim_lsp = require("lspconfig")
@@ -372,7 +344,11 @@ nvim_lsp.yamlls.setup({})
 nvim_lsp.gopls.setup({})
 nvim_lsp.zls.setup({})
 nvim_lsp.clangd.setup({
-	on_attach = on_attach,
+	on_init = on_init,
+	cmd = {
+    "clangd",
+    "--offset-encoding=utf-16",
+  }
 })
 
 --
@@ -423,7 +399,13 @@ map("n", "<C-t>d", "<cmd>tabclose<cr>", {silent=true, desc="delete tab"})
 
 -- mini
 local explorer = function()
-	require('mini.files').open(vim.api.nvim_buf_get_name(0))
+	local buf_name = vim.api.nvim_buf_get_name(0)
+	-- check if buf_name is a valid file system path
+	if vim.fn.filereadable(buf_name) == 1 then
+		require('mini.files').open(buf_name)
+	else
+		require('mini.files').open()
+	end
 end
 map("n", "<leader>f", explorer, {silent = true, desc = "mini.files"})
 map("n", "'", "<cmd>Pick buffers<cr>", {silent=true, desc="mini.pick buffers"})
@@ -474,12 +456,14 @@ map("n", "<c-g>d", gs.diffthis, {silent=true, desc="diff this"})
 map("n", "<c-g>D", function() gs.diffthis("~") end, 	{silent=true, desc="diff this ~"})
 
 -- copilot
-map("n", "<C-CR>", "<cmd>Copilot panel<cr>", {silent=true, desc="Open Copilot"})
-map("v", "<C-CR>", "<cmd>Copilot panel<cr>", {silent=true, desc="Open Copilot"})
+map('i', '<C-j>', '<Plug>(copilot-suggest)', {silent=true, desc="copilot suggest"})
+map('i', '<C-S-j>', '<Plug>(copilot-next)', {silent=true, desc="copilot next suggestion"})
+map('i', '<C-S-k>', '<Plug>(copilot-previous)', {silent=true, desc="copilot previous suggestion"})
+map('i', '<C-k>', '<Plug>(copilot-accept-word)', {silent=true, desc="copilot accept next word"})
 
 -- mini pickers
-map("n", "<leader>s", "<cmd>Pick grep_live<cr>", {silent=true, desc="live grep"})
-map("n", "<leader>S", "<cmd>Pick grep<cr>", {silent=true, desc="grep"})
+map("n", "<leader>s", "<cmd>Pick grep<cr>", {silent=true, desc="grep"})
+map("n", "<leader>S", "<cmd>Pick grep_live<cr>", {silent=true, desc="live grep"})
 map("n", "<leader>m", "<cmd>Pick marks<cr>", {silent=true, desc="marks"})
 map("n", "<leader>d", "<cmd>Pick diagnostic<cr>", {silent=true, desc="diagnostics"})
 map("n", "<leader>g", "<cmd>Pick git_commits<cr>", {silent=true, desc="git commits"})
@@ -489,6 +473,20 @@ map("n", "<leader>t", function() require('mini.trailspace').trim() end, {silent=
 map("n", "<leader>T", function() require('mini.trailspace').trim_last_line() end, {silent=true, desc="trim trailing empty lines"})
 map("n", "<leader>r", "<cmd>Pick resume<cr>", {silent=true, desc="resume last picker"})
 map("n", "<leader>h", "<cmd>Pick git_hunks<cr>", {silent=true, desc="git hunks"})
+
+-- completion (inspired from mini.completion suggestion)
+local keys = {
+  ['tab']        = vim.api.nvim_replace_termcodes('<Tab>', true, true, true),
+  ['ctrl-y']    = vim.api.nvim_replace_termcodes('<C-y>', true, true, true),
+}
+_G.tab_action = function()
+  if vim.fn.pumvisible() ~= 0 then
+    return keys['ctrl-y']
+  else
+    return keys['tab']
+  end
+end
+vim.keymap.set('i', '<Tab>', 'v:lua._G.tab_action()', { expr = true })
 
 --
 -- Autocommands
@@ -555,6 +553,7 @@ opt.tabstop = 4
 opt.colorcolumn = "80"
 vim.o.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
+vim.o.cmdheight=0
 
 -- set c fileype for headers, not cpp
 vim.g.c_syntax_for_h = 1
@@ -565,3 +564,37 @@ vim.cmd('command! CopyPath let @+ = expand("%:p")')
 vim.cmd('command! CopyPathLine let @+ = expand("%:p") . ":" . line(".")')
 vim.cmd('command! CopyRel let @+ = expand("%")')
 vim.cmd('command! CopyRelLine let @+ = expand("%"). ":" . line(".")')
+
+-- set theme based on gnome's color-scheme settings
+function set_dark_theme()
+	 vim.cmd('set background=dark')
+end
+function set_light_theme()
+	 vim.cmd('set background=light')
+end
+local function is_prefer_light_theme()
+   -- Run the dconf command and capture the output
+   local handle = io.popen("dconf read /org/gnome/desktop/interface/color-scheme")
+   local result = handle:read("*a")
+   handle:close()
+
+   -- Trim any whitespace from the result
+   result = string.gsub(result, "^%s*(.-)%s*$", "%1")
+
+   -- Check the result and return true for 'prefer-light', false for 'prefer-dark'
+   if result == "'prefer-light'" then
+     return true
+   elseif result == "'prefer-dark'" then
+     return false
+   else
+     return nil
+   end
+ end
+
+ -- if prefered light theme set background to light
+ if is_prefer_light_theme() then
+	 set_light_theme()
+ else
+	 set_dark_theme()
+ end
+

@@ -143,4 +143,4 @@ alias cilium-bind-ctx='sudo mount --bind bpf/include/bpf/ctx/ctx.h bpf/lib/overl
 alias cilium-unbind-ctx='sudo umount bpf/lib/overloadable_skb.h'
 alias cilium-bind-xdp='sudo mount --bind bpf/include/bpf/ctx/ctx.h bpf/lib/overloadable_xdp.h'
 alias cilium-unbind-xdp='sudo umount bpf/lib/overloadable_skb.h'
-
+alias cilium-coccicheck='docker run --rm --user 1000 --workdir /workspace -v `pwd`:/workspace -it docker.io/cilium/coccicheck make -C bpf coccicheck'
