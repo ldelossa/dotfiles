@@ -2,7 +2,7 @@
 Description=Runs way-shell once sway session target is reached
 
 [Service]
-Type=Exec
+Type=exec
 ExecStart=/usr/local/bin/way-shell
 
 [Install]

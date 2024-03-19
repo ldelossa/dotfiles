@@ -1,4 +1,4 @@
-# zmodload zsh/zprof
+#vx->vx_vnivx->vx_vno zmodload zsh/zprof
 
 # shell environment configurations
 source ~/zsh.d/env.sh

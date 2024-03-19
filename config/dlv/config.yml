@@ -1,0 +1,3 @@
+substitute-path:
+  - {from: "/go/src/github.com/cilium/cilium", to: "/home/louis/git/gopath/src/github.com/cilium/cilium-enterprise"}
+

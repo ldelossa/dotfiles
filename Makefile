@@ -54,4 +54,4 @@ link-mail:
 
 link-git-config:
 	-unlink ~/.gitconfig
-	ln -s $(HOME)/git/dotfiles/.gitconfig $(HOME)/.gitconfig
+	ln -s $(HOME)/git/dotfiles/config/git/gitconfig $(HOME)/.gitconfig

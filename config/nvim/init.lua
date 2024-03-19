@@ -67,6 +67,14 @@ later(function()
 			{ mode = "n", keys = "g" },
 			{ mode = "x", keys = "g" },
 
+			-- `a` key
+			{ mode = "n", keys = "a" },
+			{ mode = "x", keys = "a" },
+
+			-- `i` key
+			{ mode = "n", keys = "i" },
+			{ mode = "x", keys = "i" },
+
 			-- buffers key
 			{ mode = "n", keys = "<C-b>" },
 
@@ -187,8 +195,8 @@ now(function()
 		evaluate_single = true,
 		items = {
 			starter.sections.builtin_actions(),
-			starter.sections.recent_files(10, false),
-			starter.sections.recent_files(10, true),
+			starter.sections.pick(),
+			starter.sections.recent_files(20, true),
 			starter.sections.sessions(5, true),
 		},
 		content_hooks = {
@@ -263,8 +271,8 @@ now(function()
 					["if"] = "@function.inner",
 					["as"] = "@class.outer",
 					["is"] = "@class.inner",
-					["am"] = "@call.outer",
-					["im"] = "@call.inner",
+					["ac"] = "@call.outer",
+					["ic"] = "@call.inner",
 					["aa"] = "@parameter.outer",
 					["ia"] = "@parameter.inner",
 					["al"] = "@loop.outer",
@@ -281,7 +289,7 @@ now(function()
 					["]f"] = "@function.outer",
 					["]s"] = "@class.outer",
 					["]a"] = "@parameter.outer",
-					["]m"] = "@call.outer",
+					["]c"] = "@call.outer",
 					["]b"] = "@block.outer",
 					["]i"] = "@conditional.outer",
 					["]l"] = "@loop.outer",
@@ -291,7 +299,7 @@ now(function()
 					["]S"] = "@class.outer",
 					["]A"] = "@parameter.outer",
 					["]B"] = "@block.outer",
-					["]M"] = "@call.outer",
+					["]C"] = "@call.outer",
 					["]I"] = "@conditional.outer",
 					["]L"] = "@loop.outer",
 				},
@@ -299,7 +307,7 @@ now(function()
 					["[f"] = "@function.outer",
 					["[s"] = "@class.outer",
 					["[a"] = "@parameter.outer",
-					["[m"] = "@call.outer",
+					["[c"] = "@call.outer",
 					["[b"] = "@block.outer",
 					["[i"] = "@conditional.outer",
 					["[l"] = "@loop.outer",
@@ -308,7 +316,7 @@ now(function()
 					["[F"] = "@function.outer",
 					["[S"] = "@class.outer",
 					["[A"] = "@parameter.outer",
-					["[M"] = "@call.outer",
+					["[C"] = "@call.outer",
 					["[B"] = "@block.outer",
 					["[I"] = "@conditional.outer",
 					["[L"] = "@loop.outer",
@@ -342,6 +350,12 @@ later(function()
 	})
 	-- start with it always disabled and trigger completion
 	vim.cmd("Copilot disable")
+end)
+
+now(function()
+	add({
+		source = "pedrohdz/vim-yaml-folds",
+	})
 end)
 
 --
@@ -452,9 +466,18 @@ map("n", "<leader>f", explorer, { silent = true, desc = "mini.files" })
 map("n", "'", "<cmd>Pick buffers<cr>", { silent = true, desc = "mini.pick buffers" })
 map("n", "<leader><leader>", "<cmd>Pick files<cr>", { silent = true, desc = "mini.pick files" })
 
+local workspace_symbol_query = function()
+	vim.ui.input({ prompt = "Symbol query: " }, function(input)
+		if input == nil then
+			return
+		end
+		require("mini.extra").pickers.lsp({ scope = "workspace_symbol", symbol_query = input })
+	end)
+end
+
 -- LSP
 map("n", "<C-l>s", "<cmd>Pick lsp scope='document_symbol'<cr>", { silent = true, desc = "document symbols" })
-map("n", "<C-l>w", "<cmd>Pick lsp scope='workspace_symbol'<cr>", { silent = true, desc = "workspace symbols" })
+map("n", "<C-l>w", workspace_symbol_query, { silent = true, desc = "workspace symbols" })
 map("n", "<C-l>hi", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", { silent = true, desc = "incoming calls" })
 map("n", "<C-l>ho", "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", { silent = true, desc = "outgoing calls" })
 map(
@@ -469,6 +492,15 @@ map(
 	"<cmd>lua vim.diagnostic.goto_next({ float = false })<cr>",
 	{ silent = true, desc = "next diagnostic" }
 )
+
+-- will add a jump loc to the jump list before calling the command
+local go = function(cmd)
+	return function()
+		vim.cmd("normal! m'")
+		vim.cmd(cmd)
+	end
+end
+
 map("n", "<C-l>h", "<Cmd>lua vim.lsp.buf.hover()<cr>", { silent = true, desc = "hover info" })
 map("n", "<leader>i", "<Cmd>lua vim.lsp.buf.hover()<cr>", { silent = true, desc = "hover info" })
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { silent = true, desc = "signature help" })
@@ -481,12 +513,12 @@ map("n", "<C-l>e", '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<cr>', 
 map("i", "<C-l>e", '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<cr>', { silent = true, desc = "show error" })
 map("n", "<C-l>f", "<cmd>lua vim.lsp.buf.format()<cr>", { silent = true, desc = "format" })
 map("n", "<C-l>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { silent = true, desc = "code action" })
-map("n", "<C-l>u", "<Cmd>Pick lsp scope='references'<cr>", { silent = true, desc = "references of symbol" })
-map("n", "<C-l>d", "<Cmd>Pick lsp scope='definition'<cr>", { silent = true, desc = "definition of symbol" })
-map("n", "gd", "<Cmd>Pick lsp scope='definition'<cr>", { silent = true, desc = "definition of symbol" })
-map("n", "<C-l>D", "<Cmd>Pick lsp scope='type_definition'<cr>", { silent = true, desc = "type definition of symbol" })
-map("n", "gD", "<Cmd>Pick lsp scope='type_definition'<cr>", { silent = true, desc = "type definition of symbol" })
-map("n", "<C-l>l", "<Cmd>Pick lsp scope='implementation'<cr>", { silent = true, desc = "implementation of symbol" })
+map("n", "<C-l>u", go("Pick lsp scope='references'"), { silent = true, desc = "references of symbol" })
+map("n", "<C-l>d", go("Pick lsp scope='definition"), { silent = true, desc = "definition of symbol" })
+map("n", "gd", go("Pick lsp scope='definition'"), { silent = true, desc = "definition of symbol" })
+map("n", "<C-l>D", go("Pick lsp scope='type_definition'"), { silent = true, desc = "type definition of symbol" })
+map("n", "gD", go("Pick lsp scope='type_definition'"), { silent = true, desc = "type definition of symbol" })
+map("n", "<C-l>l", go("Pick lsp scope='implementation'"), { silent = true, desc = "implementation of symbol" })
 
 -- git
 local gs = require("gitsigns")
@@ -494,11 +526,11 @@ map("n", "]h", gs.next_hunk, { silent = true, desc = "next hunk" })
 map("n", "[h", gs.prev_hunk, { silent = true, desc = "prev hunk" })
 map("n", "<c-g>n", gs.next_hunk, { silent = true, desc = "next hunk" })
 map("n", "<c-g>p", gs.prev_hunk, { silent = true, desc = "prev hunk" })
-map("n", "<c-g>s", ":gitsigns stage_hunk<cr>", { silent = true, desc = "stage hunk" })
-map("v", "<c-g>s", ":gitsigns stage_hunk<cr>", { silent = true, desc = "stage hunk" })
+map("n", "<c-g>s", ":Gitsigns stage_hunk<cr>", { silent = true, desc = "stage hunk" })
+map("v", "<c-g>s", ":Gitsigns stage_hunk<cr>", { silent = true, desc = "stage hunk" })
 map("n", "<c-g>u", gs.undo_stage_hunk, { silent = true, desc = "undo stage hunk" })
-map("n", "<c-g>r", ":gitsigns reset_hunk<cr>", { silent = true, desc = "reset hunk" })
-map("v", "<c-g>r", ":gitsigns reset_hunk<cr>", { silent = true, desc = "reset hunk" })
+map("n", "<c-g>r", ":Gitsigns reset_hunk<cr>", { silent = true, desc = "reset hunk" })
+map("v", "<c-g>r", ":Gitsigns reset_hunk<cr>", { silent = true, desc = "reset hunk" })
 map("n", "<c-g>S", gs.stage_buffer, { silent = true, desc = "stage buffer" })
 map("n", "<c-g>R", gs.reset_buffer, { silent = true, desc = "reset buffer" })
 map("n", "<c-g>P", gs.preview_hunk, { silent = true, desc = "preview hunk" })
@@ -532,6 +564,7 @@ map("n", "<leader>T", function()
 end, { silent = true, desc = "trim trailing empty lines" })
 map("n", "<leader>r", "<cmd>Pick resume<cr>", { silent = true, desc = "resume last picker" })
 map("n", "<leader>h", "<cmd>Pick git_hunks<cr>", { silent = true, desc = "git hunks" })
+map("n", "<leader>R", "<cmd>Pick oldfiles<cr>", { silent = true, desc = "recent files" })
 
 -- completion (inspired from mini.completion suggestion)
 local keys = {
@@ -551,6 +584,14 @@ vim.keymap.set("i", "<Tab>", "v:lua._G.tab_action()", { expr = true })
 -- Autocommands
 --
 
+-- set comment string to '//' for c and cpp projects
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "c", "cpp" },
+	callback = function()
+		vim.api.nvim_command("set commentstring=//\\ %s")
+	end,
+})
+
 -- a dumb way to do this, but certain codebases should use tabs with 8 spaces
 -- cilium and kernel programming.
 vim.api.nvim_create_autocmd("FileType", {
@@ -559,9 +600,13 @@ vim.api.nvim_create_autocmd("FileType", {
 		-- if current file's full path contains cilium set tabstop=8 and shiftwidth=8
 		if vim.fn.expand("%:p:h"):match("cilium") then
 			vim.api.nvim_command("setlocal tabstop=8 shiftwidth=8")
+			-- set comment string to /* */ format
+			vim.api.nvim_command("setlocal commentstring=/*\\ %s\\ */")
 		end
 		if vim.fn.expand("%:p:h"):match("linux") then
 			vim.api.nvim_command("setlocal tabstop=8 shiftwidth=8")
+			-- set comment string to /* */ format
+			vim.api.nvim_command("setlocal commentstring=/*\\ %s\\ */")
 		end
 	end,
 })
@@ -604,6 +649,19 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 --
 local opt = vim.opt
 
+-- update diffopt depending on term column count
+function update_diffopt()
+	local columns = vim.api.nvim_get_option("columns")
+	if columns < 120 then
+		opt.diffopt:remove("vertical")
+		opt.diffopt:append("horizontal")
+	else
+		opt.diffopt:remove("horizontal")
+		opt.diffopt:append("vertical")
+	end
+end
+
+update_diffopt()
 opt.relativenumber = false
 vim.opt.signcolumn = "yes"
 opt.expandtab = false
@@ -613,6 +671,9 @@ opt.colorcolumn = "80"
 vim.o.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 vim.o.cmdheight = 0
+vim.o.scrolloff = 5
+vim.o.wrap = false
+vim.o.foldlevel = 99
 
 -- set c fileype for headers, not cpp
 vim.g.c_syntax_for_h = 1
@@ -650,7 +711,6 @@ local function is_prefer_light_theme()
 	end
 end
 
--- if prefered light theme set background to light
 if is_prefer_light_theme() then
 	set_light_theme()
 else

@@ -16,5 +16,26 @@
 [merge]
     conflictstyle = diff3
 
+[difftool]
+    prompt = true
+
 [diff]
-    colorMoved = default
+    tool = nvimdiff
+
+[difftool "nvimdiff"]
+	cmd = "/home/louis/.config/git/difftool_wrapper.sh $LOCAL $REMOTE"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[commit]
+    verbose = true
+
+[rerere]
+	enabled = true
+
+[alias]
+	fix = commit --fixup

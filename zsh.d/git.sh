@@ -23,6 +23,7 @@ alias gam='git commit --amend'
 alias g='git'
 alias gc="git commit"
 alias gl='git log --format=short'
+alias glo='git log --oneline '
 alias gpull='git pull'
 alias ghw='gh repo view --web'
 alias grc='git rebase --continue'
@@ -33,14 +34,18 @@ alias gsw='git switch'
 alias gsh='git show'
 alias gr='git rebase'
 alias gri='git rebase -i'
-alias gst='git stash '
+alias gst='git stash'
+alias gstl='git stash list --pretty="%C(yellow)%gd %>(14)%Cgreen%cr %C(blue)%gs"'
 alias gsp='git stash pop'
 alias gsa='git stash apply'
 alias gbr='git branch --format "%(refname:short) <> %(upstream)"'
 alias gd='git diff'
 alias gdn='git diff --name-only'
+alias gdt='git difftool'
 alias gintro='git log --diff-filter=A -- '
 alias gcp='git cherry-pick'
+alias gas='git rebase -i --autosquash '
+alias gfix='git fix'
 
 gsc() {
     git checkout stash@{$1} -- $2
@@ -53,7 +58,20 @@ gshowat() {
     git show $1:$2
 }
 
-# intersecting diff, performs a diff between head:file and $1:file for all 
+# gedit {branch} {file}
+# creates a temporary worktree checked out to {branch} and opens nvim to 
+# {file}.
+#
+# useful when you need to quickly look at a file's state in another branch or
+# commit.
+gedit() {
+	git worktree add ../tmp --checkout $1 && cd ../tmp
+	nvim $2
+	cd -
+	git worktree remove ../tmp
+}
+
+# intersecting diff, performs a diff between head:file and $1:file for all
 # changed files in $1, where $1 is a git-rev.
 ginterdiff() {
 	from=$1

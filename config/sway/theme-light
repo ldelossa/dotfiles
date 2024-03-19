@@ -1,18 +1,18 @@
 # set tilix to start in light theme
 set $theme "light"
 set $term "XCURSOR_SIZE=32 kitty"
-set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
+set $wallpaper "/home/louis/Dropbox/Wallpapers/calder-moore/calder-moore-factorycomped.jpg"
 
 set $bg bg $wallpaper stretch
-set $bg bg #437890 solid_color
+# set $bg bg #437890 solid_color
 
 set $status_line_color #000000
 set $status_line_background #eaeef298
 set $status_line_ws_focus_bg #6b6098
 set $status_line_ws_focus_fg #ffffff
 
-client.focused      #437790 #437890 #ffffff #ffffff #87afd7
-client.unfocused    #1c1c1c #ffffff #1c1c1c #7c794e #6E6E6E
+client.focused #62a0ea #62a0eae8 #ffffff #f8e45c #62a0ea
+client.unfocused #5e5c64 #f6f5f4e8 #000000 #f8e45c #5e5c64
 
 # toggle themes
 bindsym $mod+p exec ~/.config/sway/theme_switch.sh dark

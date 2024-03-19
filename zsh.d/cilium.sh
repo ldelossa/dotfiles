@@ -20,10 +20,10 @@ alias pwr="docker run --privileged --rm -t --pid=host -v /sys/kernel/debug/:/sys
 # below functions run in a sub-shell to avoid any conflicts of changes in the
 # parent shell issuing these functions.
 
-# build and push the cilium dev agent image to a local repository at 
+# build and push the cilium dev agent image to a local repository at
 # localhost:5000
 cilium-agent-push () {
-    (   
+    (
         set -e
         if [ -z "${1}" ]
         then
@@ -35,7 +35,7 @@ cilium-agent-push () {
         echo "\e[34mUsing $SRC for Cilium's repository"
         echo "\e[34mIf incorrect, set CILIUM_SRC env var to Cilium's source code"
         printf "%0.s\e[34m=" {1..$COLUMNS}
-        cd $SRC 
+        cd $SRC
         DOCKER_FLAGS=--push DOCKER_IMAGE_TAG=${1} DOCKER_DEV_ACCOUNT=localhost:5000/cilium make dev-docker-image
     )
 }
@@ -54,12 +54,12 @@ function cilium-operator-push {
         echo "\e[34mUsing $SRC for Cilium's repository"
         echo "\e[34mIf incorrect, set CILIUM_SRC env var to Cilium's source code"
         printf "%0.s\e[34m=" {1..$COLUMNS}
-        cd $SRC 
+        cd $SRC
         DOCKER_FLAGS=--push DOCKER_IMAGE_TAG=${1} DOCKER_DEV_ACCOUNT=localhost:5000/cilium make docker-operator-generic-image
     )
 }
 
-# cilium helm install will install Cilium to the cluster kubectl points to 
+# cilium helm install will install Cilium to the cluster kubectl points to
 # utilizing any helm templates built from the current checked out Cilium branch.
 cilium-helm-install(){
     (
@@ -111,12 +111,12 @@ cilium-build-kind() {
     make docker-operator-generic-image && make dev-docker-image && kind load --name "$2" docker-image quay.io/cilium/operator-generic:"$1" && kind load --name "$2" docker-image quay.io/cilium/cilium-dev:"$1"
 }
 
-# expect $CDPATH to handle the prefix path to repositories 
+# expect $CDPATH to handle the prefix path to repositories
 cilium-iss-create() {
     cd cilium/cilium && gh issue create && cd -
 }
 
-# expect $CDPATH to handle the prefix path to repositories 
+# expect $CDPATH to handle the prefix path to repositories
 cilium-iss-create-cee() {
     cd cilium/cilium-enterprise && gh issue create && cd -
 }
@@ -134,8 +134,12 @@ cilium-builder() {
 		$(cat images/cilium/Dockerfile | grep "ARG CILIUM_BUILDER_IMAGE=" | cut -d"=" -f2) "/bin/bash"
 }
 
-function cilium-sysdump-k9s() {
+function cilium-sysdump() {
   docker run --rm -ti -v "$(readlink -f ${1}):/sysdump:ro" quay.io/isovalent-dev/sysdump-kas:k9s
+}
+
+function cilium-dlv() {
+  dlv connect $1:2345
 }
 
 # bind mount which makes ctx-> autocompletion work, run from repo root

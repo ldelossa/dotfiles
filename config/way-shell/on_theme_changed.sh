@@ -2,9 +2,6 @@
 
 if [[ $1 == "dark" ]]
 then
-    unlink ~/.gitconfig
-    ln -s ~/.config/git/gitconfig-dark ~/.gitconfig
-
     unlink ~/.config/sway/theme
     ln -s ~/.config/sway/theme-dark ~/.config/sway/theme
 
@@ -49,9 +46,6 @@ fi
 
 if [[ $1 == "light" ]]
 then
-    unlink ~/.gitconfig
-    ln -s ~/.config/git/gitconfig-light ~/.gitconfig
-
     unlink ~/.config/sway/theme
     ln -s ~/.config/sway/theme-light ~/.config/sway/theme
 
