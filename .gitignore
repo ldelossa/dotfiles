@@ -1,5 +1,4 @@
 config/nvim/after/
-
 config/sway/theme
 config/waybar/style.css
 config/wofi/style.css
@@ -15,6 +14,6 @@ config/rofi/config.rasi
 config/mutt
 config/nvim/lazy-lock.json
 config/wob/wob.ini
-
 config/cgdb/logs
 config/k9s/config.yml
+config/dlv/.dbg_history
