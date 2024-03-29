@@ -1,0 +1,13 @@
+open google.com
+set default-zoom=140
+open google.com
+open google.com
+open google.com
+tabnew
+tabopen
+open google.com
+open nesdev
+open nes dev wiki OAM
+open nes dev ppuctrl
+q
+tabopen nes dev ppu dma

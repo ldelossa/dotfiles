@@ -43,6 +43,7 @@ smart_gaps off
 
 set $center_dp 'GIGA-BYTE TECHNOLOGY CO., LTD. M32UC 22110B004728'
 set $right_dp  'LG Electronics LG HDR 4K 0x0000BFEC'
+# single monitor setup 
 set $right_dp_2 'LG Electronics LG HDR 4K 0x0000F5CA'
 
 workspace chat output eDP-1
@@ -59,15 +60,14 @@ workspace web    output $right_dp
 output eDP-1        $bg
 output $center_dp   $bg
 output $right_dp    $bg
+output $right_dp_2  $bg
 
 output eDP-1 pos  0 0 res 2560x1600
 output $center_dp pos 2560 0 res 2560x1440
 output $right_dp  pos 5200 0 res 3840x2160
 output $right_dp scale 1.2
 
-# single monitor setup
-output $right_dp_2 pos 1920 0 res 3840x2160
-output $right_dp_2 scale 1.2
+output $right_dp_2 pos 1920 0 res 2560x1440
 
 exec_always ~/.config/sway/clamshell.sh
 

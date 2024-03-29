@@ -1,0 +1,10 @@
+set smooth-scrolling=true
+set input-autohide=true
+set webinspector=true
+set javascript-can-access-clipboard=true
+set status-bar=false
+set webgl=true
+set default-zoom=140
+
+shortcut-add g=https://www.google.com/search?q=$0
+shortcut-default g

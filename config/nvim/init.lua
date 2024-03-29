@@ -547,6 +547,7 @@ map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot su
 map("i", "<C-S-j>", "<Plug>(copilot-next)", { silent = true, desc = "copilot next suggestion" })
 map("i", "<C-S-k>", "<Plug>(copilot-previous)", { silent = true, desc = "copilot previous suggestion" })
 map("i", "<C-h>", "<Plug>(copilot-accept-word)", { silent = true, desc = "copilot accept next word" })
+map("i", "<C-S-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copilot accept next word" })
 
 -- mini pickers
 map("n", "<leader>s", "<cmd>Pick grep<cr>", { silent = true, desc = "grep" })
