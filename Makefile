@@ -6,13 +6,14 @@ default:
 	@echo make link-configs 			- link ./config dirs to home directory
 	@echo make link-zsh					- link zshrc and zsh.d directories
 	@echo make link-gdb-config			- link .gdbinit to ~/.gdbinit
+	@echo make link-lldb-config			- link .lldbinit to ~/.lldbinit
 	@echo make link-global-gitignore	- link and configure git with global .gitignore file
 	@echo make link-clang-format	    - link global clang-format
 	@echo make linkg-git-config 	    - link global git config
 	@echo resulting config directories: \
 		$(user_configs)
 
-all: link-configs link-zsh link-gdb-config link-global-gitignore link-clang-format link-mail link-docker-config
+all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore link-clang-format link-mail link-docker-config
 
 link-configs: $(user_configs)
 
@@ -29,7 +30,11 @@ link-zsh:
 
 link-gdb-config:
 	-unlink $(HOME)/.gdbinit
-	ln -s $(HOME)/git/dotfiles/config/gdb/.gdbinit $(HOME)/.gdbinit
+	ln -s $(HOME)/git/dotfiles/config/gdb/gdbinit $(HOME)/.gdbinit
+
+link-lldb-config:
+	-unlink $(HOME)/.lldbinit
+	ln -s $(HOME)/git/dotfiles/config/lldb/lldbinit $(HOME)/.lldbinit
 
 link-global-gitignore:
 	-unlink ~/.gitignore
