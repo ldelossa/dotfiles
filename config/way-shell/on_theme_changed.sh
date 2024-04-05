@@ -20,8 +20,9 @@ then
     unlink ~/.config/wofi/style.css
     ln -s ~/.config/wofi/style-dark.css ~/.config/wofi/style.css
 
-    unlink ~/.config/alacritty/alacritty.yml
-    ln -s ~/.config/alacritty/alacritty-dark.yml ~/.config/alacritty/alacritty.yml
+	# alacritty puts a watch on alacritty.toml, so rewrite to this file for theme
+	# change to take effect
+	cat ~/.config/alacritty/alacritty-dark.toml > ~/.config/alacritty/alacritty.toml
 
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-dark.yml ~/.config/k9s/skin.yml
@@ -64,8 +65,9 @@ then
     unlink ~/.config/wofi/style.css
     ln -s ~/.config/wofi/style-light.css ~/.config/wofi/style.css
 
-    unlink ~/.config/alacritty/alacritty.yml
-    ln -s ~/.config/alacritty/alacritty-light.yml ~/.config/alacritty/alacritty.yml
+	# alacritty puts a watch on alacritty.toml, so rewrite to this file for theme
+	# change to take effect
+	cat ~/.config/alacritty/alacritty-light.toml > ~/.config/alacritty/alacritty.toml
 
     unlink ~/.config/k9s/skin.yml
     ln -s ~/.config/k9s/skin-light.yml ~/.config/k9s/skin.yml

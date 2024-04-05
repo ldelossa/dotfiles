@@ -1,0 +1,438 @@
+--
+-- bootstrap mini.nvim
+--
+local path_package = vim.fn.stdpath("data") .. "/site"
+local mini_path = path_package .. "/pack/deps/start/mini.nvim"
+if not vim.loop.fs_stat(mini_path) then
+	vim.cmd('echo "Installing `mini.nvim`" | redraw')
+	local clone_cmd = {
+		"git",
+		"clone",
+		"--filter=blob:none",
+		-- Uncomment next line to use 'stable' branch
+		"--branch",
+		"stable",
+		"https://github.com/echasnovski/mini.nvim",
+		mini_path,
+	}
+	vim.fn.system(clone_cmd)
+	vim.cmd("packadd mini.nvim | helptags ALL")
+end
+
+-- setup mini.deps for package management
+require("mini.deps").setup({ path = { package = path_package } })
+local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+
+-- configure mini.nvim
+now(function()
+	require("mini.notify").setup()
+	vim.notify = require("mini.notify").make_notify()
+end)
+now(function()
+	require("mini.tabline").setup()
+end)
+now(function()
+	require("mini.statusline").setup()
+end)
+later(function()
+	require("mini.ai").setup()
+end)
+later(function()
+	require("mini.comment").setup()
+end)
+later(function()
+	require("mini.clue").setup({
+		-- Clue window settings
+		window = {
+			-- Floating window config
+			config = {
+				width = 40,
+			},
+
+			-- Delay before showing clue window
+			delay = 100,
+
+			-- Keys to scroll inside the clue window
+			scroll_down = "<C-d>",
+			scroll_up = "<C-u>",
+		},
+		triggers = {
+			-- Leader triggers
+			{ mode = "n", keys = "<Leader>" },
+			{ mode = "x", keys = "<Leader>" },
+
+			-- Built-in completion
+			{ mode = "i", keys = "<C-x>" },
+
+			-- `g` key
+			{ mode = "n", keys = "g" },
+			{ mode = "x", keys = "g" },
+
+			-- `a` key
+			{ mode = "n", keys = "a" },
+			{ mode = "x", keys = "a" },
+
+			-- `i` key
+			{ mode = "n", keys = "i" },
+			{ mode = "x", keys = "i" },
+
+			-- buffers key
+			{ mode = "n", keys = "<C-b>" },
+
+			-- tabs key
+			{ mode = "n", keys = "<C-t>" },
+
+			-- Marks
+			{ mode = "n", keys = "`" },
+			{ mode = "x", keys = "`" },
+
+			-- Registers
+			{ mode = "n", keys = '"' },
+			{ mode = "x", keys = '"' },
+			{ mode = "i", keys = "<C-r>" },
+			{ mode = "c", keys = "<C-r>" },
+
+			-- Window commands
+			{ mode = "n", keys = "<C-w>" },
+
+			-- `z` key
+			{ mode = "n", keys = "z" },
+			{ mode = "x", keys = "z" },
+
+			-- LSP namespace
+			{ mode = "n", keys = "<C-l>" },
+
+			-- Git namespace
+			{ mode = "n", keys = "<C-g>" },
+			{ mode = "i", keys = "<C-g>" },
+			{ mode = "v", keys = "<C-g>" },
+			{ mode = "o", keys = "<C-g>" },
+
+			-- Movements
+			{ mode = "n", keys = "[" },
+			{ mode = "n", keys = "]" },
+
+			-- Surrounds
+			{ mode = "n", keys = "s" },
+		},
+
+		clues = {
+			-- Enhance this by adding descriptions for <Leader> mapping groups
+			require("mini.clue").gen_clues.builtin_completion(),
+			require("mini.clue").gen_clues.g(),
+			require("mini.clue").gen_clues.marks(),
+			require("mini.clue").gen_clues.registers(),
+			require("mini.clue").gen_clues.windows(),
+			require("mini.clue").gen_clues.z(),
+		},
+	})
+end)
+later(function()
+	require("mini.pick").setup()
+end)
+later(function()
+	require("mini.bufremove").setup()
+end)
+later(function()
+	require("mini.pairs").setup()
+end)
+later(function()
+	require("mini.surround").setup()
+end)
+later(function()
+	require("mini.basics").setup()
+end)
+later(function()
+	require("mini.align").setup()
+end)
+later(function()
+	require("mini.comment").setup()
+end)
+later(function()
+	require("mini.completion").setup({
+		-- high delay basically means 'no auto popups'
+		delay = { completion = 10 ^ 7, info = 10 ^ 7, signature = 10 ^ 7 },
+		-- Way of how module does LSP completion
+		lsp_completion = {
+			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
+			source_func = "completefunc",
+		},
+	})
+end)
+later(function()
+	require("mini.extra").setup()
+end)
+later(function()
+	require("mini.fuzzy").setup()
+end)
+later(function()
+	require("mini.trailspace").setup()
+end)
+later(function()
+	require("mini.files").setup()
+end)
+later(function()
+	require("mini.indentscope").setup()
+end)
+
+-- rmagatti/auto-session
+now(function()
+	add({
+		source = "rmagatti/auto-session",
+	})
+	require("auto-session").setup({
+		auto_restore_enabled = false,
+		auto_save_enabled = true,
+		auto_session_use_git_branch = true,
+	})
+end)
+
+function pretty_session_name()
+	local auto_session = require("auto-session")
+	session = auto_session.format_file_name(auto_session.get_latest_session())
+	session = session:gsub("\\/", "/")
+	session = vim.fs.basename(session)
+	local repo, branch = session:match("([^_]+)_([^_]+)")
+	if repo == nil then
+		return "session"
+	end
+	if branch == nil then
+		return repo .. " session"
+	end
+	return repo .. " session (branch: " .. branch .. ")"
+end
+
+now(function()
+	local starter = require("mini.starter")
+	starter.setup({
+		autoopen = true,
+		evaluate_single = true,
+		items = {
+			starter.sections.builtin_actions(),
+			starter.sections.pick(),
+			starter.sections.recent_files(20, true),
+			{ section = "Sessions", name = "restore " .. pretty_session_name(), action = [[SessionRestore]] },
+			{ section = "Sessions", name = "delete " .. pretty_session_name(), action = [[SessionDelete]] },
+		},
+		content_hooks = {
+			starter.gen_hook.adding_bullet(),
+			starter.gen_hook.indexing("all", { "Builtin actions" }),
+			starter.gen_hook.padding(3, 2),
+		},
+	})
+end)
+
+--
+-- Additional plugins
+--
+
+-- github theme
+now(function()
+	add("projekt0n/github-nvim-theme")
+	require("github-theme").setup()
+end)
+
+-- everforest theme
+now(function()
+	add("sainnhe/everforest")
+	vim.cmd("colorscheme everforest")
+end)
+
+-- nightfox theme
+now(function()
+	add("EdenEast/nightfox.nvim")
+	require("nightfox").setup()
+end)
+
+-- ayu theme
+now(function()
+	add("Shatur/neovim-ayu")
+end)
+
+-- web-devicons
+now(function()
+	add("nvim-tree/nvim-web-devicons")
+	require("nvim-web-devicons").setup()
+end)
+
+-- lspconfig
+now(function()
+	add({ source = "neovim/nvim-lspconfig", depends = { "williamboman/mason.nvim" } })
+end)
+
+-- nvim-treesitter
+now(function()
+	add({
+		source = "nvim-treesitter/nvim-treesitter",
+		checkout = "master",
+		monitor = "main",
+		hooks = {
+			post_checkout = function()
+				vim.cmd("TSUpdate")
+			end,
+		},
+	})
+	require("nvim-treesitter.configs").setup({
+		highlight = { enable = true },
+		textobjects = {
+			select = {
+				enable = true,
+				-- Automatically jump forward to textobj, similar to targets.vim
+				lookahead = true,
+				keymaps = {
+					-- You can use the capture groups defined in textobjects.scm
+					["af"] = "@function.outer",
+					["if"] = "@function.inner",
+					["as"] = "@class.outer",
+					["is"] = "@class.inner",
+					["ac"] = "@call.outer",
+					["ic"] = "@call.inner",
+					["aa"] = "@parameter.outer",
+					["ia"] = "@parameter.inner",
+					["al"] = "@loop.outer",
+					["il"] = "@loop.inner",
+					["ai"] = "@conditional.outer",
+					["ii"] = "@conditional.inner",
+					["a/"] = "@comment.outer",
+				},
+			},
+			move = {
+				enable = true,
+				set_jumps = true, -- whether to set jumps in the jumplist
+				goto_next_start = {
+					["]f"] = "@function.outer",
+					["]s"] = "@class.outer",
+					["]A"] = "@parameter.outer",
+					["]c"] = "@call.outer",
+					["]b"] = "@block.outer",
+					["]i"] = "@conditional.outer",
+					["]l"] = "@loop.outer",
+				},
+				goto_next_end = {
+					["]F"] = "@function.outer",
+					["]S"] = "@class.outer",
+					["]a"] = "@parameter.outer",
+					["]B"] = "@block.outer",
+					["]C"] = "@call.outer",
+					["]I"] = "@conditional.outer",
+					["]L"] = "@loop.outer",
+				},
+				goto_previous_start = {
+					["[f"] = "@function.outer",
+					["[s"] = "@class.outer",
+					["[A"] = "@parameter.outer",
+					["[c"] = "@call.outer",
+					["[b"] = "@block.outer",
+					["[i"] = "@conditional.outer",
+					["[l"] = "@loop.outer",
+				},
+				goto_previous_end = {
+					["[F"] = "@function.outer",
+					["[S"] = "@class.outer",
+					["[a"] = "@parameter.outer",
+					["[C"] = "@call.outer",
+					["[B"] = "@block.outer",
+					["[I"] = "@conditional.outer",
+					["[L"] = "@loop.outer",
+				},
+			},
+		},
+	})
+end)
+
+-- nvim-treesitter objects
+now(function()
+	add({
+		source = "nvim-treesitter/nvim-treesitter-textobjects",
+		checkout = "master",
+		monitor = "main",
+	})
+end)
+
+-- gitsigns
+now(function()
+	add({
+		source = "lewis6991/gitsigns.nvim",
+	})
+	require("gitsigns").setup()
+end)
+
+-- copilot.vim
+later(function()
+	add({
+		source = "github/copilot.vim",
+	})
+	-- start with it always disabled and trigger completion
+	vim.cmd("Copilot disable")
+end)
+
+-- yaml folds
+now(function()
+	add({
+		source = "pedrohdz/vim-yaml-folds",
+	})
+end)
+
+-- nvim-ide
+now(function()
+	add({
+		source = "ldelossa/nvim-ide",
+	})
+
+	require("ide").setup({
+		-- The global icon set to use.
+		-- values: "nerd", "codicon", "default"
+		icon_set = "codicon",
+		-- Set the log level for nvim-ide's log. Log can be accessed with
+		-- 'Workspace OpenLog'. Values are 'debug', 'warn', 'info', 'error'
+		log_level = "error",
+		-- Component specific configurations and default config overrides.
+		components = {
+			-- The global keymap is applied to all Components before construction.
+			-- It allows common keymaps such as "hide" to be overridden, without having
+			-- to make an override entry for all Components.
+			--
+			-- If a more specific keymap override is defined for a specific Component
+			-- this takes precedence.
+			global_keymaps = {
+				-- example, change all Component's hide keymap to "h"
+				hide = h,
+			},
+			-- example, prefer "x" for hide only for Explorer component.
+			-- Explorer = {
+			--     keymaps = {
+			--         hide = "x",
+			--     }
+			-- }
+		},
+		-- default panel groups to display on left and right.
+		panels = {
+			left = "explorer",
+			right = "git",
+		},
+		-- panels defined by groups of components, user is free to redefine the defaults
+		-- and/or add additional.
+		panel_groups = {
+			explorer = {
+				require("ide.components.outline").Name,
+				require("ide.components.callhierarchy").Name,
+			},
+			git = {
+				require("ide.components.changes").Name,
+				require("ide.components.commits").Name,
+				require("ide.components.timeline").Name,
+			},
+		},
+		-- workspaces config
+		workspaces = {
+			-- which panels to open by default, one of: 'left', 'right', 'both', 'none'
+			auto_open = "none",
+		},
+		-- default panel sizes for the different positions
+		panel_sizes = {
+			left = 30,
+			right = 30,
+			bottom = 15,
+		},
+	})
+end)

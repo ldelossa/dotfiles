@@ -42,3 +42,4 @@ bindkey '^N' down-line-or-history
 bindkey '^F' forward-char
 bindkey '^B' backward-char
 
+alias which-func='typeset -f'

@@ -1,0 +1,37 @@
+[shell]
+program = "/bin/zsh"
+
+[window]
+padding = {x = 10, y = 10}
+
+[font]
+normal = { family = "Fira Code Nerd Font Mono", style = "Regular"}
+size = 12
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+[colors.primary]
+background = "0xf0f0f0"
+foreground = "0x262626"
+
+[colors.bright]
+black = "0x484848"
+blue = "0x437790"
+cyan = "0x24a0a0"
+green = "0x497964"
+magenta = "0x988ACF"
+red = "0xAF5F5F"
+white = "0x555555"
+yellow = "0xc6823e"
+
+[colors.normal]
+black = "0x262626"
+blue = "0x437790"
+cyan = "0x268889"
+green = "0x497964"
+magenta = "0x806CCF"
+red = "0xAF5F5F"
+white = "0x262626"
+yellow = "0x756643"
+

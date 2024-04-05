@@ -42,11 +42,11 @@ alias gh-iss="gh issue view"
 # If multiple, all arguments are forwarded as is
 # If none, default list
 function gh-iss-list() {
-    if [ $# -eq 1 ]; then 
+    if [ $# -eq 1 ]; then
         gh issue list --label "$1"
         return
     fi
-    if [ $# -gt 1 ]; then 
+    if [ $# -gt 1 ]; then
         gh issue list "$@"
         return
     fi
@@ -54,3 +54,18 @@ function gh-iss-list() {
 }
 
 alias gh-review='gh pr list -S "review-requested:@me"'
+
+# returns the PR a particular commit was introduced in.
+# $1 = {org/repo} $2 = {commit}
+function gh-pr-commit() {
+	number=$(gh api repos/${1}/commits/${2}/pulls | jq .[].number)
+	[[ -z $number ]] && echo "No PR exists for commit" && return
+	gh --repo ${1} pr view $number
+}
+
+function gh-code-review() {
+	gh --repo ${1} pr checkout ${2} || return
+	base_commit=$(gh pr list --repo cilium/cilium --search ${2} --json commits | jq -r .[].commits[0].oid)
+	git tag --delete PR_BASE_COMMIT 2> /dev/null
+	git tag "PR_BASE_COMMIT" $base_commit
+}
