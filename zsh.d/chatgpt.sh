@@ -5,9 +5,9 @@ fi
 function gpt4() {
     theme=$(cat ~/.config/kitty/current-theme.conf | head -n 1 | tr -d ' ' | tr -d '#')
     if [[ $theme == 'light' ]]; then
-        chatblade -c 'gpt-4-1106-preview' --theme 'paraiso-light' "$@"
+        chatblade -c 'gpt-4-turbo' --theme 'paraiso-light' "$@"
     else
-        chatblade -c 'gpt-4-0125-preview' "$@"
+        chatblade -c 'gpt-4-turbo' "$@"
     fi
 }
 

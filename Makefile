@@ -9,11 +9,12 @@ default:
 	@echo make link-lldb-config			- link .lldbinit to ~/.lldbinit
 	@echo make link-global-gitignore	- link and configure git with global .gitignore file
 	@echo make link-clang-format	    - link global clang-format
-	@echo make linkg-git-config 	    - link global git config
+	@echo make link-git-config 	    	- link global git config
+	@echo make link-electron-flags		- link electron-flags.conf and code-flag.conf
 	@echo resulting config directories: \
 		$(user_configs)
 
-all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore link-clang-format link-mail link-docker-config
+all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore link-clang-format link-mail link-docker-config link-electron-flags
 
 link-configs: $(user_configs)
 
@@ -60,3 +61,9 @@ link-mail:
 link-git-config:
 	-unlink ~/.gitconfig
 	ln -s $(HOME)/git/dotfiles/config/git/gitconfig $(HOME)/.gitconfig
+
+link-electron-flags:
+	-unlink ~/.config/electron-flags.conf
+	ln -s $(HOME)/git/dotfiles/config/electron-flags.conf $(HOME)/.config/electron-flags.conf
+	-unlink ~/.config/code-flags.conf
+	ln -s $(HOME)/git/dotfiles/config/code-flags.conf $(HOME)/.config/code-flags.conf

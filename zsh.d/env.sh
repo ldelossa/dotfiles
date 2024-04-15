@@ -1,4 +1,4 @@
-# environment vars 
+# environment vars
 export SHELL="/bin/zsh"
 export GOPATH=~/git/gopath
 export GOBIN=~/git/gopath/bin
@@ -36,8 +36,4 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export MANPAGER='nvim +Man!'
 
 # Set CDPATH
-cdpath=(~/ ~/vmmnt/ ~/.config/nvim/after ~/git ~/git/go ~/git/gopath/src ~/git/gopath/src/github.com ~/git/gopath/src/github.com/ldelossa ~/.local/share/nvim/lazy/)
-
-# resets terminal mode, sometimes buggy applications leave terminals in RAW mode
-# where ctrl-c is broke along with other signals, this will reset it.
-alias reset='echo ^V^O'
+export CDPATH=~/:~/vmmnt/:~/.config/nvim/after:~/git:~/git/go:~/git/gopath/src:~/git/gopath/src/github.com:~/git/gopath/src/github.com/ldelossa:~/.local/share/nvim/site/pack/deps/opt

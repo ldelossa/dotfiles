@@ -1,8 +1,6 @@
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-set $cdpaths '~/:~/vmmnt/:~/.config/nvim/after:~/git:~/git/go:~/git/gopath/src:~/git/gopath/src/github.com:~/git/gopath/src/github.com/ldelossa:~/.local/share/nvim/lazy/'
-
 font Cousine 11
 
 ### Variables
@@ -21,9 +19,11 @@ include ~/.config/sway/theme
 
 # way-shell configuration
 bindsym XF86AudioRaiseVolume exec way-sh volume up
+bindsym XF86AudioMute exec way-sh volume mute
 bindsym XF86AudioLowerVolume exec way-sh volume down
 bindsym XF86MonBrightnessDown exec way-sh brightness down
 bindsym XF86MonBrightnessUp exec way-sh brightness up
+bindcode --release 133 exec way-sh activities toggle
 
 # Appearance
 gaps top    0
@@ -31,8 +31,8 @@ gaps bottom 0
 gaps left 0
 gaps right 0
 gaps inner 5
-default_border pixel 3
-default_floating_border pixel 3
+default_border normal 3
+default_floating_border normal 3
 for_window [class=".*"]     opacity 1
 for_window [app_id=".*"]    opacity 1
 smart_gaps off
@@ -195,7 +195,7 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
 
     # Start a terminal
     # bindsym $mod+Return exec $term
-    bindsym $mod+Return exec 'CDPATH=$cdpaths TERM=$term ~/.config/sway/shell_open.sh'
+    bindsym $mod+Return exec 'TERM=$term bash -c "source ~/zsh.d/env.sh; ~/.config/sway/shell_open.sh"'
 
     # Start a floating term
     bindsym Alt+Return exec 'kitty -o remember_window_size=no -o initial_window_height=800 -o initial_window_width=1200 --title "floating-term"'
@@ -259,7 +259,7 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
     bindsym $mod+r exec '~/git/sway/sway-rofi-scripts/sway-rename.sh'
     # Create and focus new workspace, if we provide cdpath opening workspaces
     # by their abbreviated paths will open a kitty terminal directly to it.
-    bindsym $mod+n exec 'CDPATH=$cdpaths ~/git/sway/sway-rofi-scripts/sway-new-workspace.sh'
+    bindsym $mod+n exec 'bash -c "source ~/zsh.d/env.sh; ~/git/sway/sway-rofi-scripts/sway-new-workspace.sh"'
     # Set mark on window
     bindsym $mod+Shift+m exec '~/git/sway/sway-rofi-scripts/sway-mark.sh'
 
@@ -316,8 +316,6 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
 #
 # Scratchpad:
 #

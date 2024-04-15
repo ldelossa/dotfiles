@@ -1,5 +1,15 @@
 #vx->vx_vnivx->vx_vno zmodload zsh/zprof
 
+if [[ -f ~/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]]
+then
+	ZVM_INIT_MODE=sourcing
+ 	source ~/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+fi
+
+if [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+	source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 # shell environment configurations
 source ~/zsh.d/env.sh
 # zsh specific configurations

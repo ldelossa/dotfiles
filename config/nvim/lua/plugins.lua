@@ -187,19 +187,52 @@ now(function()
 	})
 end)
 
-function pretty_session_name()
-	local auto_session = require("auto-session")
-	session = auto_session.format_file_name(auto_session.get_latest_session())
-	session = session:gsub("\\/", "/")
-	session = vim.fs.basename(session)
-	local repo, branch = session:match("([^_]+)_([^_]+)")
-	if repo == nil then
-		return "session"
+local git_status_items = function()
+	local edit_file = function(modifier, file)
+		vim.cmd("e " .. file)
 	end
-	if branch == nil then
-		return repo .. " session"
+
+	local status = vim.fn.systemlist("git status -s")
+
+	items = {}
+	limit = 15
+	for _, line in ipairs(status) do
+		if limit == 0 then
+			break
+		end
+
+		local modifier = ""
+		local file = ""
+		local parts = vim.split(line, " ")
+
+		if #parts == 2 then
+			modifier = parts[1]
+			file = parts[2]
+		elseif #parts == 3 then
+			modifier = parts[2]
+			file = parts[3]
+		end
+
+		-- no need to display deleted file for opening.
+		if modifier == "D" then
+			goto continue
+		end
+
+		table.insert(items, {
+			{
+				section = "Git Status (limit 15)",
+				name = line,
+				action = function()
+					edit_file(modifier, file)
+				end,
+			},
+		})
+
+		limit = limit - 1
+		::continue::
 	end
-	return repo .. " session (branch: " .. branch .. ")"
+
+	return items
 end
 
 now(function()
@@ -209,10 +242,18 @@ now(function()
 		evaluate_single = true,
 		items = {
 			starter.sections.builtin_actions(),
-			starter.sections.pick(),
 			starter.sections.recent_files(20, true),
-			{ section = "Sessions", name = "restore " .. pretty_session_name(), action = [[SessionRestore]] },
-			{ section = "Sessions", name = "delete " .. pretty_session_name(), action = [[SessionDelete]] },
+			git_status_items(),
+			function()
+				if require("auto-session").session_exists_for_cwd() then
+					return { section = "Sessions", name = "restore last session", action = [[SessionRestore]] }
+				end
+			end,
+			function()
+				if require("auto-session").session_exists_for_cwd() then
+					return { section = "Sessions", name = "delete last session", action = [[SessionDelete]] }
+				end
+			end,
 		},
 		content_hooks = {
 			starter.gen_hook.adding_bullet(),
@@ -370,6 +411,13 @@ end)
 now(function()
 	add({
 		source = "pedrohdz/vim-yaml-folds",
+	})
+end)
+
+-- ruanyl/vim-gh-line
+now(function()
+	add({
+		source = "ruanyl/vim-gh-line",
 	})
 end)
 

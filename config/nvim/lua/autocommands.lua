@@ -58,3 +58,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
+-- do not let auto-session create a session if the current buffer is
+-- mini.starter and VIM is exiting.
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	callback = function()
+		if vim.bo.filetype ~= "starter" then
+			return
+		end
+		vim.api.nvim_clear_autocmds({
+			group = "auto_session_group",
+			event = {"VimLeave"}
+		})
+	end
+})

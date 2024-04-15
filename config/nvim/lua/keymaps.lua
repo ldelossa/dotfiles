@@ -20,10 +20,16 @@ map("i", "<C-b>", "<Esc>A {<Esc>", opts)
 local close_other_buffers = function()
 	cur_buf = vim.api.nvim_get_current_buf()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    -- make sure buffer is a regular file type
+    if vim.api.nvim_buf_get_option(buf, "buftype") ~= "" then
+      goto continue
+    end
+
 		if buf ~= cur_buf then
 			-- use this so mini's bufferline gets the hint
 			require("mini.bufremove").delete(buf, true)
 		end
+    ::continue::
 	end
 end
 
@@ -142,6 +148,8 @@ map("n", "<c-g>d", gs.diffthis, { silent = true, desc = "diff this" })
 map("n", "<c-g>D", function()
 	gs.diffthis("~")
 end, { silent = true, desc = "diff this ~" })
+map("n", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
+map("v", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
 
 -- copilot
 map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
@@ -167,6 +175,26 @@ end, { silent = true, desc = "trim trailing empty lines" })
 map("n", "<leader>r", "<cmd>Pick resume<cr>", { silent = true, desc = "resume last picker" })
 map("n", "<leader>h", "<cmd>Pick git_hunks<cr>", { silent = true, desc = "git hunks" })
 map("n", "<leader>R", "<cmd>Pick oldfiles<cr>", { silent = true, desc = "recent files" })
+
+-- special handling for filepath completion.
+-- cd to buffer's dir so filepath completion shows files relative to buffer's
+-- directory.
+-- then switch back after extremely short delay
+local filepath_completion = function()
+	local cwd = vim.fn.getcwd()
+
+	local buffer_dir = vim.fn.expand("%:p:h")
+	vim.cmd("cd " .. buffer_dir)
+
+	-- trigger filepath completion
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-X><C-F>", true, false, true), "n", false)
+
+	-- change dir back after short delay
+	vim.defer_fn(function()
+		vim.cmd("cd " .. cwd)
+	end, 1)
+end
+map("i", "<C-X><C-F>", filepath_completion, { silent = true, desc = "filepath completion" })
 
 -- completion (inspired from mini.completion suggestion)
 local keys = {

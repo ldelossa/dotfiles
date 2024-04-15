@@ -27,6 +27,7 @@ vim.o.scrolloff = 5
 vim.o.wrap = false
 vim.o.foldlevel = 99
 vim.o.updatetime = 300
+vim.o.expandtab = true
 
 -- set c fileype for headers, not cpp
 vim.g.c_syntax_for_h = 1
