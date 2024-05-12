@@ -69,3 +69,7 @@ function gh-code-review() {
 	git tag --delete PR_BASE_COMMIT 2> /dev/null
 	git tag "PR_BASE_COMMIT" $base_commit
 }
+
+function gh-pr-checkout() {
+    gh pr --repo ${1} checkout ${2}
+}

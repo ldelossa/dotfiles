@@ -12,34 +12,19 @@ fi
 
 # shell environment configurations
 source ~/zsh.d/env.sh
-# zsh specific configurations
 source ~/zsh.d/zsh.sh
-# misc alias
 source ~/zsh.d/alias.sh
-# docker aliases and configs
 source ~/zsh.d/docker.sh
-# fzf aliases and configs
 source ~/zsh.d/fzf.sh
-# gcloud aliases and configs
 source ~/zsh.d/gcloud.sh
-# git aliases and configs and gh.
-# some of gh.sh depends on git.sh so keep this ordering
 source ~/zsh.d/git.sh
 source ~/zsh.d/gh.sh
-# go aliases and configs
 source ~/zsh.d/go.sh
-# kubectl aliases and configs
 source ~/zsh.d/kubectl.sh
-# ssh aliases and configs
 source ~/zsh.d/ssh.sh
-# tilix aliases and configs
 source ~/zsh.d/tilix.sh
-# sway aliases and configs
 source ~/zsh.d/sway.sh
-# systemd aliases and configs
 source ~/zsh.d/systemd.sh
-# aliases and helper functions for working
-# with cilium
 source ~/zsh.d/cilium.sh
 source ~/zsh.d/bat.sh
 source ~/zsh.d/devspaces.sh
@@ -50,6 +35,8 @@ source ~/zsh.d/mail.sh
 source ~/zsh.d/gdb.sh
 source ~/zsh.d/cgdb.sh
 source ~/zsh.d/lldb.sh
+source ~/zsh.d/netdata.sh
+source ~/zsh.d/procs.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh

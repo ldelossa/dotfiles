@@ -13,7 +13,3 @@ set $status_line_ws_focus_fg #ffffff
 
 client.focused #62a0ea #62a0eae8 #ffffff #f8e45c #62a0ea
 client.unfocused #5e5c64 #f6f5f4e8 #000000 #f8e45c #5e5c64
-
-# toggle themes
-bindsym $mod+p exec ~/.config/sway/theme_switch.sh dark
-

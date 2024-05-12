@@ -24,6 +24,10 @@ bindsym XF86AudioLowerVolume exec way-sh volume down
 bindsym XF86MonBrightnessDown exec way-sh brightness down
 bindsym XF86MonBrightnessUp exec way-sh brightness up
 bindcode --release 133 exec way-sh activities toggle
+bindsym $mod+Tab exec way-sh app-switcher toggle
+bindsym $mod+o exec way-sh output-switcher toggle
+bindsym $mod+w exec way-sh workspace-switcher toggle
+bindsym $mod+a exec way-sh workspace-app-switcher toggle
 
 # Appearance
 gaps top    0
@@ -31,8 +35,8 @@ gaps bottom 0
 gaps left 0
 gaps right 0
 gaps inner 5
-default_border normal 3
-default_floating_border normal 3
+default_border pixel 3
+default_floating_border pixel 3
 for_window [class=".*"]     opacity 1
 for_window [app_id=".*"]    opacity 1
 smart_gaps off
@@ -44,7 +48,7 @@ smart_gaps off
 set $center_dp 'GIGA-BYTE TECHNOLOGY CO., LTD. M32UC 22110B004728'
 set $right_dp  'LG Electronics LG HDR 4K 0x0000BFEC'
 # single monitor setup 
-set $right_dp_2 'LG Electronics LG HDR 4K 0x0000F5CA'
+set $right_dp_2 'LG Electronics LG HDR 4K 0x0001F4CA'
 
 workspace chat output eDP-1
 workspace stats output eDP-1
@@ -189,16 +193,15 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
 # Basics:
 #
     # launchers and switchers
-    bindsym $mod+d exec     'rofi -display-drun "Open an application" -show drun -show-icons'
-    bindsym $mod+w exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-switcher.sh'
+    bindsym $mod+x exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-switcher.sh'
     bindsym $mod+m exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-mark-switcher.sh'
 
     # Start a terminal
     # bindsym $mod+Return exec $term
     bindsym $mod+Return exec 'TERM=$term bash -c "source ~/zsh.d/env.sh; ~/.config/sway/shell_open.sh"'
 
-    # Start a floating term
-    bindsym Alt+Return exec 'kitty -o remember_window_size=no -o initial_window_height=800 -o initial_window_width=1200 --title "floating-term"'
+    # Start a scratchpad terminal
+    bindsym Alt+Return exec 'kitty -o remember_window_size=no -o initial_window_height=800 -o initial_window_width=1200 --title "scratchpad"'
 
     # Screencap
     bindsym $mod+Shift+r exec ~/.config/waybar/custom/wfrecord-record.sh
@@ -247,29 +250,18 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
     bindsym Alt+Shift+$left  workspace prev
     bindsym Alt+Shift+$right workspace next
 
-    # Move a workspace to focused monitor via fzf
-    bindsym $mod+o exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-workspace-move.sh'
-
     # Move to previous container
     bindsym $mod+Shift+Tab focus prev sibling
 #
 # Workspaces:
 #
-    # Rename workspace
-    bindsym $mod+r exec '~/git/sway/sway-rofi-scripts/sway-rename.sh'
-    # Create and focus new workspace, if we provide cdpath opening workspaces
-    # by their abbreviated paths will open a kitty terminal directly to it.
-    bindsym $mod+n exec 'bash -c "source ~/zsh.d/env.sh; ~/git/sway/sway-rofi-scripts/sway-new-workspace.sh"'
-    # Set mark on window
-    bindsym $mod+Shift+m exec '~/git/sway/sway-rofi-scripts/sway-mark.sh'
-
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
     bindsym $mod+3 workspace number 3
     bindsym $mod+4 workspace number 4
     bindsym $mod+5 workspace number 5
 
-    bindsym $mod+Tab workspace back_and_forth
+    bindsym $mod+p workspace back_and_forth
 
     assign [title="Stats"]              workspace stats
     # assign [app_id="pavucontrol"]       workspace sound
@@ -291,6 +283,8 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
     for_window [class="1Password"]      floating enable
     # anything with floating title floats.
     for_window [title="floating-*"]   floating enable
+    # scratchpad titled terminals always float.
+    for_window [title="scratchpad"]   floating enable
 
 #
 # Layout stuff:

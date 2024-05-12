@@ -15,4 +15,4 @@ function gpt() {
 	gpt4 "$@"
 }
 
-alias gptdoc="cat <<EOF | gpt "
+alias gptdoc="cat <<'EOF' | gpt "

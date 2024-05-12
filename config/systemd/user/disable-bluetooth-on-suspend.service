@@ -1,0 +1,11 @@
+[Unit]
+Before=suspend.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl stop bluetooth.service
+ExecStartPost=/usr/bin/sleep 2
+
+[Install]
+RequiredBy=sleep.target
+
