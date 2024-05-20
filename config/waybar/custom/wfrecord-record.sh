@@ -4,6 +4,6 @@ wf-recorder -c libx264 -x yuv420p -o $(swaymsg -r -t get_outputs  | jq -r '.[] |
 notify-send ' screen cap started'
 sleep .1
 
-# send signal to update monitor 
+# send signal to update monitor
 pkill -RTMIN+8 waybar
 

@@ -60,6 +60,8 @@ workspace terminal output $center_dp
 
 workspace notes  output $right_dp
 workspace web    output $right_dp
+workspace notes  output $right_dp_2
+workspace web    output $right_dp_2
 
 output eDP-1        $bg
 output $center_dp   $bg
@@ -362,6 +364,15 @@ corner_radius 6
 shadows enable
 default_dim_inactive 0.05
 layer_effects "waybar" blur enable; shadows enable;
+layer_effects "way-shell-message-tray-underlay" blur enable; shadows enable;
+layer_effects "way-shell-message-tray" shadows enable; corner_radius 20
+layer_effects "way-shell-quick-settings-underlay" blur enable; shadows enable;
+layer_effects "way-shell-quick-settings" shadows enable; corner_radius 20
+layer_effects "way-shell-switcher" shadows enable; corner_radius 20
+layer_effects "way-shell-quick-switcher" shadows enable; corner_radius 20
+layer_effects "way-shell-dialog" blur enable; shadows enable;
+layer_effects "way-shell-osd" shadows enable; corner_radius 30
+layer_effects "way-shell-notifications-osd" shadows enable; corner_radius 10
 scratchpad_minimize disable
 
 include /etc/sway/config.d/*

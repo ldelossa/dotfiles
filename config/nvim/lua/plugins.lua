@@ -38,9 +38,6 @@ later(function()
 	require("mini.ai").setup()
 end)
 later(function()
-	require("mini.comment").setup()
-end)
-later(function()
 	require("mini.clue").setup({
 		-- Clue window settings
 		window = {
@@ -171,9 +168,6 @@ later(function()
 end)
 later(function()
 	require("mini.align").setup()
-end)
-later(function()
-	require("mini.comment").setup()
 end)
 later(function()
 	require("mini.completion").setup({
