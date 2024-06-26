@@ -1,9 +1,0 @@
-[Unit]
-Description=Runs way-shell once sway session target is reached
-
-[Service]
-Type=exec
-ExecStart=/usr/local/bin/way-shell
-
-[Install]
-WantedBy=sway-session.target

@@ -27,6 +27,7 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH="$PATH":"/usr/local/flutter/.pub-cache/bin"
 export FZF_DEFAULT_OPTS='--color=bw --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export CHROME_EXECUTABLE=chromium-browser
+export XDG_CONFIG_DIR=~/.config
 
 # hack to make java apps work in sway
 # see: https://github.com/swaywm/sway/issues/595

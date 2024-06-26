@@ -132,33 +132,33 @@ later(function()
 end)
 later(function()
 	require("mini.pairs").setup(
-    {
-        -- In which modes mappings from this `config` should be created
-        modes = { insert = true, command = false, terminal = false },
+		{
+			-- In which modes mappings from this `config` should be created
+			modes = { insert = true, command = false, terminal = false },
 
-        -- Global mappings. Each right hand side should be a pair information, a
-        -- table with at least these fields (see more in |MiniPairs.map|):
-        -- - <action> - one of "open", "close", "closeopen".
-        -- - <pair> - two character string for pair to be used.
-        -- By default pair is not inserted after `\`, quotes are not recognized by
-        -- `<CR>`, `'` does not insert pair after a letter.
-        -- Only parts of tables can be tweaked (others will use these defaults).
-        -- Supply `false` instead of table to not map particular key.
-        mappings = {
-          ['('] = false,
-          ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
-          ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
+			-- Global mappings. Each right hand side should be a pair information, a
+			-- table with at least these fields (see more in |MiniPairs.map|):
+			-- - <action> - one of "open", "close", "closeopen".
+			-- - <pair> - two character string for pair to be used.
+			-- By default pair is not inserted after `\`, quotes are not recognized by
+			-- `<CR>`, `'` does not insert pair after a letter.
+			-- Only parts of tables can be tweaked (others will use these defaults).
+			-- Supply `false` instead of table to not map particular key.
+			mappings = {
+				['('] = false,
+				['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
+				['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
 
-          [')'] = false,
-          [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
-          ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
+				[')'] = false,
+				[']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
+				['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
 
-          ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
-          ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
-          ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
-        },
-      }
-  )
+				['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
+				["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
+				['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
+			},
+		}
+	)
 end)
 later(function()
 	require("mini.surround").setup()
@@ -168,17 +168,6 @@ later(function()
 end)
 later(function()
 	require("mini.align").setup()
-end)
-later(function()
-	require("mini.completion").setup({
-		-- high delay basically means 'no auto popups'
-		delay = { completion = 10 ^ 7, info = 10 ^ 7, signature = 10 ^ 7 },
-		-- Way of how module does LSP completion
-		lsp_completion = {
-			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
-			source_func = "completefunc",
-		},
-	})
 end)
 later(function()
 	require("mini.extra").setup()
@@ -263,8 +252,6 @@ now(function()
 		evaluate_single = true,
 		items = {
 			starter.sections.builtin_actions(),
-			starter.sections.recent_files(20, true),
-			git_status_items(),
 			function()
 				if require("auto-session").session_exists_for_cwd() then
 					return { section = "Sessions", name = "restore last session", action = [[SessionRestore]] }
@@ -275,6 +262,8 @@ now(function()
 					return { section = "Sessions", name = "delete last session", action = [[SessionDelete]] }
 				end
 			end,
+			starter.sections.recent_files(20, true),
+			git_status_items(),
 		},
 		content_hooks = {
 			starter.gen_hook.adding_bullet(),
@@ -365,7 +354,7 @@ now(function()
 					["]f"] = "@function.outer",
 					["]s"] = "@class.outer",
 					["]A"] = "@parameter.outer",
-					["]c"] = "@call.outer",
+					["]s"] = "@call.outer",
 					["]b"] = "@block.outer",
 					["]i"] = "@conditional.outer",
 					["]l"] = "@loop.outer",
@@ -375,7 +364,7 @@ now(function()
 					["]S"] = "@class.outer",
 					["]a"] = "@parameter.outer",
 					["]B"] = "@block.outer",
-					["]C"] = "@call.outer",
+					["]S"] = "@call.outer",
 					["]I"] = "@conditional.outer",
 					["]L"] = "@loop.outer",
 				},
@@ -383,7 +372,7 @@ now(function()
 					["[f"] = "@function.outer",
 					["[s"] = "@class.outer",
 					["[A"] = "@parameter.outer",
-					["[c"] = "@call.outer",
+					["[s"] = "@call.outer",
 					["[b"] = "@block.outer",
 					["[i"] = "@conditional.outer",
 					["[l"] = "@loop.outer",
@@ -392,7 +381,7 @@ now(function()
 					["[F"] = "@function.outer",
 					["[S"] = "@class.outer",
 					["[a"] = "@parameter.outer",
-					["[C"] = "@call.outer",
+					["[S"] = "@call.outer",
 					["[B"] = "@block.outer",
 					["[I"] = "@conditional.outer",
 					["[L"] = "@loop.outer",
@@ -502,6 +491,18 @@ now(function()
 			left = 30,
 			right = 30,
 			bottom = 15,
+		},
+	})
+end)
+
+later(function()
+	require("mini.completion").setup({
+		-- high delay basically means 'no auto popups'
+		delay = { completion = 10 ^ 7, info = 10 ^ 7, signature = 10 ^ 7 },
+		-- Way of how module does LSP completion
+		lsp_completion = {
+			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
+			source_func = "completefunc",
 		},
 	})
 end)

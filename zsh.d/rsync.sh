@@ -1,16 +1,3 @@
-        # {
-        #     "label": "Rsync Local To Remote",
-        #     "type": "shell",
-        #     "command": "rsync -e ssh --delete -azv $(pwd)/ ${input:sshHost}:$(pwd)",
-        #     "problemMatcher": []
-        # },
-        # {
-        #     "label": "Rsync Remote To Local",
-        #     "type": "shell",
-        #     "command": "rsync -e ssh --delete -azv ${input:sshHost}:$(pwd)/ $(pwd)/",
-        #     "problemMatcher": []
-        # },
-
 # rysnc current directy to remote via ssh
 # l2r <user@host>
 function l2r () {

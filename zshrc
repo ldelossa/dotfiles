@@ -10,6 +10,21 @@ if [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
 	source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# Shell-GPT integration ZSH v0.2
+_sgpt_zsh() {
+if [[ -n "$BUFFER" ]]; then
+    _sgpt_prev_cmd=$BUFFER
+    BUFFER+="⌛"
+    zle -I && zle redisplay
+    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd" --no-interaction)
+	echo $BUFFER
+    zle end-of-line
+fi
+}
+zle -N _sgpt_zsh
+bindkey ^h _sgpt_zsh
+# Shell-GPT integration ZSH v0.2
+
 # shell environment configurations
 source ~/zsh.d/env.sh
 source ~/zsh.d/zsh.sh
@@ -18,7 +33,7 @@ source ~/zsh.d/docker.sh
 source ~/zsh.d/fzf.sh
 source ~/zsh.d/gcloud.sh
 source ~/zsh.d/git.sh
-source ~/zsh.d/gh.sh
+source ~/zsh.d/gh.sh # always include after git.sh
 source ~/zsh.d/go.sh
 source ~/zsh.d/kubectl.sh
 source ~/zsh.d/ssh.sh
@@ -37,6 +52,7 @@ source ~/zsh.d/cgdb.sh
 source ~/zsh.d/lldb.sh
 source ~/zsh.d/netdata.sh
 source ~/zsh.d/procs.sh
+source ~/zsh.d/k9s.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh
@@ -52,3 +68,4 @@ if [ -f '/home/louis/google-cloud-sdk/path.zsh.inc' ]; then . '/home/louis/googl
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/louis/googl-cloud-sdk/completion.zsh.inc' ]; then . '/home/louis/google-cloud-sdk/completion.zsh.inc'; fi
+

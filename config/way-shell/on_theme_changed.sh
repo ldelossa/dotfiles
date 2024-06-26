@@ -24,8 +24,8 @@ then
 	# change to take effect
 	cat ~/.config/alacritty/alacritty-dark.toml > ~/.config/alacritty/alacritty.toml
 
-    unlink ~/.config/k9s/skin.yml
-    ln -s ~/.config/k9s/skin-dark.yml ~/.config/k9s/skin.yml
+    unlink ~/.config/k9s/skins/skin.yaml
+    ln -s ~/.config/k9s/skins/skin-dark.yaml ~/.config/k9s/skins/skin.yaml
 
     unlink ~/.config/rofi/config.rasi
     ln -s ~/.config/rofi/config-dark.rasi ~/.config/rofi/config.rasi
@@ -69,8 +69,8 @@ then
 	# change to take effect
 	cat ~/.config/alacritty/alacritty-light.toml > ~/.config/alacritty/alacritty.toml
 
-    unlink ~/.config/k9s/skin.yml
-    ln -s ~/.config/k9s/skin-light.yml ~/.config/k9s/skin.yml
+    unlink ~/.config/k9s/skins/skin.yaml
+    ln -s ~/.config/k9s/skins/skin-light.yaml ~/.config/k9s/skins/skin.yaml
 
     unlink ~/.config/rofi/config.rasi
     ln -s ~/.config/rofi/config-light.rasi ~/.config/rofi/config.rasi

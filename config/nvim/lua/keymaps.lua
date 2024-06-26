@@ -6,10 +6,10 @@ vim.g.mapleader = " "
 map("n", "<leader>w", "<cmd>w<cr>", { silent = true, desc = "write" })
 
 -- Arrow keys to adjust window size
-map("n", "<Right>", "<cmd>vertical resize +2<cr>", opts)
-map("n", "<Left>", "<cmd>vertical resize -2<cr>", opts)
-map("n", "<Down>", "<cmd>resize +2<cr>", opts)
-map("n", "<Up>", "<cmd>resize -2<cr>", opts)
+map("n", "<S-Right>", "<cmd>vertical resize +5<cr>", opts)
+map("n", "<S-Left>", "<cmd>vertical resize -5<cr>", opts)
+map("n", "<S-Down>", "<cmd>resize +5<cr>", opts)
+map("n", "<S-Up>", "<cmd>resize -5<cr>", opts)
 
 -- append common characters characters
 map("i", "<C-;>", "<Esc>A;<Esc>", opts)
@@ -18,18 +18,18 @@ map("i", "<C-b>", "<Esc>A {<Esc>", opts)
 
 -- buffer maps
 local close_other_buffers = function()
-	cur_buf = vim.api.nvim_get_current_buf()
+	local cur_buf = vim.api.nvim_get_current_buf()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    -- make sure buffer is a regular file type
-    if vim.api.nvim_buf_get_option(buf, "buftype") ~= "" then
-      goto continue
-    end
+		-- make sure buffer is a regular file type
+		if vim.api.nvim_buf_get_option(buf, "buftype") ~= "" then
+			goto continue
+		end
 
 		if buf ~= cur_buf then
 			-- use this so mini's bufferline gets the hint
 			require("mini.bufremove").delete(buf, true)
 		end
-    ::continue::
+		::continue::
 	end
 end
 
@@ -83,6 +83,7 @@ local workspace_symbol_query = function()
 end
 
 -- LSP
+map("i", "<C-Space>", "<cmd>lua vim.lsp.completion.trigger()<cr>", { silent = true, desc = "trigger lsp completion" })
 map("n", "<C-l>s", "<cmd>Pick lsp scope='document_symbol'<cr>", { silent = true, desc = "document symbols" })
 map("n", "<C-l>w", workspace_symbol_query, { silent = true, desc = "workspace symbols" })
 map("n", "<C-l>hi", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", { silent = true, desc = "incoming calls" })
@@ -204,6 +205,8 @@ local keys = {
 _G.tab_action = function()
 	if vim.fn.pumvisible() ~= 0 then
 		return keys["ctrl-y"]
+	elseif vim.snippet.active({ direction = 1 }) then
+		return '<cmd>lua vim.snippet.jump(1)<cr>'
 	else
 		return keys["tab"]
 	end

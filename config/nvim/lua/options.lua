@@ -2,7 +2,7 @@ local opt = vim.opt
 
 -- update diffopt depending on term column count
 -- this makes vim diff vertical if the terminal is narrow
-function update_diffopt()
+local function update_diffopt()
 	local columns = vim.api.nvim_get_option("columns")
 	if columns < 120 then
 		opt.diffopt:remove("vertical")
@@ -27,7 +27,7 @@ vim.o.scrolloff = 5
 vim.o.wrap = false
 vim.o.foldlevel = 99
 vim.o.updatetime = 300
-vim.o.expandtab = true
+vim.o.list = true
 
 -- set c fileype for headers, not cpp
 vim.g.c_syntax_for_h = 1
@@ -43,9 +43,11 @@ vim.cmd('command! CopyRelLine let @+ = expand("%"). ":" . line(".")')
 function set_dark_theme()
 	vim.cmd("set background=dark")
 end
+
 function set_light_theme()
 	vim.cmd("set background=light")
 end
+
 local function is_prefer_light_theme()
 	-- Run the dconf command and capture the output
 	local handle = io.popen("dconf read /org/gnome/desktop/interface/color-scheme")

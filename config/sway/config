@@ -19,6 +19,7 @@ include ~/.config/sway/theme
 
 # way-shell configuration
 bindsym XF86AudioRaiseVolume exec way-sh volume up
+
 bindsym XF86AudioMute exec way-sh volume mute
 bindsym XF86AudioLowerVolume exec way-sh volume down
 bindsym XF86MonBrightnessDown exec way-sh brightness down
@@ -45,10 +46,7 @@ smart_gaps off
 ### Monitor Layout
 ### view with swaymsg -t get_outputs
 
-set $center_dp 'GIGA-BYTE TECHNOLOGY CO., LTD. M32UC 22110B004728'
-set $right_dp  'LG Electronics LG HDR 4K 0x0000BFEC'
-# single monitor setup 
-set $right_dp_2 'LG Electronics LG HDR 4K 0x0001F4CA'
+set $center_dp  'GIGA-BYTE TECHNOLOGY CO., LTD. M32UC 22110B004728'
 
 workspace chat output eDP-1
 workspace stats output eDP-1
@@ -68,12 +66,8 @@ output $center_dp   $bg
 output $right_dp    $bg
 output $right_dp_2  $bg
 
-output eDP-1 pos  0 0 res 2560x1600
-output $center_dp pos 2560 0 res 2560x1440
-output $right_dp  pos 5200 0 res 3840x2160
-output $right_dp scale 1.2
-
-output $right_dp_2 pos 1920 0 res 2560x1440
+output $center_dp pos 0 0 res 2560x1440@144hz
+output eDP-1 pos  2560 0 res 1920x1080
 
 exec_always ~/.config/sway/clamshell.sh
 
@@ -81,6 +75,10 @@ bindswitch --reload --locked lid:on output eDP-1 disable
 bindswitch --reload --locked lid:off output eDP-1 enable
 
 bindsym $mod+Shift+o exec swaymsg "output * enable"
+
+input "1452:591:Compx_Block98@Lofree" {
+	xkb_options "ctrl:nocaps"
+}
 
 ### Lock screen
 bindsym Alt+l exec gtklock -d
