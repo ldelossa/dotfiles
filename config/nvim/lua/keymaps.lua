@@ -33,15 +33,21 @@ local close_other_buffers = function()
 	end
 end
 
-map("n", "<C-b>n", "<cmd>bnext<cr>", { silent = true, desc = "next buffer" })
-map("n", "<C-b>p", "<cmd>bprevious<cr>", { silent = true, desc = "previous buffer" })
+-- map("n", "bn", "<cmd>bnext<cr>", { silent = true, desc = "next buffer" })
+-- map("n", "bp", "<cmd>bprevious<cr>", { silent = true, desc = "previous buffer" })
+-- map("n", "<C-b>n", "<cmd>bnext<cr>", { silent = true, desc = "next buffer" })
+-- map("n", "<C-b>p", "<cmd>bprevious<cr>", { silent = true, desc = "previous buffer" })
+
+map("n", "<C-b>n", "<cmd>BufferNext<cr>", { silent = true, desc = "next buffer" })
+map("n", "<C-b>p", "<cmd>BufferPrevious<cr>", { silent = true, desc = "previous buffer" })
+map("n", "bn", "<cmd>BufferNext<cr>", { silent = true, desc = "next buffer" })
+map("n", "bp", "<cmd>BufferPrevious<cr>", { silent = true, desc = "previous buffer" })
+
 map("n", "<C-b>d", "<cmd>lua require('mini.bufremove').delete()<cr>", { silent = true, desc = "delete buffer" })
 map("n", "<C-b>a", "<C-^>", { silent = true, desc = "alternate buffer" })
 map("n", "<C-b>o", function()
 	vim.cmd("%bd|e#")
 end, { silent = true, desc = "close other buffers" })
-map("n", "bn", "<cmd>bnext<cr>", { silent = true, desc = "next buffer" })
-map("n", "bp", "<cmd>bprevious<cr>", { silent = true, desc = "previous buffer" })
 map("n", "bd", "<cmd>lua require('mini.bufremove').delete()<cr>", { silent = true, desc = "delete buffer" })
 map("n", "ba", "<C-^>", { silent = true, desc = "alternate buffer" })
 map("n", "<C-Tab>", "<C-^>", { silent = true, desc = "alternate buffer" })
@@ -218,3 +224,12 @@ map("n", "<leader>e", "<cmd>Workspace LeftPanelToggle<cr>", { silent = true, des
 map("n", "<leader>G", "<cmd>Workspace RightPanelToggle<cr>", { silent = true, desc = "toggle git explorer panel" })
 map("n", "<C-l>hi", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", { silent = true, desc = "incoming calls" })
 map("n", "<C-l>ho", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", { silent = true, desc = "outgoing calls" })
+
+-- treesitter
+local cur_symbol = function()
+	local symbol = vim.fn["nvim_treesitter#statusline"]()
+	-- remove any new lines
+	vim.notify(symbol, vim.log.levels.INFO, { title = "Current Symbol" })
+end
+map("n", "<C-l>t", cur_symbol,
+	{ silent = true, desc = "show current symbol (treesitter)" })

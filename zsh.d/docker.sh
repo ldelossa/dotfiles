@@ -9,6 +9,9 @@ alias drm='docker rm'
 alias dpush='docker push'
 alias dit='docker images --format "{{.Repository}}:{{.Tag}}"'
 dkill () {
-	docker kill $1
-	docker rm $1
+	docker kill "$1"
+	docker rm "$1"
+}
+dsh () {
+	docker exec -it "${1}" /bin/sh
 }

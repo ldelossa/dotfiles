@@ -15,7 +15,7 @@ export CIL_REPO_PREFIX="/home/louis/git/gopath/src/github.com/cilium"
 
 export CIL_SRC=$CIL_REPO_PREFIX/cilium
 
-alias pwru="docker run --privileged --rm -t --pid=host -v /sys/kernel/debug/:/sys/kernel/debug/ local/pwru:latest pwru"
+alias pwru="docker run --privileged --rm -t --pid=host -v /sys/kernel/debug/:/sys/kernel/debug/ cilium/pwru:1.0.5 pwru"
 
 # below functions run in a sub-shell to avoid any conflicts of changes in the
 # parent shell issuing these functions.

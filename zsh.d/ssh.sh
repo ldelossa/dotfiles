@@ -12,8 +12,8 @@ if [ "$?" == 2 ]; then
   fi
 fi
 
-alias ss=ssh
 alias ssh="TERM=xterm-256color ssh"
+alias s=ssh
 
 function sshu() {
     ssh louis@"${1}"

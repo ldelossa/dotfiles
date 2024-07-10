@@ -28,9 +28,9 @@ now(function()
 	require("mini.notify").setup()
 	vim.notify = require("mini.notify").make_notify()
 end)
-now(function()
-	require("mini.tabline").setup()
-end)
+-- now(function()
+-- 	require("mini.tabline").setup()
+-- end)
 now(function()
 	require("mini.statusline").setup()
 end)
@@ -125,7 +125,13 @@ later(function()
 	})
 end)
 later(function()
-	require("mini.pick").setup()
+	require("mini.pick").setup({
+		mappings = {
+			choose_in_split   = '<C-S-s>',
+			choose_in_tabpage = '<C-S-t>',
+			choose_in_vsplit  = '<C-S-v>',
+		}
+	})
 end)
 later(function()
 	require("mini.bufremove").setup()
@@ -430,6 +436,26 @@ now(function()
 		source = "ruanyl/vim-gh-line",
 	})
 end)
+
+-- Bekaboo/dropbar.nvim
+now(function()
+	add({
+		source = "Bekaboo/dropbar.nvim",
+	})
+end)
+
+-- romgrk/barbar.nvim
+now(function()
+	add({
+		source = "romgrk/barbar.nvim",
+	})
+	require("barbar").setup()
+end)
+-- add autocommand after Vim is initialized which runs the command
+-- BufferOrderByName
+vim.cmd([[
+	autocmd VimEnter * BufferOrderByName
+]])
 
 -- nvim-ide
 now(function()

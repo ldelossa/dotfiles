@@ -1,4 +1,4 @@
-alias s="systemctl"
+alias ss="systemctl"
 alias su="systemctl --user"
 alias status="systemctl status"
 alias statusu="systemctl --user status"
