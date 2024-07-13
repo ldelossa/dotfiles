@@ -148,3 +148,25 @@ alias cilium-unbind-ctx='sudo umount bpf/lib/overloadable_skb.h'
 alias cilium-bind-xdp='sudo mount --bind bpf/include/bpf/ctx/ctx.h bpf/lib/overloadable_xdp.h'
 alias cilium-unbind-xdp='sudo umount bpf/lib/overloadable_skb.h'
 alias cilium-coccicheck='docker run --rm --user 1000 --workdir /workspace -v `pwd`:/workspace -it docker.io/cilium/coccicheck make -C bpf coccicheck'
+
+function cilium-nodes() {
+   {
+     echo -e "Node\tInteralIP\tInternalIP\tCiliumIP\tCiliumIP\tPodCIDRs"
+     kubectl get ciliumnodes.cilium.io -o json | jq -r '
+       .items[] |
+       [
+         .metadata.name,
+         (.spec.addresses[] | select(.type == "InternalIP") | .ip),
+         (.spec.addresses[] | select(.type == "CiliumInternalIP") | .ip),
+         (.spec.ipam.podCIDRs | join(", "))
+       ] | @tsv
+     ' | sort -fd
+     echo -e "Node\tCilium Agent"
+	 k get pods -l $CIL_AGENT_LABEL -o json | jq -r '
+	 	.items[] |
+		[
+		  .spec.nodeName, .metadata.name
+		] | @tsv
+	 ' | sort -fd
+   } | column -t -s $'\t'
+ }
