@@ -451,11 +451,11 @@ now(function()
 	})
 	require("barbar").setup()
 end)
--- add autocommand after Vim is initialized which runs the command
--- BufferOrderByName
-vim.cmd([[
-	autocmd VimEnter * BufferOrderByName
-]])
+vim.api.nvim_create_autocmd({'BufAdd', 'BufDelete'}, {
+  callback = vim.schedule_wrap(function()
+    vim.cmd.BufferOrderByName()
+  end)
+})
 
 -- nvim-ide
 now(function()

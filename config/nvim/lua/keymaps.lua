@@ -106,6 +106,7 @@ map(
 	"<cmd>lua vim.diagnostic.goto_next({ float = false })<cr>",
 	{ silent = true, desc = "next diagnostic" }
 )
+map("n", "<C-l>b", require('dropbar.api').pick, { silent = true, desc = "breadcrumbs pick" })
 
 -- will add a jump loc to the jump list before calling the command
 local go = function(cmd)
