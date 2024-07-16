@@ -68,3 +68,7 @@ function kshell() {
     fi
     kiexec "$1" "$shell"
 }
+
+function kcluster-info() {
+	k -o json get configmap kubeadm-config | jq -r .data.ClusterConfiguration
+}
