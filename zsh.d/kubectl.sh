@@ -25,6 +25,7 @@ alias k=$preamble
 alias ka="$preamble apply -f"
 alias kr="$preamble delete -f"
 alias kp="$preamble get pods"
+alias kpw="$preamble get pods -o wide"
 alias kp-net="$preamble get pods -o custom-columns=NAME:.metadata.name,IP:.status.podIP,HOST_IP:.status.hostIP,NODE:.spec.nodeName"
 alias kd="$preamble get deployments"
 alias kdel="$preamble delete"
@@ -70,6 +71,7 @@ function kshell() {
     fi
     kiexec "$1" "$shell"
 }
+alias ksh=kshell
 
 function kcluster-info() {
 	k -o json get configmap kubeadm-config | jq -r .data.ClusterConfiguration
