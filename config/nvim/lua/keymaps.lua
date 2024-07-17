@@ -134,6 +134,7 @@ map("n", "gd", go("Pick lsp scope='definition'"), { silent = true, desc = "defin
 map("n", "<C-l>D", go("Pick lsp scope='type_definition'"), { silent = true, desc = "type definition of symbol" })
 map("n", "gD", go("Pick lsp scope='type_definition'"), { silent = true, desc = "type definition of symbol" })
 map("n", "<C-l>l", go("Pick lsp scope='implementation'"), { silent = true, desc = "implementation of symbol" })
+map("n", "<C-l>x", "<cmd>Pick diagnostic<cr>", { silent = true, desc = "diagnostics" })
 
 -- git
 local gs = require("gitsigns")
@@ -170,7 +171,6 @@ map("i", "<C-S-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copi
 map("n", "<leader>s", "<cmd>Pick grep<cr>", { silent = true, desc = "grep" })
 map("n", "<leader>S", "<cmd>Pick grep_live<cr>", { silent = true, desc = "live grep" })
 map("n", "<leader>m", "<cmd>Pick marks<cr>", { silent = true, desc = "marks" })
-map("n", "<leader>d", "<cmd>Pick diagnostic<cr>", { silent = true, desc = "diagnostics" })
 map("n", "<leader>g", "<cmd>Pick git_commits<cr>", { silent = true, desc = "git commits" })
 map("n", "<leader>H", "<cmd>Pick history<cr>", { silent = true, desc = "history" })
 map("n", "<leader>k", "<cmd>Pick keymaps<cr>", { silent = true, desc = "keymaps" })
@@ -183,6 +183,7 @@ end, { silent = true, desc = "trim trailing empty lines" })
 map("n", "<leader>r", "<cmd>Pick resume<cr>", { silent = true, desc = "resume last picker" })
 map("n", "<leader>h", "<cmd>Pick git_hunks<cr>", { silent = true, desc = "git hunks" })
 map("n", "<leader>R", "<cmd>Pick oldfiles<cr>", { silent = true, desc = "recent files" })
+map("n", "<leader>d", require('mini.starter').open, { silent = true, desc = "open dashboard (mini.starter)" })
 
 -- special handling for filepath completion.
 -- cd to buffer's dir so filepath completion shows files relative to buffer's

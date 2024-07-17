@@ -22,6 +22,8 @@ function kconfig() {
 preamble='kubectl --kubeconfig $kconfig --namespace $kns'
 
 alias k=$preamble
+alias ka="$preamble apply -f"
+alias kr="$preamble delete -f"
 alias kp="$preamble get pods"
 alias kp-net="$preamble get pods -o custom-columns=NAME:.metadata.name,IP:.status.podIP,HOST_IP:.status.hostIP,NODE:.spec.nodeName"
 alias kd="$preamble get deployments"

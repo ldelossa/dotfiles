@@ -38,7 +38,9 @@ then
     ~/.config/sway/vscode_theme_switch --dark
 
     for sock in $(ls ~/.cache/nvim/nvim-*); do
-		nvim --server $sock --remote-send '<C-\><C-n>:lua set_dark_theme()<CR>' > /dev/null &
+		if ! (nvim --server "$sock" --remote-send '<C-\><C-n>:lua set_dark_theme()<CR>' > /dev/null); then
+			rm "$sock"
+		fi
     done
 
     sway reload
@@ -83,7 +85,9 @@ then
     ~/.config/sway/vscode_theme_switch --light
 
     for sock in $(ls ~/.cache/nvim/nvim-*); do
-        nvim --server $sock --remote-send '<C-\><C-n>:lua set_light_theme()<CR>' > /dev/null &
+		if ! (nvim --server "$sock" --remote-send '<C-\><C-n>:lua set_light_theme()<CR>' > /dev/null); then
+			rm "$sock"
+		fi
     done
 
     sway reload
