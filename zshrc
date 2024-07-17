@@ -53,6 +53,7 @@ source ~/zsh.d/lldb.sh
 source ~/zsh.d/netdata.sh
 source ~/zsh.d/procs.sh
 source ~/zsh.d/k9s.sh
+source ~/zsh.d/ps.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh

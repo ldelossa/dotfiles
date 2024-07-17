@@ -72,3 +72,21 @@ if is_prefer_light_theme() then
 else
 	set_dark_theme()
 end
+
+-- This forces the use of OSC 52 which allows Neovim to 'forward' copy and paste
+-- commands via the terminal.
+--
+-- What this means is, whether you're in Neovim on a remote server, or on your 
+-- local host, copy and paste commands will be driven thru your terminal emulator
+-- and thus, into your host system's clipboard.
+vim.g.clipboard = {
+	name = 'OSC 52',
+	copy = {
+		['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+		['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+	},
+	paste = {
+		['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+		['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+	},
+}
