@@ -449,12 +449,14 @@ now(function()
 	add({
 		source = "romgrk/barbar.nvim",
 	})
-	require("barbar").setup()
+	require("barbar").setup({
+		sort = { ignore_case = true },
+	})
 end)
-vim.api.nvim_create_autocmd({'BufAdd', 'BufDelete'}, {
-  callback = vim.schedule_wrap(function()
-    vim.cmd.BufferOrderByName()
-  end)
+vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
+	callback = vim.schedule_wrap(function()
+		vim.cmd.BufferOrderByName()
+	end)
 })
 
 -- nvim-ide
