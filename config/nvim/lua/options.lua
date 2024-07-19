@@ -76,7 +76,7 @@ end
 -- This forces the use of OSC 52 which allows Neovim to 'forward' copy and paste
 -- commands via the terminal.
 --
--- What this means is, whether you're in Neovim on a remote server, or on your 
+-- What this means is, whether you're in Neovim on a remote server, or on your
 -- local host, copy and paste commands will be driven thru your terminal emulator
 -- and thus, into your host system's clipboard.
 vim.g.clipboard = {
@@ -90,3 +90,24 @@ vim.g.clipboard = {
 		['*'] = require('vim.ui.clipboard.osc52').paste('*'),
 	},
 }
+
+-- If running in TMUX setup clipboard to flow thru tmux
+local function is_running_in_tmux()
+	return os.getenv("TMUX") ~= nil
+end
+
+if is_running_in_tmux() then
+	vim.g.clipboard = {
+		name = "TmuxClipboard",
+		copy = {
+			["+"] = "tmux load-buffer -w -",
+			["*"] = "tmux load-buffer -w -",
+		},
+		paste = {
+			["+"] = "tmux save-buffer -",
+			["*"] = "tmux save-buffer -",
+		},
+		cache_enabled = 0,
+	}
+	vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+end
