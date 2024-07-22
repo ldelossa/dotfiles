@@ -76,27 +76,34 @@ end
 -- This forces the use of OSC 52 which allows Neovim to 'forward' copy and paste
 -- commands via the terminal.
 --
--- What this means is, whether you're in Neovim on a remote server, or on your
--- local host, copy and paste commands will be driven thru your terminal emulator
+-- What this means is, whether you're in Neovim on a remote server,
+-- copy and paste commands will be driven thru your terminal emulator
 -- and thus, into your host system's clipboard.
-vim.g.clipboard = {
-	name = 'OSC 52',
-	copy = {
-		['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-		['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-	},
-	paste = {
-		['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-		['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-	},
-}
+local function is_running_in_ssh()
+	return os.getenv("SSH_CONNECTION") ~= nil
+end
 
--- If running in TMUX setup clipboard to flow thru tmux
+if is_running_in_ssh() then
+	vim.g.clipboard = {
+		name = 'OSC 52',
+		copy = {
+			['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+			['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+		},
+		paste = {
+			['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+			['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+		},
+	}
+end
+
+-- If we  are running inside ssh AND we are in a tmux sesssion, OSC 52 won't
+-- work, instead we can use tmux's native copy/paste functionality.
 local function is_running_in_tmux()
 	return os.getenv("TMUX") ~= nil
 end
 
-if is_running_in_tmux() then
+if is_running_in_tmux() and is_running_in_ssh() then
 	vim.g.clipboard = {
 		name = "TmuxClipboard",
 		copy = {
