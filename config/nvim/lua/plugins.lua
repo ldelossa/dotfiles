@@ -185,7 +185,21 @@ later(function()
 	require("mini.trailspace").setup()
 end)
 later(function()
-	require("mini.files").setup()
+	require("mini.files").setup({
+		mappings = {
+			close       = 'q',
+			go_in       = 'L',
+			go_in_plus  = '',
+			go_out      = 'H',
+			go_out_plus = '',
+			reset       = '<BS>',
+			reveal_cwd  = '@',
+			show_help   = 'g?',
+			synchronize = '=',
+			trim_left   = '<',
+			trim_right  = '>',
+		},
+	})
 end)
 later(function()
 	require("mini.indentscope").setup()
@@ -532,5 +546,15 @@ later(function()
 			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
 			source_func = "completefunc",
 		},
+	})
+end)
+
+-- DNLHC/glance.nvim
+now(function()
+	add({
+		source = "DNLHC/glance.nvim",
+	})
+	require("glance").setup({
+		height = 25
 	})
 end)

@@ -116,6 +116,20 @@ local go = function(cmd)
 	end
 end
 
+-- map("n", "<C-l>u", go("Pick lsp scope='references'"), { silent = true, desc = "references of symbol" })
+-- map("n", "<C-l>d", go("Pick lsp scope='definition"), { silent = true, desc = "definition of symbol" })
+-- map("n", "gd", go("Pick lsp scope='definition'"), { silent = true, desc = "definition of symbol" })
+-- map("n", "<C-l>l", go("Pick lsp scope='implementation'"), { silent = true, desc = "implementation of symbol" })
+-- map("n", "<C-l>D", go("Pick lsp scope='type_definition'"), { silent = true, desc = "type definition of symbol" })
+-- map("n", "gD", go("Pick lsp scope='type_definition'"), { silent = true, desc = "type definition of symbol" })
+
+map("n", "<C-l>u", go("Glance references"), { silent = true, desc = "references of symbol" })
+map("n", "<C-l>d", go("Glance definitions"), { silent = true, desc = "definition of symbol" })
+map("n", "gd", go("Glance definitions"), { silent = true, desc = "definition of symbol" })
+map("n", "<C-l>l", go("Glance implementations"), { silent = true, desc = "implementation of symbol" })
+map("n", "<C-l>D", go("Glance type_definitions"), { silent = true, desc = "type definition of symbol" })
+map("n", "gD", go("Glance type_definitions"), { silent = true, desc = "type definition of symbol" })
+
 map("n", "<C-l>h", "<Cmd>lua vim.lsp.buf.hover()<cr>", { silent = true, desc = "hover info" })
 map("n", "<leader>i", "<Cmd>lua vim.lsp.buf.hover()<cr>", { silent = true, desc = "hover info" })
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { silent = true, desc = "signature help" })
@@ -128,13 +142,9 @@ map("n", "<C-l>e", '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<cr>', 
 map("i", "<C-l>e", '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<cr>', { silent = true, desc = "show error" })
 map("n", "<C-l>f", "<cmd>lua vim.lsp.buf.format()<cr>", { silent = true, desc = "format" })
 map("n", "<C-l>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { silent = true, desc = "code action" })
-map("n", "<C-l>u", go("Pick lsp scope='references'"), { silent = true, desc = "references of symbol" })
-map("n", "<C-l>d", go("Pick lsp scope='definition"), { silent = true, desc = "definition of symbol" })
-map("n", "gd", go("Pick lsp scope='definition'"), { silent = true, desc = "definition of symbol" })
-map("n", "<C-l>D", go("Pick lsp scope='type_definition'"), { silent = true, desc = "type definition of symbol" })
-map("n", "gD", go("Pick lsp scope='type_definition'"), { silent = true, desc = "type definition of symbol" })
-map("n", "<C-l>l", go("Pick lsp scope='implementation'"), { silent = true, desc = "implementation of symbol" })
 map("n", "<C-l>x", "<cmd>Pick diagnostic<cr>", { silent = true, desc = "diagnostics" })
+map("n", "<C-l>ic", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", { silent = true, desc = "incoming calls" })
+map("n", "<C-l>oc", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", { silent = true, desc = "outgoing calls" })
 
 -- git
 local gs = require("gitsigns")
