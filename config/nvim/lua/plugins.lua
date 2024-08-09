@@ -28,9 +28,6 @@ now(function()
 	require("mini.notify").setup()
 	vim.notify = require("mini.notify").make_notify()
 end)
--- now(function()
--- 	require("mini.tabline").setup()
--- end)
 now(function()
 	require("mini.statusline").setup()
 end)
@@ -125,6 +122,18 @@ later(function()
 	})
 end)
 later(function()
+	require("mini.completion").setup({
+		-- high delay basically means 'no auto popups'
+		delay = { completion = 10 ^ 7, info = 10 ^ 7, signature = 10 ^ 7 },
+		-- Way of how module does LSP completion
+		lsp_completion = {
+			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
+			source_func = "completefunc",
+		},
+	})
+end)
+
+later(function()
 	require("mini.pick").setup({
 		mappings = {
 			choose_in_split   = '<C-S-s>',
@@ -179,9 +188,6 @@ later(function()
 	require("mini.extra").setup()
 end)
 later(function()
-	require("mini.fuzzy").setup()
-end)
-later(function()
 	require("mini.trailspace").setup()
 end)
 later(function()
@@ -201,14 +207,11 @@ later(function()
 		},
 	})
 end)
-later(function()
-	require("mini.indentscope").setup()
-end)
 
--- rmagatti/auto-session
+-- ldelossa/auto-session
 now(function()
 	add({
-		source = "rmagatti/auto-session",
+		source = "ldelossa/auto-session",
 	})
 	require("auto-session").setup({
 		auto_restore_enabled = false,
@@ -218,14 +221,14 @@ now(function()
 end)
 
 local git_status_items = function()
-	local edit_file = function(modifier, file)
+	local edit_file = function(file)
 		vim.cmd("e " .. file)
 	end
 
 	local status = vim.fn.systemlist("git status -s")
 
-	items = {}
-	limit = 15
+	local items = {}
+	local limit = 15
 	for _, line in ipairs(status) do
 		if limit == 0 then
 			break
@@ -253,7 +256,7 @@ local git_status_items = function()
 				section = "Git Status (limit 15)",
 				name = line,
 				action = function()
-					edit_file(modifier, file)
+					edit_file(file)
 				end,
 			},
 		})
@@ -428,7 +431,7 @@ now(function()
 	require("gitsigns").setup()
 end)
 
--- copilot.vim
+-- copilot.vim, used for suggestions, works much nicer then copilot.lua
 later(function()
 	add({
 		source = "github/copilot.vim",
@@ -537,24 +540,40 @@ now(function()
 	})
 end)
 
-later(function()
-	require("mini.completion").setup({
-		-- high delay basically means 'no auto popups'
-		delay = { completion = 10 ^ 7, info = 10 ^ 7, signature = 10 ^ 7 },
-		-- Way of how module does LSP completion
-		lsp_completion = {
-			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
-			source_func = "completefunc",
-		},
-	})
-end)
-
--- DNLHC/glance.nvim
+-- ldelossa/glance.nvim
 now(function()
 	add({
-		source = "DNLHC/glance.nvim",
+		source = "ldelossa/glance.nvim",
 	})
 	require("glance").setup({
 		height = 25
+	})
+end)
+
+-- zbirenbaum/copilot.lua
+now(function()
+	add({
+		source = "zbirenbaum/copilot.lua",
+	})
+	require("copilot").setup()
+end)
+
+-- CopilotC-Nvim/CopilotChat.nvim, used for inline chat.
+now(function()
+	add({
+		source = "CopilotC-Nvim/CopilotChat.nvim",
+		depends = { "nvim-lua/plenary.nvim", }
+	})
+	require("CopilotChat").setup({
+		auto_follow_cursor = false,
+		window = {
+			layout = "float",
+			relative = "editor",
+			height = 0.7,
+			width = 0.8,
+			anchor = "SW",
+			row = 999,
+			col = 999,
+		},
 	})
 end)

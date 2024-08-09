@@ -143,8 +143,8 @@ map("i", "<C-l>e", '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<cr>', 
 map("n", "<C-l>f", "<cmd>lua vim.lsp.buf.format()<cr>", { silent = true, desc = "format" })
 map("n", "<C-l>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { silent = true, desc = "code action" })
 map("n", "<C-l>x", "<cmd>Pick diagnostic<cr>", { silent = true, desc = "diagnostics" })
-map("n", "<C-l>ic", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", { silent = true, desc = "incoming calls" })
-map("n", "<C-l>oc", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", { silent = true, desc = "outgoing calls" })
+map("n", "<C-l>hi", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", { silent = true, desc = "incoming calls" })
+map("n", "<C-l>ho", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", { silent = true, desc = "outgoing calls" })
 
 -- git
 local gs = require("gitsigns")
@@ -170,12 +170,18 @@ end, { silent = true, desc = "diff this ~" })
 map("n", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
 map("v", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
 
--- copilot
-map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
-map("i", "<C-S-j>", "<Plug>(copilot-next)", { silent = true, desc = "copilot next suggestion" })
-map("i", "<C-S-k>", "<Plug>(copilot-previous)", { silent = true, desc = "copilot previous suggestion" })
-map("i", "<C-h>", "<Plug>(copilot-accept-word)", { silent = true, desc = "copilot accept next word" })
-map("i", "<C-S-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copilot accept next word" })
+-- copilot suggestions
+-- map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
+-- map("i", "<C-S-j>", "<Plug>(copilot-next)", { silent = true, desc = "copilot next suggestion" })
+-- map("i", "<C-S-k>", "<Plug>(copilot-previous)", { silent = true, desc = "copilot previous suggestion" })
+-- map("i", "<C-h>", "<Plug>(copilot-accept-word)", { silent = true, desc = "copilot accept next word" })
+-- map("i", "<C-S-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copilot accept next word" })
+
+local suggest = require('copilot.suggestion')
+map("i", "<C-j>", suggest.next, { silent = true, desc = "copilot suggest" })
+map("i", "<C-S-j>", suggest.accept, { silent = true, desc = "copilot accept suggest" })
+map("i", "<C-h>", suggest.accept_word, { silent = true, desc = "copilot accept next word" })
+map("i", "<C-S-h>", suggest.accept_line, { silent = true, desc = "copilot accept next word" })
 
 -- mini pickers
 map("n", "<leader>s", "<cmd>Pick grep<cr>", { silent = true, desc = "grep" })
@@ -237,11 +243,20 @@ map("n", "<leader>G", "<cmd>Workspace RightPanelToggle<cr>", { silent = true, de
 map("n", "<C-l>hi", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", { silent = true, desc = "incoming calls" })
 map("n", "<C-l>ho", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", { silent = true, desc = "outgoing calls" })
 
--- treesitter
-local cur_symbol = function()
-	local symbol = vim.fn["nvim_treesitter#statusline"]()
-	-- remove any new lines
-	vim.notify(symbol, vim.log.levels.INFO, { title = "Current Symbol" })
+-- CopilotChat
+local chat = require("CopilotChat")
+local select = require("CopilotChat.select")
+
+local quick_chat = function()
+	local input = vim.fn.input("Quick Chat: ")
+	if input ~= "" then
+		chat.ask(input, {
+			selection = select.visual,
+		})
+	end
 end
-map("n", "<C-l>t", cur_symbol,
-	{ silent = true, desc = "show current symbol (treesitter)" })
+
+map("n", "<C-l>c", chat.open, { silent = true, desc = "open copilot chat" })
+map("n", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
+map("i", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
+map("v", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
