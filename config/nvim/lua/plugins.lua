@@ -318,9 +318,9 @@ now(function()
 	require("nightfox").setup()
 end)
 
--- ayu theme
+-- shaunsingh/nord.nvim
 now(function()
-	add("Shatur/neovim-ayu")
+	add("shaunsingh/nord.nvim")
 end)
 
 -- web-devicons
@@ -575,5 +575,12 @@ now(function()
 			row = 999,
 			col = 999,
 		},
+	})
+end)
+
+-- mmarchini/bpftrace.vim
+now(function()
+	add({
+		source = "mmarchini/bpftrace.vim",
 	})
 end)
