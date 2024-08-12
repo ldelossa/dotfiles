@@ -1,5 +1,5 @@
-alias ss="systemctl"
-alias su="systemctl --user"
+alias sy="systemctl"
+alias syu="systemctl --user"
 alias status="systemctl status"
 alias statusu="systemctl --user status"
 alias stop="systemctl stop"

@@ -55,6 +55,7 @@ source ~/zsh.d/procs.sh
 source ~/zsh.d/k9s.sh
 source ~/zsh.d/ps.sh
 source ~/zsh.d/inotify.sh
+source ~/zsh.d/virsh.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh
