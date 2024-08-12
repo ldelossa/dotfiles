@@ -6,7 +6,7 @@ function watch-and-sync() {
 	inotifywait --exclude "FETCH_HEAD|index.lock|maintenance.lock" -m -r -e modify,create,delete,move . | while read -r x; do
 			echo "------------------------$(date)------------------------"
 			echo "$x"
-        	/usr/local/bin/cmds rsync local-to-remote --remote k
+        	/usr/local/bin/cmds rsync local-to-remote --remote "${1}"
 	done
 }
 
