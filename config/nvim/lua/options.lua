@@ -118,3 +118,9 @@ if is_running_in_tmux() and is_running_in_ssh() then
 	}
 	vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 end
+
+-- Force these auto format options on buf enter
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	command = "set formatoptions=jcrql"
+})
