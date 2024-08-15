@@ -14,7 +14,7 @@ default:
 	@echo resulting config directories: \
 		$(user_configs)
 
-all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore link-clang-format link-mail link-docker-config link-electron-flags
+all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore link-clang-format link-mail link-docker-config link-git-config link-electron-flags
 
 link-configs: $(user_configs)
 
