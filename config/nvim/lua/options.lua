@@ -122,5 +122,9 @@ end
 -- Force these auto format options on buf enter
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
-	command = "set formatoptions=jcrql"
+	command = "set formatoptions-=o"
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	command = "set formatoptions+=r"
 })

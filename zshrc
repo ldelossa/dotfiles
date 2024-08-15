@@ -66,9 +66,7 @@ fi
 export KITTY_SHELL_INTEGRATION="enabled"
 autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-integration; unfunction kitty-integration
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/louis/google-cloud-sdk/path.zsh.inc' ]; then . '/home/louis/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/louis/googl-cloud-sdk/completion.zsh.inc' ]; then . '/home/louis/google-cloud-sdk/completion.zsh.inc'; fi
-
+# If a share history file is available, use it.
+if [[ -e $HOME/Dropbox/Fedora/.zsh_history ]]; then
+	HISTFILE=~/Dropbox/Fedora/.zsh_history
+fi

@@ -48,6 +48,8 @@ smart_gaps off
 ### view with swaymsg -t get_outputs
 
 set $center_dp  'GIGA-BYTE TECHNOLOGY CO., LTD. M32UC 22110B004728'
+set $center_dp_office 'LG Electronics LG HDR 4K 0x0005BAEC'
+set $right_dp_office 'LG Electronics LG HDR 4K 0x0001F4CA'
 
 workspace chat output eDP-1
 workspace stats output eDP-1
@@ -62,13 +64,17 @@ workspace web    output $right_dp
 workspace notes  output $right_dp_2
 workspace web    output $right_dp_2
 
-output eDP-1        $bg
-output $center_dp   $bg
-output $right_dp    $bg
-output $right_dp_2  $bg
+output eDP-1        		$bg
+output $center_dp   		$bg
+output $center_dp_office  	$bg
+output $right_dp_office  	$bg
 
+# combines two office locations, office 1 has center monitor with laptop to the
+# right, office 2 has laptop all the way left with two monitors to the right.
 output $center_dp pos 0 0 res 2560x1440@144hz
-output eDP-1 pos  2560 0 res 1920x1080
+output eDP-1 pos  2560 0 res 2880x1800@60hz scale 1.4
+output $center_dp_office pos 4620 0 scale 1.4
+output $right_dp_office pos 7362 0 scale 1.4
 
 exec_always ~/.config/sway/clamshell.sh
 
@@ -128,6 +134,14 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 input "2:10:TPPS/2_Elan_TrackPoint" {
    pointer_accel    .5
    accel_profile "flat"
+}
+input "2:10:TPPS/2_Synaptics_TrackPoint" {
+   pointer_accel    .5
+   accel_profile "flat"
+}
+input "1267:12792:ELAN067B:00_04F3:31F8_Touchpad" {
+   pointer_accel    .5
+   tap              enabled
 }
 input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
    pointer_accel    .5

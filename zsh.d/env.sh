@@ -17,6 +17,7 @@ export PATH=$PATH:/opt/Lens
 export PATH=$PATH:/home/louis/.platformio/penv/bin
 export PATH=$PATH:/usr/local/zig
 export PATH=$PATH:/home/louis/git/lua/lua-language-server/bin
+export PATH=$PATH:/usr/share/google-cloud-sdk/bin/
 export KEYTIMEOUT=1
 export CC=/usr/bin/clang
 export CCX=/usr/bin/clang++

@@ -33,6 +33,7 @@ local close_other_buffers = function()
 	end
 end
 
+-- these are when barbar plugin not being used.
 -- map("n", "bn", "<cmd>bnext<cr>", { silent = true, desc = "next buffer" })
 -- map("n", "bp", "<cmd>bprevious<cr>", { silent = true, desc = "previous buffer" })
 -- map("n", "<C-b>n", "<cmd>bnext<cr>", { silent = true, desc = "next buffer" })
@@ -171,17 +172,11 @@ map("n", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in G
 map("v", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
 
 -- copilot suggestions
--- map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
--- map("i", "<C-S-j>", "<Plug>(copilot-next)", { silent = true, desc = "copilot next suggestion" })
--- map("i", "<C-S-k>", "<Plug>(copilot-previous)", { silent = true, desc = "copilot previous suggestion" })
--- map("i", "<C-h>", "<Plug>(copilot-accept-word)", { silent = true, desc = "copilot accept next word" })
--- map("i", "<C-S-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copilot accept next word" })
-
-local suggest = require('copilot.suggestion')
-map("i", "<C-j>", suggest.next, { silent = true, desc = "copilot suggest" })
-map("i", "<C-S-j>", suggest.accept, { silent = true, desc = "copilot accept suggest" })
-map("i", "<C-h>", suggest.accept_word, { silent = true, desc = "copilot accept next word" })
-map("i", "<C-S-h>", suggest.accept_line, { silent = true, desc = "copilot accept next word" })
+map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
+map("i", "<C-S-j>", "<Plug>(copilot-next)", { silent = true, desc = "copilot next suggestion" })
+map("i", "<C-S-k>", "<Plug>(copilot-previous)", { silent = true, desc = "copilot previous suggestion" })
+map("i", "<C-h>", "<Plug>(copilot-accept-word)", { silent = true, desc = "copilot accept next word" })
+map("i", "<C-S-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copilot accept next word" })
 
 -- mini pickers
 map("n", "<leader>s", "<cmd>Pick grep<cr>", { silent = true, desc = "grep" })
