@@ -41,6 +41,9 @@ later(function()
 	require("mini.ai").setup()
 end)
 later(function()
+	require("mini.surround").setup()
+end)
+later(function()
 	require("mini.clue").setup({
 		-- Clue window settings
 		window = {

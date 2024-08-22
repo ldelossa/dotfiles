@@ -28,6 +28,7 @@ vim.o.wrap = false
 vim.o.foldlevel = 99
 vim.o.updatetime = 300
 vim.o.list = true
+opt.number = false
 
 -- set c fileype for headers, not cpp
 vim.g.c_syntax_for_h = 1
@@ -119,7 +120,8 @@ if is_running_in_tmux() and is_running_in_ssh() then
 	vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 end
 
--- Force these auto format options on buf enter
+-- Creating a new comment string after 'o' is annoying, enforce it never happens
+-- but ensure it does happen on new lines (r option).
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
 	command = "set formatoptions-=o"

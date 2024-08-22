@@ -170,6 +170,7 @@ map("n", "<c-g>D", function()
 end, { silent = true, desc = "diff this ~" })
 map("n", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
 map("v", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
+map("n", "<c-g>h", ":Pick git_hunks<cr>", { silent = true, desc = "list git hunks" })
 
 -- copilot suggestions
 map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
@@ -255,3 +256,43 @@ map("n", "<C-l>c", chat.open, { silent = true, desc = "open copilot chat" })
 map("n", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
 map("i", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
 map("v", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
+
+
+local function open_file_and_navigate()
+	local selected_text = ""
+	-- select WORD using motion under the cursor and put it in selected_text
+	vim.cmd("normal! viW\"+y")
+	selected_text = vim.fn.getreg("+")
+
+	-- split selected text into file_path, line_num, and col_num with ':' being the
+	-- delimeter
+	print(selected_text)
+	local items = vim.fn.split(selected_text, ":", true)
+	print(vim.inspect(items))
+	local file_path = items[1]
+	local line_num = items[2]
+	local col_num = items[3]
+
+	if not file_path then
+		print("Invalid input format. Expected 'file_path:line_num:col_num:'")
+		return
+	end
+
+	line_num = tonumber(line_num)
+	if line_num == nil then
+		line_num = 1
+	end
+
+	col_num = tonumber(col_num)
+	if col_num == nil then
+		col_num = 1
+	else
+		col_num = col_num - 1
+	end
+
+	-- Open the file
+	vim.cmd("edit " .. file_path)
+	vim.api.nvim_win_set_cursor(0, { line_num, col_num })
+end
+
+map("n", "gb", open_file_and_navigate, { silent = true, desc = "Open file with line and/or column" })
