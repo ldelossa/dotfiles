@@ -1,5 +1,5 @@
 [Unit]
-Description=Invokes powertop to auto-tune all features to "GOOD". Requires sudo, edit visudo appropriately. 
+Description=Invokes powertop to auto-tune all features to "GOOD". Requires sudo, edit visudo appropriately.
 Documentation=man:powertop(8)
 
 [Service]

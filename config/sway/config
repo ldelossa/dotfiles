@@ -71,8 +71,8 @@ output $right_dp_office  	$bg
 
 # combines two office locations, office 1 has center monitor with laptop to the
 # right, office 2 has laptop all the way left with two monitors to the right.
-output $center_dp pos 0 0 res 2560x1440@144hz
-output eDP-1 pos  2560 0 res 2880x1800@60hz scale 1.4
+output $center_dp pos 0 0 res 3840x2160@140hz scale 1.4
+output eDP-1 pos  2748 0 res 2880x1800@60hz scale 1.4
 output $center_dp_office pos 4620 0 scale 1.4
 output $right_dp_office pos 7362 0 scale 1.4
 
