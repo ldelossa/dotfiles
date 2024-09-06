@@ -1,0 +1,106 @@
+
+@define-color window_bg_color rgba(221, 221, 221, 1.00);
+@define-color window_fg_color rgba(22, 22, 22, 1.00);
+
+@define-color view_bg_color rgba(241, 241, 241, 1.00);
+@define-color view_fg_color rgba(37, 37, 37, 1.00);
+
+@define-color headerbar_bg_color rgba(221, 221, 221, 1.00);
+@define-color headerbar_fg_color rgba(22, 22, 22, 1.00);
+@define-color headerbar_border_color_color rgba(181, 181, 181, 1.00);
+@define-color headerbar_backdrop_color rgba(221, 221, 221, 1.00);
+
+@define-color sidebar_bg_color rgba(241, 241, 241, 1.00);
+@define-color sidebar_fg_color rgba(37, 37, 37, 1.00);
+@define-color sidebar_shade_color rgba(0, 0, 0, 0.32);
+@define-color sidebar_backdrop_color rgba(246, 246, 246, 1.00);
+
+@define-color secondary_sidebar_bg_color rgba(198, 198, 198, 1.00);
+@define-color secondary_sidebar_fg_color rgba(7, 7, 7, 1.00);
+@define-color secondary_sidebar_shade_color rgba(0, 0, 0, 0.32);
+@define-color secondary_sidebar_backdrop_color rgba(216, 216, 216, 1.00);
+
+@define-color card_bg_color rgba(252, 252, 252, 1.00);
+@define-color card_fg_color rgba(44, 44, 44, 1.00);
+
+@define-color thumbnail_bg_color rgba(252, 252, 252, 1.00);
+@define-color thumbnail_fg_color rgba(44, 44, 44, 1.00);
+
+@define-color dialog_bg_color rgba(241, 241, 241, 1.00);
+@define-color dialog_fg_color rgba(37, 37, 37, 1.00);
+
+@define-color popover_bg_color rgba(252, 252, 252, 1.00);
+@define-color popover_fg_color rgba(44, 44, 44, 1.00);
+
+@define-color shade_color rgba(0, 0, 0, 0.08);
+@define-color scrollbar_outline_color rgba(221, 221, 221, 0.50);
+
+@define-color accent_color rgba(0, 73, 109, 1.00);
+@define-color accent_bg_color rgba(0, 73, 109, 1.00);
+@define-color accent_fg_color rgba(255, 255, 255, 1.00);
+
+@define-color destructive_color rgba(160, 37, 43, 1.00);
+@define-color destructive_bg_color rgba(160, 37, 43, 1.00);
+@define-color destructive_fg_color rgba(255, 255, 255, 1.00);
+
+@define-color warning_color rgba(150, 104, 0, 1.00);
+@define-color warning_bg_color rgba(150, 104, 0, 1.00);
+@define-color warning_fg_color rgba(255, 255, 255, 1.00);
+
+@define-color success_color rgba(59, 110, 67, 1.00);
+@define-color success_bg_color rgba(59, 110, 67, 1.00);
+@define-color success_fg_color rgba(255, 255, 255, 1.00);
+
+@define-color accent_color rgba(0, 73, 109, 1.00);
+@define-color accent_bg_color rgba(0, 73, 109, 1.00);
+@define-color accent_fg_color rgba(255, 255, 255, 1.00);
+
+@define-color error_color rgba(160, 37, 43, 1.00);
+@define-color error_bg_color rgba(160, 37, 43, 1.00);
+@define-color error_fg_color rgba(255, 255, 255, 1.00);
+
+@define-color blue_1 rgba(47, 108, 146, 1.00);
+@define-color blue_2 rgba(27, 90, 127, 1.00);
+@define-color blue_3 rgba(0, 73, 109, 1.00);
+@define-color blue_4 rgba(0, 62, 98, 1.00);
+@define-color blue_5 rgba(0, 52, 87, 1.00);
+
+@define-color green_1 rgba(89, 140, 96, 1.00);
+@define-color green_2 rgba(74, 125, 81, 1.00);
+@define-color green_3 rgba(59, 110, 67, 1.00);
+@define-color green_4 rgba(45, 96, 54, 1.00);
+@define-color green_5 rgba(31, 82, 41, 1.00);
+
+@define-color yellow_1 rgba(178, 131, 46, 1.00);
+@define-color yellow_2 rgba(164, 117, 28, 1.00);
+@define-color yellow_3 rgba(150, 104, 0, 1.00);
+@define-color yellow_4 rgba(133, 88, 0, 1.00);
+@define-color yellow_5 rgba(116, 72, 0, 1.00);
+
+@define-color red_1 rgba(197, 73, 73, 1.00);
+@define-color red_2 rgba(178, 56, 58, 1.00);
+@define-color red_3 rgba(160, 37, 43, 1.00);
+@define-color red_4 rgba(144, 17, 30, 1.00);
+@define-color red_5 rgba(128, 0, 16, 1.00);
+
+@define-color orange_1 rgba(255, 195, 119, 1.00);
+@define-color orange_2 rgba(255, 189, 113, 1.00);
+@define-color orange_3 rgba(251, 184, 108, 1.00);
+@define-color orange_4 rgba(223, 158, 81, 1.00);
+@define-color orange_5 rgba(196, 132, 53, 1.00);
+
+@define-color purple_1 rgba(229, 155, 255, 1.00);
+@define-color purple_2 rgba(221, 148, 255, 1.00);
+@define-color purple_3 rgba(213, 140, 255, 1.00);
+@define-color purple_4 rgba(188, 116, 229, 1.00);
+@define-color purple_5 rgba(164, 93, 204, 1.00);
+@define-color light_0 rgba(0, 0, 0, 1.00);
+@define-color light_1 rgba(5, 5, 5, 1.00);
+@define-color light_2 rgba(27, 27, 27, 1.00);
+@define-color light_3 rgba(54, 54, 54, 1.00);
+@define-color light_4 rgba(84, 84, 84, 1.00);
+@define-color dark_0 rgba(115, 115, 115, 1.00);
+@define-color dark_1 rgba(148, 148, 148, 1.00);
+@define-color dark_2 rgba(182, 182, 182, 1.00);
+@define-color dark_3 rgba(218, 218, 218, 1.00);
+@define-color dark_4 rgba(255, 255, 255, 1.00);

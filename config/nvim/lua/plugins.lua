@@ -31,8 +31,39 @@ end)
 now(function()
 	require("mini.basics").setup()
 end)
+
+local content = function()
+	local mode, mode_hl = require("mini.statusline").section_mode({ trunc_width = 120 })
+	local git           = require("mini.statusline").section_git({ trunc_width = 40 })
+	local diff          = require("mini.statusline").section_diff({ trunc_width = 75 })
+	local diagnostics   = require("mini.statusline").section_diagnostics({ trunc_width = 75 })
+	local lsp           = require("mini.statusline").section_lsp({ trunc_width = 75 })
+	local filename      = require("mini.statusline").section_filename({ trunc_width = 140 })
+	local fileinfo      = require("mini.statusline").section_fileinfo({ trunc_width = 120 })
+	local location      = require("mini.statusline").section_location({ trunc_width = 75 })
+	local search        = require("mini.statusline").section_searchcount({ trunc_width = 75 })
+
+	return require("mini.statusline").combine_groups({
+		{ hl = mode_hl, strings = { (function()
+			if Rsync_Enabled then return '🖧' else return '' end
+		end)() } },
+		{ hl = mode_hl,                             strings = { mode } },
+		{ hl = 'require("mini.statusline")Devinfo', strings = { git, diff, diagnostics, lsp } },
+		'%<', -- Mark general truncate point
+		{ hl = 'require("mini.statusline")Filename', strings = { filename } },
+		'%=', -- End left alignment
+		{ hl = 'require("mini.statusline")Fileinfo', strings = { fileinfo } },
+		{ hl = mode_hl,                              strings = { search, location } },
+	})
+end
+
+
 now(function()
-	require("mini.statusline").setup()
+	require("mini.statusline").setup({
+		content = {
+			active = content
+		}
+	})
 end)
 now(function()
 	require("mini.comment").setup()
@@ -118,7 +149,6 @@ later(function()
 			-- Surrounds
 			{ mode = "n", keys = "s" },
 		},
-
 		clues = {
 			-- Enhance this by adding descriptions for <Leader> mapping groups
 			require("mini.clue").gen_clues.builtin_completion(),
@@ -159,7 +189,6 @@ later(function()
 		{
 			-- In which modes mappings from this `config` should be created
 			modes = { insert = true, command = false, terminal = false },
-
 			-- Global mappings. Each right hand side should be a pair information, a
 			-- table with at least these fields (see more in |MiniPairs.map|):
 			-- - <action> - one of "open", "close", "closeopen".
