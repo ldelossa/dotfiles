@@ -21,17 +21,3 @@ function sshu() {
 function sshr() {
     ssh root@"${1}"
 }
-
-#ssh mount helper
-function vmount() {
-    root="/root"
-    if [[ -n $2 ]] then
-        root=$2
-    fi
-    mkdir -p ~/vmmnt/$1
-    sshfs root@$1:$root ~/vmmnt/$1 -o idmap=user -o workaround=buflimit -o Ciphers=chacha20-poly1305@openssh.com -o Compression=no -o allow_other -o kernel_cache
-}
-
-function vumount() {
-    umount ~/vmmnt/$1 && rm -rf ~/vmmnt/$1
-}

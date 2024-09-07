@@ -11,7 +11,7 @@ export CIL_AGENT_LABEL="app.kubernetes.io/name=cilium-agent"
 
 export CIL_OP_LABEL="app.kubernetes.io/name=cilium-operator"
 
-export CIL_REPO_PREFIX="/home/louis/git/gopath/src/github.com/cilium"
+export CIL_REPO_PREFIX="$HOME/git/gopath/src/github.com/cilium"
 
 export CIL_SRC=$CIL_REPO_PREFIX/cilium
 

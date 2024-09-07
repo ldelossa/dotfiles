@@ -1,3 +1,0 @@
-.PHONY: mount
-mount:
-	sshfs root@kvm:/root ~/vmmnt -o workaround=buflimit
