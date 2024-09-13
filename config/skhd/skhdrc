@@ -76,7 +76,8 @@
 # A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
 # ############################################################### #
 
-alt - return : open -n -a kitty.app --args -1
+alt + shift - return : open -n -a kitty.app --args -1
+alt - return : open -n -a kitty.app --args "limactl" "shell" "--shell" "/bin/zsh" "--workdir" "/home/louis.linux" "default"
 
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
