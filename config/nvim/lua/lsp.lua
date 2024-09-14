@@ -46,7 +46,7 @@ local default_capabilities = function(override)
 							1, -- Deprecated
 						},
 					},
-					insertReplaceSupport = true,
+					insertReplaceSupport = false,
 					resolveSupport = {
 						properties = {
 							"documentation",
@@ -142,7 +142,7 @@ nvim_lsp.jsonls.setup({
 	on_attach = on_attach,
 
 })
-nvim_lsp.tsserver.setup({
+nvim_lsp.ts_ls.setup({
 	capabilities = default_capabilities(),
 	on_attach = on_attach,
 
@@ -196,7 +196,7 @@ nvim_lsp.gopls.setup({
 			directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
 			semanticTokens = false,
 			experimentalPostfixCompletions = true,
-			completeFunctionCalls = false,
+			completeFunctionCalls = true,
 		},
 	},
 })
@@ -212,5 +212,8 @@ nvim_lsp.clangd.setup({
 	cmd = {
 		"clangd",
 		"--offset-encoding=utf-16",
+		-- this causes a dot symbol next to completion and Neovim does not handle
+		-- this well.
+		"--header-insertion=never"
 	},
 })

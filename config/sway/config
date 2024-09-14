@@ -72,7 +72,7 @@ output $right_dp_office  	$bg
 # combines two office locations, office 1 has center monitor with laptop to the
 # right, office 2 has laptop all the way left with two monitors to the right.
 output $center_dp pos 0 0 res 3840x2160@140hz scale 1.4
-output eDP-1 pos  2748 0 res 2880x1800@60hz scale 1.4
+output eDP-1 pos  2748 0 res 1920x1200@60hz scale 1.4
 output $center_dp_office pos 4620 0 scale 1.4
 output $right_dp_office pos 7362 0 scale 1.4
 
@@ -88,7 +88,7 @@ input "1452:591:Compx_Block98@Lofree" {
 }
 
 ### Lock screen
-bindsym Alt+l exec gtklock -d
+bindsym Alt+t exec gtklock -d
 
 ## Output configuration
 #
@@ -261,9 +261,6 @@ input "2362:628:UNIW0001:00_093A:0274_Touchpad" {
     bindsym $mod+Shift+$right move right
     # Move window to the desired workspace and switch to it via fzf
     bindsym $mod+c exec     'THEME=$theme ~/git/sway/sway-rofi-scripts/sway-window-move.sh'
-
-    bindsym Alt+Shift+$left  workspace prev
-    bindsym Alt+Shift+$right workspace next
 
     # Move to previous container
     bindsym $mod+Shift+Tab focus prev sibling

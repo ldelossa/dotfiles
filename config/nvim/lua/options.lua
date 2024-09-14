@@ -42,11 +42,11 @@ vim.cmd('command! CopyRelLine let @+ = expand("%"). ":" . line(".")')
 
 -- set theme based on gnome's color-scheme settings
 function set_dark_theme()
-	vim.cmd("set background=dark")
+	vim.cmd("colorscheme nordfox")
 end
 
 function set_light_theme()
-	vim.cmd("set background=light")
+	vim.cmd("colorscheme dawnfox")
 end
 
 local function is_prefer_light_theme()

@@ -160,17 +160,17 @@ later(function()
 		},
 	})
 end)
-later(function()
-	require("mini.completion").setup({
-		-- high delay basically means 'no auto popups'
-		delay = { completion = 10 ^ 7, info = 10 ^ 7, signature = 10 ^ 7 },
-		-- Way of how module does LSP completion
-		lsp_completion = {
-			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
-			source_func = "completefunc",
-		},
-	})
-end)
+-- later(function()
+-- 	require("mini.completion").setup({
+-- 		-- high delay basically means 'no auto popups'
+-- 		delay = { completion = 10 ^ 7, info = 10 ^ 7, signature = 10 ^ 7 },
+-- 		-- Way of how module does LSP completion
+-- 		lsp_completion = {
+-- 			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
+-- 			source_func = "omnifunc",
+-- 		},
+-- 	})
+-- end)
 
 later(function()
 	require("mini.pick").setup({
@@ -410,7 +410,7 @@ now(function()
 				set_jumps = true, -- whether to set jumps in the jumplist
 				goto_next_start = {
 					["]f"] = "@function.outer",
-					["]c"] = "@class.outer",
+					["]s"] = "@class.outer",
 					["]A"] = "@parameter.outer",
 					["]i"] = "@call.outer",
 					["]b"] = "@block.outer",
@@ -419,7 +419,7 @@ now(function()
 				},
 				goto_next_end = {
 					["]F"] = "@function.outer",
-					["]C"] = "@class.outer",
+					["]S"] = "@class.outer",
 					["]a"] = "@parameter.outer",
 					["]B"] = "@block.outer",
 					["]I"] = "@call.outer",
@@ -428,7 +428,7 @@ now(function()
 				},
 				goto_previous_start = {
 					["[f"] = "@function.outer",
-					["[c"] = "@class.outer",
+					["[s"] = "@class.outer",
 					["[A"] = "@parameter.outer",
 					["[i"] = "@call.outer",
 					["[b"] = "@block.outer",
@@ -437,7 +437,7 @@ now(function()
 				},
 				goto_previous_end = {
 					["[F"] = "@function.outer",
-					["[C"] = "@class.outer",
+					["[S"] = "@class.outer",
 					["[a"] = "@parameter.outer",
 					["[I"] = "@call.outer",
 					["[B"] = "@block.outer",
