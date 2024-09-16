@@ -72,3 +72,8 @@ autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-
 if [[ -e $HOME/Dropbox/Fedora/.zsh_history ]]; then
 	HISTFILE=~/Dropbox/Fedora/.zsh_history
 fi
+
+# if LIMA_VM is defined exec our shell directly into LIMA
+if [ -n "$LIMA_VM" ]; then
+	exec limactl shell --shell /bin/zsh --workdir /home/louis.linux default
+fi
