@@ -25,7 +25,9 @@ export CCX=/usr/bin/clang++
 export EDITOR='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
 export NNN_PLUG='o:fzopen;c:chksum;d:diffs;h:hexview;s:suedit;l:-_git log'
 export BAT_THEME='1337'
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+if which rustc &> /dev/null; then
+	export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
 export PATH="$PATH":"/usr/local/flutter/.pub-cache/bin"
 export FZF_DEFAULT_OPTS='--color=bw --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export CHROME_EXECUTABLE=chromium-browser

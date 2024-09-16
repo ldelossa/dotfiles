@@ -45,7 +45,7 @@ local content = function()
 
 	return require("mini.statusline").combine_groups({
 		{ hl = mode_hl, strings = { (function()
-			if Rsync_Enabled then return '🖧' else return '' end
+			if Rsync_Enabled then return '󰲁' else return '' end
 		end)() } },
 		{ hl = mode_hl,                             strings = { mode } },
 		{ hl = 'require("mini.statusline")Devinfo', strings = { git, diff, diagnostics, lsp } },

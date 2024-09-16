@@ -65,8 +65,15 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export KITTY_SHELL_INTEGRATION="enabled"
-autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-integration; unfunction kitty-integration
+if [[ -e /usr/lib64/kitty/shell-integration/zsh/kitty-integration ]]; then
+	export KITTY_SHELL_INTEGRATION="enabled"
+	autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-integration; unfunction kitty-integration
+fi
+
+if [[ -e Applications/kitty.app/Contents/Resources/kitty/shell-integration/zsh/kitty-integration ]]; then
+	export KITTY_SHELL_INTEGRATION="enabled"
+	autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-integration; unfunction kitty-integration
+fi
 
 # If a share history file is available, use it.
 if [[ -e $HOME/Dropbox/Fedora/.zsh_history ]]; then
@@ -75,5 +82,5 @@ fi
 
 # if LIMA_VM is defined exec our shell directly into LIMA
 if [ -n "$LIMA_VM" ]; then
-	exec limactl shell --shell /bin/zsh --workdir /home/louis.linux default
+	exec limactl shell --shell /bin/zsh --workdir /home/louis default
 fi
