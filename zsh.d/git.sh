@@ -1,4 +1,4 @@
-if [[ -e ~/Dropbox/Docs/GithubToken-Isovalent-TopHat ]]; then
+if [[ -e ~/Dropbox/Docs/GithubToken ]]; then
     export GITHUB_TOKEN=$(cat ~/Dropbox/Docs/GithubToken)
 fi
 
