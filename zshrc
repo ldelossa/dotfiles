@@ -72,7 +72,7 @@ fi
 
 if [[ -e Applications/kitty.app/Contents/Resources/kitty/shell-integration/zsh/kitty-integration ]]; then
 	export KITTY_SHELL_INTEGRATION="enabled"
-	autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-integration; unfunction kitty-integration
+	autoload -Uz -- Applications/kitty.app/Contents/Resources/kitty/shell-integration/zsh/kitty-integration kitty-integration; unfunction kitty-integration
 fi
 
 # If a share history file is available, use it.
