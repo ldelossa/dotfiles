@@ -17,3 +17,4 @@ config/wob/wob.ini
 config/cgdb/logs
 config/k9s/config.yml
 config/dlv/.dbg_history
+config/k9s/skins/skin.yaml
