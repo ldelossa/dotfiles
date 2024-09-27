@@ -142,7 +142,6 @@ keybinds {
         bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
         bind "o" { FocusNextPane; }
         bind "d" { Detach; }
-        bind "Space" { NextSwapLayout; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
         bind "i" { MoveTab "Left"; }
         bind "o" { MoveTab "Right"; }
@@ -156,6 +155,13 @@ keybinds {
         bind "7" { GoToTab 7; SwitchToMode "Normal"; }
         bind "8" { GoToTab 8; SwitchToMode "Normal"; }
         bind "9" { GoToTab 9; SwitchToMode "Normal"; }
+		bind "Space" {
+			LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
+				floating true
+				ignore_case true
+				quick_jump true
+			}
+		}
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
