@@ -163,6 +163,7 @@ nvim_lsp.gopls.setup({
 	settings = {
 		gopls = {
 			["local"] = "github.com/cilium/cilium",
+			buildFlags = {"-tags=unparallel"},
 			gofumpt = false,
 			codelenses = {
 				gc_details = false,
