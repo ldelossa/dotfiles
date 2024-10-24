@@ -13,5 +13,9 @@ dkill () {
 	docker rm "$1"
 }
 dsh () {
-	docker exec -it "${1}" /bin/sh
+	cmd="/bin/sh"
+	if [[ -n "${2}" ]]; then
+		cmd="${2}"
+	fi
+	docker exec -it "${1}" "$cmd"
 }

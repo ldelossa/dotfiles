@@ -482,10 +482,10 @@ now(function()
 	})
 end)
 
--- ruanyl/vim-gh-line
+-- ldelossa/vim-gh-line
 now(function()
 	add({
-		source = "ruanyl/vim-gh-line",
+		source = "ldelossa/vim-gh-line",
 	})
 end)
 
