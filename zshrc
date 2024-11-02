@@ -58,6 +58,7 @@ source ~/zsh.d/inotify.sh
 source ~/zsh.d/virsh.sh
 source ~/zsh.d/gdbus.sh
 source ~/zsh.d/devbox.sh
+source ~/zsh.d/hosts.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh
