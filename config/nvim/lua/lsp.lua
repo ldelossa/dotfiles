@@ -18,10 +18,9 @@ vim.diagnostic.config({
 
 vim.g.autoformat = false
 
--- disable virtual text for all diagnostic handlers.
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.diagnostic.config({
 	underline = true,
-	virtual_text = false,
+	virtual_text = false
 })
 
 -- on attach method for lsps
