@@ -15,7 +15,7 @@ then
 		fi
     done
 
-	lima "/home/louis/.config/way-shell/on_theme_changed.sh" "dark" 1>&2 /dev/null
+	ssh linux "/home/louis/.config/way-shell/on_theme_changed.sh" "dark" 1>&2 /dev/null
 
     exit
 fi
@@ -36,7 +36,7 @@ then
 		fi
     done
 
-	lima "/home/louis/.config/way-shell/on_theme_changed.sh" "light" 1>&2 /dev/null
+	ssh linux "/home/louis/.config/way-shell/on_theme_changed.sh" "light" 1>&2 /dev/null
 
     exit
 fi
