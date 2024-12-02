@@ -2,6 +2,9 @@ local opts = { silent = true }
 local map = vim.keymap.set
 vim.g.mapleader = " "
 
+-- mini.notification notification history
+map("n", "<leader>n", "<cmd>lua require('mini.notify').show_history()<cr>", { silent = true, desc = "notifications" })
+
 -- leader w for write
 map("n", "<leader>w", "<cmd>w<cr>", { silent = true, desc = "write" })
 

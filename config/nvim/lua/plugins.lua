@@ -598,6 +598,8 @@ end)
 now(function()
 	add({
 		source = "CopilotC-Nvim/CopilotChat.nvim",
+		checkout = "main",
+		monitor = "main",
 		depends = { "nvim-lua/plenary.nvim", }
 	})
 	require("CopilotChat").setup({
