@@ -1,11 +1,3 @@
--- set comment string to '//' for c and cpp projects
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "c", "cpp" },
-	callback = function()
-		vim.api.nvim_command("set commentstring=//\\ %s")
-	end,
-})
-
 -- a dumb way to do this, but certain codebases should use tabs with 8 spaces
 -- cilium and kernel programming.
 vim.api.nvim_create_autocmd("FileType", {

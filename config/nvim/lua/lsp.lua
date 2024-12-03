@@ -30,57 +30,7 @@ end
 
 -- ripped from cmp.nvim
 local default_capabilities = function(override)
-	override = override or {}
-	return {
-		textDocument = {
-			completion = {
-				dynamicRegistration = true,
-				completionItem = {
-					snippetSupport = true,
-					commitCharactersSupport = true,
-					deprecatedSupport = true,
-					preselectSupport = true,
-					tagSupport = {
-						valueSet = {
-							1, -- Deprecated
-						},
-					},
-					insertReplaceSupport = false,
-					resolveSupport = {
-						properties = {
-							"documentation",
-							"detail",
-							"additionalTextEdits",
-							"sortText",
-							"filterText",
-							"insertText",
-							"textEdit",
-							"insertTextFormat",
-							"insertTextMode",
-						},
-					},
-					insertTextModeSupport = {
-						valueSet = {
-							1, -- asIs
-							2, -- adjustIndentation
-						},
-					},
-					labelDetailsSupport = true,
-				},
-				contextSupport = true,
-				insertTextMode = 1,
-				completionList = {
-					itemDefaults = {
-						"commitCharacters",
-						"editRange",
-						"insertTextFormat",
-						"insertTextMode",
-						"data",
-					},
-				},
-			},
-		},
-	}
+	return vim.lsp.protocol.make_client_capabilities()
 end
 
 local on_init = function(client, initialization_result)
