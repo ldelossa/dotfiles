@@ -14,8 +14,14 @@ PURE_PROMPT_VICMD_SYMBOL="%D{%I:%M:%S%p} "
 
 # if we are running in a DEVSPACE container, make our prompt indicate this.
 if [ -n "$DEVSPACE" ]; then
-    PURE_PROMPT_SYMBOL="($DEVSPACE)🖳 "
-    PURE_PROMPT_VICMD_SYMBOL="($DEVSPACE)"
+    PURE_PROMPT_SYMBOL="($DEVSPACE)${PURE_PROMPT_SYMBOL}"
+    PURE_PROMPT_VICMD_SYMBOL="($DEVSPACE)${PURE_PROMPT_VICMD_SYMBOL}"
+fi
+
+# if we are running in a distrobox container, make our prompt indicate this
+if [ -n "$CONTAINER_ID" ]; then
+    PURE_PROMPT_SYMBOL="($CONTAINER_ID)${PURE_PROMPT_SYMBOL}"
+    PURE_PROMPT_VICMD_SYMBOL="($CONTAINER_ID)${PURE_PROMPT_VICMD_SYMBOL}"
 fi
 
 # read from compinit
