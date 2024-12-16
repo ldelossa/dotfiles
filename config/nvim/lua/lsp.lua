@@ -153,7 +153,6 @@ nvim_lsp.gopls.setup({
 nvim_lsp.zls.setup({
 	capabilities = default_capabilities(),
 	on_attach = on_attach,
-
 })
 nvim_lsp.clangd.setup({
 	capabilities = default_capabilities(),
@@ -166,4 +165,8 @@ nvim_lsp.clangd.setup({
 		-- this well.
 		"--header-insertion=never"
 	},
+})
+nvim_lsp.asm_lsp.setup({
+	capabilities = default_capabilities(),
+	on_attach = on_attach,
 })

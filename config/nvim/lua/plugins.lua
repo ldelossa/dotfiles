@@ -565,7 +565,7 @@ now(function()
 		workspaces = {
 			-- which panels to open by default, one of: 'left', 'right', 'both', 'none'
 			auto_open = "none",
-			on_quit = "close"
+			-- on_quit = "close"
 		},
 		-- default panel sizes for the different positions
 		panel_sizes = {
