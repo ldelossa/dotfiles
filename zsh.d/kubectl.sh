@@ -77,9 +77,14 @@ function kcluster-info() {
 	k -o json get configmap kubeadm-config | jq -r .data.ClusterConfiguration
 }
 
+function k-netns() {
+	pod=${1}
+	echo -e "$pod\t$(kexec "$pod" -- readlink /proc/1/ns/net 2>/dev/null)"
+}
+
 function kp-netns() {
 	for x in $(k get pods -o custom-columns=NAME:.metadata.name --no-headers); do
-		echo -e "$x\t$(kexec "$x" -- readlink /proc/1/ns/net 2>/dev/null)"
+		k-netns "$x"
  	done | column -t -s $'\t'
 }
 

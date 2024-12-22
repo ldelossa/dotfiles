@@ -36,11 +36,11 @@ source ~/zsh.d/git.sh
 source ~/zsh.d/gh.sh # always include after git.sh
 source ~/zsh.d/go.sh
 source ~/zsh.d/kubectl.sh
+source ~/zsh.d/cilium.sh # always include after kubectl.sh
 source ~/zsh.d/ssh.sh
 source ~/zsh.d/tilix.sh
 source ~/zsh.d/sway.sh
 source ~/zsh.d/systemd.sh
-source ~/zsh.d/cilium.sh
 source ~/zsh.d/bat.sh
 source ~/zsh.d/devspaces.sh
 source ~/zsh.d/kernel.sh
