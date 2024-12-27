@@ -79,13 +79,15 @@ function kcluster-info() {
 
 function k-netns() {
 	pod=${1}
-	echo -e "$pod\t$(kexec "$pod" -- readlink /proc/1/ns/net 2>/dev/null)"
+	echo -e "$(kexec "$pod" -- readlink /proc/1/ns/net 2>/dev/null)"
 }
 
 function kp-netns() {
-	for x in $(k get pods -o custom-columns=NAME:.metadata.name --no-headers); do
-		k-netns "$x"
- 	done | column -t -s $'\t'
+	x=($(k get pods -o custom-columns=NAME:.metadata.name,NODE:.spec.nodeName --no-headers))
+	for (( i = 1; i <= ${#x}; i += 2)); do
+		netns=$(k-netns "${x[$i]}")
+		echo -e "${x[$i]} ${x[$i+1]} $netns"
+	done | column -t -s ' '
 }
 
 # [NAME] [IMAGE] [NODE] [CMD (optional)]
