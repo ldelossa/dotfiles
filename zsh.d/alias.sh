@@ -12,6 +12,19 @@ alias vim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
 alias nv='neovide --multigrid'
 alias t='kitty --detach -d $(pwd)'
 
+# heredoc with variable interp to stdout
+alias doc='cat <<EOF'
+# heredoc without variable interp to stdout
+alias doc-s="cat <<'EOF'"
+# heredoc with variable interp to file
+alias doc-w='cat <<EOF >'
+# heredoc without variable interp to file
+alias doc-sw="cat <<'EOF' >"
+# heredoc with variable interp append to file
+alias doc-a='cat <<EOF >>'
+# heredoc without variable interp append to file
+alias doc-sa="cat <<'EOF' >>"
+
 if which exa &> /dev/null; then
     alias ls='exa --icons --header'
 fi
