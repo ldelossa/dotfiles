@@ -44,9 +44,12 @@ local content = function()
 	local search        = require("mini.statusline").section_searchcount({ trunc_width = 75 })
 
 	return require("mini.statusline").combine_groups({
-		{ hl = mode_hl, strings = { (function()
-			if Rsync_Enabled then return '󰲁' else return '' end
-		end)() } },
+		{
+			hl = mode_hl,
+			strings = { (function()
+				if Rsync_Enabled then return '󰲁' else return '' end
+			end)() }
+		},
 		{ hl = mode_hl,                             strings = { mode } },
 		{ hl = 'require("mini.statusline")Devinfo', strings = { git, diff, diagnostics, lsp } },
 		'%<', -- Mark general truncate point
@@ -620,5 +623,32 @@ end)
 now(function()
 	add({
 		source = "mmarchini/bpftrace.vim",
+	})
+end)
+
+-- nvim-lua/plenary.nvim
+now(function()
+	add({
+		source = "nvim-lua/plenary.nvim",
+	})
+end)
+
+-- nvim-telescope/telescope
+now(function()
+	add({
+		source = "nvim-telescope/telescope.nvim",
+	})
+	require("telescope").setup({
+	})
+end)
+
+-- pwntester/octo.nvim
+now(function()
+	add({
+		source = "pwntester/octo.nvim",
+	})
+	require("octo").setup({
+		use_local_fs = true,
+		enable_builtin = true,
 	})
 end)
