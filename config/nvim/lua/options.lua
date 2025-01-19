@@ -28,6 +28,7 @@ vim.o.wrap = false
 vim.o.foldlevel = 99
 vim.o.updatetime = 300
 vim.o.list = true
+vim.opt.listchars = { tab = '▸ ', trail = '~', extends = '>', precedes = '<', nbsp = "+" }
 opt.number = false
 
 -- set c fileype for headers, not cpp
