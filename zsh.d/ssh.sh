@@ -1,11 +1,11 @@
 #ssh agent spawner
 ssh-add -l &>/dev/null
-if [ "$?" == 2 ]; then
+if [ "$?" != 0 ]; then
   test -r ~/.ssh-agent && \
     eval "$(<~/.ssh-agent)" >/dev/null
 
   ssh-add -l &>/dev/null
-  if [ "$?" == 2 ]; then
+  if [ "$?" != 0 ]; then
     (umask 066; ssh-agent > ~/.ssh-agent)
     eval "$(<~/.ssh-agent)" >/dev/null
     ssh-add ~/.ssh/* &>/dev/null
