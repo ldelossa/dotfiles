@@ -15,15 +15,15 @@ alias t='kitty --detach -d $(pwd)'
 # heredoc with variable interp to stdout
 alias doc='cat <<EOF'
 # heredoc without variable interp to stdout
-alias doc-s="cat <<'EOF'"
+alias doc-literal="cat <<'EOF'"
 # heredoc with variable interp to file
-alias doc-w='cat <<EOF >'
+alias doc-file='cat <<EOF >'
 # heredoc without variable interp to file
-alias doc-sw="cat <<'EOF' >"
+alias doc-file-literal="cat <<'EOF' >"
 # heredoc with variable interp append to file
-alias doc-a='cat <<EOF >>'
+alias doc-append='cat <<EOF >>'
 # heredoc without variable interp append to file
-alias doc-sa="cat <<'EOF' >>"
+alias doc-append-literal="cat <<'EOF' >>"
 
 if which exa &> /dev/null; then
     alias ls='exa --icons --header'
