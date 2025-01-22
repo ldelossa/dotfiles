@@ -1,4 +1,13 @@
 # kubectl aliases
+export kctx=''
+function kctx() {
+    if [[ -z  $1 ]]; then
+        echo $kctx
+        return
+    fi
+    kctx=$1
+}
+
 export kns="kube-system"
 kconfig="$HOME/.kube/config"
 function kns() {
@@ -19,7 +28,7 @@ function kconfig() {
     kconfig=$1
 }
 
-preamble='kubectl --kubeconfig $kconfig --namespace $kns'
+preamble='kubectl --kubeconfig $kconfig --namespace $kns --context=$kctx'
 
 alias k=$preamble
 alias ka="$preamble apply -f"
