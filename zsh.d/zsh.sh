@@ -9,8 +9,13 @@ zstyle :prompt:pure:git:stash color 031
 zstyle :prompt:pure:git:dirty color 031
 zstyle :prompt:pure:git:stash color 031
 
-PURE_PROMPT_SYMBOL="%D{%I:%M:%S%p} ▶"
-PURE_PROMPT_VICMD_SYMBOL="%D{%I:%M:%S%p} "
+PURE_PROMPT_SYMBOL="[%D{%I:%M:%S%p}] ▶"
+PURE_PROMPT_VICMD_SYMBOL="[%D{%I:%M:%S%p}] "
+
+if [ -n "$SHLVL" ]; then
+	PURE_PROMPT_SYMBOL="[$SHLVL]${PURE_PROMPT_SYMBOL}"
+	PURE_PROMPT_VICMD_SYMBOL="[$SHLVL]${PURE_PROMPT_VICMD_SYMBOL}"
+fi
 
 # if we are running in a DEVSPACE container, make our prompt indicate this.
 if [ -n "$DEVSPACE" ]; then
