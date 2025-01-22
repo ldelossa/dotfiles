@@ -643,10 +643,9 @@ now(function()
 end)
 
 -- pwntester/octo.nvim
--- use fork tho...
 now(function()
 	add({
-		source = "ldelossa/octo.nvim",
+		source = "pwntester/octo.nvim",
 	})
 	require("octo").setup({
 		use_local_fs = true,
