@@ -35,7 +35,7 @@ alias ka="$preamble apply -f"
 alias kr="$preamble delete -f"
 alias kp="$preamble get pods"
 alias kpw="$preamble get pods -o wide"
-alias kp-net="$preamble get pods -o custom-columns=NAME:.metadata.name,IP:.status.podIP,HOST_IP:.status.hostIP,NODE:.spec.nodeName"
+alias kp-net="$preamble get pods -o custom-columns=NAME:.metadata.name,IP:.status.podIP,NODE_IP:.status.hostIP,NODE:.spec.nodeName"
 alias kd="$preamble get deployments"
 alias kdel="$preamble delete"
 alias ks="$preamble get services"
@@ -84,6 +84,13 @@ alias ksh=kshell
 
 function kcluster-info() {
 	k -o json get configmap kubeadm-config | jq -r .data.ClusterConfiguration
+}
+
+function kp-net6 {
+	{
+		echo -e "NAME\tIP\tNODE_IP\tNODE";
+		eval "$preamble get pods -o json | jq -r '.items[] | [.metadata.name, .status.podIPs[1].ip, .status.hostIPs[1].ip, .spec.nodeName] | @tsv'"
+	} | column -t
 }
 
 function k-netns() {
