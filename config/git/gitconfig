@@ -39,3 +39,7 @@
 
 [alias]
 	fix = commit --fixup
+
+[sendemail]
+	smtpServer = /usr/bin/msmtp
+	b4-really-reflect-via = /usr/bin/msmtp
