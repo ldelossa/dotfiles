@@ -170,3 +170,8 @@ nvim_lsp.asm_lsp.setup({
 	capabilities = default_capabilities(),
 	on_attach = on_attach,
 })
+nvim_lsp.pylsp.setup({
+	capabilities = default_capabilities(),
+	on_attach = on_attach,
+})
+
