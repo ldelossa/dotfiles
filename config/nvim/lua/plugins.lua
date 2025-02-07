@@ -386,6 +386,7 @@ now(function()
 	})
 	require("nvim-treesitter.configs").setup({
 		highlight = { enable = true },
+		fold = { enable = true },
 		textobjects = {
 			select = {
 				enable = true,

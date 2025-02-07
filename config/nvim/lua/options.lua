@@ -31,6 +31,10 @@ vim.o.list = true
 vim.opt.listchars = { tab = '▸ ', trail = '~', extends = '>', precedes = '<', nbsp = "+" }
 opt.number = false
 
+-- treesitter based folding
+vim.foldmethod = 'expr'
+vim.oldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
 -- set c fileype for headers, not cpp
 vim.g.c_syntax_for_h = 1
 
