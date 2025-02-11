@@ -653,3 +653,11 @@ now(function()
 		enable_builtin = true,
 	})
 end)
+
+-- ldelossa/kbrowse.nvim
+now(function()
+	add({
+		source = "ldelossa/kbrowse.nvim",
+	})
+	require("kbrowse").setup()
+end)
