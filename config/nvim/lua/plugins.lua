@@ -583,10 +583,10 @@ end)
 -- ldelossa/glance.nvim
 now(function()
 	add({
-		source = "ldelossa/glance.nvim",
+		source = "DNLHC/glance.nvim",
 	})
 	require("glance").setup({
-		height = 25
+		height = 25,
 	})
 end)
 
