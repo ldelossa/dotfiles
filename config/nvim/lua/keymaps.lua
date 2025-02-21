@@ -24,7 +24,7 @@ local close_other_buffers = function()
 	local cur_buf = vim.api.nvim_get_current_buf()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		-- make sure buffer is a regular file type
-		if vim.api.nvim_buf_get_option(buf, "buftype") ~= "" then
+		if vim.bo[buf].buftype ~= "" then
 			goto continue
 		end
 
@@ -174,13 +174,6 @@ map("n", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in G
 map("v", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
 map("n", "<c-g>h", ":Pick git_hunks<cr>", { silent = true, desc = "list git hunks" })
 
--- copilot suggestions
-map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
-map("i", "<C-S-j>", "<Plug>(copilot-next)", { silent = true, desc = "copilot next suggestion" })
-map("i", "<C-S-k>", "<Plug>(copilot-previous)", { silent = true, desc = "copilot previous suggestion" })
-map("i", "<C-h>", "<Plug>(copilot-accept-word)", { silent = true, desc = "copilot accept next word" })
-map("i", "<C-S-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copilot accept next word" })
-
 -- mini pickers
 map("n", "<leader>s", "<cmd>Pick grep<cr>", { silent = true, desc = "grep" })
 map("n", "<leader>S", "<cmd>Pick grep_live<cr>", { silent = true, desc = "live grep" })
@@ -201,8 +194,7 @@ map("n", "<leader>d", require('mini.starter').open, { silent = true, desc = "ope
 
 -- special handling for filepath completion.
 -- cd to buffer's dir so filepath completion shows files relative to buffer's
--- directory.
--- then switch back after extremely short delay
+-- directory, then switch back after extremely short delay
 local filepath_completion = function()
 	local cwd = vim.fn.getcwd()
 
@@ -219,21 +211,30 @@ local filepath_completion = function()
 end
 map("i", "<C-X><C-F>", filepath_completion, { silent = true, desc = "filepath completion" })
 
--- completion (inspired from mini.completion suggestion)
+map("i", "<C-j>", require("copilot.suggestion").next, { silent = true, desc = "copilot suggest" })
+map("i", "<C-S-j>", require("copilot.suggestion").prev, { silent = true, desc = "copilot previous suggest" })
+map("i", "<C-h>", require("copilot.suggestion").accept_word, { silent = true, desc = "copilot accept next word" })
+map("i", "<C-S-h>", require("copilot.suggestion").accept_line, { silent = true, desc = "copilot accept next line" })
+
+-- super tab, make tab do different things depending on context.
 local keys = {
 	["tab"] = vim.api.nvim_replace_termcodes("<Tab>", true, true, true),
 	["ctrl-y"] = vim.api.nvim_replace_termcodes("<C-y>", true, true, true),
+	["noop"] = vim.api.nvim_replace_termcodes("", true, true, true),
 }
-_G.tab_action = function()
+vim.g.super_tab = function()
 	if vim.fn.pumvisible() ~= 0 then
 		return keys["ctrl-y"]
+	elseif require("copilot.suggestion").is_visible() then
+		require("copilot.suggestion").accept()
+		return keys["noop"]
 	elseif vim.snippet.active({ direction = 1 }) then
 		return '<cmd>lua vim.snippet.jump(1)<cr>'
 	else
 		return keys["tab"]
 	end
 end
-vim.keymap.set("i", "<Tab>", "v:lua._G.tab_action()", { expr = true })
+vim.keymap.set("i", "<Tab>", vim.g.super_tab, { expr = true })
 
 -- nvim-ide
 map("n", "<leader>e", "<cmd>Workspace LeftPanelToggle<cr>", { silent = true, desc = "toggle code explorer panel" })

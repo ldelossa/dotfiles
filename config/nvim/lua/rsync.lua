@@ -107,7 +107,7 @@ local enable = function(cmd)
 		return
 	end
 
-	-- check if cmds binary is available
+	-- check if rsync binary is available
 	if vim.fn.executable("rsync") == 0 then
 		vim.notify('[rsync] rsync not in $PATH', vim.log.levels.ERROR, {
 			title = "rsync",
