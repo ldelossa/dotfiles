@@ -42,7 +42,6 @@ alias ks="$preamble get services"
 alias kn="$preamble get nodes"
 alias kdesc="$preamble describe"
 alias kexec="$preamble exec"
-alias kiexec="$preamble exec -i -t"
 
 function klogs() {
 	eval "$preamble logs --timestamps $1 2>&1 | bat --theme=base16 -llog"
@@ -57,6 +56,10 @@ function klogstream() {
     eval "($preamble logs --timestamps --follow "$1" > $log_name)&"; bg_job=$!
     nvim -c "set syntax=log" $log_name # blocks until closed
     kill -SIGKILL $bg_job; rm -rf $log_name
+}
+
+function kiexec() {
+	eval "$preamble exec -i -t ${1} -- ${2}"
 }
 
 # interactive exec into first pod which matches label
