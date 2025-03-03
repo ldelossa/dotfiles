@@ -213,8 +213,8 @@ map("i", "<C-X><C-F>", filepath_completion, { silent = true, desc = "filepath co
 
 map("i", "<C-j>", require("copilot.suggestion").next, { silent = true, desc = "copilot suggest" })
 map("i", "<C-S-j>", require("copilot.suggestion").prev, { silent = true, desc = "copilot previous suggest" })
-map("i", "<C-h>", require("copilot.suggestion").accept_word, { silent = true, desc = "copilot accept next word" })
-map("i", "<C-S-h>", require("copilot.suggestion").accept_line, { silent = true, desc = "copilot accept next line" })
+map("i", "<C-h>", require("copilot.suggestion").accept_line, { silent = true, desc = "copilot accept next line" })
+map("i", "<C-S-h>", require("copilot.suggestion").accept_word, { silent = true, desc = "copilot accept next word" })
 
 -- super tab, make tab do different things depending on context.
 local keys = {

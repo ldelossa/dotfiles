@@ -670,3 +670,11 @@ now(function()
 	})
 	require("kbrowse").setup()
 end)
+
+-- sindrets/diffview.nvim
+now(function()
+	add({
+		source = "sindrets/diffview.nvim",
+	})
+	require("diffview").setup()
+end)
