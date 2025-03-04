@@ -146,8 +146,8 @@ map("i", "<C-l>e", '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<cr>', 
 map("n", "<C-l>f", "<cmd>lua vim.lsp.buf.format()<cr>", { silent = true, desc = "format" })
 map("n", "<C-l>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { silent = true, desc = "code action" })
 map("n", "<C-l>x", "<cmd>Pick diagnostic<cr>", { silent = true, desc = "diagnostics" })
-map("n", "<C-l>hi", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", { silent = true, desc = "incoming calls" })
-map("n", "<C-l>ho", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", { silent = true, desc = "outgoing calls" })
+map("n", "<C-l>Hi", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", { silent = true, desc = "incoming calls" })
+map("n", "<C-l>Ho", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", { silent = true, desc = "outgoing calls" })
 
 -- git
 local gs = require("gitsigns")
