@@ -228,8 +228,8 @@ vim.g.super_tab = function()
 	elseif require("copilot.suggestion").is_visible() then
 		require("copilot.suggestion").accept()
 		return keys["noop"]
-	elseif vim.snippet.active({ direction = 1 }) then
-		return '<cmd>lua vim.snippet.jump(1)<cr>'
+  elseif require("mini.snippets").session.get() ~= nil then
+		return '<cmd>lua MiniSnippets.session.jump("next")<cr>'
 	else
 		return keys["tab"]
 	end

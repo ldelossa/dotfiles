@@ -25,7 +25,7 @@ vim.diagnostic.config({
 
 -- on attach method for lsps
 local on_attach = function(client, bufnr)
-	vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = false })
+	-- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = false })
 end
 
 -- ripped from cmp.nvim

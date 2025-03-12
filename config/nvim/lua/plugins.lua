@@ -163,17 +163,28 @@ later(function()
 		},
 	})
 end)
--- later(function()
--- 	require("mini.completion").setup({
--- 		-- high delay basically means 'no auto popups'
--- 		delay = { completion = 10 ^ 7, info = 10 ^ 7, signature = 10 ^ 7 },
--- 		-- Way of how module does LSP completion
--- 		lsp_completion = {
--- 			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
--- 			source_func = "omnifunc",
--- 		},
--- 	})
--- end)
+
+later(function()
+	require("mini.icons").setup({})
+	require("mini.icons").tweak_lsp_kind()
+end)
+later(function()
+	require("mini.snippets").setup({
+		mappings = {
+			-- jump_foward is handled in super tab setup in keymaps.lua
+			expand = '',
+			jump_prev = '<S-Tab>'
+		}
+	})
+end)
+later(function()
+	require("mini.completion").setup({
+		delay = { completion = 10 ^ 7 },
+		lsp_completion = {
+			source_func = "omnifunc",
+		},
+	})
+end)
 
 later(function()
 	require("mini.pick").setup({
