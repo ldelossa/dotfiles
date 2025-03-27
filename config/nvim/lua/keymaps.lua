@@ -96,8 +96,6 @@ end
 map("i", "<C-Space>", "<cmd>lua vim.lsp.completion.trigger()<cr>", { silent = true, desc = "trigger lsp completion" })
 map("n", "<C-l>s", "<cmd>Pick lsp scope='document_symbol'<cr>", { silent = true, desc = "document symbols" })
 map("n", "<C-l>w", workspace_symbol_query, { silent = true, desc = "workspace symbols" })
-map("n", "<C-l>hi", "<cmd>lua vim.lsp.buf.incoming_calls()<cr>", { silent = true, desc = "incoming calls" })
-map("n", "<C-l>ho", "<cmd>lua vim.lsp.buf.outgoing_calls()<cr>", { silent = true, desc = "outgoing calls" })
 map(
 	"n",
 	"<C-l>p",
@@ -239,8 +237,6 @@ vim.keymap.set("i", "<Tab>", vim.g.super_tab, { expr = true })
 -- nvim-ide
 map("n", "<leader>e", "<cmd>Workspace LeftPanelToggle<cr>", { silent = true, desc = "toggle code explorer panel" })
 map("n", "<leader>G", "<cmd>Workspace RightPanelToggle<cr>", { silent = true, desc = "toggle git explorer panel" })
-map("n", "<C-l>hi", "<cmd>Workspace CallHierarchy IncomingCalls<cr>", { silent = true, desc = "incoming calls" })
-map("n", "<C-l>ho", "<cmd>Workspace CallHierarchy OutgoingCalls<cr>", { silent = true, desc = "outgoing calls" })
 
 -- CopilotChat
 local chat = require("CopilotChat")
