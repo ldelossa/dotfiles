@@ -9,6 +9,7 @@ quick-terminal-autohide = false
 shell-integration = zsh
 shell-integration-features = true
 macos-titlebar-style = tabs
+auto-update-channel = tip
 
 keybind = shift+alt+p=jump_to_prompt:-1
 keybind = shift+alt+n=jump_to_prompt:+1

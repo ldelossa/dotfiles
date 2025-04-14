@@ -18,7 +18,7 @@ sudo yabai --load-sa
 yabai -m config                                 \
     external_bar                 off:40:0       \
     menubar_opacity              1.0            \
-    mouse_follows_focus          off            \
+    mouse_follows_focus          on             \
     focus_follows_mouse          on             \
     display_arrangement order    default        \
     window_origin_display        default        \
@@ -58,6 +58,8 @@ yabai -m rule --add app="^kitty$" title="scratchpad" scratchpad="terminal" grid=
 yabai -m signal --add event=space_changed action="hs -m yabaiHammerSpoon:onSpacesChanged"
 yabai -m signal --add event=application_activated action="hs -m yabaiHammerSpoon:onApplicationsChanged"
 
+
+yabai -m signal --add event=display_changed action="hs -m yabaiHammerSpoon:onDisplaysChanged"
 yabai -m signal --add event=window_created action="hs -m yabaiHammerSpoon:onWindowsChanged"
 yabai -m signal --add event=window_destroyed action="hs -m yabaiHammerSpoon:onWindowsChanged"
 yabai -m signal --add event=window_focused action="hs -m yabaiHammerSpoon:onWindowsChanged"
