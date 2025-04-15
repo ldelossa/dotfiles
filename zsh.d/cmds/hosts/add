@@ -1,0 +1,34 @@
+source ~/git/bash/cmds/.lib
+desc="Add an entry to the hosts file"
+args=("--host:The host a name maps to" \
+	  "--name:The name of the host" \
+      "--help:[b,o] Display help")
+
+help() {
+	# Print help message
+	echo
+	echo "Usage: [options]"
+	echo
+	echo "Options:"
+	echo "  --host   The host a name maps to"
+	echo "  --name   The name of the host"
+	echo "  --help  Show this help message"
+	echo
+	echo "Description:"
+	echo "  Add an entry to the hosts file."
+}
+
+execute() {
+	eval $lib_eval_argument_parse
+	if (($?)); then
+		help
+		exit
+	fi
+
+	if [[ $help == true ]]; then
+		help
+		exit
+	fi
+
+	printf "%s %s\n" "$host" "$name" | sudo tee -a /etc/hosts
+}

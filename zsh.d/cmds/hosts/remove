@@ -1,0 +1,50 @@
+desc="Remove an entry to the hosts file"
+args=("--id:ID of hosts file entry returned from list command" \
+	  "--help:[b,o] Display help")
+
+help() {
+	echo
+	echo "Usage: [options]"
+	echo
+	echo "Options:"
+	echo "  --id    ID of hosts file entry returned from list command"
+	echo "  --help  Show this help message"
+	echo
+	echo "Description:"
+	echo "  Remove an entry to the hosts file."
+}
+
+execute() {
+	eval $lib_eval_argument_parse
+	if (($?)); then
+		help
+		exit
+	fi
+
+	if [[ $help == true ]]; then
+		help
+		exit
+	fi
+
+	IFS=$'\n'
+
+	entries=($(cat /etc/hosts))
+
+	sanitized=()
+
+	for entry in "${entries[@]}"; do
+		if [[ -z $entry ]]; then
+			continue
+		fi
+		if [[ ${entry:0:1} == "#" ]]; then
+			continue
+		fi
+		sanitized+=("$entry")
+	done
+
+	to_delete=${sanitized[$id]}
+
+	# remove the line in the /etc/hosts file which matches exactly with
+	# to_delete variable
+	sudo sed -i "/$to_delete/d" /etc/hosts
+}

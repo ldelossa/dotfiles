@@ -1,0 +1,48 @@
+desc="List hosts file entries"
+args=("--help:[o,b] Display help")
+
+help() {
+	# Print help message
+	echo
+	echo "Usage: [options]"
+	echo
+	echo "Options:"
+	echo "  --help  Show this help message"
+	echo
+	echo "Description:"
+	echo "  List all entries in the hosts file."
+	echo
+}
+
+execute() {
+	eval $lib_eval_argument_parse
+	if (($?)); then
+		help
+		exit
+	fi
+
+	if [[ $help == true ]]; then
+		help
+		exit
+	fi
+
+	IFS=$'\n'
+
+	entries=($(cat /etc/hosts))
+
+	sanitized=()
+
+	for entry in "${entries[@]}"; do
+		if [[ -z $entry ]]; then
+			continue
+		fi
+		if [[ ${entry:0:1} == "#" ]]; then
+			continue
+		fi
+		sanitized+=("$entry")
+	done
+
+	for ((i=0; i<${#sanitized[@]}; i++)); do
+		echo "$i: ${sanitized[$i]}"
+	done
+}

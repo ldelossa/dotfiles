@@ -1,0 +1,148 @@
+# describes a subcommand and its commands.
+# $1: summary string describing subcommand
+# $2: subcommand directory
+lib_describe() {
+	# list subcommand's commands or further nested subcommands, source each
+	# one to get the desc variable and append it to our listing of commands.
+	local -a cmds=()
+	for p in $(ls $2); do
+		source $2/$p
+		cmds+=("$p\t$desc\n")
+	done
+
+	#here doc with interpolation to print description
+	cat <<EOF
+SUMMARY:
+  $1
+
+COMMANDS:
+$(for cmd in $cmds; do
+	echo "  $cmd"
+done | column -t -s $'\t')
+EOF
+}
+
+# parses r_args, the arguments being provided to the script at runtime,
+# into args, the argument list the script exports.
+#
+# s_args is passed as a list of arguments directly to this function.
+# args is exported by the script being ran and is accessible via the 'args'
+# variable after sourcing and is in _describe format
+# (e.g. --comp:description for c command)
+lib_argument_parse() {
+	local r_args=("$@")
+
+	local -a unset
+
+	# iterate over arguments our script wants and see if the runtime arguments
+	# are provided.
+	for arg in "${args[@]}"; do
+		local found=false
+		local is_optional=false
+		local is_bool=false
+
+		# remove description from _describe argument spec, extracting
+		# the argument name. E.g: --c:[b,o]description for c command =>
+		# --c
+		local e_arg="${arg/:*/}"
+		# extract the argument options in the description
+		# these are
+		# [x,y]
+		#  ^ ^
+		#  | |__o=optional
+		#  |____b=boolean
+		# when no options are specified the argument is, by default,
+		# a required value type.
+		local arg_opts="${${arg#*\[}%\]*}"
+
+		if [[ $arg_opts == "$arg" ]]; then
+			# this is the case when no [] is within the argument provided
+			# by the script, the parameter expansion above 'defaults' to
+			# just returning the original string if no modification was
+			# made.
+			#
+			# unset arg_opts to ensure no checks below occur
+			arg_opts=""
+		fi
+
+		# if the argument exported from the script is optional, store this
+		# fact, we'll use it later for validation.
+		if [[ $arg_opts == *"o"* ]]; then
+			is_optional=true
+		fi
+
+		# iterate over runtime arguments searching for the script's exported
+		# argument.
+		#
+		# if found, declare a global variable with the same name as the flag
+		# sans the "--" prefix.
+		for ((i=1; i <= ${#r_args[@]}; i++)); do
+			r_arg="${r_args[i]}"
+
+
+			if [[ "$r_arg" != "$e_arg" ]]; then
+				continue
+			fi
+
+			# if argument is a boolean set a flag telling us how to shift the
+			# runtime args array later.
+			if [[ $arg_opts == *"b"* ]]; then
+				is_bool=true
+			fi
+
+			# both our runtime arg and our extracted arg have '--' prefix
+			# so remove this and store it as our global variable name,
+			# converting the --flag to a global variable $flag
+			local var_name="${e_arg#--}"
+
+			# if its a boolean argument just declare a variable with true
+			if [[ $is_bool == true ]]; then
+				eval "$var_name=true"
+			else
+				# use a expansion trick to determine if next value another
+				# flag.
+				#
+				# attempt to remove the "--" from the next argument.
+				# if it was a flag, the "--" will will be removed and the
+				# expanded string will not be equal the original. if it was a
+				# value, no "--" is removed and an equivalent string is produced.
+				#
+				# the final -z check just ensures if the r_args[i+1] goes over
+				# the array bounds we handle it.
+				if [[ ${r_args[i+1]#--} != "${r_args[i+1]}" ]] ||
+				   [[ -z ${r_args[i+1]} ]]; then
+					echo "ERROR: miss value for flag ${r_args[i]}"
+					return 1
+				fi
+				eval "$var_name=${r_args[i+1]}"
+			fi
+
+			found=true
+			break
+		done
+
+		# if we didn't find the desired flag and its not optional add it to
+		# our unset array, we'll log it out at the end.
+		if [[ $found == false ]] && [[ $is_optional == false ]]; then
+			local var_name="${e_arg#--}"
+			if [[ ${(P)+var_name} -eq 0 ]]; then
+				# add flag to unset
+				unset+=("$arg")
+			fi
+		fi
+	done
+
+	# if any unset flags list them and return an exit code
+	if [[ ${#unset[@]} -gt 0 ]]; then
+		echo "ERROR: The following required arguments were not provided:"
+		for arg in "${unset[@]}"; do
+			echo "${arg%:*} -- ${arg#*:}"
+		done
+		return 1
+	fi
+
+	return 0
+}
+
+# scripts can eval this variable to perform argument parsing.
+lib_eval_argument_parse='lib_argument_parse "${@}"'
