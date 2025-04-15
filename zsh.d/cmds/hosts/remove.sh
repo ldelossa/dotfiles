@@ -1,30 +1,10 @@
-desc="Remove an entry to the hosts file"
+desc="Remove an entry from the hosts file"
 args=("--id:ID of hosts file entry returned from list command" \
 	  "--help:[b,o] Display help")
-
-help() {
-	echo
-	echo "Usage: [options]"
-	echo
-	echo "Options:"
-	echo "  --id    ID of hosts file entry returned from list command"
-	echo "  --help  Show this help message"
-	echo
-	echo "Description:"
-	echo "  Remove an entry to the hosts file."
-}
+help=("remove" "Remove an entry from the hosts file")
 
 execute() {
 	eval $lib_eval_argument_parse
-	if (($?)); then
-		help
-		exit
-	fi
-
-	if [[ $help == true ]]; then
-		help
-		exit
-	fi
 
 	IFS=$'\n'
 

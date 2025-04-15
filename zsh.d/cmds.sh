@@ -1,6 +1,6 @@
 #compdef cmds
 
-source ~/zsh.d/cmds/.lib
+source ~/zsh.d/cmds/.lib.sh
 
 CMDS_PARENT_DIR=~/zsh.d
 CMDS_ROOT_DIR=cmds
@@ -52,6 +52,11 @@ _cmds_completion() {
 			source $BUFFER_PATH
 			local -a a
 			a=("${args[@]}")
+
+			# we always add a help command to script writers do not need to
+			# remember to add it to their script.
+			a+=("--help:[b,o] Display help")
+
 			_describe 'command' a
 			return
 		fi

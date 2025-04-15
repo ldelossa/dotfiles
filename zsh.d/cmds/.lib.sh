@@ -1,3 +1,35 @@
+# the trickiest part of .lib.sh is that it runs after we sourced the script
+# being executed into our shell.
+#
+# this means variables the script exports are available to us.
+# these special variables are:
+# $desc - a short single line description displayed in a subcommand's help
+# $args - an array of arguments in zsh's _describe syntax
+# $help - an array consiting of the the script name as the first element and
+#         a long form description of how the command is used.
+#
+# scripts MUST define these variables, even if no args are used in the script.
+# if no args are used simply provide an empty array 'args=()'.
+
+# error logger with red
+lib_error() {
+	local red='\033[0;31m'
+	local reset='\033[0m'
+	echo -e "${red}$1${reset} "
+}
+
+lib_info() {
+	local blue='\033[0;34m'
+	local reset='\033[0m'
+	echo -e "${blue}$1${reset} "
+}
+
+lib_warning() {
+	local yellow='\033[0;33m'
+	local reset='\033[0m'
+	echo -e "${yellow}$1${reset} "
+}
+
 # describes a subcommand and its commands.
 # $1: summary string describing subcommand
 # $2: subcommand directory
@@ -22,17 +54,61 @@ done | column -t -s $'\t')
 EOF
 }
 
-# parses r_args, the arguments being provided to the script at runtime,
-# into args, the argument list the script exports.
+lib_help() {
+	cat <<EOF
+
+Usage: $1 [options]
+
+Options:
+$(for arg in $args; do
+  echo "  "${arg%:*}'\t'${arg#*:}
+done | column -t -s $'\t')
+
+Description:
+ $(echo -e $2)
+EOF
+}
+
+lib_print_help_and_exit() {
+	lib_help "${help[1]}" "${help[2]}"
+	exit
+}
+
+# parses the runtime args ($r_args) into the desired args exported by the script
+# ($args). ($args) are in zsh's _describe syntax and also have argument options
+# within '[]', these are a construct of our framework
 #
-# s_args is passed as a list of arguments directly to this function.
-# args is exported by the script being ran and is accessible via the 'args'
-# variable after sourcing and is in _describe format
-# (e.g. --comp:description for c command)
+# the parser works through $args and finds matching $r_arg(s), when it does it
+# creates a global variable accessible from the running script. If one or more
+# required arguments are not found an error message is shown, the help dialogue
+# is displayed, and the shell session is exited.
+#
+# therefore, when a script runs or evaluates this function it can expect global
+# variables to exist for each of its required arguments listed in $args.
+#
+# the cmds framework automatically adds the --help argument for any script, so
+# the script author does not need to tediously write this argument.
+# if this flag is discovered the parser will short-circuit, displaying the help
+# and then exiting.
+#
+# therefore, the script can simply `eval $lib_eval_argument_parse` to handle
+# all framework needs of parsing arguments, handling missing arguments, and
+# printing help (regardless of any other arguments on the cli).
 lib_argument_parse() {
 	local r_args=("$@")
 
 	local -a unset
+
+	# do an initial check to see if --help or -h exist in the runtime args
+	# if so we'll just print help and exit
+	for r_arg in "${r_args[@]}"; do
+		if [[ "$r_arg" == "-h" || "$r_arg" == "--help" ]]; then
+			# remember, script's dont need to export it, so ensure its there
+			# when we go to print all options and exit.
+			args+=("--help:[b,o] Display help")
+			lib_print_help_and_exit
+		fi
+	done
 
 	# iterate over arguments our script wants and see if the runtime arguments
 	# are provided.
@@ -78,7 +154,6 @@ lib_argument_parse() {
 		# sans the "--" prefix.
 		for ((i=1; i <= ${#r_args[@]}; i++)); do
 			r_arg="${r_args[i]}"
-
 
 			if [[ "$r_arg" != "$e_arg" ]]; then
 				continue
@@ -126,7 +201,6 @@ lib_argument_parse() {
 		if [[ $found == false ]] && [[ $is_optional == false ]]; then
 			local var_name="${e_arg#--}"
 			if [[ ${(P)+var_name} -eq 0 ]]; then
-				# add flag to unset
 				unset+=("$arg")
 			fi
 		fi
@@ -134,13 +208,12 @@ lib_argument_parse() {
 
 	# if any unset flags list them and return an exit code
 	if [[ ${#unset[@]} -gt 0 ]]; then
-		echo "ERROR: The following required arguments were not provided:"
+		lib_error "ERROR: The following required arguments were not provided:"
 		for arg in "${unset[@]}"; do
-			echo "${arg%:*} -- ${arg#*:}"
+			lib_error "${arg%:*} -- ${arg#*:}"
 		done
-		return 1
+		lib_print_help_and_exit
 	fi
-
 	return 0
 }
 
