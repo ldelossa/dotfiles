@@ -5,7 +5,7 @@ help=("list" "List hosts file entires.
  Each listing is prefixed with an ID that can be used to add or remove entries.")
 
 execute() {
-	eval $lib_eval_argument_parse
+	eval $lib_eval_argparse
 
 	IFS=$'\n'
 

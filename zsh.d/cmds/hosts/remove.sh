@@ -4,7 +4,7 @@ args=("--id:ID of hosts file entry returned from list command" \
 help=("remove" "Remove an entry from the hosts file")
 
 execute() {
-	eval $lib_eval_argument_parse
+	eval $lib_eval_argparse
 
 	IFS=$'\n'
 
