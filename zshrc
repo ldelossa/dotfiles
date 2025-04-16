@@ -59,6 +59,8 @@ source ~/zsh.d/virsh.sh
 source ~/zsh.d/gdbus.sh
 source ~/zsh.d/devbox.sh
 source ~/zsh.d/hosts.sh
+# source the cmds/ framework
+source ~/zsh.d/cmds/.lib.sh
 
 if [[ -f ~/zsh.d/chatgpt.sh ]]; then
     source ~/zsh.d/chatgpt.sh
