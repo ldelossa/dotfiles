@@ -1,7 +1,7 @@
 desc="Deploy and bootstrap a GCP instance running Rocky Linux"
 args=("--project:The project the machine is deployed in" \
 	  "--zone:The zone the machine is deployed in" \
-      "--machine-type:The machine type to deploy")
+      "--machine_type:The machine type to deploy")
 help=("gcloud-dev-box", "Deploy and bootstrap a GCP instance running Rocky Linux.
 
  This script will deploy a Rocky Linux instance and bootstrap it.

@@ -1,0 +1,8 @@
+desc="Commands for building and deploy a kernel on a remote machine
+
+ These commands typically work by pushing a local kernel source repository to
+ a remote development server, performing an action, and syncing the results
+ back to the host.
+
+ This is a typical development pattern so you can hack on a remote kernel and
+ not on the machine you're developing from."
