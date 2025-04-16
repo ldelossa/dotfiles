@@ -4,6 +4,5 @@ args=("--host:The host a name maps to" \
 help=("add" "Add an entry to the hosts file")
 
 execute() {
-	eval $lib_eval_argparse
 	printf "%s %s\n" "$host" "$name" | sudo tee -a /etc/hosts
 }

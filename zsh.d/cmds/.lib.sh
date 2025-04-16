@@ -40,7 +40,9 @@ CMDS_PARENT_DIR=$(dirname $(dirname $(realpath $0)))
 # for example "cmds my-subcommand my-command" is converted to the relative path
 # cmds/my-subcommand/my-command by the command runner and zsh completion code.
 CMDS_ROOT_DIR=cmds
-# full path to the cmds/ framework directory
+# full path to the cmds/ framework directory.
+# this is very handle to use inside scripts when they want to refer to other
+# commands in the cmds framework
 CMDS_DIR=$CMDS_PARENT_DIR/$CMDS_ROOT_DIR
 
 ###########
@@ -282,24 +284,24 @@ _cmds_completion() {
 	# convert $BUFFER into a relative path, replacing spaces with '/'
 	# this completion functions will always have 'cmds/' as its first path
 	# parameter since its the shell script that is being completed.
-	BUFFER_PATH=${BUFFER// /\/}
+	CMD_BUFFER=${BUFFER// /\/}
 	# BUFFER_PATH may include arguments at this point, for example
 	# x/y/z/--one/--two/--three. We want to remove everything from the first
 	# /-* to the end.
-	BUFFER_PATH="${BUFFER_PATH%%/-*}"
+	CMD_BUFFER="${CMD_BUFFER%%/-*}"
 	# fully qualify BUFFER_PATH and remove trailing slash, remember $BUFFER_PATH
 	# is derived from the command line input which already has `cmds/` as the
 	# first parameter.
-	BUFFER_PATH=${CMDS_PARENT_DIR}/${BUFFER_PATH%/}
+	CMD_BUFFER=${CMDS_PARENT_DIR}/${CMD_BUFFER%/}
 	# the final command being invoked on the cli.
 	# for example /x/y/z
 	#                  ^
-	CMD=$(basename "$BUFFER_PATH")
+	CMD=$(basename "$CMD_BUFFER")
 	# the path toward (but not consisting of) the final command being invoked
 	# on the cli.
 	# for example /x/y/z
 	# 			  |---|
-	CMD_PATH=$(dirname "$BUFFER_PATH")
+	CMD_PATH=$(dirname "$CMD_BUFFER")
 
 	# if our command is the root shell function we want to list directories
 	# and files at the root of $CMDS_PATH
@@ -312,16 +314,16 @@ _cmds_completion() {
 	# If it points to a directory, we provide the listing of this directory
 	# as futher completion. If it points to a file we can provide the script's
 	# completion arguments.
-	if [[ -e "$BUFFER_PATH" ]]; then
+	if [[ -e "$CMD_BUFFER" ]]; then
 		# if its a directory, we want to list the files in it
-		if [[ -d "$BUFFER_PATH" ]]; then
-			compadd -- $(ls $BUFFER_PATH)
+		if [[ -d "$CMD_BUFFER" ]]; then
+			compadd -- $(ls $CMD_BUFFER)
 			return
 		fi
 
 		# if its a file, its a command, source in any arguments for completion
-		if [[ -f "$BUFFER_PATH" ]]; then
-			source $BUFFER_PATH
+		if [[ -f "$CMD_BUFFER" ]]; then
+			source $CMD_BUFFER
 			local -a a
 			a=("${args[@]}")
 
@@ -357,8 +359,7 @@ compdef _cmds_completion cmds
 #
 # this all occurs in a sub-shell so any environment modifications are thrown
 # away when the command finishes.
-cmds() {
-(
+cmds() {(
 	# build path until any arguments are discovered
 	local CMD_BUFFER=$CMDS_DIR
 	for arg in $@; do
@@ -381,8 +382,11 @@ cmds() {
 	# if its a regualr file, execute it
 	if [[ -f $CMD_BUFFER ]]; then
 		source $CMD_BUFFER
-		execute "$@"
+		# call arg parse, we can do it on behalf of the script removing yet
+		# another boilerpate line for script authors. this will define all
+		# variables the script requires, or return an error and help dialogue.
+		eval $lib_eval_argparse
+		execute
 		return
 	fi
-)
-}
+)}
