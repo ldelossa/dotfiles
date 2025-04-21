@@ -68,9 +68,9 @@ now(function()
 		}
 	})
 end)
-now(function()
-	require("mini.comment").setup()
-end)
+-- now(function()
+-- 	require("mini.comment").setup()
+-- end)
 later(function()
 	require("mini.ai").setup()
 end)
@@ -509,6 +509,9 @@ now(function()
 	})
 	require("barbar").setup({
 		sort = { ignore_case = true },
+		icons = {
+			pinned = { button = '', filename = true },
+		}
 	})
 end)
 vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
@@ -688,35 +691,43 @@ now(function()
 		source = "sindrets/diffview.nvim",
 	})
 	require("diffview").setup({
-    view = {
-      -- Configure the layout and behavior of different types of views.
-      -- Available layouts:
-      --  'diff1_plain'
-      --    |'diff2_horizontal'
-      --    |'diff2_vertical'
-      --    |'diff3_horizontal'
-      --    |'diff3_vertical'
-      --    |'diff3_mixed'
-      --    |'diff4_mixed'
-      -- For more info, see |diffview-config-view.x.layout|.
-      default = {
-        -- Config for changed files, and staged files in diff views.
-        layout = "diff2_vertical",
-        disable_diagnostics = false,  -- Temporarily disable diagnostics for diff buffers while in the view.
-        winbar_info = false,          -- See |diffview-config-view.x.winbar_info|
-      },
-      merge_tool = {
-        -- Config for conflicted files in diff views during a merge or rebase.
-        layout = "diff3_vertical",
-        disable_diagnostics = true,   -- Temporarily disable diagnostics for diff buffers while in the view.
-        winbar_info = true,           -- See |diffview-config-view.x.winbar_info|
-      },
-      file_history = {
-        -- Config for changed files in file history views.
-        layout = "diff2_vertical",
-        disable_diagnostics = false,  -- Temporarily disable diagnostics for diff buffers while in the view.
-        winbar_info = false,          -- See |diffview-config-view.x.winbar_info|
-      }
+		view = {
+			-- Configure the layout and behavior of different types of views.
+			-- Available layouts:
+			--  'diff1_plain'
+			--    |'diff2_horizontal'
+			--    |'diff2_vertical'
+			--    |'diff3_horizontal'
+			--    |'diff3_vertical'
+			--    |'diff3_mixed'
+			--    |'diff4_mixed'
+			-- For more info, see |diffview-config-view.x.layout|.
+			default = {
+				-- Config for changed files, and staged files in diff views.
+				layout = "diff2_vertical",
+				disable_diagnostics = false, -- Temporarily disable diagnostics for diff buffers while in the view.
+				winbar_info = false,         -- See |diffview-config-view.x.winbar_info|
+			},
+			merge_tool = {
+				-- Config for conflicted files in diff views during a merge or rebase.
+				layout = "diff3_vertical",
+				disable_diagnostics = true, -- Temporarily disable diagnostics for diff buffers while in the view.
+				winbar_info = true,         -- See |diffview-config-view.x.winbar_info|
+			},
+			file_history = {
+				-- Config for changed files in file history views.
+				layout = "diff2_vertical",
+				disable_diagnostics = false, -- Temporarily disable diagnostics for diff buffers while in the view.
+				winbar_info = false,         -- See |diffview-config-view.x.winbar_info|
+			}
 		}
 	})
+end)
+
+-- numToStr/Comment.nvim
+now(function()
+	add({
+		source = "numToStr/Comment.nvim",
+	})
+	require("Comment").setup({})
 end)
