@@ -19,23 +19,6 @@ map("i", "<C-;>", "<Esc>A;<Esc>", opts)
 map("i", "<C-e>", "<Esc>A }<Esc>", opts)
 map("i", "<C-b>", "<Esc>A {<Esc>", opts)
 
--- buffer maps
-local close_other_buffers = function()
-	local cur_buf = vim.api.nvim_get_current_buf()
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		-- make sure buffer is a regular file type
-		if vim.bo[buf].buftype ~= "" then
-			goto continue
-		end
-
-		if buf ~= cur_buf then
-			-- use this so mini's bufferline gets the hint
-			require("mini.bufremove").delete(buf, true)
-		end
-		::continue::
-	end
-end
-
 -- these are when barbar plugin not being used.
 -- map("n", "bn", "<cmd>bnext<cr>", { silent = true, desc = "next buffer" })
 -- map("n", "bp", "<cmd>bprevious<cr>", { silent = true, desc = "previous buffer" })
@@ -46,16 +29,14 @@ map("n", "<C-b>n", "<cmd>BufferNext<cr>", { silent = true, desc = "next buffer" 
 map("n", "<C-b>p", "<cmd>BufferPrevious<cr>", { silent = true, desc = "previous buffer" })
 map("n", "bn", "<cmd>BufferNext<cr>", { silent = true, desc = "next buffer" })
 map("n", "bp", "<cmd>BufferPrevious<cr>", { silent = true, desc = "previous buffer" })
+map("n", "<C-b>o", "<cmd>BufferCloseAllButCurrent<cr>", { silent = true, desc = "close other buffers" })
+map("n", "bo", "<cmd>BufferCloseAllButCurrent<cr>", { silent = true, desc = "close other buffers" })
 
 map("n", "<C-b>d", "<cmd>lua require('mini.bufremove').delete()<cr>", { silent = true, desc = "delete buffer" })
 map("n", "<C-b>a", "<C-^>", { silent = true, desc = "alternate buffer" })
-map("n", "<C-b>o", function()
-	vim.cmd("%bd|e#")
-end, { silent = true, desc = "close other buffers" })
 map("n", "bd", "<cmd>lua require('mini.bufremove').delete()<cr>", { silent = true, desc = "delete buffer" })
 map("n", "ba", "<C-^>", { silent = true, desc = "alternate buffer" })
 map("n", "<C-Tab>", "<C-^>", { silent = true, desc = "alternate buffer" })
-map("n", "bo", close_other_buffers, { silent = true, desc = "close other buffers" })
 
 -- terminal keybinds
 map("t", "<C-w>n", "<C-\\><C-n>", opts)
