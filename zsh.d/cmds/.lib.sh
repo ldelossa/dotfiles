@@ -74,7 +74,7 @@ lib_warning() {
 # $1: summary string describing subcommand
 # $2: subcommand directory
 lib_describe() {
-	# iterate over subcomman directory, if we find another subcommand directory
+	# iterate over subcommand directory, if we find another subcommand directory
 	# source it's description to add to the cmds array, if we find a file
 	# source it for the same reason.
 	summary="$1"
@@ -82,12 +82,12 @@ lib_describe() {
 	local -a cmds=()
 	if [[ -d $dir ]]; then
         for f in "$dir"/*; do
-			if [[ -d "$dir/$f" ]] && [[ -f "$dir/$f/.description" ]]; then
-				source "$dir/$f/.description"
-				cmds+=("$f\t$desc\n")
-			elif [[ -f "$dir/$f" ]]; then
-				source "$dir/$f"
-				cmds+=("$f\t$desc\n")
+			if [[ -d "$f" ]] && [[ -f "$f/.description" ]]; then
+				source "$f/.description"
+				cmds+=("${f##*/}\t$desc\n")
+			elif [[ -f "$f" ]]; then
+				source "$f"
+				cmds+=("${f##*/}\t$desc\n")
 			fi
 		done
 	fi

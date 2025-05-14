@@ -12,7 +12,7 @@ sudo dnf config-manager --add-repo=https://yum.fury.io/netdevops/ && \
 sudo dnf install -y epel-release && sudo dnf config-manager --set-enabled crb
 
 sudo dnf install -y bat bear clang clang-tools-extra fd-find fuse-sshfs \
-					htop jq nmap the_silver_searcher zsh rust pam-devel nnn scdoc meson flex bison \
+					htop jq nmap the_silver_searcher zsh pam-devel nnn scdoc meson flex bison \
 					procs npm llvm-devel gdb elfutils-libelf-devel openssl-devel dwarves zstd \
 					wireshark ripgrep ncurses-devel util-linux-user git lld python3-docutils strace \
 					difftastic libbpf-devel bc compat-lua-libs libtermkey libtree-sitter libvterm luajit \
@@ -49,6 +49,12 @@ cd /tmp && \
 curl -LO https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz &&
 tar -xvf eza_x86_64-unknown-linux-gnu.tar.gz && \
 sudo mv eza /usr/local/bin
+
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup.sh
+chmod u+x /tmp/rustup.sh
+/tmp/rustup.sh --no-modify-path -y
+rustup component add rust-analyzer
 
 # install golang
 log "Installing golang..."

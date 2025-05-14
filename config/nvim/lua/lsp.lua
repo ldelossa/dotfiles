@@ -174,4 +174,9 @@ nvim_lsp.pylsp.setup({
 	capabilities = default_capabilities(),
 	on_attach = on_attach,
 })
+nvim_lsp.rust_analyzer.setup({
+	capabilities = default_capabilities(),
+	on_attach = on_attach,
+})
+
 

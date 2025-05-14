@@ -18,7 +18,7 @@ sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rel
 
 sudo dnf install -y bat bear clang clang-tools-extra docker-compose exa fd-find \
 					fuse-sshfs fzf htop btop jq neovim nmap moby-engine powertop \
-					pv the_silver_searcher zsh gh rust nodejs-bash-language-server \
+					pv the_silver_searcher zsh gh nodejs-bash-language-server \
 					nnn scdoc meson flex bison procs kubernetes-client helm npm  \
 					gdb elfutils-libelf-devel openssl-devel dwarves zstd ripgrep \
 					lld python3-docutils strace difftastic zsh-syntax-highlighting \
@@ -53,6 +53,12 @@ git clone --recursive https://github.com/changs/slimzsh.git ~/.slimzsh
 curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker > /tmp/_docker
 sudo mv /tmp/_docker /usr/share/zsh/site-functions
 sudo chown root:root /usr/share/zsh/site-functions/_docker
+
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup.sh
+chmod u+x /tmp/rustup.sh
+/tmp/rustup.sh --no-modify-path -y
+rustup component add rust-analyzer
 
 # install golang
 cd ~/git/go || exit
