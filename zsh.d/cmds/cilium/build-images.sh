@@ -2,11 +2,14 @@ desc="Build the Cilium agent and operator images"
 args=("--tag:[o] The image tag (defaults to 'local')" \
       "--debug:[o,b] Create a debug image" \
       "--push:[o,b] Push images to quay" \
-      "--repo:[o] The repository of the container image")
+      "--account:[o] The repository of the container image")
 help=("build-images", "Helper for building Cilium agent and operator images.
 
- Images are build with the quay.io/cilium/ prefix, for example:
+ Images are built with the quay.io/cilium/ prefix unless --account is
+ specified, for example:
  quay.io/cilium/operator-generic and quay.io/cilium/cilium-dev.
+ If --account is specified the resulting images will be tagged as
+ '\$account/operator-generic' and '\$account/cilium-dev'
 
  Therefore, they can be directly pushed to Quay with the proper permissions for
  distribution.
@@ -27,8 +30,8 @@ execute() {
 	if [[ -n "${tag}" ]]; then
 		export DOCKER_IMAGE_TAG="${tag}"
 	fi
-	if [[ -n "${repo}" ]]; then
-		export DOCKER_REGISTRY="${repo}"
+	if [[ -n "${account}" ]]; then
+		export DOCKER_DEV_ACCOUNT="${account}"
 	fi
 	if [[ -n "${debug}" ]]; then
 		export NOSTRIP=1
