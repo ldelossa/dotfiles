@@ -306,6 +306,13 @@ lib_argument_parse() {
 				unset+=("$arg")
 			fi
 		fi
+
+		# the forwarding argument MUST be the last flag in the list, therefore
+		# defensively break out of this loop. we'll check required arguments
+		# are fullfilled below here, which catches any strange behavior.
+		if [[ $argument_forwarding == true ]]; then
+			break
+		fi
 	done
 
 	# if any unset flags list them and return an exit code
