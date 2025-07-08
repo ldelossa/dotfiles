@@ -52,7 +52,7 @@ spec:
         volumeMounts:
           - mountPath: /mnt
             name: kind-mount
-          - mountPath: /sys/kerne/debug
+          - mountPath: /sys/kernel/debug
             name: sys-kernel-debug"
 
 	kubectl --namespace="$namespace" apply -f <(echo "$template")

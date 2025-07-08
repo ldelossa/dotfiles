@@ -11,6 +11,7 @@ alias nvim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
 alias vim='nvim --listen ~/.cache/nvim/nvim-$RANDOM.sock'
 alias nv='neovide --multigrid'
 alias t='kitty --detach -d $(pwd)'
+alias grepi='grep -i'
 
 # heredoc with variable interp to stdout
 alias doc='cat <<EOF'
