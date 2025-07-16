@@ -80,13 +80,13 @@ map("n", "<C-l>w", workspace_symbol_query, { silent = true, desc = "workspace sy
 map(
 	"n",
 	"<C-l>p",
-	"<cmd>lua vim.diagnostic.goto_prev({ float = false })<cr>",
+	"<cmd>lua vim.diagnostic.jump({ count=-1, float=true })<cr>",
 	{ silent = true, desc = "previous diagnostic" }
 )
 map(
 	"n",
 	"<C-l>n",
-	"<cmd>lua vim.diagnostic.goto_next({ float = false })<cr>",
+	"<cmd>lua vim.diagnostic.jump({ count=1, float=false })<cr>",
 	{ silent = true, desc = "next diagnostic" }
 )
 map("n", "<C-l>b", require('dropbar.api').pick, { silent = true, desc = "breadcrumbs pick" })
