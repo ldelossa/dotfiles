@@ -643,6 +643,7 @@ now(function()
 			row = 999,
 			col = 999,
 		},
+  	show_folds = false, -- Shows folds for sections in chat
 	})
 end)
 
