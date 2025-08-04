@@ -13,13 +13,15 @@ sudo dnf -y copr enable varlad/zellij
 
 sudo dnf -y copr enable agriffis/neovim-nightly
 
+sudo dnf -y copr enable alternateved/eza
+
 sudo dnf config-manager --add-repo=https://yum.fury.io/netdevops/ && \
 	echo 'gpgcheck=0' | sudo tee -a /etc/yum.repos.d/yum.fury.io_netdevops_.repo
 
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm \
 					https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
 
-sudo dnf install -y bat bear clang clang-tools-extra docker-compose exa fd-find \
+sudo dnf install -y bat bear clang clang-tools-extra docker-compose eza fd-find \
 					fuse-sshfs fzf htop btop jq neovim nmap moby-engine powertop \
 					pv the_silver_searcher zsh gh nodejs-bash-language-server \
 					nnn scdoc meson flex bison procs kubernetes-client helm npm  \
@@ -32,12 +34,7 @@ sudo dnf install -y bat bear clang clang-tools-extra docker-compose exa fd-find 
 					libtool libbpf-devel cmake
 
 # qemu and kvm install
-sudo dnf groupinstall -y virtualization
-
-# install container-lab
-sudo dnf config-manager --add-repo=https://yum.fury.io/netdevops/ && \
-echo "gpgcheck=0" | sudo tee -a /etc/yum.repos.d/yum.fury.io_netdevops_.repo
-sudo dnf install -y containerlab
+sudo dnf5 group install -y virtualization
 
 # git repos
 mkdir ~/git
@@ -89,7 +86,7 @@ cd ~/.docker/cli-plugins || exit
 if [[ $ARCH == "x86_64" ]]; then
 	curl -L https://github.com/docker/buildx/releases/download/v0.26.1/buildx-v0.26.1.linux-amd64 -o buildx
 elif [[ $ARCH == "aarch64" ]]; then
-	curl -L https://github.com/docker/buildx/releases/download/v0.20.1/buildx-v0.26.1.linux-armv7j-o buildx
+	curl -L https://github.com/docker/buildx/releases/download/v0.26.1/buildx-v0.26.1.linux-arm64 -o buildx
 fi
 mv buildx* docker-buildx
 chmod u+x docker-buildx

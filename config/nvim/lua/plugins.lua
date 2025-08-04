@@ -633,6 +633,11 @@ now(function()
 		depends = { "nvim-lua/plenary.nvim", }
 	})
 	require("CopilotChat").setup({
+		mappings = {
+			show_diff = {
+				full_diff = true,
+			}
+		},
 		auto_follow_cursor = false,
 		window = {
 			layout = "float",
@@ -643,7 +648,7 @@ now(function()
 			row = 999,
 			col = 999,
 		},
-  	show_folds = false, -- Shows folds for sections in chat
+		show_folds = false, -- Shows folds for sections in chat
 	})
 end)
 
@@ -710,19 +715,19 @@ now(function()
 				-- Config for changed files, and staged files in diff views.
 				layout = "diff2_vertical",
 				disable_diagnostics = false, -- Temporarily disable diagnostics for diff buffers while in the view.
-				winbar_info = false,         -- See |diffview-config-view.x.winbar_info|
+				winbar_info = false,     -- See |diffview-config-view.x.winbar_info|
 			},
 			merge_tool = {
 				-- Config for conflicted files in diff views during a merge or rebase.
 				layout = "diff3_vertical",
 				disable_diagnostics = true, -- Temporarily disable diagnostics for diff buffers while in the view.
-				winbar_info = true,         -- See |diffview-config-view.x.winbar_info|
+				winbar_info = true,     -- See |diffview-config-view.x.winbar_info|
 			},
 			file_history = {
 				-- Config for changed files in file history views.
 				layout = "diff2_vertical",
 				disable_diagnostics = false, -- Temporarily disable diagnostics for diff buffers while in the view.
-				winbar_info = false,         -- See |diffview-config-view.x.winbar_info|
+				winbar_info = false,     -- See |diffview-config-view.x.winbar_info|
 			}
 		}
 	})

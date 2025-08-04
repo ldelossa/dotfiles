@@ -1,10 +1,18 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/louis/git/gopath/src/github.com/cilium/cilium-enterprise
-- /home/louis/git/dotfiles
+    - /home/louis/git/c/ebpf-playground
+    - /home/louis/git/c/linux-bpf-next
+    - /home/louis/git/gopath/src/github.com/cilium/cilium-enterprise
+    - /home/louis/git/dotfiles
 startuppopupversion: 5
+lastversion: 0.47.2
 customcommandshistory:
-- qa!
-hidecommandlog: false
+    - qa!
+hidecommandlog: true
 ignorewhitespaceindiffview: false
-diffcontextsize: 3
+diffcontextsize: 4
+renamesimilaritythreshold: 50
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: when-maximised
