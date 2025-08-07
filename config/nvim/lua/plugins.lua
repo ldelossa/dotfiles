@@ -595,15 +595,6 @@ now(function()
 	})
 end)
 
--- copilot.vim, used for suggestions, works much nicer then copilot.lua
--- later(function()
--- 	add({
--- 		source = "github/copilot.vim",
--- 	})
--- 	-- start with it always disabled and trigger completion
--- 	vim.cmd("Copilot disable")
--- end)
-
 -- zbirenbaum/copilot.lua
 now(function()
 	add({
