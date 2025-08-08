@@ -624,6 +624,7 @@ now(function()
 		depends = { "nvim-lua/plenary.nvim", }
 	})
 	require("CopilotChat").setup({
+		model = 'claude-sonnet-4',
 		mappings = {
 			show_diff = {
 				full_diff = true,
