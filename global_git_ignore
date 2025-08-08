@@ -109,3 +109,9 @@ env/*
 
 # Clangd caches
 *.cache*
+
+# LLM Stuff
+.claude/
+AGENTS.md
+CLAUDE.md
+

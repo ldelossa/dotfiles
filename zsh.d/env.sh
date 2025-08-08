@@ -20,6 +20,7 @@ export PATH=$PATH:$HOME/git/lua/lua-language-server/bin
 export PATH=$PATH:/usr/share/google-cloud-sdk/bin/
 export PATH=$PATH:/opt/homebrew/bin
 export PATH=$PATH:/Users/louis/Library/Python/3.9/bin
+export PATH=$PATH:$HOME/.opencode/bin
 export KEYTIMEOUT=1
 export CC=/usr/bin/clang
 export CCX=/usr/bin/clang++
