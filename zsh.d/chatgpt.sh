@@ -1,3 +1,5 @@
+export LLM_MODEL=claude-4-sonnet
+
 if [[ -e ~/Dropbox/Docs/OpenAIAPIToken ]]; then
     export OPENAI_API_KEY=$(cat ~/Dropbox/Docs/OpenAIAPIToken)
 fi

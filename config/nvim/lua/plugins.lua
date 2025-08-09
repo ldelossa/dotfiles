@@ -601,7 +601,7 @@ now(function()
 		source = "zbirenbaum/copilot.lua",
 	})
 	require("copilot").setup({
-		filestypes = {
+		filetypes = {
 			["*"] = true
 		},
 		-- other options
