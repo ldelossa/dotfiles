@@ -92,8 +92,8 @@ alt - l : yabai -m window --focus east
 alt - e : yabai -m window --toggle split
 
 alt - v : yabai -m window --insert stack
-alt - n : yabai -m window --focus stack.next
-alt - p : yabai -m window --focus stack.prev
+alt - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+alt - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 alt - 0x1B : yabai -m window --toggle terminal || open -n -a kitty.app --args -T scratchpad --instance-group scratchpad
 
 alt - f : yabai -m window --toggle float
