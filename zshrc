@@ -61,10 +61,7 @@ source ~/zsh.d/devbox.sh
 source ~/zsh.d/hosts.sh
 # source the cmds/ framework
 source ~/zsh.d/cmds/.lib.sh
-
-if [[ -f ~/zsh.d/chatgpt.sh ]]; then
-    source ~/zsh.d/chatgpt.sh
-fi
+source ~/zsh.d/llm.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
