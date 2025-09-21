@@ -74,7 +74,7 @@ local workspace_symbol_query = function()
 end
 
 -- LSP
-map("i", "<C-Space>", "<cmd>lua vim.lsp.completion.trigger()<cr>", { silent = true, desc = "trigger lsp completion" })
+map("i", "<C-Space>", "<cmd>lua vim.lsp.completion.get()<cr>", { silent = true, desc = "trigger lsp completion" })
 map("n", "<C-l>s", "<cmd>Pick lsp scope='document_symbol'<cr>", { silent = true, desc = "document symbols" })
 map("n", "<C-l>w", workspace_symbol_query, { silent = true, desc = "workspace symbols" })
 map(
@@ -190,27 +190,27 @@ local filepath_completion = function()
 end
 map("i", "<C-X><C-F>", filepath_completion, { silent = true, desc = "filepath completion" })
 
-map("i", "<C-j>", require("copilot.suggestion").next, { silent = true, desc = "copilot suggest" })
-map("i", "<C-S-j>", require("copilot.suggestion").prev, { silent = true, desc = "copilot previous suggest" })
-map("i", "<C-h>", require("copilot.suggestion").accept_line, { silent = true, desc = "copilot accept next line" })
-map("i", "<C-S-h>", require("copilot.suggestion").accept_word, { silent = true, desc = "copilot accept next word" })
+map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
+map("i", "<C-S-j>", "<Plug>(copilot-next)", { silent = true, desc = "copilot next suggestion" })
+map("i", "<C-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copilot accept next line" })
+map("i", "<C-S-h>", "<Plug>(copilot-accept-word)", { silent = true, desc = "copilot accept next word" })
+vim.keymap.set('i', '<C-Tab>', 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false
+})
 
 -- super tab, make tab do different things depending on context.
-local keys = {
-	["tab"] = vim.api.nvim_replace_termcodes("<Tab>", true, true, true),
-	["ctrl-y"] = vim.api.nvim_replace_termcodes("<C-y>", true, true, true),
-	["noop"] = vim.api.nvim_replace_termcodes("", true, true, true),
-}
 vim.g.super_tab = function()
 	if vim.fn.pumvisible() ~= 0 then
-		return keys["ctrl-y"]
-	elseif require("copilot.suggestion").is_visible() then
-		require("copilot.suggestion").accept()
-		return keys["noop"]
-  elseif require("mini.snippets").session.get() ~= nil then
+		return "<C-y>"
+	elseif require("mini.snippets").session.get() ~= nil then
 		return '<cmd>lua MiniSnippets.session.jump("next")<cr>'
+	elseif vim.fn["copilot#GetDisplayedSuggestion"]().text ~= "" then
+		-- keycodes already replaced...
+		vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](""), "n", false)
+		return ""
 	else
-		return keys["tab"]
+		return '<Tab>'
 	end
 end
 vim.keymap.set("i", "<Tab>", vim.g.super_tab, { expr = true })

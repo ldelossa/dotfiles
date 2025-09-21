@@ -12,7 +12,7 @@ if not vim.loop.fs_stat(mini_path) then
 		-- Uncomment next line to use 'stable' branch
 		"--branch",
 		"stable",
-		"https://github.com/echasnovski/mini.nvim",
+		"https://github.com/nvim-mini/mini.nvim",
 		mini_path,
 	}
 	vim.fn.system(clone_cmd)
@@ -595,25 +595,15 @@ now(function()
 	})
 end)
 
--- zbirenbaum/copilot.lua
+-- github/copilot.vim
 now(function()
 	add({
-		source = "zbirenbaum/copilot.lua",
-	})
-	require("copilot").setup({
-		filetypes = {
-			["*"] = true
-		},
-		-- other options
-		suggestion = {
-			-- other options
-			keymap = {
-				-- other keymaps
-				accept = false
-			}
-		}
+		source = "github/copilot.vim",
 	})
 end)
+-- issue the Copilot disable command, we trigger it when necessary.
+vim.cmd([[Copilot disable]])
+vim.g.copilot_no_tab_map = true
 
 -- CopilotC-Nvim/CopilotChat.nvim, used for inline chat.
 now(function()

@@ -13,7 +13,6 @@ export PATH=$PATH:/Library/PostgreSQL/11/bin
 export PATH=$PATH:/usr/local/flutter/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/goblog/bin
-export PATH=$PATH:/opt/Lens
 export PATH=$PATH:$HOME/.platformio/penv/bin
 export PATH=$PATH:/usr/local/zig
 export PATH=$PATH:$HOME/git/lua/lua-language-server/bin

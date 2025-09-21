@@ -4,6 +4,10 @@ if [[ -e ~/Dropbox/Docs/OpenAIAPIToken ]]; then
     export OPENAI_API_KEY=$(cat ~/Dropbox/Docs/OpenAIAPIToken)
 fi
 
+if [[ -e ~/Dropbox/Docs/OpenAIAPIToken ]]; then
+    export ANTHROPIC_API_KEY=$(cat ~/Dropbox/Docs/AnthropicAPIToken)
+fi
+
 function gpt4() {
     theme=$(cat ~/.config/kitty/current-theme.conf | head -n 1 | tr -d ' ' | tr -d '#')
     if [[ $theme == 'light' ]]; then
