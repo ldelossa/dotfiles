@@ -1,0 +1,61 @@
+model: claude:claude-sonnet-4-20250514
+save_session: true
+messages:
+- role: user
+  content: in Cilium, is it supported to use EndpointRoutes with CNI chaining? Or is the primary CNI responsible for all routing decisions?
+- role: assistant
+  content: |-
+    In Cilium with CNI chaining, **EndpointRoutes are not supported**. When Cilium operates in chaining mode, the primary CNI is responsible for all routing decisions and network topology management.
+
+    Here's why and how it works:
+
+    ## CNI Chaining Limitations
+
+    When Cilium runs as a chained CNI (typically as a secondary CNI for policy enforcement), it operates with several constraints:
+
+    - **No control over routing**: The primary CNI manages all routing tables and network paths
+    - **No direct endpoint management**: Cilium can't create or modify routes to individual pod endpoints
+    - **Limited network topology control**: The network structure is determined by the primary CNI
+
+    ## EndpointRoutes Requirements
+
+    EndpointRoutes require Cilium to have full control over:
+    - Per-endpoint route installation
+    - Direct routing between nodes
+    - Network topology decisions
+    - Route table management
+
+    ## Typical Chaining Scenarios
+
+    Common setups where EndpointRoutes won't work:
+
+    ```yaml
+    # Example: Cilium chained with AWS VPC CNI
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: cilium-config
+    data:
+      cni-chaining-mode: "aws-cni"
+      enable-endpoint-routes: "false"  # Must be disabled
+    ```
+
+    ## Alternative Approaches
+
+    When using CNI chaining, you typically rely on:
+
+    1. **Primary CNI routing** (e.g., AWS VPC CNI handles all routing)
+    2. **Encapsulation modes** if supported by the chaining configuration
+    3. **Standard cluster networking** provided by the primary CNI
+
+    ## Full Cilium Deployment
+
+    To use EndpointRoutes, you need Cilium as the primary/only CNI:
+
+    ```yaml
+    # This enables EndpointRoutes
+    enable-endpoint-routes: "true"
+    cni-chaining-mode: ""  # No chaining
+    ```
+
+    So in summary: **CNI chaining = no EndpointRoutes**. The primary CNI owns all routing decisions in chained setups.
