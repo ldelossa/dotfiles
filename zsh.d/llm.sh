@@ -9,10 +9,10 @@ if [[ -e ~/Dropbox/Docs/AnthropicAPIToken ]]; then
 	export CLAUDE_API_KEY=$ANTHROPIC_API_KEY
 fi
 
+export AICHAT_CONFIG_DIR=$HOME/.config/aichat
 export LLM_MODEL=claude-4-sonnet
 export LLM_SESSION=default
 
-# all llm commands wrap aichat and make it useful in different ways.
 function llm-set-session() {
 	LLM_SESSION="$1"
 }

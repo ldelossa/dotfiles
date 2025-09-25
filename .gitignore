@@ -18,3 +18,5 @@ config/cgdb/logs
 config/k9s/config.yml
 config/dlv/.dbg_history
 config/k9s/skins/skin.yaml
+config/aichat/*
+!config/aichat/config.yaml

@@ -59,3 +59,11 @@ messages:
     ```
 
     So in summary: **CNI chaining = no EndpointRoutes**. The primary CNI owns all routing decisions in chained setups.
+- role: user
+  content: 2+2
+- role: assistant
+  content: '4'
+- role: user
+  content: now add 2 to it
+- role: assistant
+  content: '6'
