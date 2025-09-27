@@ -23,12 +23,6 @@ vim.diagnostic.config({
 	virtual_text = false
 })
 
-local on_init = function(client, initialization_result)
-	if client.server_capabilities then
-		client.server_capabilities.semanticTokensProvider = false
-	end
-end
-
 local config = vim.lsp.config
 local enable = vim.lsp.enable
 
@@ -123,7 +117,11 @@ config('lua_ls', {
 enable('lua_ls')
 
 config('clangd', {
-	on_init = on_init,
+	on_init = function(client)
+		if client.server_capabilities then
+			client.server_capabilities.semanticTokensProvider = false
+		end
+	end,
 	cmd = {
 		"clangd",
 		"--offset-encoding=utf-16",
