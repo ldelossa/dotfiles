@@ -23,96 +23,34 @@ vim.diagnostic.config({
 	virtual_text = false
 })
 
--- on attach method for lsps
-local on_attach = function(client, bufnr)
-	-- vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = false })
-end
-
--- ripped from cmp.nvim
-local default_capabilities = function(override)
-	return vim.lsp.protocol.make_client_capabilities()
-end
-
 local on_init = function(client, initialization_result)
 	if client.server_capabilities then
 		client.server_capabilities.semanticTokensProvider = false
 	end
 end
 
-local nvim_lsp = require("lspconfig")
-nvim_lsp.bashls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
+local config = vim.lsp.config
+local enable = vim.lsp.enable
 
-})
-nvim_lsp.lua_ls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-	on_init = function(client)
-		local path = client.workspace_folders[1].name
-		if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
-			return
-		end
+-- enable LSPs which just use the default configuration...
+enable('bashls')
+enable('dockerls')
+enable('html')
+enable('jsonls')
+enable('ts_ls')
+enable('vimls')
+enable('yamlls')
+enable('zls')
+enable('asm_lsp')
+enable('pylsp')
+enable('rust_analyzer')
 
-		client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-			runtime = {
-				-- Tell the language server which version of Lua you're using
-				-- (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT'
-			},
-			-- Make the server aware of Neovim runtime files
-			workspace = {
-				checkThirdParty = false,
-				library = {
-					vim.env.VIMRUNTIME
-					-- Depending on the usage, you might want to add additional paths here.
-					-- "${3rd}/luv/library"
-					-- "${3rd}/busted/library",
-				}
-				-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-				-- library = vim.api.nvim_get_runtime_file("", true)
-			}
-		})
-	end,
-	settings = {
-		Lua = {}
-	}
-})
-nvim_lsp.dockerls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-})
-nvim_lsp.html.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-})
-nvim_lsp.jsonls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-
-})
-nvim_lsp.ts_ls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-
-})
-nvim_lsp.vimls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-
-})
-nvim_lsp.yamlls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-
-})
-nvim_lsp.gopls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
+-- now LSPs that require a divergent configuration.
+config('gopls', {
 	settings = {
 		gopls = {
 			["local"] = "github.com/cilium/cilium",
-			buildFlags = {"-tags=unparallel"},
+			buildFlags = { "-tags=unparallel" },
 			gofumpt = false,
 			codelenses = {
 				gc_details = false,
@@ -149,13 +87,42 @@ nvim_lsp.gopls.setup({
 		},
 	},
 })
-nvim_lsp.zls.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
+enable('gopls')
+
+config('lua_ls', {
+	on_init = function(client)
+		local path = client.workspace_folders[1].name
+		if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+			return
+		end
+
+		client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+			runtime = {
+				-- Tell the language server which version of Lua you're using
+				-- (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT'
+			},
+			-- Make the server aware of Neovim runtime files
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME
+					-- Depending on the usage, you might want to add additional paths here.
+					-- "${3rd}/luv/library"
+					-- "${3rd}/busted/library",
+				}
+				-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+				-- library = vim.api.nvim_get_runtime_file("", true)
+			}
+		})
+	end,
+	settings = {
+		Lua = {}
+	}
 })
-nvim_lsp.clangd.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
+enable('lua_ls')
+
+config('clangd', {
 	on_init = on_init,
 	cmd = {
 		"clangd",
@@ -165,17 +132,4 @@ nvim_lsp.clangd.setup({
 		"--header-insertion=never"
 	},
 })
-nvim_lsp.asm_lsp.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-})
-nvim_lsp.pylsp.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-})
-nvim_lsp.rust_analyzer.setup({
-	capabilities = default_capabilities(),
-	on_attach = on_attach,
-})
-
-
+enable('clangd')

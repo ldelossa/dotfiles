@@ -657,17 +657,6 @@ now(function()
 	})
 end)
 
--- pwntester/octo.nvim
-now(function()
-	add({
-		source = "pwntester/octo.nvim",
-	})
-	require("octo").setup({
-		use_local_fs = true,
-		enable_builtin = true,
-	})
-end)
-
 -- ldelossa/kbrowse.nvim
 now(function()
 	add({
