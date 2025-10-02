@@ -117,6 +117,7 @@ config('lua_ls', {
 enable('lua_ls')
 
 config('clangd', {
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	on_init = function(client)
 		if client.server_capabilities then
 			client.server_capabilities.semanticTokensProvider = false
