@@ -55,18 +55,18 @@ yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^kitty$" title="scratchpad" scratchpad="terminal" grid="6:6:1:1:4:4"
 
 # YabaiHammerSpoon integration signals
-yabai -m signal --add event=space_changed action="hs -m yabaiHammerSpoon:onSpacesChanged"
-yabai -m signal --add event=application_activated action="hs -m yabaiHammerSpoon:onApplicationsChanged"
-
-
-yabai -m signal --add event=display_changed action="hs -m yabaiHammerSpoon:onDisplaysChanged"
-yabai -m signal --add event=window_created action="hs -m yabaiHammerSpoon:onWindowsChanged"
-yabai -m signal --add event=window_destroyed action="hs -m yabaiHammerSpoon:onWindowsChanged"
-yabai -m signal --add event=window_focused action="hs -m yabaiHammerSpoon:onWindowsChanged"
-yabai -m signal --add event=window_moved action="hs -m yabaiHammerSpoon:onWindowsChanged"
-yabai -m signal --add event=window_resized action="hs -m yabaiHammerSpoon:onWindowsChanged"
-yabai -m signal --add event=window_minimized action="hs -m yabaiHammerSpoon:onWindowsChanged"
-yabai -m signal --add event=window_deminimized action="hs -m yabaiHammerSpoon:onWindowsChanged"
+yabai -m signal --add event=space_changed action="hs -c yabaiHammerSpoon:onSpacesChanged"
+# yabai -m signal --add event=application_activated action="hs -c yabaiHammerSpoon:onApplicationsChanged"
+#
+#
+# yabai -m signal --add event=display_changed action="hs -c yabaiHammerSpoon:onDisplaysChanged"
+# yabai -m signal --add event=window_created action="hs -c yabaiHammerSpoon:onWindowsChanged"
+# yabai -m signal --add event=window_destroyed action="hs -c yabaiHammerSpoon:onWindowsChanged"
+yabai -m signal --add event=window_focused action="hs -c yabaiHammerSpoon:onWindowsChanged"
+# yabai -m signal --add event=window_moved action="hs -c yabaiHammerSpoon:onWindowsChanged"
+# yabai -m signal --add event=window_resized action="hs -c yabaiHammerSpoon:onWindowsChanged"
+# yabai -m signal --add event=window_minimized action="hs -c yabaiHammerSpoon:onWindowsChanged"
+# yabai -m signal --add event=window_deminimized action="hs -c yabaiHammerSpoon:onWindowsChanged"
 
 echo "yabai configuration loaded.."
 
