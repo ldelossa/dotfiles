@@ -14,7 +14,7 @@ map("n", "<S-Left>", "<cmd>vertical resize -5<cr>", opts)
 map("n", "<S-Down>", "<cmd>resize +5<cr>", opts)
 map("n", "<S-Up>", "<cmd>resize -5<cr>", opts)
 
--- append common characters characters
+-- append common characters
 map("i", "<C-;>", "<Esc>A;<Esc>", opts)
 map("i", "<C-e>", "<Esc>A }<Esc>", opts)
 map("i", "<C-b>", "<Esc>A {<Esc>", opts)
@@ -44,6 +44,7 @@ map("t", "<C-w>h", "<C-\\><C-n><C-w>h", opts)
 map("t", "<C-w>j", "<C-\\><C-n><C-w>j", opts)
 map("t", "<C-w>k", "<C-\\><C-n><C-w>k", opts)
 map("t", "<C-w>l", "<C-\\><C-n><C-w>l", opts)
+map("t", "<C-l>c", "<cmd>ClaudeCodeFocus<cr>", opts)
 
 -- tab maps
 map("n", "<C-t>n", "<cmd>tabnext<cr>", { silent = true, desc = "next tab" })
@@ -219,24 +220,9 @@ vim.keymap.set("i", "<Tab>", vim.g.super_tab, { expr = true })
 map("n", "<leader>e", "<cmd>Workspace LeftPanelToggle<cr>", { silent = true, desc = "toggle code explorer panel" })
 map("n", "<leader>G", "<cmd>Workspace RightPanelToggle<cr>", { silent = true, desc = "toggle git explorer panel" })
 
--- CopilotChat
-local chat = require("CopilotChat")
-local select = require("CopilotChat.select")
-
-local quick_chat = function()
-	local input = vim.fn.input("Quick Chat: ")
-	if input ~= "" then
-		chat.ask(input, {
-			selection = select.visual,
-		})
-	end
-end
-
-map("n", "<C-l>c", chat.open, { silent = true, desc = "open copilot chat" })
-map("n", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
-map("i", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
-map("v", "<C-l>i", quick_chat, { silent = true, desc = "open copilot quick chat" })
-
+-- Claude Code
+map("n", "<C-l>c", "<cmd>ClaudeCodeFocus<cr>", { silent = true, desc = "toggle claude code" })
+map("v", "<C-l>c", "<cmd>ClaudeCodeFocus<cr>", { silent = true, desc = "toggle claude code" })
 
 local function open_file_and_navigate()
 	local selected_text = ""

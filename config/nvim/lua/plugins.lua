@@ -50,13 +50,13 @@ local content = function()
 				if Rsync_Enabled then return '󰲁' else return '' end
 			end)() }
 		},
-		{ hl = mode_hl,                             strings = { mode } },
-		{ hl = 'require("mini.statusline")Devinfo', strings = { git, diff, diagnostics, lsp } },
+		{ hl = mode_hl,                 strings = { mode } },
+		{ hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
 		'%<', -- Mark general truncate point
-		{ hl = 'require("mini.statusline")Filename', strings = { filename } },
+		{ hl = 'MiniStatuslineFilename', strings = { filename } },
 		'%=', -- End left alignment
-		{ hl = 'require("mini.statusline")Fileinfo', strings = { fileinfo } },
-		{ hl = mode_hl,                              strings = { search, location } },
+		{ hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+		{ hl = mode_hl,                  strings = { search, location } },
 	})
 end
 
@@ -68,9 +68,6 @@ now(function()
 		}
 	})
 end)
--- now(function()
--- 	require("mini.comment").setup()
--- end)
 later(function()
 	require("mini.ai").setup()
 end)
@@ -226,9 +223,6 @@ later(function()
 			},
 		}
 	)
-end)
-later(function()
-	require("mini.surround").setup()
 end)
 later(function()
 	require("mini.align").setup()
@@ -543,7 +537,7 @@ now(function()
 			-- this takes precedence.
 			global_keymaps = {
 				-- example, change all Component's hide keymap to "h"
-				hide = h,
+				hide = "h",
 			},
 			-- example, prefer "x" for hide only for Explorer component.
 			-- Explorer = {
@@ -605,32 +599,31 @@ end)
 vim.cmd([[Copilot disable]])
 vim.g.copilot_no_tab_map = true
 
--- CopilotC-Nvim/CopilotChat.nvim, used for inline chat.
+-- coder/claudecode.nvim
 now(function()
 	add({
-		source = "CopilotC-Nvim/CopilotChat.nvim",
-		checkout = "main",
-		monitor = "main",
-		depends = { "nvim-lua/plenary.nvim", }
+		source = "coder/claudecode.nvim",
+		depends = { "folke/snacks.nvim" }
 	})
-	require("CopilotChat").setup({
-		model = 'claude-sonnet-4',
-		mappings = {
-			show_diff = {
-				full_diff = true,
-			}
+	require("claudecode").setup({
+		focus_after_send = true,
+		diff_opts = {
+			keep_terminal_focus = true,
 		},
-		auto_follow_cursor = false,
-		window = {
-			layout = "float",
-			relative = "editor",
-			height = 0.7,
-			width = 0.8,
-			anchor = "SW",
-			row = 999,
-			col = 999,
+		terminal = {
+			-- using external provider for now, all other options take effect when
+			-- this option is removed.
+			provider = "none",
+			snacks_win_opts = {
+				position = "bottom",
+				row = -1,
+				col = -1,
+				height = 0.4,
+				width = 1.0,
+				border = "rounded",
+				backdrop = 80,
+			},
 		},
-		show_folds = false, -- Shows folds for sections in chat
 	})
 end)
 
