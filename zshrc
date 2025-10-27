@@ -59,6 +59,7 @@ source ~/zsh.d/hosts.sh
 # source the cmds/ framework
 source ~/zsh.d/cmds/.lib.sh
 source ~/zsh.d/llm.sh
+source ~/zsh.d/aws.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

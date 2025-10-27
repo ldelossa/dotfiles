@@ -600,32 +600,42 @@ vim.cmd([[Copilot disable]])
 vim.g.copilot_no_tab_map = true
 
 -- coder/claudecode.nvim
+local claude_code_config = {
+	focus_after_send = true,
+	diff_opts = {
+		open_in_current_tab = false,
+		keep_terminal_focus = true,
+	},
+	terminal = {
+		snacks_win_opts = {
+			position = "float",
+			row = -1,
+			col = -1,
+			height = 0.8,
+			width = 0.7,
+			border = "rounded",
+			backdrop = 80,
+		},
+	},
+}
 now(function()
 	add({
 		source = "coder/claudecode.nvim",
 		depends = { "folke/snacks.nvim" }
 	})
+	require("claudecode").setup(claude_code_config)
+end)
+-- reload claudecode.nvim to use claude code in a separate, unmmanged terminal
+vim.api.nvim_create_user_command("ClaudeCodeExternal", function()
 	require("claudecode").setup({
-		focus_after_send = true,
-		diff_opts = {
-			keep_terminal_focus = true,
-		},
 		terminal = {
-			-- using external provider for now, all other options take effect when
-			-- this option is removed.
 			provider = "none",
-			snacks_win_opts = {
-				position = "bottom",
-				row = -1,
-				col = -1,
-				height = 0.4,
-				width = 1.0,
-				border = "rounded",
-				backdrop = 80,
-			},
 		},
 	})
-end)
+end, {})
+vim.api.nvim_create_user_command("ClaudeCodeInternal", function()
+	require("claudecode").setup(claude_code_config)
+end, {})
 
 -- mmarchini/bpftrace.vim
 now(function()
