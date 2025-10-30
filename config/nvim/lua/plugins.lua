@@ -719,3 +719,15 @@ now(function()
 	})
 	require("Comment").setup({})
 end)
+
+-- MeanderingProgrammer/render-markdown.nvim
+now(function()
+	add({
+		source = "MeanderingProgrammer/render-markdown.nvim",
+	})
+	require("render-markdown").setup({
+		heading = {
+			-- position = "inline",
+		}
+	})
+end)
