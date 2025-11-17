@@ -1,6 +1,6 @@
 desc="Find the PR a commit was introduced in"
 args=("--repo:The repository the PR was opened againt" \
-	  "--commit:The PR number")
+	  "--commit:The commit to search for")
 help=("pr-commit", "Find the PR a commit was introduced in
 
  Requires the repository the commit resides in along with the commit hash.
