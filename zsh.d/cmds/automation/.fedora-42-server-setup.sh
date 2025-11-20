@@ -31,7 +31,7 @@ sudo dnf install -y bat bear clang clang-tools-extra docker-compose eza fd-find 
 					NetworkManager-strongswan-gnome json-glib inotify-tools lldb \
 					bpftool nasm glibc-static glibc-devel kitty-terminfo \
 					kitty-shell-integration binutils-gold automake autoconf \
-					libtool libbpf-devel cmake zig zellij
+					libtool libbpf-devel cmake zig zellij llvm-strip
 
 # qemu and kvm install
 sudo dnf5 group install -y virtualization

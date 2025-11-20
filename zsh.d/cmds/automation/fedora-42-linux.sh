@@ -1,7 +1,7 @@
 desc="Configure a remote fedora server for development"
 args=("--host:The remote host as an IP or hostname" \
 	  "--user:The user to configure")
-help=("fedora-linux", "Configure a remote fedora 42 server for development.
+help=("fedora-linux", "Configure a remote fedora 42 or newer server for development.
 
  This script will configure the {user} on {host} via ssh, copy over the
  '.fedora-server-setup.sh' script, and execute it. This requires ssh'ing to

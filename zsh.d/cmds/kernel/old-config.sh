@@ -35,6 +35,6 @@ execute() {
 					 sed -i '/^CONFIG_SYSTEM_TRUSTED_KEYS=.*$/d' .config"
 
 	lib_info "Syncing remote repository to local..."
-	rsync -e ssh --delete -azv "${ssh_host}":"$(pwd)"/ "$(pwd)"/
+	rsync -e ssh --delete --exclude '.git' -azv "${ssh_host}":"$(pwd)"/ "$(pwd)"/
 }
 
