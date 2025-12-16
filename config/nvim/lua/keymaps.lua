@@ -216,6 +216,10 @@ vim.g.super_tab = function()
 end
 vim.keymap.set("i", "<Tab>", vim.g.super_tab, { expr = true })
 
+-- opencode
+map("v", "<C-l>i", function() require("opencode").ask("@this: ", { submit = true }) end, { silent = true, desc = "opencode ask" })
+map("n", "<C-l>o", function() require("opencode").select() end, { silent = true, desc = "show opencode commands" })
+
 -- nvim-ide
 map("n", "<leader>e", "<cmd>Workspace LeftPanelToggle<cr>", { silent = true, desc = "toggle code explorer panel" })
 map("n", "<leader>G", "<cmd>Workspace RightPanelToggle<cr>", { silent = true, desc = "toggle git explorer panel" })
