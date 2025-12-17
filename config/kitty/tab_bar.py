@@ -117,7 +117,7 @@ def draw_tab(
     global right_status_length
     if timer_id is None:
         timer_id = add_timer(_redraw_tab_bar, REFRESH_TIME, True)
-    clock = datetime.now().strftime(" %H:%M%p")
+    clock = datetime.now().strftime(" %I:%M%p")
     date = datetime.now().strftime(" %m.%d.%Y")
     cells = []
     cells.append((clock_color, clock))
