@@ -28,9 +28,9 @@ sudo dnf install -y containerlab
 # Install neovim
 log "Installing neovim..."
 cd /tmp && \
-curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz && \
-sudo tar xvzf nvim-linux64.tar.gz -C /usr/share && \
-sudo ln -s /usr/share/nvim-linux64/bin/nvim /usr/local/bin
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
+sudo tar xvzf nvim-linux-x86_64.tar.gz -C /usr/share && \
+sudo ln -s /usr/share/nvim-linux-x86_64/bin/nvim /usr/local/bin
 
 log "Installing zellij.."
 cd /tmp && \

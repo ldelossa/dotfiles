@@ -366,11 +366,6 @@ now(function()
 	add("shaunsingh/nord.nvim")
 end)
 
--- jacoborus/tender.vim
-now(function()
-	add("jacoborus/tender.vim")
-end)
-
 -- web-devicons
 now(function()
 	add("nvim-tree/nvim-web-devicons")

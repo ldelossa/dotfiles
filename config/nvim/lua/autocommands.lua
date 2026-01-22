@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		end
 		vim.api.nvim_clear_autocmds({
 			group = "auto_session_group",
-			event = {"VimLeave"}
+			event = { "VimLeave" }
 		})
 	end
 })
