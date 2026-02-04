@@ -12,7 +12,7 @@ help=("run-bpf-tests", "Helper for running BPF unit tests
 
 execute() {
 	if [[ ${+test_file} -eq 1 ]]; then
-		export BPF_TEST_FILE="${test_file}"
+		export BPF_TEST="${test_file}"
 	fi
 	if [[ ${+verbose} -eq 1 ]]; then
 		export BPF_TEST_VERBOSE=1

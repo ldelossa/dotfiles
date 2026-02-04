@@ -21,7 +21,7 @@ execute() {
 		sanitized+=("$entry")
 	done
 
-	for ((i=0; i<${#sanitized[@]}; i++)); do
-		echo "$i: ${sanitized[$i]}"
+	for ((i=1; i<=${#sanitized[@]}; i++)); do
+		  echo "$i: ${sanitized[$i]}"
 	done
 }

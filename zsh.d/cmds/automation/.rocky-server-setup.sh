@@ -18,7 +18,8 @@ sudo dnf install -y bat bear clang clang-tools-extra fd-find fuse-sshfs \
 					difftastic libbpf-devel bc compat-lua-libs libtermkey libtree-sitter libvterm luajit \
 					luajit2.1-luv msgpack unibilium xsel rpm-build perl tmux containerlab rsync tcpdump \
 					btop et bpftrace nasm glibc-static glibc-devel qemu-kvm libvirt virt-manager \
-					virt-install kitty-terminfo kubectl
+					virt-install kitty-terminfo kubectl binutils-gold automake autoconf \
+					libtool libbpf-devel cmake zig
 
 # install container-lab
 sudo dnf config-manager --add-repo=https://yum.fury.io/netdevops/ && \
