@@ -4,5 +4,5 @@ args=("--file:The file to log" \
 help=("log-func" "Log changes to a function within a file over time")
 
 execute() {
-	git log -L:"${file}":"${func}"
+	git log -L:"${func}":"${file}"
 }
