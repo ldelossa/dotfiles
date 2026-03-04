@@ -9,17 +9,17 @@ log "Installing packages..."
 sudo dnf config-manager --add-repo=https://yum.fury.io/netdevops/ && \
 	echo 'gpgcheck=0' | sudo tee -a /etc/yum.repos.d/yum.fury.io_netdevops_.repo
 
-sudo dnf install -y epel-release && sudo dnf config-manager --set-enabled crb
+sudo dnf install -y epel-release && sudo dnf config-manager --set-enabled crb plus extras
 
-sudo dnf install -y bat bear clang clang-tools-extra fd-find fuse-sshfs \
-					htop jq nmap the_silver_searcher zsh pam-devel nnn scdoc meson flex bison \
-					procs npm llvm-devel gdb elfutils-libelf-devel openssl-devel dwarves zstd \
+sudo dnf install -y bat clang clang-tools-extra fd-find fuse-sshfs \
+					htop jq nmap zsh pam-devel scdoc meson flex bison \
+					npm llvm-devel gdb elfutils-libelf-devel openssl-devel dwarves zstd \
 					wireshark ripgrep ncurses-devel util-linux-user git lld python3-docutils strace \
 					difftastic libbpf-devel bc compat-lua-libs libtermkey libtree-sitter libvterm luajit \
 					luajit2.1-luv msgpack unibilium xsel rpm-build perl tmux containerlab rsync tcpdump \
-					btop et bpftrace nasm glibc-static glibc-devel qemu-kvm libvirt virt-manager \
+					btop bpftrace nasm glibc-static glibc-devel qemu-kvm libvirt virt-manager \
 					virt-install kitty-terminfo kubectl binutils-gold automake autoconf \
-					libtool libbpf-devel cmake zig
+					libtool libbpf-devel cmake
 
 # install container-lab
 sudo dnf config-manager --add-repo=https://yum.fury.io/netdevops/ && \
@@ -76,6 +76,12 @@ log "Installing helm..."
 curl -fsSL -o ~/git/go/get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod u+x ~/git/go/get_helm.sh
 sudo ~/git/go/get_helm.sh
+
+# install procs
+cd /tmp && \
+curl -LO https://github.com/dalance/procs/releases/download/v0.14.11/procs-v0.14.11-x86_64-linux.zip
+unzip procs-v0.14.11-x86_64-linux.zip
+sudo mv procs /usr/local/bin
 
 # git repos
 mkdir ~/git

@@ -34,9 +34,9 @@ execute() {
 		  --provisioning-model=STANDARD \
 		  --service-account=171187002445-compute@developer.gserviceaccount.com \
 		  --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/trace.append \
-		  --image-family=rocky-linux-9-optimized-gcp \
+		  --image-family=rocky-linux-10-optimized-gcp \
 		  --image-project=rocky-linux-cloud \
-		  --boot-disk-size=60GB \
+		  --boot-disk-size=250GB \
 		  --boot-disk-type=pd-ssd \
 		  --boot-disk-device-name="${name}" \
 		  --boot-disk-auto-delete \
