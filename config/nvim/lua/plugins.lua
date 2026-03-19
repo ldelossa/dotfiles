@@ -374,7 +374,7 @@ end)
 
 -- lspconfig
 now(function()
-	add({ source = "neovim/nvim-lspconfig", depends = { "williamboman/mason.nvim" } })
+	add({ source = "neovim/nvim-lspconfig" })
 end)
 
 -- nvim-treesitter
