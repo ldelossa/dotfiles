@@ -36,8 +36,15 @@ enable('vimls')
 enable('yamlls')
 enable('zls')
 enable('asm_lsp')
-enable('pylsp')
 enable('rust_analyzer')
+
+config('pyright',
+	{
+		handlers = {
+			["$/progress"] = function() end,
+		},
+	})
+enable('pyright')
 
 -- now LSPs that require a divergent configuration.
 config('gopls', {

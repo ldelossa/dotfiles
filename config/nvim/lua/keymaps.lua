@@ -2,6 +2,9 @@ local opts = { silent = true }
 local map = vim.keymap.set
 vim.g.mapleader = " "
 
+-- yank the buffer name
+map("n", "<leader>yf", function() vim.fn.setreg("+", vim.fn.expand("%:t")) end, { silent = true, desc = "yank current buffer name" })
+
 -- mini.notification notification history
 map("n", "<leader>n", "<cmd>lua require('mini.notify').show_history()<cr>", { silent = true, desc = "notifications" })
 
@@ -265,4 +268,4 @@ local function open_file_and_navigate()
 	vim.api.nvim_win_set_cursor(0, { line_num, col_num })
 end
 
-map("n", "gb", open_file_and_navigate, { silent = true, desc = "Open file with line and/or column" })
+map("n", "gbb", open_file_and_navigate, { silent = true, desc = "Open file with line and/or column" })
