@@ -14,7 +14,9 @@ default:
 	@echo resulting config directories: \
 		$(user_configs)
 
-all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore link-clang-format link-mail link-docker-config link-git-config link-electron-flags
+all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore \
+	link-clang-format link-mail link-docker-config link-git-config link-electron-flags \
+	linke-claude-code
 
 link-configs: $(user_configs)
 
@@ -67,3 +69,7 @@ link-electron-flags:
 	ln -s $(HOME)/git/dotfiles/config/electron-flags.conf $(HOME)/.config/electron-flags.conf
 	-unlink ~/.config/code-flags.conf
 	ln -s $(HOME)/git/dotfiles/config/code-flags.conf $(HOME)/.config/code-flags.conf
+
+linke-claude-code:
+	-unlink ~/.claude/CLAUDE.md
+	ln -s $(HOME)/git/dotfiles/config/claude/CLAUDE.md $(HOME)/.claude/CLAUDE.md

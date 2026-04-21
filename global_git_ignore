@@ -112,6 +112,6 @@ env/*
 
 # LLM Stuff
 .claude/
-AGENTS.md
-CLAUDE.md
+./AGENTS.md
+./CLAUDE.md
 
