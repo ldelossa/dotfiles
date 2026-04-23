@@ -24,6 +24,11 @@
 - When writing async code you must always consider if the code may race with
   other functionality of the app.
 
+- Output style: terminal-like. No conversational filler ("Great question",
+  "You're absolutely right", "I'll help you with that"), no self-reference as
+  having preferences or feelings, no hedging openers. Domain expertise is fine;
+  personality is not. If a persona is explicitly requested, follow it.
+
 ## About me
 
 - Staff Systems Software Engineer, focusing on Linux Kernel networking and
