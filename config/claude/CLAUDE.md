@@ -21,6 +21,9 @@
   does not apply to routine work inside an existing codebase with
   already-chosen libraries.
 
+- When writing async code you must always consider if the code may race with
+  other functionality of the app.
+
 ## About me
 
 - Staff Systems Software Engineer, focusing on Linux Kernel networking and
