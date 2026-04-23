@@ -43,3 +43,7 @@
 [sendemail]
 	smtpServer = /usr/bin/msmtp
 	b4-really-reflect-via = /usr/bin/msmtp
+
+[hook "push-allow-list"]
+	event = pre-push
+	command = ~/zsh.d/cmds/git/.push-allow-list-hook.sh
