@@ -377,11 +377,11 @@ now(function()
 	add({ source = "neovim/nvim-lspconfig" })
 end)
 
--- nvim-treesitter
+-- nvim-treesitter (main branch — full rewrite; requires Neovim 0.12+)
 now(function()
 	add({
 		source = "nvim-treesitter/nvim-treesitter",
-		checkout = "master",
+		checkout = "main",
 		monitor = "main",
 		hooks = {
 			post_checkout = function()
@@ -389,82 +389,141 @@ now(function()
 			end,
 		},
 	})
-	require("nvim-treesitter.configs").setup({
-		highlight = { enable = true },
-		fold = { enable = true },
-		textobjects = {
-			select = {
-				enable = true,
-				-- Automatically jump forward to textobj, similar to targets.vim
-				lookahead = true,
-				keymaps = {
-					-- You can use the capture groups defined in textobjects.scm
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-					["ac"] = "@class.outer",
-					["ic"] = "@class.inner",
-					["ai"] = "@call.outer",
-					["ii"] = "@call.inner",
-					["aa"] = "@parameter.outer",
-					["ia"] = "@parameter.inner",
-					["al"] = "@loop.outer",
-					["il"] = "@loop.inner",
-					["at"] = "@conditional.outer",
-					["it"] = "@conditional.inner",
-					["a/"] = "@comment.outer",
-				},
-			},
-			move = {
-				enable = true,
-				set_jumps = true, -- whether to set jumps in the jumplist
-				goto_next_start = {
-					["]f"] = "@function.outer",
-					["]s"] = "@class.outer",
-					["]A"] = "@parameter.outer",
-					["]i"] = "@call.outer",
-					["]b"] = "@block.outer",
-					["]t"] = "@conditional.outer",
-					["]l"] = "@loop.outer",
-				},
-				goto_next_end = {
-					["]F"] = "@function.outer",
-					["]S"] = "@class.outer",
-					["]a"] = "@parameter.outer",
-					["]B"] = "@block.outer",
-					["]I"] = "@call.outer",
-					["]T"] = "@conditional.outer",
-					["]L"] = "@loop.outer",
-				},
-				goto_previous_start = {
-					["[f"] = "@function.outer",
-					["[s"] = "@class.outer",
-					["[A"] = "@parameter.outer",
-					["[i"] = "@call.outer",
-					["[b"] = "@block.outer",
-					["[t"] = "@conditional.outer",
-					["[l"] = "@loop.outer",
-				},
-				goto_previous_end = {
-					["[F"] = "@function.outer",
-					["[S"] = "@class.outer",
-					["[a"] = "@parameter.outer",
-					["[I"] = "@call.outer",
-					["[B"] = "@block.outer",
-					["[T"] = "@conditional.outer",
-					["[L"] = "@loop.outer",
-				},
-			},
-		},
+
+	require("nvim-treesitter").setup({
+		install_dir = vim.fn.stdpath("data") .. "/site",
+	})
+
+	local ensure_installed = {
+		"bash",
+		"c",
+		"cpp",
+		"go",
+		"gomod",
+		"gosum",
+		"gowork",
+		"lua",
+		"python",
+		"rust",
+		"zig",
+		"javascript",
+		"typescript",
+		"tsx",
+		"json",
+		"yaml",
+		"toml",
+		"markdown",
+		"markdown_inline",
+		"vim",
+		"vimdoc",
+		"query",
+		"diff",
+		"gitcommit",
+		"gitignore",
+	}
+	require("nvim-treesitter").install(ensure_installed)
+
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = ensure_installed,
+		callback = function(ev)
+			pcall(vim.treesitter.start, ev.buf)
+			vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			vim.wo[0][0].foldmethod = "expr"
+			vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end,
 	})
 end)
 
--- nvim-treesitter objects
+-- nvim-treesitter-textobjects (main branch — new API)
 now(function()
 	add({
 		source = "nvim-treesitter/nvim-treesitter-textobjects",
-		checkout = "master",
+		checkout = "main",
 		monitor = "main",
 	})
+
+	require("nvim-treesitter-textobjects").setup({
+		select = {
+			lookahead = true,
+			include_surrounding_whitespace = false,
+		},
+		move = {
+			set_jumps = true,
+		},
+	})
+
+	local select = function(query)
+		return function()
+			require("nvim-treesitter-textobjects.select").select_textobject(query, "textobjects")
+		end
+	end
+	local select_maps = {
+		["af"] = "@function.outer",
+		["if"] = "@function.inner",
+		["ac"] = "@class.outer",
+		["ic"] = "@class.inner",
+		["ai"] = "@call.outer",
+		["ii"] = "@call.inner",
+		["aa"] = "@parameter.outer",
+		["ia"] = "@parameter.inner",
+		["al"] = "@loop.outer",
+		["il"] = "@loop.inner",
+		["at"] = "@conditional.outer",
+		["it"] = "@conditional.inner",
+		["a/"] = "@comment.outer",
+	}
+	for lhs, query in pairs(select_maps) do
+		vim.keymap.set({ "x", "o" }, lhs, select(query))
+	end
+
+	local move = function(fn, query)
+		return function()
+			require("nvim-treesitter-textobjects.move")[fn](query, "textobjects")
+		end
+	end
+	local move_maps = {
+		goto_next_start = {
+			["]f"] = "@function.outer",
+			["]s"] = "@class.outer",
+			["]A"] = "@parameter.outer",
+			["]i"] = "@call.outer",
+			["]b"] = "@block.outer",
+			["]t"] = "@conditional.outer",
+			["]l"] = "@loop.outer",
+		},
+		goto_next_end = {
+			["]F"] = "@function.outer",
+			["]S"] = "@class.outer",
+			["]a"] = "@parameter.outer",
+			["]B"] = "@block.outer",
+			["]I"] = "@call.outer",
+			["]T"] = "@conditional.outer",
+			["]L"] = "@loop.outer",
+		},
+		goto_previous_start = {
+			["[f"] = "@function.outer",
+			["[s"] = "@class.outer",
+			["[A"] = "@parameter.outer",
+			["[i"] = "@call.outer",
+			["[b"] = "@block.outer",
+			["[t"] = "@conditional.outer",
+			["[l"] = "@loop.outer",
+		},
+		goto_previous_end = {
+			["[F"] = "@function.outer",
+			["[S"] = "@class.outer",
+			["[a"] = "@parameter.outer",
+			["[I"] = "@call.outer",
+			["[B"] = "@block.outer",
+			["[T"] = "@conditional.outer",
+			["[L"] = "@loop.outer",
+		},
+	}
+	for fn, maps in pairs(move_maps) do
+		for lhs, query in pairs(maps) do
+			vim.keymap.set({ "n", "x", "o" }, lhs, move(fn, query))
+		end
+	end
 end)
 
 -- gitsigns

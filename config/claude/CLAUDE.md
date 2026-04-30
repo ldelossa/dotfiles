@@ -32,6 +32,9 @@
 - When JSON manipulation or parsing must be done, always prefer the jq CLI tool
   if available.
 
+- When adding comments to generated code first analyze existing comments for
+  structure and write comments with a similar style.
+
 ## About me
 
 - Staff Systems Software Engineer, focusing on Linux Kernel networking and
