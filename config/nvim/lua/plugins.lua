@@ -553,6 +553,27 @@ now(function()
 	add({
 		source = "Bekaboo/dropbar.nvim",
 	})
+	-- nvim 0.13-dev removed the BufModifiedSet autocmd event; dropbar's
+	-- default `bar.update_events.buf` still lists it. Call setup ourselves
+	-- with that event stripped — this also sets `vim.g.loaded_dropbar`,
+	-- so dropbar's FileType auto-setup bails out. Drop the override once
+	-- upstream lands a fix.
+	require("dropbar").setup({
+		bar = {
+			update_events = {
+				buf = {
+					'FileChangedShellPost',
+					'TextChanged',
+					'ModeChanged',
+					-- BufWritePost partially covers `BufModifiedSet` (gone in
+					-- nvim 0.13-dev) — refreshes the modified-state icon
+					-- after `:w`. Other modified→unmodified transitions
+					-- (e.g. undo to original) won't refresh promptly.
+					'BufWritePost',
+				},
+			},
+		},
+	})
 end)
 
 -- romgrk/barbar.nvim

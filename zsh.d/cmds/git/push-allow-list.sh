@@ -50,10 +50,6 @@ execute() {
 	if [[ ${+list} == 1 ]]; then
 		cmd="list"
 	elif [[ ${+add} == 1 ]]; then
-		if ! [[ -z $cmd ]]; then
-			echo "Only one of --list, --add, or --remove may be used at a time."
-			exit 1
-		fi
 		cmd="add"
 
 		# must contain a branch and remote
@@ -68,23 +64,18 @@ execute() {
 		fi
 
 	elif [[ ${+remove} == 1 ]]; then
-		if ! [[ -z $cmd ]]; then
-			echo "Only one of --list, --add, or --remove may be used at a time."
-			exit 1
-		fi
+		cmd="remove"
 
 		# must contain a branch and remote
 		if [[ -z $branch ]]; then
-			echo "--add must be used with --branch."
+			echo "--remove must be used with --branch."
 			exit 1
 		fi
 
 		if [[ -z $remote ]]; then
-			echo "--add must be used with --remote."
+			echo "--remove must be used with --remote."
 			exit 1
 		fi
-
-		cmd="remove"
 	else
 		echo "One of --list, --add, or --remove must be used."
 		exit 1
