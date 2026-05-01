@@ -18,7 +18,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   [[ ${#allowed[@]} -eq 0 ]] && continue
 
   if ! printf '%s\n' "${allowed[@]}" | grep -Fxq "$remote"; then
-	  echo "Remote '$remote' is not allowed to push to branch '$branch'." >&2
+	  echo "Branch '$branch' is not allowed to be pushed to remote '$remote'." >&2
 	  echo "Allowed remotes: ${allowed[*]}" >&2
 	  exit 1
   fi
