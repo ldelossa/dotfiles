@@ -35,6 +35,9 @@
 - When adding comments to generated code first analyze existing comments for
   structure and write comments with a similar style.
 
+- When writing prose do not use '—' and perform an initial view of the current
+  grammar and style of the existing prose. Follow the existing style as closely as possible.
+
 ## About me
 
 - Staff Systems Software Engineer, focusing on Linux Kernel networking and
