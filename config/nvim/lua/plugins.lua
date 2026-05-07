@@ -191,6 +191,7 @@ later(function()
 			choose_in_vsplit  = '<C-S-v>',
 		}
 	})
+	require("git_status_pick").register()
 end)
 later(function()
 	require("mini.bufremove").setup()
