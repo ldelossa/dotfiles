@@ -147,6 +147,181 @@ local function make_preview(cwd)
 	end
 end
 
+local function build_items(cwd, scope)
+	-- vim.system() preserves NUL bytes; vim.fn.system() would replace them
+	-- with \x01 because Vimscript strings cannot hold NUL.
+	local r = vim.system({
+		'git', '-C', cwd, '-c', 'core.quotepath=false',
+		'status', '--porcelain', '-z', '--untracked-files=all',
+	}):wait()
+	if r.code ~= 0 then
+		vim.notify('git_status: git status failed:\n' .. (r.stderr or ''), vim.log.levels.ERROR)
+		return {}
+	end
+
+	local rows = {}
+	for _, e in ipairs(parse_porcelain(r.stdout or '')) do
+		for _, row in ipairs(split_entry(e)) do
+			if in_scope(row, scope) then rows[#rows + 1] = row end
+		end
+	end
+
+	-- Stable section grouping: [S], [W], [?], [!], each section sorted by path.
+	table.sort(rows, function(a, b)
+		local sa, sb = SECTION_ORDER[a.side], SECTION_ORDER[b.side]
+		if sa ~= sb then return sa < sb end
+		return a.path < b.path
+	end)
+
+	local items = {}
+	for _, row in ipairs(rows) do
+		items[#items + 1] = {
+			text = build_text(row),
+			path = cwd .. '/' .. row.path,
+			abs_path = cwd .. '/' .. row.path,
+			rel_path = row.path,
+			side = row.side,
+			status = row.status,
+			old_path = row.old_path,
+		}
+	end
+	return items
+end
+
+local function current_item()
+	local m = require('mini.pick').get_picker_matches()
+	return m and m.current
+end
+
+local function refresh(cwd, scope)
+	require('mini.pick').set_picker_items(build_items(cwd, scope))
+end
+
+local function run_git(cwd, args)
+	local cmd = { 'git', '-C', cwd }
+	for _, a in ipairs(args) do cmd[#cmd + 1] = a end
+	local r = vim.system(cmd):wait()
+	if r.code ~= 0 then
+		vim.notify('git_status: ' .. (r.stderr or 'git failed'), vim.log.levels.ERROR)
+		return false
+	end
+	return true
+end
+
+local function action_stage(cwd, scope)
+	return function()
+		local item = current_item()
+		if not item then return end
+		if item.side == 'S' then
+			vim.notify('git_status: already staged', vim.log.levels.WARN)
+			return
+		end
+		if run_git(cwd, { 'add', '--', item.rel_path }) then refresh(cwd, scope) end
+	end
+end
+
+local function action_unstage(cwd, scope)
+	return function()
+		local item = current_item()
+		if not item then return end
+		if item.side ~= 'S' then
+			vim.notify('git_status: not staged', vim.log.levels.WARN)
+			return
+		end
+		if run_git(cwd, { 'restore', '--staged', '--', item.rel_path }) then refresh(cwd, scope) end
+	end
+end
+
+local function action_discard(cwd, scope)
+	return function()
+		local item = current_item()
+		if not item then return end
+		if item.side == 'S' then
+			vim.notify('git_status: unstage first, then discard', vim.log.levels.WARN)
+			return
+		end
+		if item.side == '!' then
+			vim.notify('git_status: cannot discard unmerged here', vim.log.levels.WARN)
+			return
+		end
+		if vim.fn.confirm(string.format('Discard %s?', item.rel_path), '&No\n&Yes', 1) ~= 2 then
+			return
+		end
+		if item.side == '?' then
+			local ok = pcall(vim.fn.delete, item.abs_path)
+			if not ok then
+				vim.notify('git_status: failed to delete ' .. item.rel_path, vim.log.levels.ERROR)
+				return
+			end
+		elseif item.side == 'W' then
+			if not run_git(cwd, { 'restore', '--', item.rel_path }) then return end
+		end
+		refresh(cwd, scope)
+	end
+end
+
+local function open_show_buffer(cwd, spec, display_name)
+	local r = vim.system({ 'git', '-C', cwd, '--no-pager', 'show', spec }):wait()
+	local lines = vim.split(r.stdout or '', '\n', { plain = true })
+	if lines[#lines] == '' then lines[#lines] = nil end
+	vim.cmd('enew')
+	local buf = vim.api.nvim_get_current_buf()
+	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+	vim.bo[buf].buftype = 'nofile'
+	vim.bo[buf].bufhidden = 'wipe'
+	vim.bo[buf].swapfile = false
+	pcall(vim.api.nvim_buf_set_name, buf, display_name)
+	local ft = vim.filetype.match({ filename = display_name })
+	if ft then vim.bo[buf].filetype = ft end
+end
+
+local function action_vimdiff(cwd)
+	return function()
+		local item = current_item()
+		if not item then return end
+		if item.side == '?' then
+			vim.notify('git_status: untracked has no diff', vim.log.levels.WARN)
+			return
+		end
+		if item.side == '!' then
+			vim.notify('git_status: unmerged diff unsupported', vim.log.levels.WARN)
+			return
+		end
+		require('mini.pick').stop()
+		local side, abs_path, rel_path = item.side, item.abs_path, item.rel_path
+		vim.schedule(function()
+			if side == 'W' then
+				vim.cmd('edit ' .. vim.fn.fnameescape(abs_path))
+				vim.cmd('diffthis')
+				vim.cmd('vert leftabove new')
+				open_show_buffer(cwd, ':' .. rel_path, rel_path .. ' (index)')
+				vim.cmd('diffthis')
+				vim.cmd('wincmd p')
+			else
+				open_show_buffer(cwd, ':' .. rel_path, rel_path .. ' (index)')
+				vim.cmd('diffthis')
+				vim.cmd('vert leftabove new')
+				open_show_buffer(cwd, 'HEAD:' .. rel_path, rel_path .. ' (HEAD)')
+				vim.cmd('diffthis')
+				vim.cmd('wincmd p')
+			end
+		end)
+	end
+end
+
+local HELP_LINES = {
+	'Git status picker:',
+	'  <M-s>  stage',
+	'  <M-u>  unstage',
+	'  <M-r>  discard (confirms)',
+	'  <M-d>  vimdiff',
+	'  <F1>   show this help',
+}
+
+local function action_help()
+	vim.notify(table.concat(HELP_LINES, '\n'), vim.log.levels.INFO)
+end
+
 M.git_status = function(local_opts, opts)
 	local pick = require('mini.pick')
 	if vim.fn.executable('git') ~= 1 then
@@ -170,46 +345,10 @@ M.git_status = function(local_opts, opts)
 		return
 	end
 
-	-- vim.system() preserves NUL bytes; vim.fn.system() would replace them
-	-- with \x01 because Vimscript strings cannot hold NUL.
-	local r = vim.system({
-		'git', '-C', cwd, '-c', 'core.quotepath=false',
-		'status', '--porcelain', '-z', '--untracked-files=all',
-	}):wait()
-	if r.code ~= 0 then
-		vim.notify('git_status: git status failed:\n' .. (r.stderr or ''), vim.log.levels.ERROR)
-		return
-	end
-	local raw = r.stdout or ''
+	local scope = local_opts.scope
+	local items = build_items(cwd, scope)
+	local name = string.format('Git status (%s) — <F1> help', scope)
 
-	local rows = {}
-	for _, e in ipairs(parse_porcelain(raw)) do
-		for _, r in ipairs(split_entry(e)) do
-			if in_scope(r, local_opts.scope) then rows[#rows + 1] = r end
-		end
-	end
-
-	-- Stable section grouping: [S], [W], [?], [!], each section sorted by path.
-	table.sort(rows, function(a, b)
-		local sa, sb = SECTION_ORDER[a.side], SECTION_ORDER[b.side]
-		if sa ~= sb then return sa < sb end
-		return a.path < b.path
-	end)
-
-	local items = {}
-	for _, r in ipairs(rows) do
-		items[#items + 1] = {
-			text = build_text(r),
-			path = cwd .. '/' .. r.path,
-			abs_path = cwd .. '/' .. r.path,
-			rel_path = r.path,
-			side = r.side,
-			status = r.status,
-			old_path = r.old_path,
-		}
-	end
-
-	local name = string.format('Git status (%s)', local_opts.scope)
 	return pick.start(vim.tbl_deep_extend('force', {
 		source = {
 			items = items,
@@ -217,6 +356,13 @@ M.git_status = function(local_opts, opts)
 			cwd = cwd,
 			show = show,
 			preview = make_preview(cwd),
+		},
+		mappings = {
+			stage   = { char = '<M-s>', func = action_stage(cwd, scope) },
+			unstage = { char = '<M-u>', func = action_unstage(cwd, scope) },
+			discard = { char = '<M-r>', func = action_discard(cwd, scope) },
+			vimdiff = { char = '<M-d>', func = action_vimdiff(cwd) },
+			help    = { char = '<F1>',  func = action_help },
 		},
 	}, opts or {}))
 end
