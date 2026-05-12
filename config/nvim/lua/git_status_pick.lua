@@ -311,11 +311,11 @@ end
 
 local HELP_LINES = {
 	'Git status picker:',
-	'  <M-s>  stage',
-	'  <M-u>  unstage',
-	'  <M-r>  discard (confirms)',
-	'  <M-d>  vimdiff',
-	'  <F1>   show this help',
+	'  <C-s>  stage',
+	'  <C-u>  unstage',
+	'  <C-r>  discard (confirms)',
+	'  <C-d>  vimdiff',
+	'  g?     show this help',
 }
 
 local function action_help()
@@ -347,7 +347,7 @@ M.git_status = function(local_opts, opts)
 
 	local scope = local_opts.scope
 	local items = build_items(cwd, scope)
-	local name = string.format('Git status (%s) — <F1> help', scope)
+	local name = string.format('Git status (%s) — g? for help', scope)
 
 	return pick.start(vim.tbl_deep_extend('force', {
 		source = {
@@ -358,11 +358,11 @@ M.git_status = function(local_opts, opts)
 			preview = make_preview(cwd),
 		},
 		mappings = {
-			stage   = { char = '<M-s>', func = action_stage(cwd, scope) },
-			unstage = { char = '<M-u>', func = action_unstage(cwd, scope) },
-			discard = { char = '<M-r>', func = action_discard(cwd, scope) },
-			vimdiff = { char = '<M-d>', func = action_vimdiff(cwd) },
-			help    = { char = '<F1>',  func = action_help },
+			stage   = { char = '<C-s>', func = action_stage(cwd, scope) },
+			unstage = { char = '<C-u>', func = action_unstage(cwd, scope) },
+			discard = { char = '<C-r>', func = action_discard(cwd, scope) },
+			vimdiff = { char = '<C-d>', func = action_vimdiff(cwd) },
+			help    = { char = 'g?',    func = action_help },
 		},
 	}, opts or {}))
 end
