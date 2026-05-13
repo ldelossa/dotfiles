@@ -193,8 +193,37 @@ local function current_item()
 	return m and m.current
 end
 
+-- Visible rank = 1-based position of the current item within the currently
+-- matched (filtered) list. Stable across refresh because the user's query is
+-- preserved, so re-anchoring on the same rank keeps the cursor on the same
+-- line even as items shift between sections.
+local function get_visible_rank()
+	local m = require('mini.pick').get_picker_matches()
+	if not m or not m.current_ind or not m.all_inds then return nil end
+	for i, ind in ipairs(m.all_inds) do
+		if ind == m.current_ind then return i end
+	end
+	return nil
+end
+
+local function restore_visible_rank(rank)
+	if rank == nil then return end
+	-- set_picker_items processes items in a coroutine; defer so the new
+	-- match_inds are in place before we point at one.
+	vim.schedule(function()
+		local pick = require('mini.pick')
+		if not pick.is_picker_active() then return end
+		local m = pick.get_picker_matches()
+		if not m or not m.all_inds or #m.all_inds == 0 then return end
+		local target = math.min(rank, #m.all_inds)
+		pick.set_picker_match_inds({ m.all_inds[target] }, 'current')
+	end)
+end
+
 local function refresh(cwd, scope)
+	local rank = get_visible_rank()
 	require('mini.pick').set_picker_items(build_items(cwd, scope))
+	restore_visible_rank(rank)
 end
 
 local function run_git(cwd, args)
@@ -260,7 +289,10 @@ local function action_discard(cwd, scope)
 	end
 end
 
-local function open_show_buffer(cwd, spec, display_name)
+-- `ft_path` is the bare path used for filetype detection. `display_name`
+-- carries a suffix like ' (index)' which would break extension matching, so
+-- we keep the two separate.
+local function open_show_buffer(cwd, spec, display_name, ft_path)
 	local r = vim.system({ 'git', '-C', cwd, '--no-pager', 'show', spec }):wait()
 	local lines = vim.split(r.stdout or '', '\n', { plain = true })
 	if lines[#lines] == '' then lines[#lines] = nil end
@@ -271,8 +303,21 @@ local function open_show_buffer(cwd, spec, display_name)
 	vim.bo[buf].bufhidden = 'wipe'
 	vim.bo[buf].swapfile = false
 	pcall(vim.api.nvim_buf_set_name, buf, display_name)
-	local ft = vim.filetype.match({ filename = display_name })
+	local ft = vim.filetype.match({ filename = ft_path or display_name })
 	if ft then vim.bo[buf].filetype = ft end
+end
+
+-- Close any tab created by a prior <C-d>. Tag is set on the tabpage so the
+-- diff layout stays isolated from the user's main workspace.
+local function close_prior_diff_tab()
+	for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+		if vim.api.nvim_tabpage_is_valid(tab) then
+			local ok, marked = pcall(vim.api.nvim_tabpage_get_var, tab, 'git_status_diff')
+			if ok and marked then
+				pcall(vim.cmd, 'tabclose ' .. vim.api.nvim_tabpage_get_number(tab))
+			end
+		end
+	end
 end
 
 local function action_vimdiff(cwd)
@@ -290,36 +335,26 @@ local function action_vimdiff(cwd)
 		require('mini.pick').stop()
 		local side, abs_path, rel_path = item.side, item.abs_path, item.rel_path
 		vim.schedule(function()
+			close_prior_diff_tab()
+			vim.cmd('tabnew')
+			vim.api.nvim_tabpage_set_var(0, 'git_status_diff', true)
 			if side == 'W' then
 				vim.cmd('edit ' .. vim.fn.fnameescape(abs_path))
 				vim.cmd('diffthis')
 				vim.cmd('vert leftabove new')
-				open_show_buffer(cwd, ':' .. rel_path, rel_path .. ' (index)')
+				open_show_buffer(cwd, ':' .. rel_path, rel_path .. ' (index)', rel_path)
 				vim.cmd('diffthis')
 				vim.cmd('wincmd p')
 			else
-				open_show_buffer(cwd, ':' .. rel_path, rel_path .. ' (index)')
+				open_show_buffer(cwd, ':' .. rel_path, rel_path .. ' (index)', rel_path)
 				vim.cmd('diffthis')
 				vim.cmd('vert leftabove new')
-				open_show_buffer(cwd, 'HEAD:' .. rel_path, rel_path .. ' (HEAD)')
+				open_show_buffer(cwd, 'HEAD:' .. rel_path, rel_path .. ' (HEAD)', rel_path)
 				vim.cmd('diffthis')
 				vim.cmd('wincmd p')
 			end
 		end)
 	end
-end
-
-local HELP_LINES = {
-	'Git status picker:',
-	'  <C-s>  stage',
-	'  <C-u>  unstage',
-	'  <C-r>  discard (confirms)',
-	'  <C-d>  vimdiff',
-	'  g?     show this help',
-}
-
-local function action_help()
-	vim.notify(table.concat(HELP_LINES, '\n'), vim.log.levels.INFO)
 end
 
 M.git_status = function(local_opts, opts)
@@ -347,7 +382,13 @@ M.git_status = function(local_opts, opts)
 
 	local scope = local_opts.scope
 	local items = build_items(cwd, scope)
-	local name = string.format('Git status (%s) — g? for help', scope)
+	-- The picker renders `source.name` as the bottom-left of the window
+	-- border (mini.pick H.picker_compute_footer), so packing the shortcuts
+	-- here makes them visible at all times.
+	local name = string.format(
+		'Git status (%s)  C-s:stage  C-u:unstage  C-r:discard  C-d:diff',
+		scope
+	)
 
 	return pick.start(vim.tbl_deep_extend('force', {
 		source = {
@@ -362,7 +403,13 @@ M.git_status = function(local_opts, opts)
 			unstage = { char = '<C-u>', func = action_unstage(cwd, scope) },
 			discard = { char = '<C-r>', func = action_discard(cwd, scope) },
 			vimdiff = { char = '<C-d>', func = action_vimdiff(cwd) },
-			help    = { char = 'g?',    func = action_help },
+
+			-- Disable built-ins whose keys we reuse. mini.pick warns
+			-- "Duplicating mapping keys" otherwise; an empty string is
+			-- skipped during mapping normalization (pick.lua:2561).
+			choose_in_split = '',
+			delete_left     = '',
+			paste           = '',
 		},
 	}, opts or {}))
 end

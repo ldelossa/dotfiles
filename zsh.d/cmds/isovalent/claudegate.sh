@@ -13,12 +13,25 @@ execute() {
 		port=8080
 	fi
 
+	# use a separate config dir so the banner does not show the personal
+	# API account. symlink the global config bits so CLAUDE.md, settings,
+	# and plugins still apply, but omit .credentials.json so claude falls
+	# back to ANTHROPIC_AUTH_TOKEN.
+	local cfg="$HOME/.claude-claudegate"
+	mkdir -p "$cfg"
+	ln -sfn "$HOME/.claude/CLAUDE.md"           "$cfg/CLAUDE.md"
+	ln -sfn "$HOME/.claude/settings.json"       "$cfg/settings.json"
+	ln -sfn "$HOME/.claude/settings.local.json" "$cfg/settings.local.json"
+	ln -sfn "$HOME/.claude/plugins"             "$cfg/plugins"
+	ln -sfn "$HOME/.claude/projects"            "$cfg/projects"
+
 	# launch claudegate and get pid for later
 	claudegate &> /tmp/claudegate.log &
 	pid=$!
 
 	# run claude, blocking until exit
-	ANTHROPIC_BASE_URL="http://127.0.0.1:$port" \
+	CLAUDE_CONFIG_DIR="$cfg"					\
+	ANTHROPIC_BASE_URL="http://127.0.0.1:$port"	\
   	ANTHROPIC_AUTH_TOKEN="sk-ant-dummy"			\
   	ANTHROPIC_MODEL="claude-opus-4-7"			\
 	claude
