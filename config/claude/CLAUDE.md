@@ -32,8 +32,9 @@
 - When JSON manipulation or parsing must be done, always prefer the jq CLI tool
   if available.
 
-- When adding comments to generated code first analyze existing comments for
-  structure and write comments with a similar style.
+- Unless explicitly asked, do not add comments to code you write. When asked
+  to provide comments, perform a quick analysis of the current comment grammar,
+  style, and idioms to conform with the comment style.
 
 - When writing prose do not use '—' and perform an initial view of the current
   grammar and style of the existing prose. Follow the existing style as closely as possible.
