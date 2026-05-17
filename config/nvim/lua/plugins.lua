@@ -822,3 +822,31 @@ now(function()
 	-- Required for `opts.events.reload`.
 	vim.o.autoread = true
 end)
+
+-- Octopunkio/octopunk.nvim
+later(function()
+	add({
+		source = "Octopunkio/octopunk.nvim",
+	})
+	require("octopunk").setup({
+		log = {
+			file_level    = vim.log.levels.INFO,
+			notify_level  = vim.log.levels.INFO,
+			file_path     = nil,
+			notify_prefix = "[octopunk] ",
+		},
+		-- 'auto' detects nvim-web-devicons or mini.icons; true forces on; false forces off.
+		icons = "auto",
+		-- false / nil off; true uses /tmp/octopunk-debug.log; string is an explicit path.
+		debug = false,
+		keymaps = {
+			-- omnibar_open = "<C-p>",     -- override the <Plug> action with a real lhs
+			-- omnibar_open = false,        -- or disable and bind your own below
+		},
+		review = {
+			-- 'in-diff' | 'split-middle' | 'split-below' | 'split-above'
+			thread_layout       = "split-middle",
+			thread_split_height = 12,
+		},
+	})
+end)
