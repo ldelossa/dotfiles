@@ -1,5 +1,6 @@
 desc="Run a claude code instance using Isovalent claudegate proxy"
 args=("--port:[o] Listening port of claudegate proxy")
+args=("--model:[o] The model to use")
 help=("claudegate" "Run a claude code instance using Isovalent claudegate proxy")
 
 execute() {

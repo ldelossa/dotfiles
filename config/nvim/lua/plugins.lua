@@ -192,6 +192,7 @@ later(function()
 		}
 	})
 	require("git_status_pick").register()
+	require("lsp_outline_pick").register()
 end)
 later(function()
 	require("mini.bufremove").setup()
@@ -670,53 +671,32 @@ now(function()
 	})
 end)
 
--- github/copilot.vim
-now(function()
-	add({
-		source = "github/copilot.vim",
-	})
-end)
--- issue the Copilot disable command, we trigger it when necessary.
-vim.cmd([[Copilot disable]])
-vim.g.copilot_no_tab_map = true
+-- -- github/copilot.vim
+-- now(function()
+-- 	add({
+-- 		source = "github/copilot.vim",
+-- 	})
+-- end)
+-- -- issue the Copilot disable command, we trigger it when necessary.
+-- vim.cmd([[Copilot disable]])
+-- vim.g.copilot_no_tab_map = true
 
 -- coder/claudecode.nvim
-local claude_code_config = {
-	focus_after_send = true,
-	diff_opts = {
-		open_in_current_tab = false,
-		keep_terminal_focus = true,
-	},
-	terminal = {
-		snacks_win_opts = {
-			position = "float",
-			row = -1,
-			col = -1,
-			height = 0.8,
-			width = 0.7,
-			border = "rounded",
-			backdrop = 80,
-		},
-	},
-}
+-- pi-ide.nvim (local plugin, not pushed to a remote yet)
 now(function()
 	add({
-		source = "coder/claudecode.nvim",
-		depends = { "folke/snacks.nvim" }
+		source = "ldelossa/pi-ide.nvim",
 	})
-	require("claudecode").setup(claude_code_config)
-end)
--- reload claudecode.nvim to use claude code in a separate, unmmanged terminal
-vim.api.nvim_create_user_command("ClaudeCodeExternal", function()
-	require("claudecode").setup({
-		terminal = {
-			provider = "none",
+	require("pi-ide").setup({
+		claude_code_compatibility = true,
+		suggestion = {
+			-- defaults shadow with copilot.vim style keys via lua/keymaps.lua
+			default_keys = false,
+			-- manual trigger only; no debounced auto-fire on idle
+			auto_trigger = false,
 		},
 	})
-end, {})
-vim.api.nvim_create_user_command("ClaudeCodeInternal", function()
-	require("claudecode").setup(claude_code_config)
-end, {})
+end)
 
 -- mmarchini/bpftrace.vim
 now(function()
