@@ -1,0 +1,14 @@
+{
+  "lastChangelogVersion": "0.78.0",
+  "theme": "catppuccin-mocha",
+  "defaultThinkingLevel": "xhigh",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-pro",
+  "packages": [
+    "npm:@trevonistrevon/pi-loop",
+    "npm:pi-subagents",
+    "npm:pi-ask-user",
+    "npm:pi-vim"
+  ],
+  "hideThinkingBlock": true
+}

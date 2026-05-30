@@ -16,7 +16,7 @@ default:
 
 all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore \
 	link-clang-format link-mail link-docker-config link-git-config link-electron-flags \
-	linke-claude-code
+	link-claude-code link-pi
 
 link-configs: $(user_configs)
 
@@ -70,6 +70,12 @@ link-electron-flags:
 	-unlink ~/.config/code-flags.conf
 	ln -s $(HOME)/git/dotfiles/config/code-flags.conf $(HOME)/.config/code-flags.conf
 
-linke-claude-code:
+link-claude-code:
 	-unlink ~/.claude/CLAUDE.md
 	ln -s $(HOME)/git/dotfiles/config/claude/CLAUDE.md $(HOME)/.claude/CLAUDE.md
+
+link-pi:
+	-unlink ~/.pi/agent/AGENTS.md
+	ln -s $(HOME)/git/dotfiles/config/pi/AGENTS.md $(HOME)/.pi/agent/AGENTS.md
+	-unlink ~/.pi/agent/settings.json
+	ln -s $(HOME)/git/dotfiles/config/pi/settings.json $(HOME)/.pi/agent/settings.json

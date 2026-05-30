@@ -195,15 +195,6 @@ local filepath_completion = function()
 end
 map("i", "<C-X><C-F>", filepath_completion, { silent = true, desc = "filepath completion" })
 
--- map("i", "<C-j>", "<Plug>(copilot-suggest)", { silent = true, desc = "copilot suggest" })
--- map("i", "<C-S-j>", "<Plug>(copilot-next)", { silent = true, desc = "copilot next suggestion" })
--- map("i", "<C-h>", "<Plug>(copilot-accept-line)", { silent = true, desc = "copilot accept next line" })
--- map("i", "<C-S-h>", "<Plug>(copilot-accept-word)", { silent = true, desc = "copilot accept next word" })
--- vim.keymap.set('i', '<C-Tab>', 'copilot#Accept("\\<CR>")', {
--- 	expr = true,
--- 	replace_keycodes = false
--- })
-
 -- pi-ide.nvim suggestion bindings mirror the copilot.vim layout above so the
 -- muscle memory carries over. These shadow the copilot maps for the same
 -- keys since vim.keymap.set replaces; remove the copilot lines above when

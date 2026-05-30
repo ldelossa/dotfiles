@@ -671,16 +671,6 @@ now(function()
 	})
 end)
 
--- -- github/copilot.vim
--- now(function()
--- 	add({
--- 		source = "github/copilot.vim",
--- 	})
--- end)
--- -- issue the Copilot disable command, we trigger it when necessary.
--- vim.cmd([[Copilot disable]])
--- vim.g.copilot_no_tab_map = true
-
 -- coder/claudecode.nvim
 -- pi-ide.nvim (local plugin, not pushed to a remote yet)
 now(function()
