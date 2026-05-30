@@ -192,6 +192,7 @@ later(function()
 		}
 	})
 	require("git_status_pick").register()
+	require("git_commit_pick").register()
 	require("lsp_outline_pick").register()
 end)
 later(function()

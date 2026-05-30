@@ -157,6 +157,7 @@ map("n", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in G
 map("v", "gl", ":GHInteractive<cr>", { silent = true, desc = "open location in GitHub (web)" })
 map("n", "<c-g>h", ":Pick git_hunks<cr>", { silent = true, desc = "list git hunks" })
 map("n", "<c-g>g", "<cmd>Pick git_status<cr>", { silent = true, desc = "git status" })
+map("n", "<c-g>c", "<cmd>Pick git_commit<cr>", { silent = true, desc = "git commits" })
 
 -- mini pickers
 map("n", "<leader>s", "<cmd>Pick grep<cr>", { silent = true, desc = "grep" })
