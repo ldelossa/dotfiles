@@ -685,6 +685,7 @@ now(function()
 			default_keys = false,
 			-- manual trigger only; no debounced auto-fire on idle
 			auto_trigger = false,
+			model = "openai-codex/gpt-5.4-mini",
 		},
 	})
 end)

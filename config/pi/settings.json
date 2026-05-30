@@ -1,14 +1,18 @@
 {
   "lastChangelogVersion": "0.78.0",
-  "theme": "catppuccin-mocha",
+  "theme": "one-dark",
   "defaultThinkingLevel": "xhigh",
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-pro",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
   "packages": [
     "npm:@trevonistrevon/pi-loop",
     "npm:pi-subagents",
     "npm:pi-ask-user",
-    "npm:pi-vim"
+    "npm:pi-vim",
+    "npm:pi-web-access",
+    "npm:@aliou/pi-guardrails",
+    "npm:pi-theme-picker",
+    "npm:@spences10/pi-themes"
   ],
   "hideThinkingBlock": true
 }
