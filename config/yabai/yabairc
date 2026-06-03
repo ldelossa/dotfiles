@@ -53,7 +53,7 @@ yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 
 # terminal scratch pad
-yabai -m rule --add app="^kitty$" title="scratchpad" scratchpad="terminal" grid="6:6:1:1:4:4"
+yabai -m rule --add app="^WezTerm$" title="^scratchpad$" scratchpad="terminal" grid="6:6:1:1:4:4"
 
 # YabaiHammerSpoon integration signals
 yabai -m signal --add event=space_changed action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onSpacesChanged\"):sendMessage(\"\", 1, 0, true)'"

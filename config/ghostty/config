@@ -1,24 +1,82 @@
+# =============================================================================
+# Ghostty Configuration — ported from kitty
+# =============================================================================
+
+# --- Window & Theme ----------------------------------------------------------
+
 window-theme = system
+macos-titlebar-style = tabs
+
+window-padding-x = 4
+window-padding-y = 4
+
+# --- Font --------------------------------------------------------------------
+
 font-family = "FiraMono Nerd Font Mono"
+font-size = 12
 font-thicken = true
-window-inherit-working-directory = true
-clipboard-read = allow
-clipboard-write = allow
-copy-on-select = true
-quick-terminal-autohide = false
+
+# --- Behavior ----------------------------------------------------------------
+
+mouse-hide-while-typing = true
 shell-integration = zsh
 shell-integration-features = true
-macos-titlebar-style = tabs
+window-inherit-working-directory = true
+copy-on-select = true
+quick-terminal-autohide = false
+quit-after-last-window-closed = true
 auto-update-channel = tip
 
+# --- Clipboard ---------------------------------------------------------------
+
+clipboard-read = allow
+clipboard-write = allow
+
+# =============================================================================
+# Keybindings — replicated from kitty + existing ghostty bindings preserved
+# =============================================================================
+
+# --- Jump to Prompt (already present) ---------------------------------------
 keybind = shift+alt+p=jump_to_prompt:-1
 keybind = shift+alt+n=jump_to_prompt:+1
 
+# --- Quick Terminal ---------------------------------------------------------
 keybind = global:shift+super+e=toggle_quick_terminal
+
+# --- Tabs (kitty: ctrl+alt+ prefix) -----------------------------------------
+keybind = ctrl+alt+t=new_tab
+keybind = ctrl+alt+n=next_tab
+keybind = ctrl+alt+p=previous_tab
+keybind = ctrl+alt+w=close_tab
+keybind = ctrl+alt+o=move_tab:1
+keybind = ctrl+alt+i=move_tab:-1
+keybind = ctrl+alt+,=prompt_tab_title
+keybind = alt+tab=last_tab
+
+# --- Tabs (ghostty-specific, shift+alt+/shift+ctrl+alt+ prefix) -------------
 keybind = shift+alt+t=new_tab
 keybind = shift+ctrl+alt+h=previous_tab
 keybind = shift+ctrl+alt+l=next_tab
 
+# --- Windows / Splits (kitty: ctrl+alt+ prefix) -----------------------------
+keybind = shift+alt+enter=new_window
+keybind = ctrl+alt+s=new_split:down
+keybind = ctrl+alt+v=new_split:right
+
+# --- Split resizing ----------------------------------------------------------
+keybind = ctrl+alt+left=resize_split:left,5
+keybind = ctrl+alt+right=resize_split:right,5
+keybind = ctrl+alt+up=resize_split:up,5
+keybind = ctrl+alt+down=resize_split:down,5
+
+# --- Split navigation (kitty) -----------------------------------------------
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+l=goto_split:right
+keybind = ctrl+alt+k=goto_split:top
+keybind = ctrl+alt+j=goto_split:bottom
+keybind = ctrl+alt+z=toggle_split_zoom
+
+# --- Split navigation (ghostty-specific) ------------------------------------
 keybind = shift+alt+v=new_split:right
 keybind = shift+alt+s=new_split:down
 keybind = shift+alt+z=toggle_split_zoom
@@ -26,3 +84,29 @@ keybind = shift+alt+h=goto_split:left
 keybind = shift+alt+l=goto_split:right
 keybind = shift+alt+j=goto_split:bottom
 keybind = shift+alt+k=goto_split:top
+
+# --- Scroll / Prompt Navigation ---------------------------------------------
+keybind = ctrl+alt+shift+p=jump_to_prompt:-1
+keybind = ctrl+alt+u=scroll_page_up
+keybind = ctrl+alt+d=scroll_page_down
+
+# --- New OS Window with CWD -------------------------------------------------
+keybind = ctrl+alt+enter=new_window
+keybind = ctrl+alt+shift+n=new_window
+
+# --- Copy / Paste (ctrl+c and ctrl+v already handled by defaults)
+
+# --- Font Size --------------------------------------------------------------
+keybind = super++=increase_font_size:0.5
+keybind = super+==increase_font_size:0.5
+keybind = super+-=decrease_font_size:0.5
+
+# =============================================================================
+# Notes on kitty bindings that could NOT be replicated in ghostty:
+# - alt+space → tab-select.sh (fzf overlay): ghostty has no overlay/fzf tab selector on macOS
+# - ctrl+alt+r → start_resizing_window: ghostty has no resize mode (instant resize)
+# - ctrl+alt+shift+s/v → launch-devbox.sh: custom scripts
+# - ctrl+alt+shift+h/l/k/j → move_window: ghostty has no move_split action
+# - alt+shift+x → focus_visible_window: no ghostty equivalent
+# - ctrl+shift+{a-z} → send_text escape sequences: ghostty handles kitty keyboard protocol natively
+# =============================================================================
