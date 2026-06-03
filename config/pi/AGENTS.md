@@ -18,3 +18,8 @@
   data for version numbers, API surface, or recency-sensitive facts. This
   does not apply to routine work inside an existing codebase with
   already-chosen libraries.
+
+# Extensions
+
+## pi-web-access
+- When calling web_search or fetch_content, always use workflow: "none" — do not open the curator browser.
