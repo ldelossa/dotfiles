@@ -110,6 +110,15 @@ config.color_schemes = {
   },
 }
 
+-- Quick Select: high-contrast labels (defaults blend into dark themes)
+config.colors = {
+  quick_select_label_bg = { Color = '#ffa500' },  -- vivid orange bg
+  quick_select_label_fg = { Color = '#000000' },  -- black text on orange
+  quick_select_match_bg = { Color = '#87AFD7' },   -- subtle blue match highlight
+  quick_select_match_fg = { Color = '#1F1F1F' },   -- dark text on blue
+}
+config.quick_select_remove_styling = true  -- strip all pane colors during Quick Select
+
 -- Auto-switch between light/dark based on macOS system appearance.
 -- WezTerm detects appearance changes and reloads the config automatically.
 function scheme_for_appearance(appearance)
@@ -200,6 +209,7 @@ end
 
 config.default_prog = { 'zsh', '-l' }
 config.hide_mouse_cursor_when_typing = true
+config.pane_focus_follows_mouse = true
 config.audible_bell = 'Disabled'
 config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = false
@@ -321,6 +331,8 @@ config.keys = {
 
   -- kitty: ctrl+alt+w  →  close_tab
   { key = 'w', mods = 'CTRL|ALT', action = act.CloseCurrentTab { confirm = true } },
+  -- ctrl+alt+q  →  close current pane
+  { key = 'q', mods = 'CTRL|ALT', action = act.CloseCurrentPane { confirm = true } },
 
   -- kitty: ctrl+alt+,  →  set_tab_title (prompts for a new tab name)
   { key = ',', mods = 'CTRL|ALT',
@@ -352,6 +364,46 @@ config.keys = {
   { key = 'Enter', mods = 'SHIFT|ALT',    action = act.SpawnWindow },
   { key = 'Enter', mods = 'CTRL|ALT',     action = act.SpawnWindow },
   { key = 'n',     mods = 'CTRL|ALT|SHIFT', action = act.SpawnWindow },
+
+  -- ---------------------------------------------------------------------------
+  -- Named layouts (spawn multiple SSH tabs at once)
+  -- ---------------------------------------------------------------------------
+  -- ctrl+alt+shift+w  →  open work tabs on linux
+  { key = 'w', mods = 'CTRL|ALT|SHIFT',
+    action = wezterm.action_callback(function(window, pane)
+      local mux_window = window:mux_window()
+      if not mux_window then
+        return
+      end
+
+      local original_tab = pane:tab()
+
+      for _, t in ipairs({
+        { label = 'cilium',  cwd = '/home/louis/git/gopath/src/github.com/cilium/cilium-enterprise' },
+        { label = 'cilium2', cwd = '/home/louis/git/gopath/src/github.com/cilium/cilium-worktree-1' },
+        { label = 'cilium3', cwd = '/home/louis/git/gopath/src/github.com/cilium/cilium-worktree-2' },
+        { label = 'testing', cwd = '/home/louis/git/isovalent/cilium-testing' },
+        { label = 'kernel',  cwd = '/home/louis/git/c/linux-bpf-next' },
+      }) do
+        local tab = mux_window:spawn_tab {
+          domain = { DomainName = 'linux' },
+          cwd = t.cwd,
+        }
+        tab:set_title(t.label)
+      end
+
+      original_tab:activate()
+      window:perform_action(act.CloseCurrentTab { confirm = false }, pane)
+    end),
+  },
+  -- ctrl+alt+x  →  pi split (30% height bottom pane)
+  { key = 'x', mods = 'CTRL|ALT',
+    action = wezterm.action.SplitPane {
+      direction = 'Down',
+      size = { Percent = 30 },
+      command = { args = { '/bin/zsh', '-i', '-l', '-c', 'exec pi' } },
+    },
+  },
 
   -- ---------------------------------------------------------------------------
   -- Splits (creation)
@@ -408,6 +460,19 @@ config.keys = {
   -- kitty: ctrl+alt+shift+p/n  →  scroll_to_prompt -1/+1
   { key = 'p', mods = 'CTRL|ALT|SHIFT', action = act.ScrollToPrompt(-1) },
   { key = 'n', mods = 'CTRL|ALT|SHIFT', action = act.ScrollToPrompt(1) },
+
+  -- Named workspace (session) creation: prompt and switch
+  {
+    key = 'W', mods = 'CTRL|SHIFT',
+    action = act.PromptInputLine {
+      description = 'Enter name for new workspace',
+      action = wezterm.action_callback(function(window, pane, line)
+        if line then
+          window:perform_action(act.SwitchToWorkspace { name = line }, pane)
+        end
+      end),
+    },
+  },
 
   -- Ghostty alternates: shift+alt+p/n  →  jump_to_prompt
   { key = 'p', mods = 'SHIFT|ALT', action = act.ScrollToPrompt(-1) },
