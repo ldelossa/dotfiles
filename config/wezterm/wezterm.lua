@@ -54,19 +54,19 @@ config.color_schemes = {
       background = '#1a1e24',
       inactive_tab_edge = '#355f72',
       active_tab = {
-        bg_color = '#87AFD7', fg_color = '#1F1F1F', intensity = 'Bold',
+        bg_color = '#5eaddf', fg_color = '#111111', intensity = 'Bold',
       },
       inactive_tab = {
-        bg_color = '#243b47', fg_color = '#c0c0c0',
+        bg_color = '#1a1e24', fg_color = '#5b6e7a',
       },
       inactive_tab_hover = {
-        bg_color = '#355f72', fg_color = '#ffffff',
+        bg_color = '#2a3340', fg_color = '#8ba0b0',
       },
       new_tab = {
-        bg_color = '#243b47', fg_color = '#949494',
+        bg_color = '#1a1e24', fg_color = '#5b6e7a',
       },
       new_tab_hover = {
-        bg_color = '#355f72', fg_color = '#ffffff',
+        bg_color = '#2a3340', fg_color = '#8ba0b0',
       },
     },
   },
@@ -134,12 +134,12 @@ function tab_colors_for_appearance(appearance)
     return {
       bar_bg = '#1a1e24',
       bar_fg = '#E4E4E4',
-      active_bg = '#87AFD7',
-      active_fg = '#1F1F1F',
-      inactive_bg = '#243b47',
-      inactive_fg = '#c0c0c0',
-      hover_bg = '#355f72',
-      hover_fg = '#ffffff',
+      active_bg = '#5eaddf',   -- sky blue
+      active_fg = '#111111',
+      inactive_bg = '#1a1e24',   -- merge into bar background
+      inactive_fg = '#5b6e7a',   -- dim, muted blue-gray
+      hover_bg = '#2a3340',
+      hover_fg = '#8ba0b0',
       border = '#355f72',
     }
   else
@@ -215,8 +215,7 @@ config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = true
 config.window_close_confirmation = 'AlwaysPrompt'
-config.exit_behavior = 'CloseOnCleanExit'
-config.clean_exit_codes = { 130 }
+config.exit_behavior = 'Close'
 config.window_decorations = 'RESIZE'
 
 -- =============================================================================
@@ -460,6 +459,9 @@ config.keys = {
   -- kitty: ctrl+alt+shift+p/n  →  scroll_to_prompt -1/+1
   { key = 'p', mods = 'CTRL|ALT|SHIFT', action = act.ScrollToPrompt(-1) },
   { key = 'n', mods = 'CTRL|ALT|SHIFT', action = act.ScrollToPrompt(1) },
+
+  -- ctrl+shift+l  →  fuzzy tab search
+  { key = 'L', mods = 'CTRL|SHIFT', action = act.ShowLauncherArgs { flags = 'FUZZY|TABS' } },
 
   -- Named workspace (session) creation: prompt and switch
   {
