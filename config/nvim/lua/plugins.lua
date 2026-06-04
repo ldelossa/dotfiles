@@ -817,7 +817,7 @@ later(function()
 		},
 		review = {
 			-- 'in-diff' | 'split-middle' | 'split-below' | 'split-above'
-			thread_layout       = "split-middle",
+			thread_layout       = "in-diff",
 			thread_split_height = 12,
 		},
 	})

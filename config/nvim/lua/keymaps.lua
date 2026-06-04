@@ -216,10 +216,6 @@ vim.g.super_tab = function()
 		-- expr mappings can't mutate the buffer directly; defer one tick
 		vim.schedule(function() require("pi-ide.suggestion").accept_all() end)
 		return ""
-	elseif vim.fn["copilot#GetDisplayedSuggestion"]().text ~= "" then
-		-- keycodes already replaced...
-		vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](""), "n", false)
-		return ""
 	else
 		return '<Tab>'
 	end

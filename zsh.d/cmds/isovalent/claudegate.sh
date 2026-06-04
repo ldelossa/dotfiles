@@ -34,7 +34,7 @@ execute() {
 	CLAUDE_CONFIG_DIR="$cfg"					\
 	ANTHROPIC_BASE_URL="http://127.0.0.1:$port"	\
   	ANTHROPIC_AUTH_TOKEN="sk-ant-dummy"			\
-  	ANTHROPIC_MODEL="claude-opus-4-7"			\
+  	ANTHROPIC_MODEL="claude-opus-4-8"			\
 	claude
 
 	# kill claudegate
