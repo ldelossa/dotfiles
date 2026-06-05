@@ -13,7 +13,7 @@
     "npm:@aliou/pi-guardrails",
     "npm:pi-theme-picker",
     "npm:@spences10/pi-themes",
-    "npm:@ldelossa/pi-ide",
+    "npm:@ldelossa/pi-ide"
   ],
   "hideThinkingBlock": true
 }
