@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.78.0",
+  "lastChangelogVersion": "0.78.1",
   "theme": "one-dark",
   "defaultThinkingLevel": "high",
   "defaultProvider": "deepseek",
@@ -13,7 +13,8 @@
     "npm:@aliou/pi-guardrails",
     "npm:pi-theme-picker",
     "npm:@spences10/pi-themes",
-    "npm:@ldelossa/pi-ide"
+    "npm:@ldelossa/pi-ide",
+	"npm:pi-markdown-preview"
   ],
   "hideThinkingBlock": true
 }
