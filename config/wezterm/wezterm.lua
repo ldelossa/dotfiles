@@ -379,8 +379,8 @@ config.keys = {
 
       for _, t in ipairs({
         { label = 'cilium',  cwd = '/home/louis/git/gopath/src/github.com/cilium/cilium-enterprise' },
-        { label = 'cilium2', cwd = '/home/louis/git/gopath/src/github.com/cilium/cilium-worktree-1' },
-        { label = 'cilium3', cwd = '/home/louis/git/gopath/src/github.com/cilium/cilium-worktree-2' },
+        { label = 'cilium2', cwd = '/home/louis/git/gopath/src/github.com/cilium/cilium-enterprise-1' },
+        { label = 'cilium3', cwd = '/home/louis/git/gopath/src/github.com/cilium/cilium-enterprise-2' },
         { label = 'testing', cwd = '/home/louis/git/isovalent/cilium-testing' },
         { label = 'kernel',  cwd = '/home/louis/git/c/linux-bpf-next' },
       }) do
