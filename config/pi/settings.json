@@ -14,7 +14,6 @@
     "npm:pi-theme-picker",
     "npm:@spences10/pi-themes",
     "npm:@ldelossa/pi-ide",
-	"npm:pi-markdown-preview"
   ],
   "hideThinkingBlock": true
 }
