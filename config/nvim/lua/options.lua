@@ -96,10 +96,8 @@ if is_running_in_ssh() then
 			['+'] = require('vim.ui.clipboard.osc52').copy('+'),
 			['*'] = require('vim.ui.clipboard.osc52').copy('*'),
 		},
-		paste = {
-			['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-			['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-		},
+		-- Paste disabled: WezTerm doesn't support OSC 52 clipboard reading
+		-- (PR #6239 is still open). Falls back to Neovim's internal registers.
 	}
 end
 

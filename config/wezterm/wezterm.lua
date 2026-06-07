@@ -15,6 +15,7 @@ config.font = wezterm.font {
   weight = 'Medium',
 }
 config.font_size = 12.0
+config.adjust_window_size_when_changing_font_size = false
 
 -- Ghostty uses font-thicken=true on macOS. WezTerm doesn't expose an exact
 -- equivalent, but light hinting + LCD rendering gives a slightly fuller,
@@ -261,7 +262,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
   -- Fancy tab bars don't reliably honor color_schemes[].tab_bar colors.
   -- Force the label colors here so the selected tab doesn't fall back to the
   -- native black/white appearance.
-  local tab_colors = tab_colors_for_appearance(appearance)
+  local tab_colors = tab_colors_for_appearance(wezterm.gui.get_appearance())
   local bg = tab_colors.inactive_bg
   local fg = tab_colors.inactive_fg
   local intensity = 'Normal'
@@ -281,6 +282,13 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
     { Attribute = { Intensity = intensity } },
     { Text = ' ' .. title .. ' ' },
   }
+end)
+
+-- Force tab bar to re-render after config reloads (auto-reload can leave
+-- stale format-tab-title handlers first in the callback list).
+wezterm.on('window-config-reloaded', function(window)
+  local overrides = window:get_config_overrides() or {}
+  window:set_config_overrides(overrides)
 end)
 
 -- Keep the yabai scratchpad rule stable even if the shell updates the pane title.
@@ -414,8 +422,14 @@ config.keys = {
   { key = 'v', mods = 'CTRL|ALT',
     action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
   -- kitty: ctrl+alt+z  →  toggle_layout stack  (zoom closest equivalent)
+  -- ScrollToBottom after zoom to work around wezterm#2987 (zoom drifts into
+  -- scrollback on macOS instead of preserving bottom gravity).
   { key = 'z', mods = 'CTRL|ALT',
-    action = act.TogglePaneZoomState },
+    action = act.Multiple {
+      act.TogglePaneZoomState,
+      act.ScrollByPage(999),
+    },
+  },
 
   -- Ghostty alternates: shift+alt+s/v/z
   { key = 's', mods = 'SHIFT|ALT',
@@ -423,7 +437,11 @@ config.keys = {
   { key = 'v', mods = 'SHIFT|ALT',
     action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
   { key = 'z', mods = 'SHIFT|ALT',
-    action = act.TogglePaneZoomState },
+    action = act.Multiple {
+      act.TogglePaneZoomState,
+      act.ScrollByPage(999),
+    },
+  },
 
   -- ---------------------------------------------------------------------------
   -- Split navigation (vim-style: h=left, j=down, k=up, l=right)
