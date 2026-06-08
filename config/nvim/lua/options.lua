@@ -90,14 +90,39 @@ local function is_running_in_ssh()
 end
 
 if is_running_in_ssh() then
+	local osc52 = require('vim.ui.clipboard.osc52')
+	local osc52_cache = {}
+
+	local function osc52_copy(reg)
+		local copy = osc52.copy(reg)
+
+		return function(lines, regtype)
+			osc52_cache[reg] = { vim.deepcopy(lines), regtype }
+			copy(lines, regtype)
+		end
+	end
+
+	local function osc52_paste(reg)
+		return function()
+			local cached = osc52_cache[reg]
+			if cached then
+				return { vim.deepcopy(cached[1]), cached[2] }
+			end
+
+			return { {}, 'v' }
+		end
+	end
+
 	vim.g.clipboard = {
 		name = 'OSC 52',
 		copy = {
-			['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-			['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+			['+'] = osc52_copy('+'),
+			['*'] = osc52_copy('*'),
 		},
-		-- Paste disabled: WezTerm doesn't support OSC 52 clipboard reading
-		-- (PR #6239 is still open). Falls back to Neovim's internal registers.
+		paste = {
+			['+'] = osc52_paste('+'),
+			['*'] = osc52_paste('*'),
+		},
 	}
 end
 

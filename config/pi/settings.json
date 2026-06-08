@@ -2,8 +2,8 @@
   "lastChangelogVersion": "0.78.1",
   "theme": "one-dark",
   "defaultThinkingLevel": "high",
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-pro",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
   "packages": [
     "npm:@trevonistrevon/pi-loop",
     "npm:pi-subagents",
