@@ -2,8 +2,8 @@
   "lastChangelogVersion": "0.79.6",
   "theme": "one-dark",
   "defaultThinkingLevel": "high",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-pro",
   "packages": [
     "npm:@trevonistrevon/pi-loop",
     "npm:pi-subagents",
@@ -13,7 +13,8 @@
     "npm:@aliou/pi-guardrails",
     "npm:pi-theme-picker",
     "npm:@spences10/pi-themes",
-    "npm:@ldelossa/pi-ide"
+    "npm:@ldelossa/pi-ide",
+	"npm:@dreki-gg/pi-plan-mode"
   ],
   "hideThinkingBlock": true
 }
