@@ -51,25 +51,6 @@ config.color_schemes = {
     selection_bg = '#87AFD7',
     selection_fg = '#1F1F1F',
     split = '#3a3a3a',
-    tab_bar = {
-      background = '#1a1e24',
-      inactive_tab_edge = '#355f72',
-      active_tab = {
-        bg_color = '#5eaddf', fg_color = '#111111', intensity = 'Bold',
-      },
-      inactive_tab = {
-        bg_color = '#1a1e24', fg_color = '#5b6e7a',
-      },
-      inactive_tab_hover = {
-        bg_color = '#2a3340', fg_color = '#8ba0b0',
-      },
-      new_tab = {
-        bg_color = '#1a1e24', fg_color = '#5b6e7a',
-      },
-      new_tab_hover = {
-        bg_color = '#2a3340', fg_color = '#8ba0b0',
-      },
-    },
   },
 
   -- Light theme (matched from kitty themes/light-theme.conf)
@@ -89,25 +70,6 @@ config.color_schemes = {
     selection_bg = '#437790',
     selection_fg = '#ffffff',
     split = '#d0d0d0',
-    tab_bar = {
-      background = '#d6e4ea',
-      inactive_tab_edge = '#aac3cf',
-      active_tab = {
-        bg_color = '#437790', fg_color = '#ffffff', intensity = 'Bold',
-      },
-      inactive_tab = {
-        bg_color = '#e8eef1', fg_color = '#555555',
-      },
-      inactive_tab_hover = {
-        bg_color = '#c8d8df', fg_color = '#262626',
-      },
-      new_tab = {
-        bg_color = '#e8eef1', fg_color = '#888888',
-      },
-      new_tab_hover = {
-        bg_color = '#c8d8df', fg_color = '#262626',
-      },
-    },
   },
 }
 
@@ -122,7 +84,7 @@ config.quick_select_remove_styling = true  -- strip all pane colors during Quick
 
 -- Auto-switch between light/dark based on macOS system appearance.
 -- WezTerm detects appearance changes and reloads the config automatically.
-function scheme_for_appearance(appearance)
+local function scheme_for_appearance(appearance)
   if appearance:find('Dark') then
     return 'kitty-dark'
   else
@@ -130,7 +92,7 @@ function scheme_for_appearance(appearance)
   end
 end
 
-function tab_colors_for_appearance(appearance)
+local function tab_colors_for_appearance(appearance)
   if appearance:find('Dark') then
     return {
       bar_bg = '#1a1e24',
@@ -158,7 +120,37 @@ function tab_colors_for_appearance(appearance)
   end
 end
 
-function window_frame_for_appearance(appearance)
+local function tab_bar_config_for_appearance(appearance)
+  local tab = tab_colors_for_appearance(appearance)
+
+  return {
+    background = tab.bar_bg,
+    inactive_tab_edge = tab.border,
+    active_tab = {
+      bg_color = tab.active_bg,
+      fg_color = tab.active_fg,
+      intensity = 'Bold',
+    },
+    inactive_tab = {
+      bg_color = tab.inactive_bg,
+      fg_color = tab.inactive_fg,
+    },
+    inactive_tab_hover = {
+      bg_color = tab.hover_bg,
+      fg_color = tab.hover_fg,
+    },
+    new_tab = {
+      bg_color = tab.inactive_bg,
+      fg_color = tab.inactive_fg,
+    },
+    new_tab_hover = {
+      bg_color = tab.hover_bg,
+      fg_color = tab.hover_fg,
+    },
+  }
+end
+
+local function window_frame_for_appearance(appearance)
   local tab = tab_colors_for_appearance(appearance)
 
   return {
@@ -199,6 +191,7 @@ local appearance = wezterm.gui and wezterm.gui.get_appearance() or 'Dark'
 local ssh_auth_sock = ssh_auth_sock_from_agent_file()
 
 config.color_scheme = scheme_for_appearance(appearance)
+config.colors.tab_bar = tab_bar_config_for_appearance(appearance)
 config.window_frame = window_frame_for_appearance(appearance)
 if ssh_auth_sock then
   config.default_ssh_auth_sock = ssh_auth_sock
@@ -209,6 +202,8 @@ end
 -- =============================================================================
 
 config.default_prog = { 'zsh', '-l' }
+-- Pi uses the Kitty keyboard protocol for unambiguous modified keys in WezTerm.
+config.enable_kitty_keyboard = true
 config.hide_mouse_cursor_when_typing = true
 config.pane_focus_follows_mouse = true
 config.audible_bell = 'Disabled'
@@ -240,7 +235,7 @@ config.ssh_domains = {
 -- Tab title formatting — show ⇪ when a split is zoomed (matching kitty)
 -- =============================================================================
 
-wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, _hover, _max_width)
   local title = tab.tab_title
   if not title or #title == 0 then
     title = tab.active_pane.title
@@ -259,26 +254,15 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
     end
   end
 
-  -- Fancy tab bars don't reliably honor color_schemes[].tab_bar colors.
-  -- Force the label colors here so the selected tab doesn't fall back to the
-  -- native black/white appearance.
-  local tab_colors = tab_colors_for_appearance(wezterm.gui.get_appearance())
-  local bg = tab_colors.inactive_bg
-  local fg = tab_colors.inactive_fg
-  local intensity = 'Normal'
-
-  if tab.is_active then
-    bg = tab_colors.active_bg
-    fg = tab_colors.active_fg
-    intensity = 'Bold'
-  elseif hover then
-    bg = tab_colors.hover_bg
-    fg = tab_colors.hover_fg
-  end
+  -- Keep this formatter independent from the `hover` argument. With the
+  -- fancy tab bar, WezTerm computes `hover` from terminal-cell coordinates
+  -- while the actual tab buttons are laid out with proportional/pixel
+  -- geometry; using it here can make the hover highlight drift by a tab.
+  -- The tab colors are configured via config.colors.tab_bar so the fancy
+  -- tab bar can apply its own pixel-accurate hover colors.
+  local intensity = tab.is_active and 'Bold' or 'Normal'
 
   return {
-    { Background = { Color = bg } },
-    { Foreground = { Color = fg } },
     { Attribute = { Intensity = intensity } },
     { Text = ' ' .. title .. ' ' },
   }
