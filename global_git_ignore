@@ -3,10 +3,10 @@
 [._]*.sw[a-p]
 [._]s[a-v][a-z]
 [._]sw[a-p]
-	
+
 # Session
 Session.vim
-	
+
 # Temporary
 NetrwTreeListing*
 .netrwhist
@@ -102,7 +102,7 @@ fabric.properties
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# Python 
+# Python
 pyenv/*
 env/*
 *.pyc
@@ -115,4 +115,4 @@ env/*
 ./AGENTS.md
 ./CLAUDE.md
 .pi/
-
+.plans/
