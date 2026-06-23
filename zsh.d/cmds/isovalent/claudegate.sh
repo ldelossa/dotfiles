@@ -1,7 +1,12 @@
 desc="Run a claude code instance using Isovalent claudegate proxy"
 args=("--port:[o] Listening port of claudegate proxy")
 args=("--model:[o] The model to use")
-help=("claudegate" "Run a claude code instance using Isovalent claudegate proxy")
+help=("claudegate" "Run a claude code instance using Isovalent claudegate proxy
+
+This commands supports argument forwarding where any arguments provided after
+a '--' will be fed directly to the 'claude' command. Most useful when using
+the '--resume' functionality.
+")
 
 execute() {
 	# if GITHUB_TOKEN is set, unset it, claudegate needs to authenticate
@@ -35,7 +40,7 @@ execute() {
 	ANTHROPIC_BASE_URL="http://127.0.0.1:$port"	\
   	ANTHROPIC_AUTH_TOKEN="sk-ant-dummy"			\
   	ANTHROPIC_MODEL="claude-opus-4-7"			\
-	claude
+	claude ${forwarded}
 
 	# kill claudegate
 	kill $pid

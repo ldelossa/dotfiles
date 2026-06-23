@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.79.6",
+  "lastChangelogVersion": "0.79.7",
   "theme": "one-dark",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "xhigh",
   "defaultProvider": "deepseek",
   "defaultModel": "deepseek-v4-pro",
   "packages": [
@@ -14,7 +14,23 @@
     "npm:pi-theme-picker",
     "npm:@spences10/pi-themes",
     "npm:@ldelossa/pi-ide",
-	"npm:@dreki-gg/pi-plan-mode"
+    "git:github.com/ldelossa/pi-plan-mode"
   ],
-  "hideThinkingBlock": true
+  "hideThinkingBlock": true,
+  "piPlanMode": {
+    "plan": {
+      "model": {
+        "provider": "openai-codex",
+        "id": "gpt-5.5"
+      },
+      "thinking": "xhigh"
+    },
+    "execute": {
+      "model": {
+        "provider": "deepseek",
+        "id": "deepseek-v4-pro"
+      },
+      "thinking": "xhigh"
+    }
+  }
 }
