@@ -305,23 +305,22 @@ local function load_more(cwd, state)
 	restore_visible_rank(rank)
 end
 
--- Both diff sides are scratch buffers with bufhidden=wipe. :q on either
--- window wipes its buffer, fires BufWinLeave, and the once-autocmd closes
--- the whole tab on the next event loop tick. The shared `fired` flag stops
--- the second buffer from re-firing after the tab is gone.
-local function arm_tab_teardown(tab_id, bufs)
-	local fired = false
-	for _, buf in ipairs(bufs) do
-		vim.api.nvim_create_autocmd('BufWinLeave', {
-			buffer = buf,
+-- :q on either diff window closes the whole diff tab on the next event
+-- loop tick. This is window-based instead of buffer-based because the HEAD
+-- right side can be a real file buffer that might also be visible elsewhere.
+local function arm_tab_teardown(tab_id, wins)
+	local closing = false
+	for _, win in ipairs(wins) do
+		vim.api.nvim_create_autocmd('WinClosed', {
+			pattern = tostring(win),
 			once = true,
 			callback = function()
-				if fired then return end
-				fired = true
+				if closing then return end
+				closing = true
 				vim.schedule(function()
-					if vim.api.nvim_tabpage_is_valid(tab_id) then
-						pcall(vim.cmd, 'tabclose ' .. vim.api.nvim_tabpage_get_number(tab_id))
-					end
+					if not vim.api.nvim_tabpage_is_valid(tab_id) then return end
+					local ok = pcall(vim.cmd, 'tabclose ' .. vim.api.nvim_tabpage_get_number(tab_id))
+					if not ok then closing = false end
 				end)
 			end,
 		})
@@ -362,20 +361,40 @@ local function fill_show_buffer(cwd, spec, display_name, ft_path)
 	return buf
 end
 
+local function is_head_commit(cwd, sha)
+	local r = vim.system({ 'git', '-C', cwd, 'rev-parse', '--verify', 'HEAD' }):wait()
+	if r.code ~= 0 then return false end
+	return (r.stdout or ''):gsub('%s+$', '') == sha
+end
+
+local function open_worktree_buffer(cwd, path)
+	local full_path = cwd .. '/' .. path
+	vim.cmd('edit ' .. vim.fn.fnameescape(full_path))
+	return vim.api.nvim_get_current_buf()
+end
+
 local function open_commit_diff(cwd, sha, path)
 	close_prior_diff_tab()
 	vim.cmd('tabnew')
 	local tab_id = vim.api.nvim_get_current_tabpage()
 	vim.api.nvim_tabpage_set_var(tab_id, 'git_commit_diff', true)
 
-	-- Right: file at <sha>.
+	-- Right: for HEAD, use the real editable worktree file. For older commits
+	-- or paths missing on disk, fall back to an immutable snapshot buffer.
 	local short = sha:sub(1, 8)
-	local right_buf = fill_show_buffer(cwd, sha .. ':' .. path,
-		path .. ' (' .. short .. ')', path)
+	local worktree_path = cwd .. '/' .. path
+	if is_head_commit(cwd, sha) and vim.fn.filereadable(worktree_path) == 1 then
+		open_worktree_buffer(cwd, path)
+	else
+		fill_show_buffer(cwd, sha .. ':' .. path,
+			path .. ' (' .. short .. ')', path)
+	end
+	local right_win = vim.api.nvim_get_current_win()
 	vim.cmd('diffthis')
 
 	-- Left: file at first parent. Root commit has no parent → empty buffer.
 	vim.cmd('vert leftabove new')
+	local left_win = vim.api.nvim_get_current_win()
 	local parent_r = vim.system({
 		'git', '-C', cwd, 'rev-parse', '--verify', '--quiet', sha .. '^',
 	}):wait()
@@ -387,11 +406,11 @@ local function open_commit_diff(cwd, sha, path)
 	else
 		left_name = path .. ' (no parent)'
 	end
-	local left_buf = fill_show_buffer(cwd, left_spec, left_name, path)
+	fill_show_buffer(cwd, left_spec, left_name, path)
 	vim.cmd('diffthis')
 	vim.cmd('wincmd p')
 
-	arm_tab_teardown(tab_id, { left_buf, right_buf })
+	arm_tab_teardown(tab_id, { left_win, right_win })
 end
 
 M.git_commit = function(local_opts, opts)

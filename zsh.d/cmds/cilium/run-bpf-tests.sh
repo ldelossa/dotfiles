@@ -15,9 +15,10 @@ execute() {
 		export BPF_TEST="${test_file}"
 	fi
 	if [[ ${+verbose} -eq 1 ]]; then
-		export BPF_TEST_VERBOSE=1
+		export V=1
 	fi
 	if [[ ${+dump_ctx} -eq 1 ]]; then
+		export V=1
 		export BPF_TEST_DUMP_CTX=1
 	fi
 

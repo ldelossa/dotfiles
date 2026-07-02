@@ -90,41 +90,28 @@ local function is_running_in_ssh()
 end
 
 if is_running_in_ssh() then
-	local osc52 = require('vim.ui.clipboard.osc52')
-	local osc52_cache = {}
+	vim.o.clipboard = "unnamedplus"
 
-	local function osc52_copy(reg)
-		local copy = osc52.copy(reg)
-
-		return function(lines, regtype)
-			osc52_cache[reg] = { vim.deepcopy(lines), regtype }
-			copy(lines, regtype)
-		end
-	end
-
-	local function osc52_paste(reg)
-		return function()
-			local cached = osc52_cache[reg]
-			if cached then
-				return { vim.deepcopy(cached[1]), cached[2] }
-			end
-
-			return { {}, 'v' }
-		end
+	local function paste()
+		return {
+			vim.fn.split(vim.fn.getreg(""), "\n"),
+			vim.fn.getregtype(""),
+		}
 	end
 
 	vim.g.clipboard = {
-		name = 'OSC 52',
+		name = "OSC 52",
 		copy = {
-			['+'] = osc52_copy('+'),
-			['*'] = osc52_copy('*'),
+			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
 		},
 		paste = {
-			['+'] = osc52_paste('+'),
-			['*'] = osc52_paste('*'),
+			["+"] = paste,
+			["*"] = paste,
 		},
 	}
 end
+
 
 -- If we  are running inside ssh AND we are in a tmux sesssion, OSC 52 won't
 -- work, instead we can use tmux's native copy/paste functionality.

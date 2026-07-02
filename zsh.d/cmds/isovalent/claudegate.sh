@@ -1,6 +1,6 @@
 desc="Run a claude code instance using Isovalent claudegate proxy"
-args=("--port:[o] Listening port of claudegate proxy")
-args=("--model:[o] The model to use")
+args=("--port:[o] Listening port of claudegate proxy" \
+	  "--model:[o] The model to use")
 help=("claudegate" "Run a claude code instance using Isovalent claudegate proxy
 
 This commands supports argument forwarding where any arguments provided after
@@ -31,8 +31,21 @@ execute() {
 	ln -sfn "$HOME/.claude/plugins"             "$cfg/plugins"
 	ln -sfn "$HOME/.claude/projects"            "$cfg/projects"
 
-	# launch claudegate and get pid for later
-	claudegate &> /tmp/claudegate.log &
+	local log_file="/tmp/claudegate-${port}.log"
+	local pid=""
+
+	cleanup() {
+		if [[ -n "$pid" ]] && kill -0 "$pid" 2>/dev/null; then
+			kill "$pid" 2>/dev/null || true
+			wait "$pid" 2>/dev/null || true
+		fi
+		rm -f "$log_file"
+	}
+	trap cleanup EXIT
+
+	# launch claudegate on the selected port and get pid for later
+	lib_info "Starting claudegate on http://127.0.0.1:$port (log: $log_file)"
+	CLAUDEGATE_PORT="$port" claudegate &> "$log_file" &
 	pid=$!
 
 	# run claude, blocking until exit
@@ -40,9 +53,5 @@ execute() {
 	ANTHROPIC_BASE_URL="http://127.0.0.1:$port"	\
   	ANTHROPIC_AUTH_TOKEN="sk-ant-dummy"			\
   	ANTHROPIC_MODEL="claude-opus-4-7"			\
-	claude ${forwarded}
-
-	# kill claudegate
-	kill $pid
-	rm -rf /tmp/claudegate.log
+	claude "${forwarded[@]}"
 }

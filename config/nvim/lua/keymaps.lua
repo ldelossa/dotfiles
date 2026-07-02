@@ -272,3 +272,43 @@ local function open_file_and_navigate()
 end
 
 map("n", "gbb", open_file_and_navigate, { silent = true, desc = "Open file with line and/or column" })
+
+-- =========================================================================
+-- WezTerm system clipboard paste via user-var-changed
+-- WezTerm blocks OSC 52 read, so `p` (when no explicit register is given)
+-- tells WezTerm to PasteFrom("Clipboard") instead.  The text arrives as
+-- bracketed-paste input.  Explicit registers (`"ap`) still put locally.
+-- =========================================================================
+if vim.env.SSH_CONNECTION ~= nil and vim.env.TMUX == nil then
+	local function trigger_wezterm_paste()
+		-- OSC 1337: SetUserVar fires the wezterm user-var-changed
+		-- handler, which calls PasteFrom("Clipboard") on this pane.
+		-- \27 = ESC, \7 = BEL. WezTerm expects the user-var value to be
+		-- base64 encoded; MQ== is "1".
+		local seq = "\27]1337;SetUserVar=NVIM_PASTE_FROM_CLIPBOARD=MQ==\7"
+		local tty = io.open("/dev/tty", "w") or io.open("/proc/self/fd/1", "w") or io.stdout
+		tty:write(seq)
+		tty:flush()
+		if tty ~= io.stdout then
+			tty:close()
+		end
+	end
+
+	local function wezterm_put(cmd)
+		return function()
+			if vim.v.register == '"' or vim.v.register == '+' or vim.v.register == '*' then
+				-- No named register: trigger WezTerm paste and suppress normal `p`/`P`.
+				-- With clipboard=unnamedplus, bare `p` reports v:register as `+`.
+				trigger_wezterm_paste()
+				return ''
+			end
+			-- Explicit named register (e.g. "ap): let Neovim handle put normally
+			return cmd
+		end
+	end
+
+	map("n", "p", wezterm_put("p"),
+		{ expr = true, silent = true, desc = "paste from system clipboard (WezTerm)" })
+	map("n", "P", wezterm_put("P"),
+		{ expr = true, silent = true, desc = "paste before from system clipboard (WezTerm)" })
+end
