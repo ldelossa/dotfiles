@@ -68,9 +68,13 @@ if [[ -e /usr/lib64/kitty/shell-integration/zsh/kitty-integration ]]; then
 	autoload -Uz -- /usr/lib64/kitty/shell-integration/zsh/kitty-integration; kitty-integration; unfunction kitty-integration
 fi
 
-if [[ -e Applications/kitty.app/Contents/Resources/kitty/shell-integration/zsh/kitty-integration ]]; then
+if [[ -e /Applications/kitty.app/Contents/Resources/kitty/shell-integration/zsh/kitty-integration ]]; then
 	export KITTY_SHELL_INTEGRATION="enabled"
-	autoload -Uz -- Applications/kitty.app/Contents/Resources/kitty/shell-integration/zsh/kitty-integration kitty-integration; unfunction kitty-integration
+	autoload -Uz -- /Applications/kitty.app/Contents/Resources/kitty/shell-integration/zsh/kitty-integration kitty-integration; unfunction kitty-integration
+fi
+
+if [[ "$TERM_PROGRAM" == "WezTerm" && -r /Applications/WezTerm.app/Contents/Resources/wezterm.sh ]]; then
+ source /Applications/WezTerm.app/Contents/Resources/wezterm.sh
 fi
 
 # If a share history file is available, use it.
