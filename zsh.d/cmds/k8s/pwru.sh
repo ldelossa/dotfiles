@@ -45,7 +45,7 @@ spec:
       hostPID: true
       containers:
       - name: pwru
-        image: cilium/pwru:latest
+        image: cilium/pwru:v1.0.10
         command: ['sleep', 'infinite']
         securityContext:
           privileged: true
