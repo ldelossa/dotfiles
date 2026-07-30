@@ -14,6 +14,11 @@ if [[ -e ~/Dropbox/Docs/DeepSeekToken ]]; then
 	export DEEPSEEK_API_KEY
 fi
 
+if [[ -e ~/Dropbox/Docs/ZAIToken ]]; then
+	ZAI_API_KEY=$(cat ~/Dropbox/Docs/ZAIToken)
+	export ZAI_API_KEY
+fi
+
 export AICHAT_CONFIG_DIR=$HOME/.config/aichat
 export LLM_MODEL=claude-4-sonnet
 export LLM_SESSION=default
