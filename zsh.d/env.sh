@@ -3,6 +3,7 @@ export SHELL="/bin/zsh"
 export GOPATH=~/git/gopath
 export GOBIN=~/git/gopath/bin
 export GOSRC=~/git/gopath/src/
+export GOPRIVATE='github.com/isovalent/*'
 export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
