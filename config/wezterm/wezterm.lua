@@ -202,6 +202,9 @@ end
 -- =============================================================================
 
 config.default_prog = { 'zsh', '-l' }
+-- Allow trusted local and SSH applications to query the host clipboard via
+-- OSC 52. This is intentionally enabled for the downstream WezTerm build.
+config.enable_osc52_clipboard_reading = true
 -- Pi uses the Kitty keyboard protocol for unambiguous modified keys in WezTerm.
 config.enable_kitty_keyboard = true
 config.hide_mouse_cursor_when_typing = true
@@ -530,16 +533,5 @@ config.keys = {
 --   (kitty's no_op equivalent) so fzf.vim can receive it. Other ctrl+shift+letter
 --   combos pass through by default since WezTerm doesn't bind them.
 -- =============================================================================
-
-local wezterm = require("wezterm")
-local act = wezterm.action
-
-wezterm.on("user-var-changed", function(window, pane,
-																				name, value)
-	if name == "NVIM_PASTE_FROM_CLIPBOARD" then
-		window:perform_action(act.PasteFrom("Clipboard"),
-			pane)
-	end
-end)
 
 return config

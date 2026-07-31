@@ -1,9 +1,9 @@
 {
-  "lastChangelogVersion": "0.80.3",
+  "lastChangelogVersion": "0.82.1",
   "theme": "one-dark",
-  "defaultThinkingLevel": "xhigh",
+  "defaultThinkingLevel": "high",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultModel": "gpt-5.6-sol",
   "packages": [
     "npm:@trevonistrevon/pi-loop",
     "npm:pi-subagents",
@@ -21,7 +21,7 @@
     "plan": {
       "model": {
         "provider": "openai-codex",
-        "id": "gpt-5.5"
+        "id": "gpt-5.6-sol"
       },
       "thinking": "xhigh"
     },

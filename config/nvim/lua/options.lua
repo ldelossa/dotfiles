@@ -92,22 +92,16 @@ end
 if is_running_in_ssh() then
 	vim.o.clipboard = "unnamedplus"
 
-	local function paste()
-		return {
-			vim.fn.split(vim.fn.getreg(""), "\n"),
-			vim.fn.getregtype(""),
-		}
-	end
-
+	local osc52 = require("vim.ui.clipboard.osc52")
 	vim.g.clipboard = {
-		name = "OSC 52",
+		name = "OSC 52 read/write",
 		copy = {
-			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+			["+"] = osc52.copy("+"),
+			["*"] = osc52.copy("*"),
 		},
 		paste = {
-			["+"] = paste,
-			["*"] = paste,
+			["+"] = osc52.paste("+"),
+			["*"] = osc52.paste("*"),
 		},
 	}
 end
