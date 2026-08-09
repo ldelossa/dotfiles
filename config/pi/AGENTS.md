@@ -4,7 +4,7 @@
   into a plan, but always ask the user to execute the plan prior to implementing the changes.
 
 - Do not use `sed` or shell-based automated text replacements without explicit
-  consent. This applies to scripted/batch rewrites across files. Instead, 
+  consent. This applies to scripted/batch rewrites across files. Instead,
   prefer to make edits file-by-file.
 
 - When fixing bugs, take an architectural view of the code before attempting
@@ -18,6 +18,11 @@
   data for version numbers, API surface, or recency-sensitive facts. This
   does not apply to routine work inside an existing codebase with
   already-chosen libraries.
+
+- When generating prose do not use em dash or any other grammatical elements which
+  AI agents overuse. When the prose is being generated in Markdown, place each
+  sentence in a paragraph on a new line. If the content deserves a diagram or
+  illustration prefer ASCII unless asked for a different format.
 
 # Extensions
 
