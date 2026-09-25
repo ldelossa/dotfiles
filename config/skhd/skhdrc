@@ -97,3 +97,9 @@ alt - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.la
 alt - 0x1B : yabai -m window --toggle terminal || open -na WezTerm.app --args start --always-new-process --workspace scratchpad
 
 alt - f : yabai -m window --toggle float
+
+# native workflows (replaces Hammerspoon Yabai.spoon hotkeys)
+alt - a : yabai -m action --show
+alt - w : yabai -m action --run space.choose
+alt - r : yabai -m action --run space.relabel
+alt - o : yabai -m action --run space.layout-cycle

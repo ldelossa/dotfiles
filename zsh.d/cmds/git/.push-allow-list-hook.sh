@@ -12,7 +12,10 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   [[ $remote_ref == refs/heads/* ]] || continue
   branch=${remote_ref#refs/heads/}
 
-  mapfile -t allowed < <(git config --local --get-all allowlist."$branch".remote)
+  allowed=()
+  while IFS= read -r allowed_remote; do
+    allowed+=("$allowed_remote")
+  done < <(git config --local --get-all allowlist."$branch".remote || true)
 
   # no allowlist for this branch → unrestricted
   [[ ${#allowed[@]} -eq 0 ]] && continue

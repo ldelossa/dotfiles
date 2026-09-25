@@ -1,19 +1,5 @@
 #!/usr/bin/env sh
 
-#
-# for this to work you must configure sudo such that
-# it will be able to run the command without password
-#
-# see this wiki page for information:
-#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
-#
-# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-# sudo yabai --load-sa
-#
-
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
-
 # global settings
 yabai -m config                                 \
     external_bar                 off:40:0       \
@@ -41,6 +27,10 @@ yabai -m config                                 \
     right_padding                8             \
     window_gap                   06             \
     layout                       stack          \
+    stack_selector               on             \
+    status_island                on             \
+    status_island_workspace_order alphabetical   \
+    space_cleaner                on             \
     mouse_modifier               fn             \
     mouse_action1                move           \
     mouse_action2                resize         \
@@ -55,17 +45,4 @@ yabai -m rule --add app="^Finder$" manage=off
 # terminal scratch pad
 yabai -m rule --add app="^WezTerm$" title="^scratchpad$" scratchpad="terminal" grid="6:6:1:1:4:4"
 
-# YabaiHammerSpoon integration signals
-yabai -m signal --add event=space_changed action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onSpacesChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=application_activated action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onApplicationsChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=display_changed action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onDisplaysChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=window_created action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onWindowsChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=window_destroyed action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onWindowsChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=window_focused action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onWindowsChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=window_moved action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onWindowsChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=window_resized action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onWindowsChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=window_minimized action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onWindowsChanged\"):sendMessage(\"\", 1, 0, true)'"
-yabai -m signal --add event=window_deminimized action="hs -c 'hs.ipc.remotePort(\"yabaiHammerSpoon:onWindowsChanged\"):sendMessage(\"\", 1, 0, true)'"
-
 echo "yabai configuration loaded.."
-
