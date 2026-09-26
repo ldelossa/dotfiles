@@ -32,6 +32,47 @@ now(function()
 	require("mini.basics").setup()
 end)
 
+local minuet_status = {
+	active = false,
+	completed = 0,
+	total = 0,
+}
+
+local minuet_status_group = vim.api.nvim_create_augroup("MinuetStatusline", { clear = true })
+vim.api.nvim_create_autocmd("User", {
+	group = minuet_status_group,
+	pattern = "MinuetRequestStartedPre",
+	callback = function(args)
+		local data = args.data or {}
+		minuet_status.active = false
+		minuet_status.completed = 0
+		minuet_status.total = data.n_requests or 1
+	end,
+})
+vim.api.nvim_create_autocmd("User", {
+	group = minuet_status_group,
+	pattern = "MinuetRequestStarted",
+	callback = function()
+		minuet_status.active = true
+		vim.cmd("redrawstatus")
+	end,
+})
+vim.api.nvim_create_autocmd("User", {
+	group = minuet_status_group,
+	pattern = "MinuetRequestFinished",
+	callback = function()
+		minuet_status.completed = math.min(minuet_status.completed + 1, minuet_status.total)
+		minuet_status.active = minuet_status.completed < minuet_status.total
+		vim.cmd("redrawstatus")
+	end,
+})
+
+local minuet_status_text = function()
+	if not minuet_status.active then return "" end
+	local current = math.min(minuet_status.completed + 1, minuet_status.total)
+	return string.format("󰚩 %d/%d", current, minuet_status.total)
+end
+
 local content = function()
 	local mode, mode_hl = require("mini.statusline").section_mode({ trunc_width = 120 })
 	local git           = require("mini.statusline").section_git({ trunc_width = 40 })
@@ -51,7 +92,7 @@ local content = function()
 			end)() }
 		},
 		{ hl = mode_hl,                 strings = { mode } },
-		{ hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
+		{ hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp, minuet_status_text() } },
 		'%<', -- Mark general truncate point
 		{ hl = 'MiniStatuslineFilename', strings = { filename } },
 		'%=', -- End left alignment
@@ -674,20 +715,42 @@ now(function()
 	})
 end)
 
--- coder/claudecode.nvim
--- pi-ide.nvim (local plugin, not pushed to a remote yet)
+-- ldelossa/pi-ide.nvim
 now(function()
 	add({
 		source = "ldelossa/pi-ide.nvim",
 	})
 	require("pi-ide").setup({
 		claude_code_compatibility = true,
-		suggestion = {
-			-- defaults shadow with copilot.vim style keys via lua/keymaps.lua
-			default_keys = false,
-			-- manual trigger only; no debounced auto-fire on idle
-			auto_trigger = false,
-			model = "openai-codex/gpt-5.4-mini",
+	})
+end)
+
+-- milanglacier/minuet-ai.nvim
+now(function()
+	add({
+		source = "milanglacier/minuet-ai.nvim",
+	})
+	require("minuet").setup({
+		provider = "openai_fim_compatible",
+		n_completions = 3,
+		provider_options = {
+			openai_fim_compatible = {
+				api_key = "DEEPSEEK_API_KEY",
+				model = "deepseek-flash",
+				name = "Deepseek",
+				optional = {
+					max_tokens = 256,
+					top_p = 0.9,
+				},
+			},
+		},
+		virtualtext = {
+			-- Suggestions are requested manually through lua/keymaps.lua.
+			auto_trigger_ft = {},
+		},
+		lsp = {
+			completion = { enable = false },
+			inline_completion = { enable = false },
 		},
 	})
 end)

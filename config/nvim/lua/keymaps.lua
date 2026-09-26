@@ -196,15 +196,58 @@ local filepath_completion = function()
 end
 map("i", "<C-X><C-F>", filepath_completion, { silent = true, desc = "filepath completion" })
 
--- pi-ide.nvim suggestion bindings mirror the copilot.vim layout above so the
--- muscle memory carries over. These shadow the copilot maps for the same
--- keys since vim.keymap.set replaces; remove the copilot lines above when
--- you're ready to fully cut over.
-map("i", "<C-j>", "<Plug>(PiSuggest)", { silent = true, remap = true, desc = "pi-ide suggest" })
-map("i", "<C-S-j>", "<Plug>(PiSuggestNext)", { silent = true, remap = true, desc = "pi-ide next suggestion" })
-map("i", "<C-h>", "<Plug>(PiSuggestAcceptLine)", { silent = true, remap = true, desc = "pi-ide accept line" })
-map("i", "<C-S-h>", "<Plug>(PiSuggestAcceptWord)", { silent = true, remap = true, desc = "pi-ide accept word" })
-map("i", "<C-Tab>", "<Plug>(PiSuggestAccept)", { silent = true, remap = true, desc = "pi-ide accept all" })
+-- Minuet inline suggestions are requested manually. The same key cycles
+-- through the returned alternatives once a suggestion is visible.
+local minuet_action = require("minuet.virtualtext").action
+local minuet_sensitive_names = {
+	[".git-credentials"] = true,
+	[".netrc"] = true,
+	[".npmrc"] = true,
+	[".pypirc"] = true,
+	["credentials"] = true,
+	["credentials.json"] = true,
+	["id_dsa"] = true,
+	["id_ecdsa"] = true,
+	["id_ed25519"] = true,
+	["id_rsa"] = true,
+	["kubeconfig"] = true,
+	["secrets"] = true,
+	["secrets.json"] = true,
+	["secrets.yaml"] = true,
+	["secrets.yml"] = true,
+}
+
+local minuet_disabled_reason = function()
+	if vim.b.minuet_disable then return "disabled for this buffer" end
+	if vim.bo.buftype ~= "" then return "special buffers are not sent to AI providers" end
+
+	local path = vim.api.nvim_buf_get_name(0):lower():gsub("\\", "/")
+	local name = vim.fn.fnamemodify(path, ":t")
+	if name == ".env" or vim.startswith(name, ".env.") then return "environment files may contain secrets" end
+	if minuet_sensitive_names[name] then return "credential files are not sent to AI providers" end
+	if name:match("apitoken$") or name:match("token%.[^.]+$") then return "token files are not sent to AI providers" end
+	if name:match("%.key$") or name:match("%.pem$") or name:match("%.p12$") or name:match("%.pfx$")
+		or name:match("%.crt$") or name:match("%.cer$") then
+		return "key and certificate files are not sent to AI providers"
+	end
+	if path:match("/%.aws/credentials$") or path:match("/%.docker/config%.json$")
+		or path:match("/%.kube/config$") or path:match("/application_default_credentials%.json$") then
+		return "credential files are not sent to AI providers"
+	end
+end
+
+local minuet_suggest_or_next = function()
+	local reason = minuet_disabled_reason()
+	if reason then
+		vim.notify("Minuet: " .. reason, vim.log.levels.WARN)
+		return
+	end
+	minuet_action.next()
+end
+
+map("i", "<C-j>", minuet_suggest_or_next, { silent = true, desc = "minuet suggest or next" })
+map("i", "<C-h>", minuet_action.accept_line, { silent = true, desc = "minuet accept line" })
+map("i", "<C-Tab>", minuet_action.accept, { silent = true, desc = "minuet accept all" })
 
 -- super tab, make tab do different things depending on context.
 vim.g.super_tab = function()
@@ -212,9 +255,9 @@ vim.g.super_tab = function()
 		return "<C-y>"
 	elseif require("mini.snippets").session.get() ~= nil then
 		return '<cmd>lua MiniSnippets.session.jump("next")<cr>'
-	elseif require("pi-ide.suggestion").has_active_suggestion() then
+	elseif minuet_action.is_visible() then
 		-- expr mappings can't mutate the buffer directly; defer one tick
-		vim.schedule(function() require("pi-ide.suggestion").accept_all() end)
+		vim.schedule(minuet_action.accept)
 		return ""
 	else
 		return '<Tab>'
