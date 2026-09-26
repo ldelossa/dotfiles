@@ -1,3 +1,9 @@
+vim.filetype.add({
+	extension = {
+		lds = "ld",
+	},
+})
+
 -- a dumb way to do this, but certain codebases should use tabs with 8 spaces
 -- cilium and kernel programming.
 vim.api.nvim_create_autocmd("FileType", {
