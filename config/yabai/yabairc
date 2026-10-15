@@ -28,6 +28,8 @@ yabai -m config                                 \
     window_gap                   06             \
     layout                       stack          \
     stack_selector               on             \
+    stack_selector_anchor        vertical-center-right \
+    stack_selector_auto_collapse on             \
     status_island                on             \
     status_island_workspace_order alphabetical   \
     space_cleaner                on             \

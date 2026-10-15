@@ -16,7 +16,7 @@ default:
 
 all: link-configs link-zsh link-gdb-config link-lldb-config link-global-gitignore \
 	link-clang-format link-mail link-docker-config link-git-config link-electron-flags \
-	link-claude-code link-pi
+	link-claude-code link-pi link-zed
 
 link-configs: $(user_configs)
 
@@ -79,3 +79,9 @@ link-pi:
 	ln -s $(HOME)/git/dotfiles/config/pi/AGENTS.md $(HOME)/.pi/agent/AGENTS.md
 	-unlink ~/.pi/agent/settings.json
 	ln -s $(HOME)/git/dotfiles/config/pi/settings.json $(HOME)/.pi/agent/settings.json
+
+link-zed:
+	-unlink ~/.config/zed/settings.json
+	-unlink ~/.config/zed/keymap.json
+	ln -s $(HOME)/git/dotfiles/config/zed/settings.json $(HOME)/.config/zed/settings.json
+	ln -s $(HOME)/git/dotfiles/config/zed/keymap.json $(HOME)/.config/zed/keymap.json

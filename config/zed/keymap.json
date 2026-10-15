@@ -1,0 +1,238 @@
+[
+  // ---------------------------------------------------------------------------
+  // Universal escape: ctrl-[ behaves exactly like escape everywhere, like Neovim.
+  // Vim-mode contexts already bind ctrl-[ specifically, so this only affects
+  // menus, pickers, panels, search bars, the terminal, and other modal UI.
+  // ---------------------------------------------------------------------------
+  {
+    "bindings": {
+      "ctrl-[": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Normal mode: leader (space) maps and general editor/workspace actions.
+  // ---------------------------------------------------------------------------
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Make space the leader key instead of a motion.
+      "space": null,
+
+      // Write / yank / files / pickers
+      "space w": "workspace::Save",
+      "space y f": "editor::CopyFileName",
+      "space f": "pane::RevealInProjectPanel",
+      "space space": "file_finder::Toggle",
+      "space shift-r": ["file_finder::Toggle", { "separate_history": true }],
+      "space r": "workspace::ReopenLastPicker",
+      "space m": "vim::ToggleMarksView",
+      "space k": "zed::OpenKeymap",
+      "space d": "zed::ShowWelcome",
+
+      // Search
+      "space s": "pane::DeploySearch",
+      "space shift-s": "text_finder::Toggle",
+
+      // Panels
+      "space e": "project_panel::ToggleFocus",
+      "space shift-g": "git_panel::ToggleFocus",
+
+      // Hover
+      "space i": "editor::Hover",
+
+      // Git history / hunks (approximations: file-scoped)
+      "space g": "git::FileHistory",
+      "space h": "git::OpenFileDiff",
+
+      // Buffer picker (overrides vim ' jump-to-line-mark)
+      "'": "tab_switcher::Toggle",
+
+      // Open file:line:col under cursor
+      "g b b": "editor::OpenSelectedFilename"
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Normal mode: buffer / item navigation (Neovim buffer + tab maps).
+  // ---------------------------------------------------------------------------
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Next / previous buffer
+      "ctrl-b n": "pane::ActivateNextItem",
+      "ctrl-b p": "pane::ActivatePreviousItem",
+      "b n": "pane::ActivateNextItem",
+      "b p": "pane::ActivatePreviousItem",
+
+      // Close other buffers / delete buffer (pinned tabs included)
+      "ctrl-b o": ["pane::CloseOtherItems", { "close_pinned": true }],
+      "b o": ["pane::CloseOtherItems", { "close_pinned": true }],
+      "ctrl-b d": ["pane::CloseActiveItem", { "close_pinned": true }],
+      "b d": ["pane::CloseActiveItem", { "close_pinned": true }],
+
+      // Alternate buffer
+      "ctrl-b a": "pane::AlternateFile",
+      "b a": "pane::AlternateFile",
+      "ctrl-tab": "pane::AlternateFile",
+
+      // Tab maps (aliases over Zed pane items)
+      "ctrl-t n": "pane::ActivateNextItem",
+      "ctrl-t p": "pane::ActivatePreviousItem",
+      "ctrl-t d": "pane::CloseActiveItem"
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Normal mode: pane resizing (Neovim shift-arrow resize).
+  // ---------------------------------------------------------------------------
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "shift-right": ["workspace::SendKeystrokes", "5 ctrl-w >"],
+      "shift-left": ["workspace::SendKeystrokes", "5 ctrl-w <"],
+      "shift-down": ["workspace::SendKeystrokes", "5 ctrl-w +"],
+      "shift-up": ["workspace::SendKeystrokes", "5 ctrl-w -"]
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Normal mode: LSP / diagnostics / code intelligence (ctrl-l prefix).
+  // ---------------------------------------------------------------------------
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "ctrl-l s": "outline::Toggle",
+      "ctrl-l w": "project_symbols::Toggle",
+      "ctrl-l p": "editor::GoToPreviousDiagnostic",
+      "ctrl-l n": "editor::GoToDiagnostic",
+      "ctrl-l b": "outline::Toggle",
+      "ctrl-l u": "editor::FindAllReferences",
+      "ctrl-l d": "editor::GoToDefinition",
+      "ctrl-l l": "editor::GoToImplementation",
+      "ctrl-l shift-d": "editor::GoToTypeDefinition",
+      "ctrl-l h": "editor::Hover",
+      "ctrl-l k": "editor::ShowSignatureHelp",
+      "ctrl-l r": "editor::Rename",
+      "ctrl-l e": "editor::GoToDiagnostic",
+      "ctrl-l f": "editor::Format",
+      "ctrl-l a": "editor::ToggleCodeActions",
+      "ctrl-l x": "diagnostics::Deploy",
+      "ctrl-l shift-h i": "call_hierarchy::ShowIncomingCalls",
+      "ctrl-l shift-h o": "call_hierarchy::ShowOutgoingCalls",
+
+      // Agent panel (opencode select / Claude Code focus)
+      "ctrl-l o": "agent::ToggleFocus",
+      "ctrl-l c": "agent::ToggleFocus",
+
+      // Type definition (override vim default g shift-d -> declaration)
+      "g shift-d": "editor::GoToTypeDefinition",
+
+      // Signature help
+      "ctrl-k": "editor::ShowSignatureHelp"
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Normal mode: git.
+  // ---------------------------------------------------------------------------
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+      "ctrl-g n": "editor::GoToHunk",
+      "ctrl-g p": "editor::GoToPreviousHunk",
+      "ctrl-g s": "git::ToggleStaged",
+      "ctrl-g u": "git::ToggleStaged",
+      "ctrl-g r": "git::Restore",
+      "ctrl-g shift-r": "git::RestoreFile",
+      "ctrl-g shift-p": "editor::ToggleSelectedDiffHunks",
+      "ctrl-g b": "editor::BlameHover",
+      "ctrl-g d": "git::OpenFileDiff",
+      "ctrl-g shift-d": "git::FileHistory",
+      "g l": "editor::OpenPermalinkToLine",
+      "ctrl-g h": "git::OpenFileDiff",
+      "ctrl-g g": "git_panel::ToggleFocus",
+      "ctrl-g c": "git::FileHistory"
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Visual mode: git + agent.
+  // ---------------------------------------------------------------------------
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "ctrl-g s": "git::ToggleStaged",
+      "ctrl-g r": "git::Restore",
+      "g l": "editor::OpenPermalinkToLine",
+      "ctrl-l i": "assistant::InlineAssist",
+      "ctrl-l c": "agent::ToggleFocus"
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Insert mode.
+  // ---------------------------------------------------------------------------
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "ctrl-space": "editor::ShowCompletions",
+      "ctrl-x ctrl-f": "editor::ShowCompletions",
+      "ctrl-k": "editor::ShowSignatureHelp",
+      "ctrl-l k": "editor::ShowSignatureHelp",
+      "ctrl-l r": "editor::Rename",
+      "ctrl-l e": "editor::GoToDiagnostic",
+      "ctrl-j": "editor::ShowEditPrediction",
+
+      // Append ; / } / { at end of line and return to normal mode
+      "ctrl-;": ["workspace::SendKeystrokes", "escape shift-a ; escape"],
+      "ctrl-e": ["workspace::SendKeystrokes", "escape shift-a space } escape"],
+      "ctrl-b": ["workspace::SendKeystrokes", "escape shift-a space { escape"]
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Terminal.
+  // ---------------------------------------------------------------------------
+  {
+    "context": "Terminal && !vi_mode",
+    "bindings": {
+      "ctrl-w n": "terminal::ToggleViMode"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-l c": "agent::ToggleFocus"
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Super-tab: Tab does different things by context.
+  // ---------------------------------------------------------------------------
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "tab": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction && !showing_completions",
+    "bindings": {
+      "tab": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "ctrl-h": "editor::AcceptNextLineEditPrediction",
+      "ctrl-tab": "editor::AcceptEditPrediction"
+    }
+  }
+]

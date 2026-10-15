@@ -1,0 +1,133 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+{
+  "terminal": {
+    "font_family": "FiraCode Nerd Font Mono"
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Colored Zed Icons Theme Dark"
+  },
+  "vim_mode": true,
+  "auto_install_extensions": {
+    "path-server-lsp": true
+  },
+  "show_edit_predictions": false,
+  "show_completions_on_input": false,
+  "show_wrap_guides": true,
+  "wrap_guides": [80],
+  "file_types": {
+    "Linker Script": ["ld", "lds"]
+  },
+
+  // Use LSP document symbols (instead of tree-sitter) for outlines and
+  // breadcrumbs, matching Neovim's LSP symbol pickers.
+  "document_symbols": "on",
+
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry"
+    },
+    "codex-acp": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "ssh_connections": [
+    {
+      "host": "linux",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/louis/git/zig/zig"
+          ]
+        },
+        {
+          "paths": [
+            "/home/louis/git/zig/zig-multiboot"
+          ]
+        }
+      ]
+    }
+  ],
+  "edit_predictions": {
+    "provider": "copilot",
+    // Preserve Zed's built-in exclusions and add the sensitive-file patterns
+    // that Neovim's Minuet setup refused to send to AI providers.
+    "disabled_globs": [
+      "...",
+      "**/.git-credentials",
+      "**/.netrc",
+      "**/.npmrc",
+      "**/.pypirc",
+      "**/credentials",
+      "**/credentials.json",
+      "**/id_dsa",
+      "**/id_ecdsa",
+      "**/id_ed25519",
+      "**/id_rsa",
+      "**/kubeconfig",
+      "**/secrets",
+      "**/secrets.json",
+      "**/secrets.yaml",
+      "**/*apitoken",
+      "**/token.*",
+      "**/*.p12",
+      "**/*.pfx",
+      "**/*.cer",
+      "**/.aws/credentials",
+      "**/.docker/config.json",
+      "**/.kube/config",
+      "**/application_default_credentials.json"
+    ]
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "agent": {
+    "single_file_review": true,
+    "sandbox_permissions": {
+      "network_hosts": [
+        "github.com"
+      ]
+    },
+    "tool_permissions": {
+      "tools": {
+        "fetch": {
+          "default": "allow"
+        }
+      }
+    },
+    "default_model": {
+      "provider": "openai-subscribed",
+      "model": "gpt-6.1-sol",
+      "enable_thinking": true,
+      "effort": "high"
+    },
+    "dock": "left",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "dock": "right"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 11,
+  "theme": {
+    "mode": "dark",
+    "light": "macOS Classic Light",
+    "dark": "Ayu Mirage"
+  }
+}

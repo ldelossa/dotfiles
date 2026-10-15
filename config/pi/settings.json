@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "1.1.0",
   "theme": "one-dark",
   "defaultThinkingLevel": "high",
   "defaultProvider": "openai-codex",
@@ -16,7 +16,7 @@
     "npm:@ldelossa/pi-ide",
     "git:github.com/ldelossa/pi-plan-mode",
     "npm:@injaneity/pi-computer-use",
-	"npm:pi-open-last-response"
+    "git:github.com/ldelossa/pi-edit-last"
   ],
   "hideThinkingBlock": true,
   "piPlanMode": {
