@@ -46,7 +46,7 @@
       "space h": "git::OpenFileDiff",
 
       // Buffer picker (overrides vim ' jump-to-line-mark)
-      "'": "tab_switcher::Toggle",
+      "'": "tab_switcher::OpenInActivePane",
 
       // Open file:line:col under cursor
       "g b b": "editor::OpenSelectedFilename"

@@ -20,6 +20,7 @@ execute() {
 	setopt localoptions extendedglob
 
 	local compiler="${CC:-cc}"
+	local clear_interactive_input=0
 
 	if ! command -v "$compiler" >/dev/null 2>&1; then
 		lib_error "ERROR: compiler '$compiler' was not found" >&2
@@ -66,11 +67,16 @@ execute() {
 
 	if [[ -t 0 ]]; then
 		lib_info "Paste one or more complete C structure declarations, then press Ctrl-D:"
+		[[ -t 1 ]] && clear_interactive_input=1
 	fi
 
 	if ! cat > "$source_file"; then
 		lib_error "ERROR: could not read the C structure declarations" >&2
 		return 1
+	fi
+
+	if (( clear_interactive_input )); then
+		printf '\033[2J\033[H'
 	fi
 
 	if [[ ! -s "$source_file" ]]; then
