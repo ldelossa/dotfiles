@@ -487,8 +487,20 @@ config.keys = {
 	{ key = 'p',          mods = 'CTRL|ALT|SHIFT', action = act.ScrollToPrompt(-1) },
 	{ key = 'n',          mods = 'CTRL|ALT|SHIFT', action = act.ScrollToPrompt(1) },
 
-	-- ctrl+shift+l  →  fuzzy tab search
-	{ key = 'L',          mods = 'CTRL|SHIFT',     action = act.ShowLauncherArgs { flags = 'FUZZY|TABS' } },
+	-- WezTerm utilities use the ctrl+alt namespace.
+	{ key = 'c',     mods = 'CTRL|ALT', action = act.CharSelect {
+		copy_on_select = true,
+		copy_to = 'ClipboardAndPrimarySelection',
+	} },
+	{ key = 'Space', mods = 'CTRL|ALT', action = act.ShowLauncherArgs { flags = 'FUZZY|TABS' } },
+
+	-- Forward Pi's ctrl+shift Vim navigation namespace to the terminal.
+	-- These override WezTerm defaults for hide, scrollback clear, and character select.
+	{ key = 'h', mods = 'CTRL|SHIFT', action = act.DisableDefaultAssignment },
+	{ key = 'k', mods = 'CTRL|SHIFT', action = act.DisableDefaultAssignment },
+	{ key = 'u', mods = 'CTRL|SHIFT', action = act.DisableDefaultAssignment },
+	{ key = 'l', mods = 'CTRL|SHIFT', action = act.DisableDefaultAssignment },
+	{ key = 't', mods = 'CTRL|SHIFT', action = act.DisableDefaultAssignment },
 
 	-- Named workspace (session) creation: prompt and switch
 	{

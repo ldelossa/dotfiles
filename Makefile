@@ -79,6 +79,8 @@ link-pi:
 	ln -s $(HOME)/git/dotfiles/config/pi/AGENTS.md $(HOME)/.pi/agent/AGENTS.md
 	-unlink ~/.pi/agent/settings.json
 	ln -s $(HOME)/git/dotfiles/config/pi/settings.json $(HOME)/.pi/agent/settings.json
+	-unlink ~/.pi/agent/keybindings.json
+	ln -s $(HOME)/git/dotfiles/config/pi/keybindings.json $(HOME)/.pi/agent/keybindings.json
 
 link-zed:
 	-unlink ~/.config/zed/settings.json

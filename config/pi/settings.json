@@ -1,9 +1,12 @@
 {
-  "lastChangelogVersion": "1.1.0",
-  "theme": "one-dark",
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "lastChangelogVersion": "1.3.0",
+  "theme": "system",
+  "quietStartup": "header",
   "defaultThinkingLevel": "high",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-sol",
+  "defaultModel": "gpt-6.1-sol",
+  "defaultTools": ["+codemode"],
   "packages": [
     "npm:@trevonistrevon/pi-loop",
     "npm:pi-subagents",
@@ -23,7 +26,7 @@
     "plan": {
       "model": {
         "provider": "openai-codex",
-        "id": "gpt-5.6-sol"
+        "id": "gpt-6.1-sol"
       },
       "thinking": "xhigh"
     },

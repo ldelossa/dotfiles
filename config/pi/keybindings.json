@@ -1,0 +1,11 @@
+{
+  "$schema": "https://pi.dev/schemas/keybindings.schema.json",
+  "tui.altScreen.previousPrompt": "ctrl+shift+k",
+  "tui.altScreen.nextPrompt": "ctrl+shift+j",
+  "tui.altScreen.halfPageUp": "ctrl+shift+u",
+  "tui.altScreen.halfPageDown": "ctrl+shift+d",
+  "tui.altScreen.top": "ctrl+shift+h",
+  "tui.altScreen.bottom": "ctrl+shift+l",
+  "tui.altScreen.search": "ctrl+shift+/",
+  "app.session.tree": "ctrl+shift+t"
+}
