@@ -35,6 +35,14 @@ opt.number = false
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
+-- Open man pages in the current window instead of creating a split.
+local man = require('man')
+local open_man_page = man.open_page
+man.open_page = function(count, mods, args)
+	mods.hide = true
+	return open_man_page(count, mods, args)
+end
+
 -- set c fileype for headers, not cpp
 vim.g.c_syntax_for_h = 1
 

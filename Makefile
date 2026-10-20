@@ -81,6 +81,8 @@ link-pi:
 	ln -s $(HOME)/git/dotfiles/config/pi/settings.json $(HOME)/.pi/agent/settings.json
 	-unlink ~/.pi/agent/keybindings.json
 	ln -s $(HOME)/git/dotfiles/config/pi/keybindings.json $(HOME)/.pi/agent/keybindings.json
+	mkdir -p $(HOME)/.pi/agent/extensions
+	ln -sf $(HOME)/git/dotfiles/config/pi/extensions/session-branches.ts $(HOME)/.pi/agent/extensions/session-branches.ts
 
 link-zed:
 	-unlink ~/.config/zed/settings.json

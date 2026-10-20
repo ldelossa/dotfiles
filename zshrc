@@ -10,17 +10,43 @@ if [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
 	source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-_aichat_zsh() {
-    if [[ -n "$BUFFER" ]]; then
-        local _old=$BUFFER
-        BUFFER+="⌛"
-        zle -I && zle redisplay
-        BUFFER=$(aichat -e "$_old")
-        zle end-of-line
+_pi_shell_zsh() {
+    [[ -n "$BUFFER" ]] || return 0
+
+    local _old=$BUFFER _cursor=$CURSOR _command _os
+    case "$(uname -s)" in
+        Darwin) _os="macOS $(sw_vers -productVersion)" ;;
+        *) _os="$(uname -s)" ;;
+    esac
+    local _prompt="Provide only zsh commands for $_os without any description.
+Ensure the output is a valid zsh command.
+If there is a lack of details, provide most logical solution.
+If multiple steps are required, try to combine them using '&&'.
+Output only plain text without any markdown formatting."
+
+    BUFFER+="⌛"
+    zle -I && zle redisplay
+    if _command=$(print -r -- "$_old" | command pi \
+        --print --mode text --offline \
+        --provider openai-codex --model gpt-6-luna --thinking low \
+        --no-session --no-tools --no-extensions --no-mcp \
+        --no-skills --no-prompt-templates --no-context-files --no-approve \
+        --system-prompt "$_prompt" --append-system-prompt ''); then
+        if [[ -n ${_command//[[:space:]]/} ]]; then
+            BUFFER=$_command
+            zle end-of-line
+        else
+            BUFFER=$_old
+            CURSOR=$_cursor
+            zle -M 'Pi returned no command; original input restored.'
+        fi
+    else
+        BUFFER=$_old
+        CURSOR=$_cursor
+        zle -M 'Pi failed; original input restored.'
     fi
+    zle redisplay
 }
-zle -N _aichat_zsh
-bindkey ^h _aichat_zsh
 
 # shell environment configurations
 source ~/zsh.d/env.sh
@@ -81,6 +107,11 @@ fi
 if [[ -e $HOME/Dropbox/Fedora/.zsh_history ]]; then
 	HISTFILE=~/Dropbox/Fedora/.zsh_history
 fi
+
+# Bind after initialization so Ctrl+H does not depend on the initial keymap.
+zle -N _pi_shell_zsh
+bindkey -M viins '^H' _pi_shell_zsh
+bindkey -M emacs '^H' _pi_shell_zsh
 
 # if LIMA_VM is defined exec our shell directly into a linux VM on macOS
 if [ -n "$LIMA_VM" ]; then
