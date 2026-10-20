@@ -19,8 +19,7 @@
     "npm:@spences10/pi-themes",
     "npm:@ldelossa/pi-ide",
     "git:github.com/ldelossa/pi-plan-mode",
-    "npm:@injaneity/pi-computer-use",
-    "git:github.com/ldelossa/pi-edit-last"
+    "npm:@injaneity/pi-computer-use"
   ],
   "hideThinkingBlock": true,
   "piPlanMode": {

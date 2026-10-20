@@ -83,6 +83,8 @@ link-pi:
 	ln -s $(HOME)/git/dotfiles/config/pi/keybindings.json $(HOME)/.pi/agent/keybindings.json
 	mkdir -p $(HOME)/.pi/agent/extensions
 	ln -sf $(HOME)/git/dotfiles/config/pi/extensions/session-branches.ts $(HOME)/.pi/agent/extensions/session-branches.ts
+	cd $(HOME)/git/dotfiles/config/pi/extensions/edit-last && npm ci --omit=dev --ignore-scripts
+	ln -sfn $(HOME)/git/dotfiles/config/pi/extensions/edit-last $(HOME)/.pi/agent/extensions/edit-last
 
 link-zed:
 	-unlink ~/.config/zed/settings.json

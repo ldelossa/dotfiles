@@ -1,7 +1,15 @@
-# Session branches
+# Local Pi extensions
 
-`session-branches.ts` is a local Pi extension, loaded in every project through a symlink in `~/.pi/agent/extensions/`.
-Run `make link-pi` to install the symlink, then `/reload` in Pi.
+Run `make link-pi` to install the extensions, then `/reload` in Pi.
+Both extensions load in every project through symlinks in `~/.pi/agent/extensions/`.
+
+- `session-branches.ts` provides named conversation copies and parent navigation.
+- [`edit-last/`](edit-last/README.md) extracts inline questions and comments from the latest assistant response.
+
+`make link-pi` installs edit-last's runtime dependencies using its checked-in lockfile.
+Its source, tests, and dependency manifest are versioned here rather than installed as a separate Git package.
+
+## Session branches
 
 ## Commands
 
