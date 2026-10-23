@@ -41,3 +41,7 @@ fi
 if which duf &> /dev/null; then
     alias df='duf'
 fi
+
+if which pi-bolt &> /dev/null; then
+	alias pi="pi-bolt"
+fi
