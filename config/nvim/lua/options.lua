@@ -63,8 +63,26 @@ function set_light_theme()
 end
 
 local function is_prefer_light_theme()
+	local platform = vim.uv.os_uname().sysname
+
+	if platform == "Darwin" then
+		-- AppleInterfaceStyle is set to "Dark" in dark mode and absent in light mode.
+		local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+		if not handle then
+			return nil
+		end
+		local result = handle:read("*a")
+		handle:close()
+		return string.lower(string.gsub(result, "^%s*(.-)%s*$", "%1")) ~= "dark"
+	elseif platform ~= "Linux" then
+		return nil
+	end
+
 	-- Run the dconf command and capture the output
 	local handle = io.popen("dconf read /org/gnome/desktop/interface/color-scheme")
+	if not handle then
+		return nil
+	end
 	local result = handle:read("*a")
 	handle:close()
 

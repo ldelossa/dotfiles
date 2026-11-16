@@ -18,6 +18,7 @@ export PATH=$PATH:$HOME/.platformio/penv/bin
 export PATH=$PATH:/usr/local/zig
 export PATH=$PATH:$HOME/git/lua/lua-language-server/bin
 export PATH=$PATH:/usr/share/google-cloud-sdk/bin/
+export PATH=$PATH:$HOME/google-cloud-sdk/bin/
 export PATH=$PATH:/opt/homebrew/bin
 export PATH=$PATH:/Users/louis/Library/Python/3.9/bin
 export PATH=$PATH:$HOME/.opencode/bin

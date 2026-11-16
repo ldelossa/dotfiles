@@ -24,14 +24,14 @@ sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rel
 sudo dnf install -y bat bear clang clang-tools-extra docker-compose eza fd-find \
 					fuse-sshfs fzf htop btop jq neovim nmap moby-engine powertop \
 					pv the_silver_searcher zsh gh nodejs-bash-language-server \
-					nnn scdoc meson flex bison procs kubernetes-client helm npm  \
+					nnn scdoc meson flex bison kubernetes-client helm npm  \
 					gdb elfutils-libelf-devel openssl-devel dwarves zstd ripgrep \
 					lld python3-docutils strace difftastic zsh-syntax-highlighting \
 					bpftrace et btop pip strongswan NetworkManager-strongswan \
 					NetworkManager-strongswan-gnome json-glib inotify-tools lldb \
 					bpftool nasm glibc-static glibc-devel kitty-terminfo \
 					kitty-shell-integration binutils-gold automake autoconf \
-					libtool libbpf-devel cmake zig zellij llvm-strip
+					libtool libbpf-devel cmake zig zellij llvm-strip git
 
 # qemu and kvm install
 sudo dnf5 group install -y virtualization
@@ -58,7 +58,7 @@ sudo chown root:root /usr/share/zsh/site-functions/_docker
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup.sh
 chmod u+x /tmp/rustup.sh
 /tmp/rustup.sh --no-modify-path -y
-rustup component add rust-analyzer
+~/.cargo/bin/rustup component add rust-analyzer
 
 # install golang
 cd ~/git/go || exit
@@ -84,9 +84,9 @@ cd /tmp || exit
 mkdir -p ~/.docker/cli-plugins
 cd ~/.docker/cli-plugins || exit
 if [[ $ARCH == "x86_64" ]]; then
-	curl -L https://github.com/docker/buildx/releases/download/v0.26.1/buildx-v0.26.1.linux-amd64 -o buildx
+	curl -L https://github.com/docker/buildx/releases/download/v0.39.0/buildx-v0.39.0.linux-amd64 -o buildx
 elif [[ $ARCH == "aarch64" ]]; then
-	curl -L https://github.com/docker/buildx/releases/download/v0.26.1/buildx-v0.26.1.linux-arm64 -o buildx
+	curl -L https://github.com/docker/buildx/releases/download/v0.39.0/buildx-v0.39.0.linux-arm64 -o buildx
 fi
 mv buildx* docker-buildx
 chmod u+x docker-buildx
@@ -112,8 +112,7 @@ sudo npm install -g yaml-language-server
 ## setup bash language server
 sudo npm install -g vim-language-server
 
-# chatblade, shell-gpt, and b4 (python)
-pip install chatblade
+# shell-gpt, and b4 (python)
 pip install b4
 pip install shell-gpt
 

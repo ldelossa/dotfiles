@@ -1,0 +1,37 @@
+{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "providers": {
+    "claudegate-anthropic": {
+      "name": "claudegate (Claude)",
+      "baseUrl": "http://localhost:8080",
+      "api": "anthropic-messages",
+      "apiKey": "sk-dummy",
+      "models": [
+        { "id": "claude-opus-5.5", "name": "Claude Opus 5.5", "reasoning": true, "contextWindow": 1000000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "claude-opus-5", "name": "Claude Opus 5", "reasoning": true, "contextWindow": 1000000, "maxTokens": 64000, "input": ["text", "image"] },
+        { "id": "claude-sonnet-5.5", "name": "Claude Sonnet 5.5", "reasoning": true, "contextWindow": 1000000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "claude-sonnet-5", "name": "Claude Sonnet 5", "reasoning": true, "contextWindow": 1000000, "maxTokens": 64000, "input": ["text", "image"] },
+        { "id": "claude-haiku-5.5", "name": "Claude Haiku 5.5", "reasoning": true, "contextWindow": 1000000, "maxTokens": 128000, "input": ["text", "image"] }
+      ]
+    },
+    "claudegate-openai": {
+      "name": "claudegate (OpenAI/other)",
+      "baseUrl": "http://localhost:8080/v1",
+      "api": "openai-responses",
+      "apiKey": "sk-dummy",
+      "models": [
+        { "id": "gpt-6-luna", "name": "GPT 6 Luna", "reasoning": true, "contextWindow": 1000000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "gpt-5.6-luna", "name": "GPT 5.6 Luna", "reasoning": true, "contextWindow": 1050000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "gpt-6.1-terra", "name": "GPT 6.1 Terra", "reasoning": true, "contextWindow": 1000000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "gpt-5.6-terra", "name": "GPT 5.6 Terra", "reasoning": true, "contextWindow": 1050000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "gpt-5.4-nano", "name": "GPT 5.4 Nano", "reasoning": true, "contextWindow": 400000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "gpt-5.3-codex", "name": "GPT 5.3 Codex", "reasoning": true, "contextWindow": 400000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "grok-4.7", "name": "Grok 4.7", "reasoning": true, "contextWindow": 500000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "grok-4.6", "name": "Grok 4.6", "reasoning": true, "contextWindow": 500000, "maxTokens": 128000, "input": ["text", "image"] },
+        { "id": "gemini-4-hydrogen", "name": "Gemini 4 Hydrogen", "reasoning": true, "contextWindow": 1048576, "maxTokens": 65536, "input": ["text", "image"] },
+        { "id": "gemini-3.8-flash", "name": "Gemini 3.8 Flash", "reasoning": true, "contextWindow": 1048576, "maxTokens": 65536, "input": ["text", "image"] },
+        { "id": "mai-code-1.1-flash", "name": "MAI Code 1.1 Flash", "reasoning": true, "contextWindow": 256000, "maxTokens": 128000, "input": ["text"] }
+      ]
+    }
+  }
+}

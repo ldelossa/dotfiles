@@ -79,6 +79,8 @@ link-pi:
 	ln -s $(HOME)/git/dotfiles/config/pi/AGENTS.md $(HOME)/.pi/agent/AGENTS.md
 	-unlink ~/.pi/agent/settings.json
 	ln -s $(HOME)/git/dotfiles/config/pi/settings.json $(HOME)/.pi/agent/settings.json
+	-unlink ~/.pi/agent/models.json
+	ln -s $(HOME)/git/dotfiles/config/pi/models.json $(HOME)/.pi/agent/models.json
 	-unlink ~/.pi/agent/keybindings.json
 	ln -s $(HOME)/git/dotfiles/config/pi/keybindings.json $(HOME)/.pi/agent/keybindings.json
 	mkdir -p $(HOME)/.pi/agent/extensions

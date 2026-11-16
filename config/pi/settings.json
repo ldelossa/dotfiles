@@ -1,6 +1,6 @@
 {
   "$schema": "https://pi.dev/schemas/settings.schema.json",
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.2",
   "theme": "system",
   "quietStartup": "header",
   "treeFilterMode": "no-tools",
@@ -39,5 +39,13 @@
       },
       "thinking": "xhigh"
     }
+  },
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:@trevonistrevon/pi-loop\",\"scope\":\"user\"}": "0.8.0",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.88.1",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.48.0",
+    "{\"source\":\"npm:@aliou/pi-guardrails\",\"scope\":\"user\"}": "0.23.0",
+    "{\"source\":\"npm:pi-theme-picker\",\"scope\":\"user\"}": "0.1.2",
+    "{\"source\":\"git:github.com/ldelossa/pi-plan-mode\",\"scope\":\"user\"}": "0.26.2"
   }
 }
