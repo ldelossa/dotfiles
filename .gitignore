@@ -20,3 +20,4 @@ config/dlv/.dbg_history
 config/k9s/skins/skin.yaml
 config/aichat/*
 !config/aichat/config.yaml
+config/zed/prompts/

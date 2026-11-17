@@ -38,24 +38,7 @@
       "type": "registry"
     }
   },
-  "ssh_connections": [
-    {
-      "host": "linux",
-      "args": [],
-      "projects": [
-        {
-          "paths": [
-            "/home/louis/git/zig/zig"
-          ]
-        },
-        {
-          "paths": [
-            "/home/louis/git/zig/zig-multiboot"
-          ]
-        }
-      ]
-    }
-  ],
+  "ssh_connections": [],
   "edit_predictions": {
     "provider": "copilot",
     // Preserve Zed's built-in exclusions and add the sensitive-file patterns
@@ -128,6 +111,6 @@
   "theme": {
     "mode": "dark",
     "light": "macOS Classic Light",
-    "dark": "Ayu Mirage"
+    "dark": "One Dark"
   }
 }
