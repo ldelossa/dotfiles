@@ -44,4 +44,18 @@ fi
 
 if which pi-bolt &> /dev/null; then
 	alias pi="pi-bolt"
+	# Work machines: Pi on AWS Bedrock, using whichever profile this machine has.
+	#   bedrock-cert   - cert auth via `things bedrock enroll` (~/.aws/config)
+	#   claude-bedrock - static key from `things bedrock rotate` (~/.aws/credentials)
+	# No matching profile (non-work machine) -> no alias.
+	_pi_bedrock_profile=""
+	if grep -qs '^\[profile bedrock-cert\]' ~/.aws/config; then
+		_pi_bedrock_profile=bedrock-cert
+	elif grep -qs '^\[claude-bedrock\]' ~/.aws/credentials; then
+		_pi_bedrock_profile=claude-bedrock
+	fi
+	if [ -n "$_pi_bedrock_profile" ]; then
+		alias pi-bedrock="AWS_PROFILE=$_pi_bedrock_profile AWS_REGION=us-east-1 pi-bolt"
+	fi
+	unset _pi_bedrock_profile
 fi
